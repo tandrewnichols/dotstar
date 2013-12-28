@@ -1,7 +1,7 @@
 #!/bin/sh
 
 dir="$(pwd)"
-files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc .git-prompt.sh
+files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc .git-prompt.sh"
 for file in $files; do
   echo "Linking $file"
   ln -sb $dir/$file ~/$file
