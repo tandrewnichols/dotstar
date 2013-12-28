@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir="$(pwd)"
+files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc"
+for file in $files; do
+  echo "Linking $file"
+  ln -sb $dir/$file ~/$file
+done
+
+vimfiles="functions mappings plugins vundle config"
+for file in $vimfiles; do
+  echo "Linking $file"
+  ln -sb $dir/${file}.vim ~/.vim/${file}.vim
+done

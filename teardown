@@ -1,0 +1,21 @@
+#!/bin/sh
+
+files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc"
+for file in $files; do
+  echo "Removing $file"
+  unlink ~/$file
+  if [ -e ~/${file}~ ]; then
+    echo "Restoring original"
+    mv ~/${file}~ ~/$file
+  fi
+done
+
+vimfiles="functions mappings plugins vundle config"
+for file in $vimfiles; do
+  echo "Removing $file"
+  unlink ~/.vim/${file}.vim
+  if [ -e ~/${file}.vim~ ]; then
+    echo "Restoring original"
+    mv ~/.vim/${file}.vim~ ~/.vim/${file}.vim
+  fi
+done
