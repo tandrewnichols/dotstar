@@ -57,7 +57,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/.git-prompt.sh
+if [ -e ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+fi
 PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;31m\]$(__git_ps1)\[\033[00m\]\$ '
 unset color_prompt force_color_prompt
 

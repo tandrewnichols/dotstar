@@ -148,7 +148,9 @@ src() {
 }
 
 test() {
-  perl ~/code/other/perltest.pl
+  if [ -e ~/code/other/perltest.pl ]; then
+    perl ~/code/other/perltest.pl
+  fi
 }
 
 subid() {
