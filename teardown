@@ -1,6 +1,6 @@
 #!/bin/sh
 
-files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc"
+files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc .git-prompt.sh"
 for file in $files; do
   echo "Removing $file"
   unlink ~/$file
