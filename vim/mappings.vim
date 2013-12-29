@@ -75,8 +75,21 @@ nnoremap <Del> xi
 " VIMRC
 " -----
 
-" Open vimrc in vertical split
-nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+" Open vimrc/.vim files in vertical split
+nnoremap <silent> <leader>vr :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>vv :vsplit ~/.vim/vundle.vim<CR>
+nnoremap <silent> <leader>vm :vsplit ~/.vim/mappings.vim<CR>
+nnoremap <silent> <leader>vp :vsplit ~/.vim/plugins.vim<CR>
+nnoremap <silent> <leader>vc :vsplit ~/.vim/config.vim<CR>
+nnoremap <silent> <leader>vf :vsplit ~/.vim/functions.vim<CR>
+
+" Open vimrc/.vim files in horizontal split
+nnoremap <silent> <leader>hr :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>hv :vsplit ~/.vim/vundle.vim<CR>
+nnoremap <silent> <leader>hm :vsplit ~/.vim/mappings.vim<CR>
+nnoremap <silent> <leader>hp :vsplit ~/.vim/plugins.vim<CR>
+nnoremap <silent> <leader>hc :vsplit ~/.vim/config.vim<CR>
+nnoremap <silent> <leader>hf :vsplit ~/.vim/functions.vim<CR>
 
 " Source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>

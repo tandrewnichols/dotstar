@@ -14,7 +14,7 @@ vimfiles="functions mappings plugins vundle config"
 for file in $vimfiles; do
   echo "Removing $file"
   unlink ~/.vim/${file}.vim
-  if [ -e ~/${file}.vim~ ]; then
+  if [ -e ~/.vim/${file}.vim~ ]; then
     echo "Restoring original"
     mv ~/.vim/${file}.vim~ ~/.vim/${file}.vim
   fi
