@@ -12,3 +12,5 @@
 	default = upstream
 [branch]
 	autosetuprebase = always
+[color]
+  ui = auto
