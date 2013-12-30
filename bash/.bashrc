@@ -115,7 +115,9 @@ source ~/code/nvm/nvm.sh
 export EDITOR=vim
 
 # added by travis gem
-source /home/anichols/.travis/travis.sh
+if [ -e /home/anichols/.travis/travis.sh ]; then
+  source /home/anichols/.travis/travis.sh
+fi
 
 bind -r '\C-s'
 stty -ixon
