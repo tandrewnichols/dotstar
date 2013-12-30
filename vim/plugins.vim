@@ -136,3 +136,20 @@ nnoremap <leader>sc :call mocha#RunCurrentSpecFile()<CR>
 nnoremap <leader>sn :call mocha#RunNearestSpec()<CR>
 nnoremap <leader>sl :call mocha#RunLastSpec()<CR>
 nnoremap <leader>sa :call mocha#RunAllSpecs()<CR>
+
+
+" ----------
+" TOGGLELIST
+" ----------
+
+let g:toggle_list_no_mappings=1
+nnoremap <script> <leader>qf :call ToggleQuickfixList()<CR>
+nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
+
+
+" -----
+" VIMUX
+" -----
+
+nnoremap <leader>gr :call VimuxRunCommand("clear; grunt", 0)<CR>
+nnoremap <leader>ta :call VimuxRunCommand("clear; npm test", 0)<CR>
