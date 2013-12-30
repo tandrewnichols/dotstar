@@ -26,3 +26,6 @@ au BufNewFile,BufRead *.less setf less
 set scrolloff=3
 set ignorecase
 set nobackup
+if &term =~ '256color'
+  set t_ut=
+endif
