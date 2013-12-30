@@ -145,11 +145,3 @@ nnoremap <leader>sa :call mocha#RunAllSpecs()<CR>
 let g:toggle_list_no_mappings=1
 nnoremap <script> <leader>qf :call ToggleQuickfixList()<CR>
 nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
-
-
-" -----
-" VIMUX
-" -----
-
-nnoremap <leader>gr :call VimuxRunCommand("clear; grunt", 0)<CR>
-nnoremap <leader>ta :call VimuxRunCommand("clear; npm test", 0)<CR>
