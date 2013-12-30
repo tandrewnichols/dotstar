@@ -1,21 +1,29 @@
-#!/bin/sh
+#!/bin/bash
 
-files=".bash_aliases .bash_profile .bashrc .npmrc .tmux.conf .vimrc .git-prompt.sh"
-for file in $files; do
-  echo "Removing $file"
-  unlink ~/$file
-  if [ -e ~/${file}~ ]; then
-    echo "Restoring original"
-    mv ~/${file}~ ~/$file
+shopt -s dotglob
+for file in $(pwd)/bash/*
+do
+  name=$(basename $file)
+  if [ -h ~/$name ]; then
+    echo "Removing ~/$name"
+    unlink ~/$name
+    if [ -e ~/$name~ ]; then
+      echo "Restoring original"
+      mv ~/$name~ ~/$name
+    fi
   fi
 done
 
-vimfiles="functions mappings plugins vundle config"
-for file in $vimfiles; do
-  echo "Removing $file"
-  unlink ~/.vim/${file}.vim
-  if [ -e ~/.vim/${file}.vim~ ]; then
-    echo "Restoring original"
-    mv ~/.vim/${file}.vim~ ~/.vim/${file}.vim
+for file in $(pwd)/vim/*
+do
+  name=$(basename $file)
+  if [ -h ~/.vim/$name ]; then
+    echo "Remove ~/.vim/$name"
+    unlink ~/.vim/$name
+    if [ -e ~/.vim/$name~ ]; then
+      echo "Restoring original"
+      mv ~/.vim/$name~ ~/.vim/$name
+    fi
   fi
 done
+shopt -u dotglob
