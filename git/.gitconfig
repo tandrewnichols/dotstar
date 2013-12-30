@@ -1,0 +1,13 @@
+[user]
+	name = Andrew Nichols
+	email = tandrewnichols@gmail.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	dt = difftool
+[push]
+	default = upstream
+[branch]
+	autosetuprebase = always
