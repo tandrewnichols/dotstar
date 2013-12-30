@@ -7,6 +7,7 @@
 	prompt = false
 [alias]
 	dt = difftool
+	a = add --all
 [push]
 	default = upstream
 [branch]
