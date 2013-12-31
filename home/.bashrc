@@ -68,8 +68,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;31m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+#export GIT_PS1_SHOWDIRTYSTATE=true
+#export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;31m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
