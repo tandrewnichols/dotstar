@@ -15,23 +15,6 @@ nnoremap <silent> <F2> nzz
 nnoremap <silent> <leader>rl :exec ":g/".input("Remove lines matching: ")."/d"<CR>
 
 
-" ----------
-" NAVIGATION
-" ----------
-
-" Move left in splits
-nnoremap <C-H> <C-W><C-H>
-
-" Move down in splits
-nnoremap <C-J> <C-W><C-J>
-
-" Move up in splits
-nnoremap <C-K> <C-W><C-K>
-
-" Move right in splits
-nnoremap <C-L> <C-W><C-L>
-
-
 " ---------
 " SAVE/QUIT
 " ---------

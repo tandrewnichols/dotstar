@@ -3,6 +3,7 @@ set foldmethod=marker
 set foldlevelstart=0
 set t_Co=256
 colorscheme jellybeans
+filetype plugin indent on
 syntax enable
 set tabstop=2 shiftwidth=2 expandtab
 set number

@@ -1,4 +1,5 @@
 set nocp
+filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
@@ -43,3 +44,5 @@ Bundle 'mmozuras/snipmate-mocha'
 Bundle 'geekjuice/vim-mocha'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'benmills/vimux'
+
+filetype plugin indent on 
