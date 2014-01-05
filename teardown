@@ -1,29 +1,7 @@
 #!/bin/bash
 
 shopt -s dotglob
-for file in $(pwd)/home/*
-do
-  name=$(basename $file)
-  if [ -h ~/$name ]; then
-    echo "Removing ~/$name"
-    unlink ~/$name
-    if [ -e ~/$name~ ]; then
-      echo "Restoring original"
-      mv ~/$name~ ~/$name
-    fi
-  fi
-done
-
-for file in $(pwd)/vim/*
-do
-  name=$(basename $file)
-  if [ -h ~/.vim/$name ]; then
-    echo "Remove ~/.vim/$name"
-    unlink ~/.vim/$name
-    if [ -e ~/.vim/$name~ ]; then
-      echo "Restoring original"
-      mv ~/.vim/$name~ ~/.vim/$name
-    fi
-  fi
-done
+unlinkFiles home ~
+unlinkFiles vim ~/.vim
+unlinkFiles tmux ~/.tmux
 shopt -u dotglob

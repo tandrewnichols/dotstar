@@ -147,10 +147,36 @@ src() {
   $line
 }
 
-test() {
-  if [ -e ~/code/other/perltest.pl ]; then
-    perl ~/code/other/perltest.pl
-  fi
+#test() {
+  #if [ -e ~/code/other/perltest.pl ]; then
+    #perl ~/code/other/perltest.pl
+  #fi
+#}
+
+
+linkFiles() {
+  for file in $(pwd)/$1/*
+  do
+    if [ -f $file ]; then
+      echo "Linking $file to $2/$(basename $file)"
+      ln -sb $file $2/$(basename $file)
+    fi
+  done
+}
+
+unlinkFiles() {
+  for file in $(pwd)/$1/*
+  do
+    name=$(basename $file)
+    if [ -h $2/$name ]; then
+      echo "Removing $2/$name"
+      unlink $2/$name
+      if [ -e $2/$name~ ]; then
+        echo "Restoring original"
+        mv $2/$name~ $2/$name
+      fi
+    fi
+  done
 }
 
 subid() {

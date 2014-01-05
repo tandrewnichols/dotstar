@@ -1,19 +1,7 @@
 #!/bin/bash
 
 shopt -s dotglob
-for file in $(pwd)/home/*
-do
-  if [ -f $file ]; then
-    echo "Linking $file to ~/$(basename $file)"
-    ln -sb $file ~/$(basename $file)
-  fi
-done
-
-for file in $(pwd)/vim/*
-do
-  if [ -f $file ]; then
-    echo "Linking $file to ~/$(basename $file)"
-    ln -sb $file ~/.vim/$(basename $file)
-  fi
-done
+linkFiles home ~
+linkFiles vim ~/.vim
+linkFiles tmux ~/.tmux
 shopt -u dotglob
