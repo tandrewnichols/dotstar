@@ -1,7 +1,29 @@
 #!/bin/bash
 
 shopt -s dotglob
-unlinkFiles home ~
+
+unlinkFiles() {
+  from=$(pwd)
+  if [ -n $1 ]; then
+    from=$from/$1
+  fi
+  from=$from/*
+  to=${2:-~}
+  for file in $from
+  do
+    name=$(basename $file)
+    if [ -h $to/$name ]; then
+      echo "Removing $to/$name"
+      unlink $to/$name
+      if [ -e $to/$name~ ]; then
+        echo "Restoring original"
+        mv $to/$name~ $to/$name
+      fi
+    fi
+  done
+}
+
+unlinkFiles home
 unlinkFiles vim ~/.vim
 unlinkFiles tmux ~/.tmux
 shopt -u dotglob

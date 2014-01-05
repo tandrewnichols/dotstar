@@ -1,7 +1,27 @@
 #!/bin/bash
 
 shopt -s dotglob
-linkFiles home ~
+
+linkFiles() {
+  from=$(pwd)
+  if [[ -n $1 ]]; then
+    from=$from/$1
+  fi
+  from=$from/*
+  to=${2:-~}
+  if [[ ! -d $to ]]; then
+    mkdir $to    
+  fi
+  for file in $from
+  do
+    if [ -f $file ]; then
+      echo "Linking $file to $to/$(basename $file)"
+      ln -sb $file $to/$(basename $file)
+    fi
+  done
+}
+
+linkFiles home
 linkFiles vim ~/.vim
 linkFiles tmux ~/.tmux
 shopt -u dotglob

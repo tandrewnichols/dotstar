@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #### ALIASES #### 
 alias del="git ls-files --deleted | xargs git rm"
@@ -155,25 +155,40 @@ src() {
 
 
 linkFiles() {
-  for file in $(pwd)/$1/*
+  from=$(pwd)
+  if [[ -n $1 ]]; then
+    from=$from/$1
+  fi
+  from=$from/*
+  to=${2:-~}
+  if [! -d $to ]; then
+    mkdir $to    
+  fi
+  for file in $from
   do
     if [ -f $file ]; then
-      echo "Linking $file to $2/$(basename $file)"
-      ln -sb $file $2/$(basename $file)
+      echo "Linking $file to $to/$(basename $file)"
+      ln -sb $file $to/$(basename $file)
     fi
   done
 }
 
 unlinkFiles() {
-  for file in $(pwd)/$1/*
+  from=$(pwd)
+  if [ -n $1 ]; then
+    from=$from/$1
+  fi
+  from=$from/*
+  to=${2:-~}
+  for file in $from
   do
     name=$(basename $file)
-    if [ -h $2/$name ]; then
-      echo "Removing $2/$name"
-      unlink $2/$name
-      if [ -e $2/$name~ ]; then
+    if [ -h $to/$name ]; then
+      echo "Removing $to/$name"
+      unlink $to/$name
+      if [ -e $to/$name~ ]; then
         echo "Restoring original"
-        mv $2/$name~ $2/$name
+        mv $to/$name~ $to/$name
       fi
     fi
   done
