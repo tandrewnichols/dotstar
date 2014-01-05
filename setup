@@ -10,7 +10,7 @@ linkFiles() {
   from=$from/*
   to=${2:-~}
   if [[ ! -d $to ]]; then
-    mkdir $to    
+    mkdir $to
   fi
   for file in $from
   do
