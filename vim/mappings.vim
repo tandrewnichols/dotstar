@@ -44,7 +44,7 @@ nnoremap <S-Tab> gT
 
 
 " ----------------
-" BACKSPACE/DELETE
+" SWITCH MODES
 " ----------------
 
 " Delete previous char and enter insert mode
@@ -53,6 +53,9 @@ nnoremap <BS> hxi
 " Delete current char and enter insert mode
 nnoremap <Del> xi
 
+" Remap F1
+map <F1> <Esc>
+imap <F1> <Esc>
 
 " -----
 " VIMRC
