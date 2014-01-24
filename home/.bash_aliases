@@ -8,10 +8,11 @@ alias server="cd ~/code/vagrant-tools/src/manta-frontend/server"
 alias client="cd ~/code/vagrant-tools/src/manta-frontend/client"
 alias remotes="git branch -r"
 alias master="git checkout master"
-alias conflict="st | grep 'U[U|D]'"
+alias conflict="st | grep '[U|D]U'"
 alias pg="pgadmin3"
 alias ack="ack-grep"
 alias open="xdg-open"
+alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
 
 #### GENERIC COMMANDS ####
 sub() {

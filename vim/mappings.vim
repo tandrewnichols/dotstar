@@ -119,6 +119,9 @@ nnoremap <silent> <leader>] :lne<CR>zz
 " Remap C-a so tmux can use C-a
 map <C-b> <C-a>
 
+" Easy escape from insert mode
+inoremap <silent> jkl <Esc>
+
 
 " -------------
 " JASMINE/MOCHA
