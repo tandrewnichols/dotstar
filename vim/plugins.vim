@@ -145,3 +145,10 @@ nnoremap <leader>sa :call mocha#RunAllSpecs()<CR>
 let g:toggle_list_no_mappings=1
 nnoremap <script> <leader>qf :call ToggleQuickfixList()<CR>
 nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
+
+
+" --------
+" SURROUND
+" --------
+
+nmap <leader>qt ysiw"

@@ -26,6 +26,7 @@ au BufNewFile,BufRead *.json setf javascript
 au BufNewFile,BufRead *.less setf less
 set scrolloff=3
 set ignorecase
+set smartcase
 set nobackup
 set linebreak
 set noswapfile

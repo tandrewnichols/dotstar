@@ -14,6 +14,9 @@ nnoremap <silent> <F2> nzz
 " Remove-lines: remove all lines matching pattern
 nnoremap <silent> <leader>rl :exec ":g/".input("Remove lines matching: ")."/d"<CR>
 
+" Grep for word under cursor
+nnoremap <leader>gr :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 
 " ---------
 " SAVE/QUIT
