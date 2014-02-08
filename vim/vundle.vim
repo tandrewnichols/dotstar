@@ -2,6 +2,7 @@ set nocp
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
+let g:instant_markdown_slow = 1
 
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -45,5 +46,6 @@ Bundle 'mmozuras/snipmate-mocha'
 Bundle 'geekjuice/vim-mocha'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'benmills/vimux'
+Bundle 'suan/vim-instant-markdown'
 
 filetype plugin indent on 
