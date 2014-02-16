@@ -125,6 +125,13 @@ map <C-b> <C-a>
 " Easy escape from insert mode
 inoremap <silent> jkl <Esc>
 
+" Always navigate line-wise
+nnoremap j gj
+nnoremap k gk
+
+" Surround with backticks (for markdown)
+nmap <leader>md ysiw`
+
 
 " -------------
 " JASMINE/MOCHA
