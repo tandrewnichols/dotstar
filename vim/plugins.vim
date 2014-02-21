@@ -124,7 +124,7 @@ nnoremap <silent> <leader>bl :Gblame<CR>
 nnoremap <silent> <leader>df :Gdiff<CR>
 
 " Git commit
-nnoremap <silent> <leader>cm :Gcommit<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
 
 
 " ---------

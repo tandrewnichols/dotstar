@@ -13,6 +13,7 @@ alias pg="pgadmin3"
 alias ack="ack-grep"
 alias open="xdg-open"
 alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
+alias nw="npm run-script watch"
 
 #### GENERIC COMMANDS ####
 sub() {
