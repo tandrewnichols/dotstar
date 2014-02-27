@@ -115,6 +115,7 @@ fi
 
 source ~/code/nvm/nvm.sh
 export EDITOR=vim
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
 # added by travis gem
 if [ -e /home/anichols/.travis/travis.sh ]; then
