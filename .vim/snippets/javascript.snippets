@@ -1,0 +1,55 @@
+snippet sc
+	$scope.${1} = function (${2}) {
+		${3}
+	};
+
+snippet cont
+	angular.module('app').controller('${1}', function(${2}) {
+		${3}
+	});
+
+snippet serv
+	angular.module('app').factory('${1}', function($2}) {
+		${3}
+	});
+
+snippet dir
+	angular.module('app').directive('${1}', function(${2}) {
+		return {
+			link: function($scope, $element, $attributes) {
+				${3}
+			}
+		};
+	});
+
+snippet log
+	console.log('${1}', ${2});
+
+snippet mod
+	module.exports = {
+		${1:method}: function(${2}) {
+			${3}
+		}
+	};
+
+snippet route
+	function (req, res, next) {
+		${1}
+	}
+
+snippet proto
+	${1}.prototype.${2} = function(${3}) {
+		${4}
+	};
+
+snippet reduce
+	_(${1}).reduce(function(memo, ${2:item}) {
+		${3}
+		return memo;
+	}, {});
+
+snippet reducearr
+	_(${1}).reduce(function(memo, ${2:item}) {
+		${3}
+		return memo;
+	}, []);

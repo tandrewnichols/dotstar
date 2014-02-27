@@ -2,8 +2,10 @@
 
 shopt -s dotglob
 
+cwd = $(pwd)
+
 unlinkFiles() {
-  from=$(pwd)
+  from=$cwd
   if [ -n $1 ]; then
     from=$from/$1
   fi
@@ -24,6 +26,15 @@ unlinkFiles() {
 }
 
 unlinkFiles home
-unlinkFiles vim ~/.vim
-unlinkFiles tmux ~/.tmux
+
+echo "Removing $cwd/.vim"
+unlink $cwd/.vim
+echo "Restoring original"
+mv ~/.vim~ ~/.vim
+
+echo "Removing $cwd/.tmux"
+unlink $cwd/.tmux
+echo "Restoring original"
+mv ~/.tmux~ ~/.tmux
+
 shopt -u dotglob

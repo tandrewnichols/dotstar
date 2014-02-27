@@ -22,6 +22,11 @@ linkFiles() {
 }
 
 linkFiles home
-linkFiles vim ~/.vim
-linkFiles tmux ~/.tmux
+
+echo "Linking $(pwd)/.vim to ~/.vim"
+ln -sb $(pwd)/.vim ~/.vim
+
+echo "Linking $(pwd)/.tmux to ~/.tmux"
+ln -sb $(pwd)/.tmux ~/.tmux
+
 shopt -u dotglob
