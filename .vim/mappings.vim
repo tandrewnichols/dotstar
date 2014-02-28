@@ -94,6 +94,12 @@ vnoremap <leader>y "+y
 " Paste from system clipboard
 nnoremap <leader>p "+p
 
+" Yank inside quotes
+nnoremap <leader>yi F'lvf'hy
+
+" Yank inside quotes to system clipboard
+nnoremap <leader>yc F'lvf'h"+y
+
 " Blank line below and stay in normal mode
 nnoremap <leader>oj o<Esc>
 
