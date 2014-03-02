@@ -138,6 +138,9 @@ nnoremap k gk
 " Surround with backticks (for markdown)
 nmap <leader>md ysiw`
 
+" Surround with quotes (for json)
+nmap <leader>js ysiw"
+
 
 " -------------
 " JASMINE/MOCHA

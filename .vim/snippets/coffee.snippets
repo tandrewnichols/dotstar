@@ -1,78 +1,57 @@
 snippet G
 	Given -> ${1}
-
 snippet W
 	When -> ${1}
-
 snippet T
 	Then -> ${1}
-
 snippet A
 	And -> ${1}
-
 snippet desc
 	describe '${1}', ->
 		${2}
-
 snippet con
 	context '${1}', ->
 		${2}
-
 snippet call
 	${1} -> expect(${2}).toHaveBeenCalled()
-
 snippet with
 	${1} -> expect(${2}).toHaveBeenCalledWith(${3})
-
 snippet withobj
 	${1} -> expect(${2}).toHaveBeenCalledWith
 		${3}
-
 snippet witharr
 	${1} -> expect(${2}).toHaveBeenCalledWith [
 		${3}
 	]
-
 snippet equal
 	${1} -> expect(${2}).toEqual
 		${3}
-
 snippet equalarr
 	${1} -> expect(${2}).toEqual [
 		${3}
 	]
-
 snippet deep
 	${1} -> expect(${2}).to.deep.equal
 		${3}
-
 snippet deeparr
 	${1} -> expect(${2}).to.deep.equal [
 		${3}
 	]
-
 snippet eq
 	${1} -> expect(${2}).to.equal(${3})
-
 snippet spy
 	Given -> ${1} = jasmine.createSpy(${2})
-
 snippet spyon
 	Given -> spyOn(${1}, '${2}')
-
 snippet spyobj
 	Given -> ${1} = jasmine.createSpyObj('${1}', ['${2}'])
-
 snippet sinon
 	Given -> ${1} = sinon.spy()
-
 snippet stub
 	Given -> ${1} = sinon.stub()
-
 snippet sandbox
 	Given -> ${1:@subject} = sandbox '${2}'${3:,}
 		${4:#requires}
-
 snippet subject
 	Given -> ${1:@subject} = requireSubject '${2}'${3:,}
 		${4:#requires}
