@@ -5,3 +5,4 @@ kill-window -t 2
 select-window -t 3
 send-keys 'q'
 kill-window -t 3
+kill-window -t 4
