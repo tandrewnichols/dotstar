@@ -152,3 +152,13 @@ nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
 " --------
 
 nmap <leader>qt ysiw"
+
+
+" -------------------
+" RAINBOW PARENTHESES
+" -------------------
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

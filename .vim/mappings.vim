@@ -141,6 +141,14 @@ nmap <leader>md ysiw`
 " Surround with quotes (for json)
 nmap <leader>js ysiw"
 
+" Toggle rainbow parens
+nnoremap <leader>( :RainbowParenthesesToggle<CR>
+
+" Fire up bash buffer
+nnoremap <leader>shv :ConqueTermVSplit bash<CR>
+nnoremap <leader>shh :ConqueTermSplit bash<CR>
+nnoremap <leader>sht :ConqueTermTab bash<CR>
+
 
 " -------------
 " JASMINE/MOCHA

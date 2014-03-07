@@ -46,5 +46,7 @@ Bundle 'geekjuice/vim-mocha'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'benmills/vimux'
 Bundle 'suan/vim-instant-markdown'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tom-dignan/Conque-Shell'
 
 filetype plugin indent on 
