@@ -73,12 +73,12 @@ nnoremap <silent> <leader>vc :vsplit ~/.vim/config.vim<CR>
 nnoremap <silent> <leader>vf :vsplit ~/.vim/functions.vim<CR>
 
 " Open vimrc/.vim files in horizontal split
-nnoremap <silent> <leader>hr :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>hv :vsplit ~/.vim/vundle.vim<CR>
-nnoremap <silent> <leader>hm :vsplit ~/.vim/mappings.vim<CR>
-nnoremap <silent> <leader>hp :vsplit ~/.vim/plugins.vim<CR>
-nnoremap <silent> <leader>hc :vsplit ~/.vim/config.vim<CR>
-nnoremap <silent> <leader>hf :vsplit ~/.vim/functions.vim<CR>
+nnoremap <silent> <leader>hr :split $MYVIMRC<CR>
+nnoremap <silent> <leader>hv :split ~/.vim/vundle.vim<CR>
+nnoremap <silent> <leader>hm :split ~/.vim/mappings.vim<CR>
+nnoremap <silent> <leader>hp :split ~/.vim/plugins.vim<CR>
+nnoremap <silent> <leader>hc :split ~/.vim/config.vim<CR>
+nnoremap <silent> <leader>hf :split ~/.vim/functions.vim<CR>
 
 " Source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
@@ -134,6 +134,8 @@ inoremap <silent> jkl <Esc>
 " Always navigate line-wise
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " Surround with backticks (for markdown)
 nmap <leader>md ysiw`
