@@ -8,6 +8,7 @@
 [alias]
 	dt = difftool
 	a = add --all
+	co = checkout
 [push]
 	default = upstream
 [branch]
