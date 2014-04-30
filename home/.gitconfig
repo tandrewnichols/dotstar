@@ -9,6 +9,7 @@
 	dt = difftool
 	a = add --all
 	co = checkout
+	cp = cherry-pick
 [push]
 	default = upstream
 [branch]
@@ -17,3 +18,5 @@
   ui = auto
 [core]
 	excludesfile = ~/.gitignore
+[merge]
+	renamelimit = 1946
