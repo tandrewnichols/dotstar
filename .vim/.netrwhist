@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/anichols/code/vagrant-tools/src/manta-frontend/server/lib/api-response-parsers'
-let g:netrw_dirhist_2='/lib'
-let g:netrw_dirhist_3='/home/anichols/code/vagrant-tools/src/manta-frontend/server/lib'
-let g:netrw_dirhist_4='/home/anichols/code/vagrant-tools/src/manta-frontend/server/lib/api-response-parsers'
-let g:netrw_dirhist_5='/home/anichols/code/vagrant-tools/src/manta-frontend/server'
