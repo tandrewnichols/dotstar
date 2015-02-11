@@ -16,7 +16,7 @@ linkFiles() {
   do
     if [ -f $file ]; then
       echo "Linking $file to $to/$(basename $file)"
-      ln -sb $file $to/$(basename $file)
+      ln -sf $file $to/$(basename $file)
     fi
   done
 }
@@ -24,9 +24,6 @@ linkFiles() {
 linkFiles home
 
 echo "Linking $(pwd)/.vim to ~/.vim"
-ln -sb $(pwd)/.vim ~/.vim
-
-echo "Linking $(pwd)/.tmux to ~/.tmux"
-ln -sb $(pwd)/.tmux ~/.tmux
+ln -sf $(pwd)/.vim ~/.vim
 
 shopt -u dotglob

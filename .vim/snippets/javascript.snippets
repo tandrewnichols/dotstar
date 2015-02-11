@@ -1,4 +1,4 @@
-snippet sc
+snippet $
 	$scope.${1} = function (${2}) {
 		${3}
 	};
@@ -18,14 +18,18 @@ snippet dir
 			}
 		};
 	});
-snippet log
-	console.log('${1}', ${2});
-snippet mod
+snippet c
+	console.log('${1}:', ${2});
+snippet m
 	module.exports = {
 		${1:method}: function(${2}) {
 			${3}
 		}
 	};
+snippet e
+	exports.${1} = function(${2}) {
+		${3}
+	}
 snippet route
 	function (req, res, next) {
 		${1}
@@ -34,13 +38,22 @@ snippet proto
 	${1}.prototype.${2} = function(${3}) {
 		${4}
 	};
-snippet reduce
-	_(${1}).reduce(function(memo, ${2:item}) {
+snippet _.r
+	_.reduce(${1}, function(memo, ${2:item}) {
 		${3}
 		return memo;
-	}, {});
-snippet reducearr
-	_(${1}).reduce(function(memo, ${2:item}) {
+	}, ${4});
+snippet _.e
+	_.each(${1}, function(${2:item}) {
 		${3}
-		return memo;
-	}, []);
+	}
+snippet _.s
+	_.safe(${1}, '${2}'${3})
+snippet async.e
+	async.each(${1}, function(${2:item}, next) {
+		${3}
+	}, function(err) {
+		${4}
+	}
+snippet f
+	function(${1}) {${2}}

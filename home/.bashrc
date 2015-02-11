@@ -36,7 +36,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 export TERM=xterm-256color
-export VIMRUNTIME=/usr/share/vim/vim74
+export VIMRUNTIME=/usr/share/vim/vim73
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -70,7 +70,7 @@ if ! shopt -oq posix; then
 fi
 
 #export GIT_PS1_SHOWDIRTYSTATE=true
-#export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;31m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+#0export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[01;31m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
 unset color_prompt force_color_prompt
 
@@ -100,6 +100,16 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+if [[ $OSTYPE == darwin* ]]; then
+  alias ls='ls -G'
+  alias la='ls -AG'
+  alias ll='ls -alGF'
+  alias l='ls -CFG'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -110,21 +120,65 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
-source ~/code/nvm/nvm.sh
+if [ -f ~/code/nvm/nvm.sh ]; then
+  source ~/code/nvm/nvm.sh
+fi
+
 export EDITOR=vim
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export LINES=$LINES
+export COLUMNS=$COLUMNS
+export NEXUS_USERNAME="manta_ro"
+export NEXUS_PASSWORD="px9tlR2IkNP60Y7D7vb2EpP6pRzdoSE7"
+export PLAY_ENV="dev"
+export LOG_PATH="~/code/anichols/manta/play/logs"
+export MAVEN_HOME="/usr/local/Cellar/maven/3.2.3/libexec"
+export USERNAME="anichols"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home"
 
 # added by travis gem
-if [ -e /home/anichols/.travis/travis.sh ]; then
-  source /home/anichols/.travis/travis.sh
+if [ -e ~/.travis/travis.sh ]; then
+  source ~/.travis/travis.sh
+fi
+
+if [[ $OSTYPE == darwin* ]]; then
+  ssh-add ~/.ssh/manta_rsa
+  ssh-add ~/.ssh/anichols_rsa
 fi
 
 bind -r '\C-s'
 stty -ixon
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/bin
+PATH="$PATH:~/activator"
+
+if [[ $OSTYPE == darwin* ]]; then
+  PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/Cellar/grep/2.18/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+  # Put sonarqube bins in path
+  PATH="$PATH:$HOME/sonarqube-4.5/bin/macosx-universal-64:$HOME/sonar-runner-2.4/bin"
+fi
+
+PATH="$PATH:$HOME/bin:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
+
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
+fi
+
+eval "$(grunt --completion=bash)"
+ulimit -n 1024
+
+alias mgrep='grep -rn --exclude=access*.log --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+if [ -f ~/.rvm/scripts/rvm ]; then
+  source ~/.rvm/scripts/rvm
+fi
+
+# added by travis gem
+[ -f /Users/AndrewNichols/.travis/travis.sh ] && source /Users/AndrewNichols/.travis/travis.sh

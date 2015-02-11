@@ -2,43 +2,35 @@
 
 #### ALIASES #### 
 alias del="git ls-files --deleted | xargs git rm"
-alias status="git status"
-alias add="git add ."
-alias server="cd ~/code/vagrant-tools/src/manta-frontend/server"
-alias client="cd ~/code/vagrant-tools/src/manta-frontend/client"
+alias server="cd ~/code/anichols/manta/manta-frontend/server"
+alias client="cd ~/code/anichols/manta/manta-frontend/client"
 alias remotes="git branch -r"
-alias master="git checkout master"
-alias conflict="st | grep '[U|D]U'"
+alias master="git checkout master && git pull"
+alias conflict="st | grep -P '^[A-Z]{2}'"
 alias pg="pgadmin3"
-alias ack="ack-grep"
-alias open="xdg-open"
 alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
-alias nw="npm run-script watch"
+alias playdev="export PLAY_ENV=\"dev\""
+alias playtest="export PLAY_ENV=\"test\""
+alias g="grunt"
+alias i="npm i --save-dev grunt grunt-contrib-jshint jshint-stylish grunt-mocha-test grunt-mocha-cov mocha-lcov-reporter sinon proxyquire indeed mocha mocha-given coffee-script grunt-travis-matrix grunt-cli"
+
+# Linux specific aliases
+if [[ $OSTYPE != darwin* ]]; then
+  echo "OS is not darwin. Adding Linux aliases."
+  alias ack="ack-grep"
+  alias open="xdg-open"
+  alias gimme="sudo apt-get install"
+fi
 
 #### GENERIC COMMANDS ####
-sub() {
-  if [ -n $1 ]; then
-    echo "opening sublime with $1"
-    sublime $1
+wd() {
+  if [ -z $1 ]; then
+    grunt chrome
   else
-    echo "opening sublime at ."
-    sublime .
-  fi
-}
-
-manta() {
-  if [ -n $1 ]; then
-    cd ~/code/vagrant-tools/src/$1
-  else
-    cd ~/code/vagrant-tools/src
-  fi
-}
-
-legacy() {
-  if [ -n $1 ]; then
-    cd ~/code/legacy/$1
-  else
-    cd ~/code/legacy
+    for ((i=1;i<=$1;i++))
+    do
+      grunt chrome
+    done
   fi
 }
 
@@ -47,6 +39,22 @@ me() {
     cd ~/code/anichols/$1
   else
     cd ~/code/anichols
+  fi
+}
+
+manta() {
+  if [ -n $1 ]; then
+    cd ~/code/anichols/manta/$1
+  else
+    cd ~/code/anichols/manta
+  fi
+}
+
+play() {
+  if [ -n $1 ]; then
+    cd ~/code/anichols/manta/play/$1
+  else
+    cd ~/code/anichols/manta/play
   fi
 }
 
@@ -83,7 +91,7 @@ src() {
     return
   fi
   
-  line="node /home/anichols/code/legacy/srcrr-client/srcrr"
+  line="node /Users/AndrewNichols/code/anichols/manta/srcrr-client/srcrr"
   command="sync"
   sandbox=
   port=
@@ -149,13 +157,6 @@ src() {
   $line
 }
 
-#test() {
-  #if [ -e ~/code/other/perltest.pl ]; then
-    #perl ~/code/other/perltest.pl
-  #fi
-#}
-
-
 linkFiles() {
   from=$(pwd)
   if [[ -n $1 ]]; then
@@ -201,6 +202,10 @@ subid() {
   echo '1hgfcmbh1s5xdn1' | xclip -selection clipboard
 }
 
+resolve() {
+  vim $(conflict | sed s/^...//)
+}
+
 #### GIT COMMANDS ####
 
 # delete remote 
@@ -221,23 +226,11 @@ dr() {
   fi
 }
 
-gimme() {
-  sudo apt-get install $1
-}
-
 clone() {
-  if [ -n $2 ]; then
-    git clone git@manta.github.com:mantacode/$1.git $2
+  if [[ -n $2 ]]; then
+    git clone git@github.com:$1.git $2
   else
-    git clone git@manta.github.com:mantacode/$1.git
-  fi
-}
-
-cloneme() {
-  if [ -n $2 ]; then
-    git clone git@me.github.com:tandrewnichols/$1.git $2
-  else
-    git clone git@me.github.com:tandrewnichols/$1.git
+    git clone git@github.com:$1.git
   fi
 }
 
@@ -258,17 +251,13 @@ br() {
     if git show-ref --verify --quiet "refs/heads/$1"; then
       git checkout $1
     else
-      if git branch -r | grep -q $1$; then
+      if remotes | grep -q $1$; then
         git checkout -t origin/$1
       else
         git checkout -b $1
       fi
     fi
   fi
-}
-
-revert() {
-  git checkout HEAD $1
 }
 
 # delete branch
@@ -294,11 +283,16 @@ push() {
   fi
 }
 
-com() {
-  git add .
-  git commit -m "$1"
+findr() {
+  remotes | grep $1
 }
 
-remote() {
-  git branch -r | grep $1
+showme() {
+  curl -i https://api.github.com/user/repos -u tandrewnichols | grep '"name":'
+}
+
+repo() {
+  curl -X POST -H "Context-Type:application/json" -d '{"name":"'"$1"'","description":"'"$2"'","auto_init":true,"gitignore_template":"Node","license_template":"mit"}' https://api.github.com/user/repos -u tandrewnichols
+  cloneme $1
+  cd $1
 }

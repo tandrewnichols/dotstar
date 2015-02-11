@@ -1,57 +1,37 @@
 snippet G
-	Given -> ${1}
+	Given -> ${0}
 snippet W
-	When -> ${1}
+	When -> ${0}
 snippet T
-	Then -> ${1}
+	Then -> ${0}
 snippet A
-	And -> ${1}
-snippet desc
+	And -> ${0}
+snippet d
 	describe '${1}', ->
-		${2}
-snippet con
+		${0}
+snippet c
 	context '${1}', ->
-		${2}
-snippet call
-	${1} -> expect(${2}).toHaveBeenCalled()
-snippet with
-	${1} -> expect(${2}).toHaveBeenCalledWith(${3})
-snippet withobj
-	${1} -> expect(${2}).toHaveBeenCalledWith
-		${3}
-snippet witharr
-	${1} -> expect(${2}).toHaveBeenCalledWith [
-		${3}
-	]
-snippet equal
-	${1} -> expect(${2}).toEqual
-		${3}
-snippet equalarr
-	${1} -> expect(${2}).toEqual [
-		${3}
-	]
-snippet deep
-	${1} -> expect(${2}).to.deep.equal
-		${3}
-snippet deeparr
-	${1} -> expect(${2}).to.deep.equal [
-		${3}
-	]
-snippet eq
-	${1} -> expect(${2}).to.equal(${3})
-snippet spy
-	Given -> ${1} = jasmine.createSpy(${2})
-snippet spyon
-	Given -> spyOn(${1}, '${2}')
-snippet spyobj
-	Given -> ${1} = jasmine.createSpyObj('${1}', ['${2}'])
-snippet sinon
-	Given -> ${1} = sinon.spy()
-snippet stub
-	Given -> ${1} = sinon.stub()
-snippet sandbox
-	Given -> ${1:@subject} = sandbox '${2}'${3:,}
-		${4:#requires}
-snippet subject
-	Given -> ${1:@subject} = requireSubject '${2}'${3:,}
-		${4:#requires}
+		${0}
+snippet toH
+	toHaveBeenCalledWith ${0}
+snippet toE
+	toEqual ${0}
+snippet to.d
+	to.deep.equal
+		${0}
+snippet to.e
+	to.equal ${0}
+snippet e
+	expect(${1})${0}
+snippet j
+	jasmine.createSpyObj ${0}
+snippet s
+	spyOn(${1}, '${2}')${0}
+snippet si
+	sinon.stub${0}
+snippet @
+	@subject = requireSubject '${1}'${0}
+snippet $p
+	$provide.constant '${1:}', jasmine.createSpyObj '$1', ['${2}']${0}
+snippet $i
+	$injector.get '${0}

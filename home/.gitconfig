@@ -7,9 +7,14 @@
 	prompt = false
 [alias]
 	dt = difftool
-	a = add --all
+	a = add --all :/
 	co = checkout
 	cp = cherry-pick
+	amend = commit -a --amend --no-edit
+	ammend = commit -a --amend --no-edit
+	unstage = reset
+	aliases = config --get-regexp ^alias\\.
+  alias = config --global alias.
 [push]
 	default = upstream
 [branch]
@@ -18,5 +23,8 @@
   ui = auto
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [merge]
 	renamelimit = 1946
+[clean]
+	requireForce = false

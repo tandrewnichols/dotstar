@@ -48,6 +48,9 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_ruby_checkers = ['rubylint']
+let g:syntastic_quiet_messages = { "level": "warnings",
+                                 \ "type":  "style",
+                                 \ "regex": ["Line exceeds maximum allowed length","proprietary attribute"]}
 
 " -----
 " CTRLP
@@ -151,7 +154,8 @@ nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
 " SURROUND
 " --------
 
-nmap <leader>qt ysiw"
+nmap <leader>dq ysiw"
+nmap <leader>sq ysiw'
 
 
 " -------------------
@@ -162,3 +166,11 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+
+" -----------------
+" VIM-COFFEE-SCRIPT
+" -----------------
+
+" TODO: This isn't working
+"let g:coffee_lint_options='-f ~/.coffeelint.json'

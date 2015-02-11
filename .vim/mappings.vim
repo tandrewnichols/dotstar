@@ -88,12 +88,6 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 " GENERIC HELPERS
 " ---------------
 
-" Copy to system clipboard
-vnoremap <leader>y "+y
-
-" Paste from system clipboard
-nnoremap <leader>p "+p
-
 " Yank inside quotes
 nnoremap <leader>yi F'lvf'hy
 
@@ -157,7 +151,7 @@ nnoremap <leader>sht :ConqueTermTab bash<CR>
 " -------------
 
 " Top-only: Add .only to top-most describe
-nnoremap <silent> <leader>to mogg/describe<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
+nnoremap <silent> <leader>to moG/describe<CR>ea.only<Esc>`o:delmarks o<CR>
 
 " Describe-only: Add .only to nearest describe
 nnoremap <silent> <leader>do mo/describe<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
@@ -169,7 +163,7 @@ nnoremap <silent> <leader>co mo/context<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
 nnoremap <silent> <leader>io mo/it '<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
  
 " Remove-only: Remove all occurrences of .only
-nnoremap <silent> <leader>ro mo:%s/.only//g<CR>`o:delmarks o<CR>
+nnoremap <silent> <leader>ro mo:%s/\.only//g<CR>`o:delmarks o<CR>
 
 " Describe-skip: Add .skip to nearest describe
 nnoremap <silent> <leader>ds ms/describe<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
@@ -181,7 +175,7 @@ nnoremap <silent> <leader>cs ms/context<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
 nnoremap <silent> <leader>is ms/it '<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
 
 " Remove-skip: Remove all occurrences of .skip
-nnoremap <silent> <leader>rs ms:%s/.skip//g<CR>`s:delmarks s<CR>
+nnoremap <silent> <leader>rs ms:%s/\.skip//g<CR>`s:delmarks s<CR>
 
 
 " -------
