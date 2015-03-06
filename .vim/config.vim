@@ -26,6 +26,7 @@ set tabpagemax=50
 au BufNewFile,BufRead *.json setf javascript
 au BufNewFile,BufRead *.less setf less
 au BufNewFile,BufRead *.ejs setf html
+au BufNewFile,BufRead *.hbs setf html
 set scrolloff=3
 set ignorecase
 set smartcase
