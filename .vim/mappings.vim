@@ -9,7 +9,7 @@ nnoremap <silent> <leader><Esc> :set nohlsearch<Bar>:echo<CR>
 nnoremap <silent> <leader><CR> :set hls<CR>
 
 " Center next match on screen
-nnoremap <silent> <F2> nzz
+"nnoremap <silent> <F2> nzz
 
 " Remove-lines: remove all lines matching pattern
 nnoremap <silent> <leader>rl :exec ":g/".input("Remove lines matching: ")."/d"<CR>
@@ -65,20 +65,20 @@ imap <F1> <Esc>
 " -----
 
 " Open vimrc/.vim files in vertical split
-nnoremap <silent> <leader>vr :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>vv :vsplit ~/.vim/vundle.vim<CR>
-nnoremap <silent> <leader>vm :vsplit ~/.vim/mappings.vim<CR>
-nnoremap <silent> <leader>vp :vsplit ~/.vim/plugins.vim<CR>
-nnoremap <silent> <leader>vc :vsplit ~/.vim/config.vim<CR>
-nnoremap <silent> <leader>vf :vsplit ~/.vim/functions.vim<CR>
+"nnoremap <silent> <leader>vr :vsplit $MYVIMRC<CR>
+"nnoremap <silent> <leader>vv :vsplit ~/.vim/vundle.vim<CR>
+"nnoremap <silent> <leader>vm :vsplit ~/.vim/mappings.vim<CR>
+"nnoremap <silent> <leader>vp :vsplit ~/.vim/plugins.vim<CR>
+"nnoremap <silent> <leader>vc :vsplit ~/.vim/config.vim<CR>
+"nnoremap <silent> <leader>vf :vsplit ~/.vim/functions.vim<CR>
 
 " Open vimrc/.vim files in horizontal split
-nnoremap <silent> <leader>hr :split $MYVIMRC<CR>
-nnoremap <silent> <leader>hv :split ~/.vim/vundle.vim<CR>
-nnoremap <silent> <leader>hm :split ~/.vim/mappings.vim<CR>
-nnoremap <silent> <leader>hp :split ~/.vim/plugins.vim<CR>
-nnoremap <silent> <leader>hc :split ~/.vim/config.vim<CR>
-nnoremap <silent> <leader>hf :split ~/.vim/functions.vim<CR>
+"nnoremap <silent> <leader>hr :split $MYVIMRC<CR>
+"nnoremap <silent> <leader>hv :split ~/.vim/vundle.vim<CR>
+"nnoremap <silent> <leader>hm :split ~/.vim/mappings.vim<CR>
+"nnoremap <silent> <leader>hp :split ~/.vim/plugins.vim<CR>
+"nnoremap <silent> <leader>hc :split ~/.vim/config.vim<CR>
+"nnoremap <silent> <leader>hf :split ~/.vim/functions.vim<CR>
 
 " Source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
@@ -87,9 +87,6 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 " ---------------
 " GENERIC HELPERS
 " ---------------
-
-" Yank inside quotes
-nnoremap <leader>yi F'lvf'hy
 
 " Yank inside quotes to system clipboard
 nnoremap <leader>yc F'lvf'h"+y
@@ -130,20 +127,6 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-" Surround with backticks (for markdown)
-nmap <leader>md ysiw`
-
-" Surround with quotes (for json)
-nmap <leader>js ysiw"
-
-" Toggle rainbow parens
-nnoremap <leader>( :RainbowParenthesesToggle<CR>
-
-" Fire up bash buffer
-nnoremap <leader>shv :ConqueTermVSplit bash<CR>
-nnoremap <leader>shh :ConqueTermSplit bash<CR>
-nnoremap <leader>sht :ConqueTermTab bash<CR>
 
 
 " -------------
@@ -205,3 +188,11 @@ nnoremap <leader>7 :7b<CR>
 nnoremap <leader>8 :8b<CR>
 nnoremap <leader>9 :8b<CR>
 nnoremap <leader>0 :10b<CR>
+
+
+" -------------
+" MISCELLANEOUS
+" -------------
+
+" Open file under cursor in new tab
+nnoremap K <C-w>gf

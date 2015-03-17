@@ -38,3 +38,4 @@ if &term =~ '256color'
   set t_ut=
 endif
 autocmd BufEnter * set nocindent
+set showbreak=>>\ \ \ \ 

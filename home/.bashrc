@@ -160,6 +160,8 @@ if [ -f ~/.git-prompt.sh ]; then
       # @5 - Changes to working tree
       echo "'$Red'"$(__git_ps1 " [%s]"); \
     fi)'$Color_Off'\$ "; \
+  else \
+    echo "'$Color_Off'\$ "; \
   fi)'
 else
   export PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[00m\]$ '

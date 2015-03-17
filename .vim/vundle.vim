@@ -49,5 +49,6 @@ Bundle 'suan/vim-instant-markdown'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tom-dignan/Conque-Shell'
 Bundle 'rdolgushin/play.vim'
+Bundle 'tpope/vim-eunuch'
 
 filetype plugin indent on 

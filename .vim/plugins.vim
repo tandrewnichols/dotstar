@@ -29,16 +29,18 @@ nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
 " Open nerd tree at a directory
 nnoremap <silent> <leader>ne :exec ":NERDTree ".input("Dir? ")<CR>
 
-" ------
-" TAGBAR
-" ------
+" ------------
+" TAGLIST PLUS
+" ------------
 
-let g:tagbar_autoclose=1
-let g:tagbar_autofocus=1
-let g:tagbar_show_linenumbers=1
+let Tlist_Close_On_Select=1
+let Tlist_Use_Right_Window=1
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_WinWidth='auto'
+let Tlist_Exit_OnlyWindow=1
 
 " Open Tagbar code outline
-nnoremap <silent> <leader>tb :TagbarToggle<CR>
+nnoremap <silent> <leader>tl :TlistToggle<CR>
 
 " ---------
 " SYNTASTIC
@@ -154,8 +156,9 @@ nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
 " SURROUND
 " --------
 
-nmap <leader>dq ysiw"
-nmap <leader>sq ysiw'
+nmap <leader>w' ysiw'
+nmap <leader>md ysiw`
+nmap <leader>js ysiw"
 
 
 " -------------------
@@ -166,6 +169,8 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+" Toggle rainbow parens
+nnoremap <leader>( :RainbowParenthesesToggle<CR>
 
 
 " -----------------
@@ -174,3 +179,21 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " TODO: This isn't working
 "let g:coffee_lint_options='-f ~/.coffeelint.json'
+
+
+" ------------
+" CONQUE SHELL
+" ------------
+
+" Fire up bash buffer in vertical split
+nnoremap <leader>shv :ConqueTermVSplit bash<CR>
+nnoremap <leader>shh :ConqueTermSplit bash<CR>
+nnoremap <leader>sht :ConqueTermTab bash<CR>
+
+
+" ------
+" EUNUCH
+" ------
+
+nnoremap <leader>mv :exec ":Move ".input("New file name (relative to cwd)? ")<CR>
+nnoremap <leader>rn :exec ":Rename ".input("New file name (realtive to __dirname)? ")<CR>
