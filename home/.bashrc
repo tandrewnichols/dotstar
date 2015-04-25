@@ -237,6 +237,11 @@ export MAVEN_HOME="/usr/local/Cellar/maven/3.2.3/libexec"
 export USERNAME="anichols"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home"
 
+if [[ $OSTYPE == darwin* ]]; then
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+  export USERNAME=anichols
+fi
+
 # added by travis gem
 if [ -e ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh
