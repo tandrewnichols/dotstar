@@ -34,8 +34,13 @@ set nobackup
 set backupcopy=yes
 set linebreak
 set noswapfile
+set mouse=a
 if &term =~ '256color'
   set t_ut=
 endif
 autocmd BufEnter * set nocindent
 set showbreak=>>\ \ \ \ 
+
+if expand('%:p') =~ 'manta-frontend/client'
+  "TODO add directory specific snippet loading
+endif
