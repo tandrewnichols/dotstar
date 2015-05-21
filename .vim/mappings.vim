@@ -51,7 +51,7 @@ nnoremap <S-Tab> gT
 " ----------------
 
 " Delete previous char and enter insert mode
-nnoremap <BS> hxi
+nnoremap <BS> i<BS>
 
 " Delete current char and enter insert mode
 nnoremap <Del> xi
