@@ -25,6 +25,6 @@
 	excludesfile = ~/.gitignore
 	autocrlf = input
 [merge]
-	renamelimit = 1946
+	renamelimit = 7248
 [clean]
 	requireForce = false

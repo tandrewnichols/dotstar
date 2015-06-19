@@ -14,6 +14,7 @@ alias playtest="export PLAY_ENV=\"test\""
 alias g="grunt"
 alias i="npm i --save-dev grunt grunt-contrib-jshint jshint-stylish grunt-mocha-test grunt-mocha-cov mocha-lcov-reporter sinon proxyquire indeed mocha mocha-given coffee-script grunt-travis-matrix grunt-cli"
 alias vim="vim -p"
+alias nuke="git clean -fd :/ && git reset --hard"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -208,7 +209,6 @@ resolve() {
 }
 
 #### GIT COMMANDS ####
-
 # delete remote 
 dr() {
   if [ -z $1 ]; then
