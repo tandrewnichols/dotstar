@@ -2,8 +2,6 @@
 
 #### ALIASES #### 
 alias del="git ls-files --deleted | xargs git rm"
-alias server="cd ~/code/anichols/manta/manta-frontend/server"
-alias client="cd ~/code/anichols/manta/manta-frontend/client"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
 alias conflict="st | grep -P '^[A-Z]{2}'"
@@ -14,7 +12,17 @@ alias playtest="export PLAY_ENV=\"test\""
 alias g="grunt"
 alias i="npm i --save-dev grunt grunt-contrib-jshint jshint-stylish grunt-mocha-test grunt-mocha-cov mocha-lcov-reporter sinon proxyquire indeed mocha mocha-given coffee-script grunt-travis-matrix grunt-cli"
 alias vim="vim -p"
-alias nuke="git clean -fd :/ && git reset --hard"
+alias me="_goto ~/code/anichols"
+alias manta="_goto ~/code/anichols/manta"
+alias mf="_goto ~/code/anichols/manta/manta-frontend"
+alias server="_goto ~/code/anichols/manta/manta-frontend/server"
+alias client="_goto ~/code/anichols/manta/manta-frontend/client"
+alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
+alias modules="_goto ~/code/anichols/modules"
+alias mod="_goto ~/code/anichols/modules"
+alias apps="_goto ~/code/anichols/apps"
+alias forks="_goto ~/code/anichols/forks"
+alias play="~/code/anichols/manta/play"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -36,27 +44,20 @@ wd() {
   fi
 }
 
-me() {
-  if [ -n $1 ]; then
-    cd ~/code/anichols/$1
+profile() {
+  re='^[0-9]+$'
+  if [[ $1 =~ $re ]]; then
+    time (for ((i=1;i<=$1;i++)); do "${@:2}"; done;)
   else
-    cd ~/code/anichols
+    echo "First argument must be number of iterations"
   fi
 }
 
-manta() {
-  if [ -n $1 ]; then
-    cd ~/code/anichols/manta/$1
+_goto() {
+  if [ -n $2 ]; then
+    cd $1/$2
   else
-    cd ~/code/anichols/manta
-  fi
-}
-
-play() {
-  if [ -n $1 ]; then
-    cd ~/code/anichols/manta/play/$1
-  else
-    cd ~/code/anichols/manta/play
+    cd $1
   fi
 }
 
