@@ -291,3 +291,5 @@ fi
 # added by travis gem
 [ -f /Users/AndrewNichols/.travis/travis.sh ] && source /Users/AndrewNichols/.travis/travis.sh
 set -o vi
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
