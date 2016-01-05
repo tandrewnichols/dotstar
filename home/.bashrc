@@ -103,7 +103,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -151,10 +151,19 @@ if ! shopt -oq posix; then
   fi
 fi
 
+function get_ps1_path () {
+  gitroot=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [ $? -eq 0 ]; then
+    echo ${PWD/#$gitroot/$(basename $gitroot)}
+  else
+    echo ${PWD/#$HOME/\~}
+  fi
+}
+
 if [ -f ~/.git-prompt.sh ]; then
   export GIT_PS1_SHOWDIRTYSTATE=
   # Updates git branch color based on dirty state
-  export PS1=$IBlack$Time12a$Yellow' \h'$Color_Off':'$Cyan$PathShort$Color_Off'$(git branch &>/dev/null;\
+  export PS1=$Yellow'\h'$Color_Off':'$Cyan'$(get_ps1_path)'$Color_Off'$(git branch &>/dev/null;\
   if [ $? -eq 0 ]; then \
     echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
     if [ "$?" -eq "0" ]; then \

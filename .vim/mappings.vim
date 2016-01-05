@@ -54,31 +54,18 @@ nnoremap <S-Tab> gT
 nnoremap <BS> i<BS>
 
 " Delete current char and enter insert mode
-nnoremap <Del> xi
+nnoremap <Del> a<BS>
+
+
+" ---------------------
+" REAMP ANNOYING THINGS
+" ---------------------
 
 " Remap F1
 map <F1> <Esc>
 imap <F1> <Esc>
+nnoremap Y y$
 
-" -----
-" VIMRC
-" -----
-
-" Open vimrc/.vim files in vertical split
-"nnoremap <silent> <leader>vr :vsplit $MYVIMRC<CR>
-"nnoremap <silent> <leader>vv :vsplit ~/.vim/vundle.vim<CR>
-"nnoremap <silent> <leader>vm :vsplit ~/.vim/mappings.vim<CR>
-"nnoremap <silent> <leader>vp :vsplit ~/.vim/plugins.vim<CR>
-"nnoremap <silent> <leader>vc :vsplit ~/.vim/config.vim<CR>
-"nnoremap <silent> <leader>vf :vsplit ~/.vim/functions.vim<CR>
-
-" Open vimrc/.vim files in horizontal split
-"nnoremap <silent> <leader>hr :split $MYVIMRC<CR>
-"nnoremap <silent> <leader>hv :split ~/.vim/vundle.vim<CR>
-"nnoremap <silent> <leader>hm :split ~/.vim/mappings.vim<CR>
-"nnoremap <silent> <leader>hp :split ~/.vim/plugins.vim<CR>
-"nnoremap <silent> <leader>hc :split ~/.vim/config.vim<CR>
-"nnoremap <silent> <leader>hf :split ~/.vim/functions.vim<CR>
 
 " Source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
@@ -128,6 +115,10 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" Underline the current line with dashes/equals in normal mode
+nnoremap <leader>-- yyp<c-v>$r-
+nnoremap <leader>== yyp<c-v>$r=
+
 
 " -------------
 " JASMINE/MOCHA
@@ -141,24 +132,18 @@ nnoremap <silent> <leader>do mo/describe<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
 
 " Context-only: Add .only to nearest context
 nnoremap <silent> <leader>co mo/context<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
-
-" It-only: Add .only to nearest it
-nnoremap <silent> <leader>io mo/it '<CR><S-N>ea.only<Esc>`o:delmarks o<CR>
  
 " Remove-only: Remove all occurrences of .only
 nnoremap <silent> <leader>ro mo:%s/\.only//g<CR>`o:delmarks o<CR>
 
-" Describe-skip: Add .skip to nearest describe
-nnoremap <silent> <leader>ds ms/describe<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
+" xdescribe: xdescribe nearest describe
+nnoremap <silent> <leader>dx ms/describe<CR><S-N>ix<Esc>'s:delmarks s<CR>
 
-" Context-skip: Add .skip to nearest context
-nnoremap <silent> <leader>cs ms/context<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
+" Context-skip: xcontext nearest context
+nnoremap <silent> <leader>cx ms/context<CR><S-N>ix<Esc>'s:delmarks s<CR>
 
-" It-skip: Add .skip to nearest it
-nnoremap <silent> <leader>is ms/it '<CR><S-N>ea.skip<Esc>'s:delmarks s<CR>
-
-" Remove-skip: Remove all occurrences of .skip
-nnoremap <silent> <leader>rs ms:%s/\.skip//g<CR>`s:delmarks s<CR>
+" Remove x: Replace xdescribe with describe and xcontext with context
+nnoremap <silent> <leader>rx ms:%s/x\(describe\\|context\)/\1/g<CR>`s:delmarks s<CR>
 
 
 " -------

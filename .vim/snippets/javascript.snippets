@@ -1,54 +1,54 @@
-snippet $
+snippet $s
 	$scope.${1} = function (${2}) {
-		${3}
+		${0}
 	};
 snippet cont
 	angular.module('app').controller('${1}', function(${2}) {
-		${3}
+		${0}
 	});
 snippet serv
 	angular.module('app').factory('${1}', function(${2}) {
-		${3}
+		var service = {
+			${0}
+		};
+
+		return service;
 	});
 snippet dir
 	angular.module('app').directive('${1}', function(${2}) {
 		return {
 			link: function($scope, $element, $attributes) {
-				${3}
+				${0}
 			}
 		};
 	});
 snippet c
-	console.log('${1}:', ${2});
+	console.log('${1}:', ${2});${0}
 snippet m
-	module.exports = {
-		${1:method}: function(${2}) {
-			${3}
-		}
-	};
+	module.exports = ${0}
 snippet e
-	exports.${1} = function(${2}) {
-		${3}
-	}
+	exports.${1} = ${0}
 snippet route
 	function (req, res, next) {
-		${1}
+		${0}
 	}
 snippet proto
 	${1}.prototype.${2} = function(${3}) {
-		${4}
+		${0}
 	};
 snippet _.r
 	_.reduce(${1}, function(memo, ${2:item}) {
 		${3}
 		return memo;
-	}, ${4});
+	}, ${4});${0}
 snippet _.e
 	_.each(${1}, function(${2:item}) {
-		${3}
+		${0}
 	}
+snippet _.g
+	_.get(${1}, '${2}');${0}
 snippet _.s
-	_.safe(${1}, '${2}'${3})
+	_.set(${1}, '${2}', ${3});${0}
 snippet async.e
 	async.each(${1}, function(${2:item}, next) {
 		${3}
@@ -57,5 +57,9 @@ snippet async.e
 	}
 snippet f
 	function(${1}) {
-		${2}
+		${0}
+	}
+snippet for
+	for (var i = 0; i < ${1}.length; i++) {
+		${0}
 	}

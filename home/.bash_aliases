@@ -9,7 +9,7 @@ alias pg="pgadmin3"
 alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
 alias playdev="export PLAY_ENV=\"dev\""
 alias playtest="export PLAY_ENV=\"test\""
-alias g="grunt"
+#alias g="grunt"
 alias i="npm i --save-dev grunt grunt-contrib-jshint jshint-stylish grunt-mocha-test grunt-mocha-cov mocha-lcov-reporter sinon proxyquire indeed mocha mocha-given coffee-script grunt-travis-matrix grunt-cli"
 alias vim="vim -p"
 alias me="_goto ~/code/anichols"
@@ -22,7 +22,10 @@ alias modules="_goto ~/code/anichols/modules"
 alias mod="_goto ~/code/anichols/modules"
 alias apps="_goto ~/code/anichols/apps"
 alias forks="_goto ~/code/anichols/forks"
-alias play="~/code/anichols/manta/play"
+alias generators="_goto ~/code/anichols/generators"
+alias plugins="_goto ~/code/anichols/grunt-plugins"
+alias play="_goto ~/code/anichols/manta/play"
+alias neo="neo4j-instance"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -33,13 +36,45 @@ if [[ $OSTYPE != darwin* ]]; then
 fi
 
 #### GENERIC COMMANDS ####
+g() {
+  if [ -e $(git rev-parse --show-toplevel)/Gruntfile.js ]; then
+    grunt $1
+  else
+    gulp $1
+  fi
+}
+
+mk() {
+  result=${PWD##*/}
+  if [ $result == 'modules' ]; then
+    generator=module
+    dir=$1
+  elif [ $result == 'grunt-plugins' ]; then
+    generator=grunt
+    dir="grunt-$1"
+  fi
+  mkdir -p $dir
+  cd $dir
+  yo $generator $1
+}
+
+init() {
+  result=${PWD##*/}
+  git init
+  if [ $1 == 'bb' ]; then
+    git remote add origin https://bitbucket.org/tandrewnichols/$result
+  else
+    git remote add origin https://github.com/tandrewnichols/$result
+  fi
+}
+
 wd() {
   if [ -z $1 ]; then
-    grunt chrome
+    grunt wd
   else
     for ((i=1;i<=$1;i++))
     do
-      grunt chrome
+      grunt wd
     done
   fi
 }
@@ -297,4 +332,8 @@ repo() {
   curl -X POST -H "Context-Type:application/json" -d '{"name":"'"$1"'","description":"'"$2"'","auto_init":true,"gitignore_template":"Node","license_template":"mit"}' https://api.github.com/user/repos -u tandrewnichols
   cloneme $1
   cd $1
+}
+
+blogify() {
+   mogrify -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }

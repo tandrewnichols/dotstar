@@ -17,6 +17,7 @@
   alias = config --global alias.
   nuke = !git clean -fd :/ && git reset --hard
   edit = config --global -e
+  rename = branch -m
 [push]
 	default = upstream
 [branch]

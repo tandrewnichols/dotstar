@@ -26,7 +26,7 @@ snippet e
 snippet j
 	jasmine.createSpyObj ${0}
 snippet s
-	spyOn(${1}, '${2}')${0}
+	spyOn ${1}, '${2}'${0}
 snippet si
 	sinon.stub${0}
 snippet @
@@ -35,3 +35,6 @@ snippet $p
 	$provide.constant '${1:}', jasmine.createSpyObj '$1', ['${2}']${0}
 snippet $i
 	$injector.get '${0}
+snippet stub
+	afterEach -> ${1:}.${2:}.restore()
+	Given -> sinon.stub $1, '$2'${0}

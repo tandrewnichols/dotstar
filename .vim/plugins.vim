@@ -3,7 +3,7 @@
 " ------
 
 " Install bundles
-nnoremap <leader>bi :BundleInstall<CR>
+nnoremap <leader>pi :PluginInstall<CR>
 
 
 " -----
@@ -157,6 +157,7 @@ nnoremap <script> <leader>ll :call ToggleLocationList()<CR>
 " --------
 
 nmap <leader>w' ysiw'
+nmap <leader>w" ysiw"
 nmap <leader>md ysiw`
 nmap <leader>js ysiw"
 

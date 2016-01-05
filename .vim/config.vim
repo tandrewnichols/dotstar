@@ -24,9 +24,11 @@ set autoread
 set history=1000
 set tabpagemax=50
 au BufNewFile,BufRead *.json setf javascript
+au BufNewFile,BufRead *.es6 setf javascript
 au BufNewFile,BufRead *.less setf less
 au BufNewFile,BufRead *.ejs setf html
 au BufNewFile,BufRead *.hbs setf html
+au BufNewFile,BufRead *.mustache setf html
 set scrolloff=3
 set ignorecase
 set smartcase
@@ -35,6 +37,7 @@ set backupcopy=yes
 set linebreak
 set noswapfile
 set mouse=a
+set noshowmode
 if &term =~ '256color'
   set t_ut=
 endif
