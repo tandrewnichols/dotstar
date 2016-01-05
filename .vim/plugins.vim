@@ -54,12 +54,6 @@ let g:syntastic_quiet_messages = { "level": "warnings",
                                  \ "type":  "style",
                                  \ "regex": ["Line exceeds maximum allowed length","proprietary attribute"]}
 
-" -----
-" CTRLP
-" -----
-
-let g:ctrlp_by_filename=1
-
 " ---------
 " SIGNATURE
 " ---------
@@ -95,26 +89,6 @@ nnoremap <leader>tj :call signature#GotoMarker("next")<CR>
 nnoremap <leader>tk :call signature#GotoMarker("prev")<CR>
 
 
-" ----
-" TERN
-" ----
-
-" TernDef
-nnoremap <silent> <leader>td :TernDef<CR>
-
-" TernDefSplit
-nnoremap <silent> <leader>ts :TernDefSplit<CR>
-
-" TernType
-nnoremap <silent> <leader>tt :TernType<CR>
-
-" TernRef
-nnoremap <silent> <leader>tr :TernRefs<CR>
-
-" TernRename
-nnoremap <silent> <leader>tn :TernRename<CR>
-
-
 " --------
 " FUGITIVE
 " --------
@@ -130,17 +104,6 @@ nnoremap <silent> <leader>df :Gdiff<CR>
 
 " Git commit
 nnoremap <silent> <leader>gc :Gcommit<CR>
-
-
-" ---------
-" VIM-MOCHA
-" ---------
-
-let g:mocha_command = "!mocha -R spec -u bdd --compilers coffee:coffee-script {spec}"
-nnoremap <leader>sc :call mocha#RunCurrentSpecFile()<CR>
-nnoremap <leader>sn :call mocha#RunNearestSpec()<CR>
-nnoremap <leader>sl :call mocha#RunLastSpec()<CR>
-nnoremap <leader>sa :call mocha#RunAllSpecs()<CR>
 
 
 " ----------

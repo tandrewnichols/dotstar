@@ -75,8 +75,8 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 " GENERIC HELPERS
 " ---------------
 
-" Yank inside quotes to system clipboard
-nnoremap <leader>yc F'lvf'h"+y
+" Yank inside quotes to system clipboard (Linux only)
+nnoremap <leader>yi" F'lvf'h"+y
 
 " Blank line below and stay in normal mode
 nnoremap <leader>oj o<Esc>
