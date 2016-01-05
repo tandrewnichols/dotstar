@@ -1,3 +1,4 @@
+let g:instant_markdown_slow = 1
 set nocp
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -5,7 +6,6 @@ call vundle#begin()
 let g:instant_markdown_slow = 1
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-fugitive'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -25,8 +25,6 @@ Plugin 'int3/vim-taglist-plus'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'docunext/closetag.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rvm'
 Plugin 'tpope/vim-markdown'
 Plugin 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plugin 'ap/vim-css-color'
@@ -41,7 +39,6 @@ Plugin 'vim-scripts/ZoomWin'
 Plugin 'milkypostman/vim-togglelist'
 Plugin 'mutewinter/swap-parameters'
 Plugin 'tpope/vim-dispatch'
-Plugin 'geekjuice/vim-mocha'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'suan/vim-instant-markdown'
