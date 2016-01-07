@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 shopt -s dotglob
 
@@ -23,7 +23,10 @@ linkFiles() {
 
 linkFiles home
 
-echo "Linking $(pwd)/.vim to ~/.vim"
-ln -sf $(pwd)/.vim ~/.vim
+echo "Linking $PWD/.vim to $HOME/.vim"
+ln -sf $PWD/.vim $HOME/.vim
+
+echo "Linking $PWD/.config/powerline to $HOME/.config/powerline"
+ln -sf $PWD/.config/powerline $HOME/.config/powerline
 
 shopt -u dotglob
