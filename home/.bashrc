@@ -114,11 +114,11 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 export TERM=xterm-256color
-if [[ $OSTYPE == darwin* ]]; then
-  export VIMRUNTIME=/usr/share/vim/vim73
-else
-  export VIMRUNTIME=/usr/share/vim/vim74
-fi
+#if [[ $OSTYPE == darwin* ]]; then
+  #export VIMRUNTIME=/usr/share/vim/vim73
+#else
+  #export VIMRUNTIME=/usr/share/vim/vim74
+#fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
