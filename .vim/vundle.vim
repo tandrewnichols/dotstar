@@ -49,6 +49,15 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'stephpy/vim-yaml'
 Plugin 'yegappan/mru'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-capslock'
+Plugin 'tpope/vim-tbone'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 call vundle#end()
 filetype plugin indent on 

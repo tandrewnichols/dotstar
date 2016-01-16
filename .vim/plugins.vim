@@ -46,6 +46,7 @@ nnoremap <silent> <leader>tl :TlistToggle<CR>
 " SYNTASTIC
 " ---------
 
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_javascript_checkers = ['jshint']
@@ -161,3 +162,10 @@ nnoremap <leader>sht :ConqueTermTab bash<CR>
 
 nnoremap <leader>mv :exec ":Move ".input("New file name (relative to cwd)? ")<CR>
 nnoremap <leader>rn :exec ":Rename ".input("New file name (realtive to __dirname)? ")<CR>
+
+
+" --------
+" DISPATCH
+" --------
+
+
