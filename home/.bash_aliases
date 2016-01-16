@@ -9,8 +9,6 @@ alias pg="pgadmin3"
 alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
 alias playdev="export PLAY_ENV=\"dev\""
 alias playtest="export PLAY_ENV=\"test\""
-#alias g="grunt"
-alias i="npm i --save-dev grunt grunt-contrib-jshint jshint-stylish grunt-mocha-test grunt-mocha-cov mocha-lcov-reporter sinon proxyquire indeed mocha mocha-given coffee-script grunt-travis-matrix grunt-cli"
 alias vim="vim -p"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
@@ -52,6 +50,9 @@ mk() {
   elif [ $result == 'grunt-plugins' ]; then
     generator=grunt
     dir="grunt-$1"
+  elif [ $result == 'apps' ]; then
+    generator=app
+    dir=$1
   fi
   mkdir -p $dir
   cd $dir
