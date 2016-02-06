@@ -55,9 +55,9 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-capslock'
-Plugin 'tpope/vim-tbone'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'dbakker/vim-projectroot'
 
 call vundle#end()
 filetype plugin indent on 

@@ -65,6 +65,8 @@ nnoremap <Del> a<BS>
 map <F1> <Esc>
 imap <F1> <Esc>
 nnoremap Y y$
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 
 " Source vimrc
@@ -118,6 +120,12 @@ vnoremap k gk
 " Underline the current line with dashes/equals in normal mode
 nnoremap <leader>-- yyp<c-v>$r-
 nnoremap <leader>== yyp<c-v>$r=
+
+" Change .json to two space indents
+nnoremap <leader>json ggdG:r ! node -e "console.log(JSON.stringify(require('%'), null, 2))"<CR>
+
+" Open an angular template under cursor
+nnoremap <leader>ng :let myfile=expand("<cfile>")<CR>:execute("tabe ".projectroot#guess()."/client/app/templates/".myfile)<CR>
 
 
 " -------------

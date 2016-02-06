@@ -6,6 +6,16 @@
 nnoremap <leader>pi :PluginInstall<CR>
 
 
+" ------
+" VIMUX
+" ------
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "50"
+nnoremap <leader>ni :exec ":call VimuxRunCommand('npm i --save '.expand('<cword>'))"<CR>
+nnoremap <leader>nd :exec ":call VimuxRunCommand('npm i --save-dev '.expand('<cword>'))"<CR>
+nnoremap <leader>nr :exec ":call VimuxRunCommand('npm r --save '.expand('<cword>'))"<CR>
+
+
 " -----
 " GUNDO
 " -----
@@ -169,3 +179,14 @@ nnoremap <leader>rn :exec ":Rename ".input("New file name (realtive to __dirname
 " --------
 
 
+" --------
+" NODE.VIM
+" --------
+
+nmap <leader>not :call NodeGotoOrCreateNew()<CR>
+nmap <leader>nov :call NodeGotoOrCreateNew('NodeVSplitGotoFile')<CR>
+nmap <leader>nos :call NodeGotoOrCreateNew('NodeSplitGotoFile')<CR>
+"nmap <buffer> gf <Plug>NodeGotoFile
+"nmap <buffer> <C-w>f <Plug>NodeSplitGotoFile
+"nmap <buffer> <C-w><C-f> <Plug>NodeSplitGotoFile
+"nmap <buffer> <C-w>gf <Plug>NodeTabGotoFile

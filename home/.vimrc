@@ -4,6 +4,7 @@ source ~/.vim/vundle.vim
 
 filetype plugin indent on 
 let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 " Plugins
 source ~/.vim/plugins.vim

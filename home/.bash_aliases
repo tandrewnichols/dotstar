@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/env/bin bash
 
 #### ALIASES #### 
 alias del="git ls-files --deleted | xargs git rm"

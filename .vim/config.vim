@@ -1,6 +1,6 @@
 " Other configuration
 set foldmethod=marker
-set foldlevelstart=0
+set foldlevelstart=20
 set t_Co=256
 colorscheme jellybeans
 filetype plugin indent on
@@ -20,6 +20,7 @@ set incsearch
 set showmatch
 set shiftround
 set wildmenu
+set wildmode=longest:full,full
 set autoread
 set history=1000
 set tabpagemax=50
