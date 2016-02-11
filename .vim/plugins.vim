@@ -11,9 +11,9 @@ nnoremap <leader>pi :PluginInstall<CR>
 " ------
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "50"
-nnoremap <leader>ni :exec ":call VimuxRunCommand('npm i --save '.expand('<cword>'))"<CR>
-nnoremap <leader>nd :exec ":call VimuxRunCommand('npm i --save-dev '.expand('<cword>'))"<CR>
-nnoremap <leader>nr :exec ":call VimuxRunCommand('npm r --save '.expand('<cword>'))"<CR>
+nnoremap <leader>ni :exec ":call VimuxRunCommand('npm i --save '.expand('<cfile>'))"<CR>
+nnoremap <leader>nd :exec ":call VimuxRunCommand('npm i --save-dev '.expand('<cfile>'))"<CR>
+nnoremap <leader>nr :exec ":call VimuxRunCommand('npm r --save '.expand('<cfile>'))"<CR>
 
 
 " -----
@@ -33,11 +33,12 @@ nnoremap <silent> <leader>un :GundoToggle<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
-" Open nerd tree
-nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
-
-" Open nerd tree at a directory
-nnoremap <silent> <leader>ne :exec ":NERDTree ".input("Dir? ")<CR>
+" Open nerd tree relative to current buffer
+nnoremap <silent> <leader>ntb :exe ":NERDTree ".expand("%:h")<CR>
+" ntf = nerd tree find
+nnoremap <silent> <leader>ntf :NERDTreeFind<CR>
+" ntp = nerd tree present
+nnoremap <silent> <leader>ntp :NERDTree<CR>
 
 " ------------
 " TAGLIST PLUS

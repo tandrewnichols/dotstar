@@ -1,18 +1,29 @@
 "
 " Google current word
 "
-function! GoogleSearch()
-  silent! exec "silent! !google-chrome \"http://google.com/search?q=" . @g . "\" > /dev/null"
+function! GoogleSearch(word)
+  silent! exec "silent! !open \"http://google.com/search?q=" . a:word . "\" > /dev/null"
   redraw!
 endfunction
 
-vnoremap <leader>goo "gy<Esc>:call GoogleSearch()<CR>
-nnoremap <leader>goo b"gye:call GoogleSearch()<CR>
+vnoremap <leader>goo "gy<Esc>:call GoogleSearch(@g)<CR>
+nnoremap <leader>goo :exec ":call GoogleSearch('" . expand("<cword>") . "')"<CR>
+
+"
+" Lookup Module Readme on Npm
+"
+function! OpenNpmReadme()
+  silent! exec "silent! !open \"https://www.npmjs.com/package/" . expand("<cfile>") . "\" > /dev/null"
+  redraw!
+endfunction
+
+nnoremap <leader>npm :call OpenNpmReadme()<CR>
 
 "
 " Open command output in scratch buffer
+" Type is one of new, vnew, tabe
 "
-function! s:Scratch (command, ...)
+function! s:Scratch (type, command, ...)
   redir => lines
   let saveMore = &more
   set nomore
@@ -20,7 +31,7 @@ function! s:Scratch (command, ...)
   redir END
   let &more = saveMore
   call feedkeys("\<cr>")
-  new | setlocal buftype=nofile bufhidden=hide noswapfile
+  exe a:type . " | setlocal buftype=nofile bufhidden=hide noswapfile"
   put=lines
   if a:0 > 0
     execute 'vglobal/'.a:1.'/delete'
@@ -29,13 +40,13 @@ function! s:Scratch (command, ...)
     %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
   endif
   silent %substitute/\%^\_s*\n\|\_s*\%$
-  let height = line('$') + 3
-  execute 'normal! z'.height."\<cr>"
   0
 endfunction
  
-command! -nargs=? Scriptnames call <sid>Scratch('scriptnames', <f-args>)
-command! -nargs=+ Scratch call <sid>Scratch(<f-args>)
+command! -nargs=? Scriptnames call <sid>Scratch('tabe', 'scriptnames', <f-args>)
+command! -nargs=+ Scratch call <sid>Scratch('new', <f-args>)
+command! -nargs=+ Tscratch call <sid>Scratch('tabe', <f-args>)
+command! -nargs=+ Vscratch call <sid>Scratch('vnew', <f-args>)
 
 "
 " Auto-create missing parents directories when saving a file
