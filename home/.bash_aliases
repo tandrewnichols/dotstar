@@ -1,6 +1,42 @@
 #!/usr/env/bin bash
 
-#### ALIASES #### 
+shopt -s expand_aliases
+
+#### PRE-ADDED ALIASES ####
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+if [[ $OSTYPE == darwin* ]]; then
+  alias ls='ls -G'
+  alias la='ls -AG'
+  alias ll='ls -alGF'
+  alias l='ls -CFG'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+#### CUSTOM ALIASES ####
+alias mgrep='grep -rn --exclude=access*.log --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
@@ -49,7 +85,11 @@ mk() {
     dir=$1
   elif [ $result == 'grunt-plugins' ]; then
     generator=grunt
-    dir="grunt-$1"
+    if [[ $1 == grunt-* ]]; then
+      dir=$1
+    else
+      dir="grunt-$1"
+    fi
   elif [ $result == 'apps' ]; then
     generator=app
     dir=$1
