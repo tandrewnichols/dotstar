@@ -137,17 +137,6 @@ nmap <leader>md ysiw`
 nmap <leader>js ysiw"
 
 
-" -------------------
-" RAINBOW PARENTHESES
-" -------------------
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" Toggle rainbow parens
-nnoremap <leader>( :RainbowParenthesesToggle<CR>
-
 
 " -----------------
 " VIM-COFFEE-SCRIPT
