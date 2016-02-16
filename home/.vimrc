@@ -7,11 +7,11 @@ filetype plugin indent on
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
-if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
+if !isdirectory(expand('~').'/.vim/backups')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
-  set undofile
 endif
+set undodir=~/.vim/backups
+set undofile
 set foldmethod=marker
 set foldlevelstart=20
 set t_Co=256
@@ -74,8 +74,3 @@ for fpath in split(globpath(vimsettings, '*.vim'), '\n')
 
   exe 'source ' . fpath
 endfor
-
-" Plugins
-source ~/.vim/plugins.vim
-" Mappings
-source ~/.vim/mappings.vim

@@ -43,3 +43,11 @@ function! GetCorrespondingViewportCommand(plug)
     return 'NodeGotoFile'
   endif
 endfunction
+
+nmap <leader>not :call NodeGotoOrCreateNew()<CR>
+nmap <leader>nov :call NodeGotoOrCreateNew('NodeVSplitGotoFile')<CR>
+nmap <leader>nos :call NodeGotoOrCreateNew('NodeSplitGotoFile')<CR>
+"nmap <buffer> gf <Plug>NodeGotoFile
+"nmap <buffer> <C-w>f <Plug>NodeSplitGotoFile
+"nmap <buffer> <C-w><C-f> <Plug>NodeSplitGotoFile
+"nmap <buffer> <C-w>gf <Plug>NodeTabGotoFile

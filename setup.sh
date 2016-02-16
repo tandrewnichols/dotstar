@@ -11,7 +11,7 @@ if [[ $OSTYPE == darwin* ]]; then
   brew tap homebrew/dupes
 
   # Install common brew packages
-  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg
+  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg ag
 
   # Homebrew TODO
   #ack coreutils ctags fontconfig fontforge apple-gcc42 binutils diffutils gawk gnutls gzip screen watch
