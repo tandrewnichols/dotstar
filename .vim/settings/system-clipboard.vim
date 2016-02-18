@@ -44,6 +44,7 @@ if g:isMac
   vnoremap <leader>;x "*x
   vnoremap <leader>;s "*s
   vnoremap <leader>;r "*r
+  nnoremap <leader>;Y "*Y
 else
   nnoremap <leader>;p "+p
   nnoremap <leader>;P "+P
@@ -57,4 +58,5 @@ else
   vnoremap <leader>;x "+x
   vnoremap <leader>;s "+s
   vnoremap <leader>;r "+r
+  nnoremap <leader>;Y "+Y
 endif

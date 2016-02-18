@@ -2,3 +2,4 @@
 .vim/bundle/**
 .vim/.netrwhist
 .vim/backups
+.vim/yankring_history

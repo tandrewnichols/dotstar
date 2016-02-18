@@ -22,10 +22,10 @@ function! s:Scratch (type, command, ...)
   0
 endfunction
  
-command! -nargs=? Scriptnames call <sid>Scratch('tabe', 'scriptnames', <f-args>)
-command! -nargs=+ Scratch call <sid>Scratch('new', <f-args>)
-command! -nargs=+ Tscratch call <sid>Scratch('tabe', <f-args>)
-command! -nargs=+ Vscratch call <sid>Scratch('vnew', <f-args>)
+command! -nargs=? Scriptnames call <SID>Scratch('tabe', 'scriptnames', <f-args>)
+command! -nargs=+ Scratch call <SID>Scratch('new', <f-args>)
+command! -nargs=+ Tscratch call <SID>Scratch('tabe', <f-args>)
+command! -nargs=+ Vscratch call <SID>Scratch('vnew', <f-args>)
 
 function! s:GetSuggestion()
   let letter = GetUserInput()

@@ -61,6 +61,13 @@ Plugin 'tpope/vim-capslock'
 Plugin 'tpope/vim-speeddating'
 Plugin 'dbakker/vim-projectroot'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'YankRing.vim'
+Plugin 'terryma/vim-expand-region'
+Plugin 'kana/vim-textobj-line'
+Plugin 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-indent'
 
 " ???
 "Plugin 'tpope/vim-sexp-mappings-for-regular-people'

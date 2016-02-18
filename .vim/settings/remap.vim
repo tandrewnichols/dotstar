@@ -35,6 +35,3 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-" Easy escape from insert mode
-inoremap <silent> jj <Esc>

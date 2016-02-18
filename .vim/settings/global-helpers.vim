@@ -1,5 +1,5 @@
 " getchar returns a number code, so convert that to a letter
-function! g:GetRealChar()
+function! GetRealChar()
   let c = getchar()
   if c =~ '^\d\+$'
     let c = nr2char(c)
@@ -8,7 +8,7 @@ function! g:GetRealChar()
 endfunction
 
 " Get a char from the user, but return nothing for Esc and Ctrl-C
-function! g:GetUserInput()
+function! GetUserInput()
   let c = GetRealChar()
   if c == " "
     let c .= GetRealChar()
