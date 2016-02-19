@@ -19,6 +19,7 @@ colorscheme jellybeans
 filetype plugin indent on
 syntax enable
 set tabstop=2 shiftwidth=2 expandtab
+set tw=0
 set number
 set nohlsearch
 hi MatchParen cterm=bold ctermbg=none ctermfg=red

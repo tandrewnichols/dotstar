@@ -68,6 +68,10 @@ Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'nelstrom/vim-visual-star-search'
 
 " ???
 "Plugin 'tpope/vim-sexp-mappings-for-regular-people'

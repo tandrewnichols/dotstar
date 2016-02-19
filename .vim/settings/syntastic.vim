@@ -6,3 +6,4 @@ let g:syntastic_ruby_checkers = ['rubylint']
 let g:syntastic_quiet_messages = { "level": "warnings",
                                  \ "type":  "style",
                                  \ "regex": ["Line exceeds maximum allowed length","proprietary attribute"]}
+let g:syntastic_html_tidy_blocklevel_tags = ['flot']
