@@ -14,7 +14,6 @@ function! s:FindMatchingAngularService(serv, type)
   "   a) It's a built-in service, like $scope or $document
   "   b) We named it something stupid, i.e. Ditto -> ditto-scan.js
   if !filereadable(filepath)
-    echom "Didn't find a file. Looking for suggestions"
     " Get all service filenames in the service directory that match the original word under cursor.
     " e.g. Look for <root>/client/app/js/services/*<orig-service-name>*.js
     let suggestions = split(globpath(fileroot, "*" . fnamemodify(service, ":r") . "*.js"), "\n")
@@ -36,8 +35,19 @@ function! s:FindMatchingAngularService(serv, type)
   endif
 endfunction
 
+function! s:FindMatchingAngularController(cont, type)
+  silent let controller = system("mgrep " . a:cont . " -l " . projectroot#guess() . "/client/app/js/controllers")
+  execute a:type . " " . controller
+endfunction
+
+" TODO: coalesce these into a single <leader>ng command that picks the right thing based on context
+" -------------------------------------------------------------------------------------------------
+
 " Open an angular template under cursor
 nnoremap <leader>ng :call OpenEmbeddedFile("client/app/templates", "tabe")<CR>
 
 " Open an angular service
 nnoremap <leader>srv :call <SID>FindMatchingAngularService(expand("<cword>"), "tabe")<CR>
+
+" Open an angular controller in an html file
+nnoremap <leader>cont :call <SID>FindMatchingAngularController(expand("<cword>"), "tabe")<CR> 
