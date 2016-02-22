@@ -1,7 +1,3 @@
-" ----------------
-" SWITCH MODES
-" ----------------
-
 " Delete previous char and enter insert mode
 nnoremap <BS> i<BS>
 
@@ -26,9 +22,6 @@ nnoremap <leader>' '
 
 " Remap C-a so tmux can use C-a
 map <C-b> <C-a>
-
-" Open file under cursor in new tab
-nnoremap K <C-w>gf
 
 " Always navigate line-wise
 nnoremap j gj
