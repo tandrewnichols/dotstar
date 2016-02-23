@@ -1,5 +1,5 @@
 function! s:OpenUrl(url)
-  silent! exec "silent! !open \"". a:url . "\" > /dev/null"
+  silent! exec "silent! !open ". shellescape(a:url, 1) . " > /dev/null"
   redraw!
 endfunction
 "
@@ -20,3 +20,12 @@ function! OpenNpmReadme()
 endfunction
 
 nnoremap <leader>npm :call OpenNpmReadme()<CR>
+
+"
+" Lookup lodash function
+"
+function! OpenLodashDocs()
+  call <SID>OpenUrl("https://lodash.com/docs#".expand("<cword>"))
+endfunction
+
+nnoremap <leader>_ :call OpenLodashDocs()<CR>
