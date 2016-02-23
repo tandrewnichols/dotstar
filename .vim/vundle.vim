@@ -74,6 +74,8 @@ Plugin 'Valloric/MatchTagAlways'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'kana/vim-submode'
 Plugin 'greplace.vim'
+Plugin 'kana/vim-textobj-function'
+Plugin 'wellle/targets.vim'
 
 " ???
 "Plugin 'tpope/vim-sexp-mappings-for-regular-people'
