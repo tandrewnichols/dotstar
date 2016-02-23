@@ -1,1 +1,1 @@
-nnoremap <leader>;h :80vsp ~/.vim/cheatsheet.vim<CR>
+nnoremap <leader>ch :80vsp ~/.vim/cheatsheet.vim<CR>
