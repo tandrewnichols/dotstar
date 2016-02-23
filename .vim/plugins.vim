@@ -5,7 +5,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree'] }
 Plug 'tpope/vim-surround'
 Plug 'Gundo'
 Plug 'scrooloose/nerdcommenter'
@@ -71,7 +71,11 @@ Plug 'greplace.vim'
 Plug 'kana/vim-textobj-function'
 Plug 'wellle/targets.vim'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-
+Plug 'szw/vim-g'
+Plug 'AndrewRadev/switch.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'thinca/vim-visualstar'
+ 
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "Plug 'guns/vim-sexp'
