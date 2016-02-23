@@ -1,5 +1,5 @@
 *.swp
-.vim/bundle/**
+.vim/plugged/**
 .vim/.netrwhist
 .vim/backups
 .vim/yankring_history

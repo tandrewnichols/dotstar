@@ -3,6 +3,8 @@ let g:expand_region_text_objects = {
   \ 'iW'  :0,
   \ 'i"'  :0,
   \ 'i''' :0,
+  \ 'ix'  :0,
+  \ 'ax'  :0,
   \ 'i]'  :1,
   \ 'a]'  :1,
   \ 'ib'  :1,

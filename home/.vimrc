@@ -1,11 +1,13 @@
 " Bundles
+set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
-source ~/.vim/vundle.vim
+source ~/.vim/plugins.vim
 
 filetype plugin indent on 
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
+let g:instant_markdown_slow = 1
 
 if !isdirectory(expand('~').'/.vim/backups')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
@@ -16,7 +18,6 @@ set foldmethod=marker
 set foldlevelstart=20
 set t_Co=256
 colorscheme jellybeans
-filetype plugin indent on
 syntax enable
 set tabstop=2 shiftwidth=2 expandtab
 set tw=0
