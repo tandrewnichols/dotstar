@@ -8,15 +8,12 @@ normal <leader>tag
 normal <leader>def
 
 " Show all refs of word under cursor (:TernRefs)
-
 normal <leader>ref
 
 " Rename all refs (:TernRename)
-
 normal <leader>ren
 
 " Ag (Ack/grep) for anything
-
 normal <leader>ag
 
 " Ag (ACk/grep) for text object
