@@ -72,6 +72,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'kana/vim-submode'
+Plugin 'greplace.vim'
 
 " ???
 "Plugin 'tpope/vim-sexp-mappings-for-regular-people'

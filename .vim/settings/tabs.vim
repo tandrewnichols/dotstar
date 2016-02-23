@@ -1,7 +1,3 @@
-" ----
-" TABS
-" ----
-
 " Go to next tab
 nnoremap <Tab> gt
 
