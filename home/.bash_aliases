@@ -72,9 +72,9 @@ fi
 #### GENERIC COMMANDS ####
 g() {
   if [ -e $(git rev-parse --show-toplevel)/Gruntfile.js ]; then
-    grunt $1
+    grunt $@
   else
-    gulp $1
+    gulp $@
   fi
 }
 
