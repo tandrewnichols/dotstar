@@ -5,7 +5,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree'] }
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'Gundo'
 Plug 'scrooloose/nerdcommenter'
@@ -23,7 +23,7 @@ Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plug 'ap/vim-css-color'
-Plug 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'majutsushi/tagbar'
 Plug 'rstacruz/sparkup'
 Plug 'kshenoy/vim-signature'
@@ -75,7 +75,7 @@ Plug 'szw/vim-g'
 Plug 'AndrewRadev/switch.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'thinca/vim-visualstar'
- 
+
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "Plug 'guns/vim-sexp'
