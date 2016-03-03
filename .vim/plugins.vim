@@ -6,6 +6,17 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'scrooloose/nerdtree'
+" TODO: try this out for loading nerdtree when opening a directory
+"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"augroup nerd_loader
+  "autocmd!
+  "autocmd VimEnter * silent! autocmd! FileExplorer
+  "autocmd BufEnter,VimEnter *
+        "\  if isdirectory(expand('<amatch>'))
+        "\|   call plug#load('nerdtree')
+        "\|   execute 'autocmd! nerd_loader'
+        "\| endif
+"augroup END
 Plug 'tpope/vim-surround'
 Plug 'Gundo'
 Plug 'scrooloose/nerdcommenter'
@@ -75,6 +86,13 @@ Plug 'szw/vim-g'
 Plug 'AndrewRadev/switch.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'thinca/vim-visualstar'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-scriptease'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'genutils'
+Plug 'kien/tabman.vim'
+Plug 'kana/vim-textobj-syntax'
 
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'

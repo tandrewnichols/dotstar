@@ -3,12 +3,12 @@ let g:submode_timeoutlen = 3000
 
 " Tab mappings. Enter tab mode with gt (which I don't use).
 call submode#enter_with('tabs', 'n', '', 'gt')
-" Then use h/l to move left and right between tabs
-call submode#map('tabs', 'n', '', 'h', 'gT')
-call submode#map('tabs', 'n', '', 'l', 'gt')
-" And j/k to move a tab up and down (index)
-call submode#map('tabs', 'n', '', 'j', ':tabm -<CR>')
-call submode#map('tabs', 'n', '', 'k', ':tabm +<CR>')
+" Then use h/l to move tabs left and right and tab/shift-tab
+" to switch between tabs
+call submode#map('tabs', 'n', '', 'h', ':tabm -<CR>')
+call submode#map('tabs', 'n', '', 'l', ':tabm +<CR>')
+call submode#map('tabs', 'n', '', '<Tab>', 'gt')
+call submode#map('tabs', 'n', '', '<S-Tab>', 'gT')
 
 " Smart resizer (sort of)
 function! HandleResizeContext(vertical, movingRightOrDown)

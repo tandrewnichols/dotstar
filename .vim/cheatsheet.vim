@@ -1,8 +1,11 @@
 " Expand sparkup in html
 insert <C-E>
 
-" Open Tagbar
-normal <leader>tag
+" Open Tagbar with autoclose
+normal <leader>tc
+
+" Open Tagbar and persist
+normal <leader>tp
 
 " Show definition of word under cursor (:TernDef)
 normal <leader>def

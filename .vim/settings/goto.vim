@@ -18,7 +18,7 @@ function! DoIfMantaFrontend(command)
 endfunction
 
 augroup MfCdCommands
-  autocmd BufCreate * :call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cdc :call CdToDirectory('client')<CR>")
-  autocmd BufCreate * :call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cds :call CdToDirectory('server')<CR>")
-  autocmd BufCreate * :call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cdt :call CdToDirectory('tasks')<CR>")
+  autocmd BufCreate * call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cdc :call CdToDirectory('client')<CR>")
+  autocmd BufCreate * call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cds :call CdToDirectory('server')<CR>")
+  autocmd BufCreate * call DoIfMantaFrontend("silent nnoremap <buffer> <leader>cdt :call CdToDirectory('tasks')<CR>")
 augroup END
