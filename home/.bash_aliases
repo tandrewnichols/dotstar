@@ -286,6 +286,12 @@ resolve() {
 }
 
 #### GIT COMMANDS ####
+# Open pull request for current branch
+pr() {
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  open https://github.com/mantacode/manta-frontend/compare/$branch?expand=1
+}
+
 # delete remote 
 dr() {
   if [ -z $1 ]; then
