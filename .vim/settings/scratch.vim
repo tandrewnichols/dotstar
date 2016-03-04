@@ -37,3 +37,11 @@ endfunction
 " Open :nmap in scratch buffer
 nnoremap <leader>nmap :Vscratch :nmap<CR>
 nnoremap <silent> <leader>sug :call <SID>GetSuggestion()<CR>
+
+function! Mgrep(what, where)
+  vnew | setlocal buftype=nofile bufhidden=hide noswapfile 
+  execute ":read !mgrep " . a:what . " " . a:where
+endfunction
+
+command! -nargs=* -complete=shellcmd Cap vnew | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+command! -nargs=* -complete=shellcmd Mgrep call Mgrep(expand("<cword>"), b:projrel)

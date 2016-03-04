@@ -93,6 +93,8 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'genutils'
 Plug 'kien/tabman.vim'
 Plug 'kana/vim-textobj-syntax'
+Plug 'Julian/vim-textobj-variable-segment'
+Plug 'mjbrownie/html-textobjects'
 
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'

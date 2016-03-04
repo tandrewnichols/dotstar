@@ -162,10 +162,11 @@ nmap <leader>req <Plug>NodeGotoFile
 
 " Now define my own mappings that set up gf/K better (i.e. to work with
 " non-existant files too)
-nmap <silent> gf :call <SID>GetContextOfWord()<CR>
-nmap <silent> K :call <SID>GetContextOfWord('NodeVSplitGotoFile')<CR>
-nmap <silent> <C-W>f :call <SID>GetContextOfWord('NodeSplitGotoFile')<CR>
-nmap <silent> <C-W>gf :call <SID>GetContextOfWord('NodeGotoFile')<CR>
+nmap <silent> <leader>gf :tabe <cfile><CR>
+nnoremap <silent> gf :call <SID>GetContextOfWord()<CR>
+nnoremap <silent> K :call <SID>GetContextOfWord('NodeVSplitGotoFile')<CR>
+nnoremap <silent> <C-W>f :call <SID>GetContextOfWord('NodeSplitGotoFile')<CR>
+nnoremap <silent> <C-W>gf :call <SID>GetContextOfWord('NodeGotoFile')<CR>
 "nmap <buffer> gf <Plug>NodeGotoFile
 "nmap <buffer> <C-w>f <Plug>NodeSplitGotoFile
 "nmap <buffer> <C-w><C-f> <Plug>NodeSplitGotoFile
