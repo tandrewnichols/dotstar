@@ -66,3 +66,9 @@ call submode#map('boost', 'n', '', 'j', '5j')
 call submode#map('boost', 'n', '', 'k', '5k')
 call submode#map('boost', 'n', '', 'h', '5h')
 call submode#map('boost', 'n', '', 'l', '5l')
+
+call submode#enter_with('pagedown', 'n', '', 'z+', 'z+')
+call submode#map('pagedown', 'n', '', '+', 'z+')
+
+call submode#enter_with('pageup', 'n', '', 'z-', 'z-')
+call submode#map('pageup', 'n', '', '-', 'Hz-')

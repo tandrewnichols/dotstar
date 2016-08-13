@@ -36,7 +36,7 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### CUSTOM ALIASES ####
-alias mgrep='grep -rn --exclude=access*.log --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor'
+alias mgrep='grep -rIn --exclude=access*.log --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
@@ -48,7 +48,7 @@ alias playtest="export PLAY_ENV=\"test\""
 alias vim="vim -p"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
-alias f="_goto ~/code/anichols/manta/manta-frontend"
+alias fe="_goto ~/code/anichols/manta/manta-frontend"
 alias server="_goto ~/code/anichols/manta/manta-frontend/server"
 alias client="_goto ~/code/anichols/manta/manta-frontend/client"
 alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
@@ -71,9 +71,9 @@ fi
 
 #### GENERIC COMMANDS ####
 g() {
-  if [ -e $(git rev-parse --show-toplevel)/Gruntfile.js ]; then
+  if [ -e $(git rev-parse --show-toplevel)/Gruntfile.js ] || [ -e $(git rev-parse --show-toplevel)/Gruntfile.coffee ]; then
     grunt $@
-  else
+  elif [ -e $(git rev-parse --show-toplevel)/gulpfile.js ] || [ -e $(git rev-parse --show-toplevel)/gulpfile.coffee ]; then
     gulp $@
   fi
 }
@@ -285,11 +285,18 @@ resolve() {
   vim $(conflict | sed s/^...//)
 }
 
+blogify() {
+   mogrify -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
+}
+
 #### GIT COMMANDS ####
 # Open pull request for current branch
 pr() {
-  branch=$(git rev-parse --abbrev-ref HEAD)
-  open https://github.com/mantacode/manta-frontend/compare/$branch?expand=1
+  remote=`git config --get remote.origin.url`
+  index=`expr index "$remote" :`
+  remote=${remote:index: -4}
+  branch=`git rev-parse --abbrev-ref HEAD`
+  open https://github.com/$remote/compare/$branch?expand=1
 }
 
 # delete remote 
@@ -379,8 +386,4 @@ repo() {
   curl -X POST -H "Context-Type:application/json" -d '{"name":"'"$1"'","description":"'"$2"'","auto_init":true,"gitignore_template":"Node","license_template":"mit"}' https://api.github.com/user/repos -u tandrewnichols
   cloneme $1
   cd $1
-}
-
-blogify() {
-   mogrify -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }

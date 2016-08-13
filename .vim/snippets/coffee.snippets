@@ -14,8 +14,16 @@ snippet c
 		${0}
 snippet toH
 	toHaveBeenCalledWith ${0}
+snippet toh
+	toHaveBeenCalledWith ${0}
 snippet toE
 	toEqual ${0}
+snippet toe
+	toEqual ${0}
+snippet toB
+	toBe ${0}
+snippet tob
+	toBe ${0}
 snippet to.d
 	to.deep.equal
 		${0}
@@ -34,7 +42,7 @@ snippet @
 snippet $p
 	$provide.constant '${1:}', jasmine.createSpyObj '$1', ['${2}']${0}
 snippet $i
-	$injector.get '${0}
+	$injector.get('${1}')${0}
 snippet stub
 	afterEach -> ${1:}.${2:}.restore()
 	Given -> sinon.stub $1, '$2'${0}

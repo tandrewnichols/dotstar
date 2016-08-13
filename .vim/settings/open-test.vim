@@ -7,8 +7,13 @@ function! s:OpenTestForCurrentBuffer(where)
     let filename = expand("%:t:r")
     let filehead = fnamemodify(full, ":h")
     let extra = subroot ==? 'client' ? "/app/js" : "/"
-    let dirpath = substitute(filehead, root . extra, "", "")
-    execute a:where . " " . root . "/spec/" . dirpath . "/" . filename . "-spec.coffee"
+    let dirpath = substitute(filehead . "/", root . extra, "", "")
+    " In the case of server/app.js, we need an extra '/' or we end up with
+    " specfilename-spec.coffee instead of spec/filename-spec.coffee
+    if dirpath == ""
+      let dirpath = "/"
+    endif
+    execute a:where . " " . root . "/spec" . dirpath . filename . "-spec.coffee"
   endif
 endfunction
 

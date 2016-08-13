@@ -138,7 +138,7 @@ function! s:GetContextOfWord(...)
       endif
     " If the cursor is on a variable, <cfile> and <cword> are the same,
     " so if they're not the same, the cursor is on a filename
-    elseif match(curWORD, "template") > -1
+    elseif match(curWORD, "include") > -1
       call OpenEmbeddedFile("client/app/templates", view)
     " Otherwise, we're on a property of a service
     else
