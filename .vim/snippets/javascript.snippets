@@ -22,7 +22,7 @@ snippet dir
 			}
 		};
 	});
-snippet c
+snippet l
 	console.log('${1}:', ${2});${0}
 snippet m
 	module.exports = ${0}
@@ -56,12 +56,40 @@ snippet async.e
 		${4}
 	}
 snippet f
-	function(${1}) {
+	function(${2}) {
 		${0}
-	}
+	}${1}
 snippet for
 	for (var i = 0; i < ${1}.length; i++) {
 		${0}
 	}
 snippet r
 	require('${1}');${0}
+snippet d
+	describe('${1}', function() {
+		${0}
+	});
+snippet c
+	context('${1}', function() {
+		${0}
+	});
+snippet i
+	it('${1}', function(${2}) {
+		${0}
+	});
+snippet sub
+	subject = require('proxyquire').noCallThru()('${1}');${0}
+snippet b
+	beforeEach(function(${1}) {
+		${0}
+	});
+snippet a
+	afterEach(function(${1}) {
+		${0}
+	});
+snippet sin
+	sinon.stub(${1});${0}
+snippet cal
+	called${1}.should.be.${2}()${0}
+snippet calledw
+	calledWith(${1}).should.be.${2}()${0}

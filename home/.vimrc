@@ -9,6 +9,7 @@ let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 let g:instant_markdown_slow = 1
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:mocha_js_command = "!mocha --reporter spec {spec}"
 
 if !isdirectory(expand('~').'/.vim/backups')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
