@@ -387,3 +387,10 @@ repo() {
   cloneme $1
   cd $1
 }
+
+ci() {
+  remote=`git config --get remote.origin.url`
+  index=`expr index "$remote" :`
+  remote=${remote:index: -4}
+  open https://travis-ci.org/$remote/builds
+}
