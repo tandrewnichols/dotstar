@@ -125,6 +125,16 @@ function! s:GetContextOfWord(...)
   let curfile = expand("<cfile>")
   let file = expand("%:p:h")
 
+  if LineContainsRequire() || LineContainsImport()
+    let req = ExtractRequiredFilename()
+    let filename = ResolveRelativeToCurrentFile(req)
+    let requirableFile = NodeRequireTree(filename, req)
+    if !empty(requirableFile)
+      execute ":tabe " . requirableFile
+      return
+    endif
+  endif
+
   " If we're in the client directory
   if match(file, "manta-frontend/client") > -1
     let view = a:0 ? a:1 : "tabe"

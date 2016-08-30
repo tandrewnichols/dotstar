@@ -31,3 +31,35 @@ function! KebabCase(word) abort
   let word = tolower(word)
   return word
 endfunction
+
+" Find a file up the directory hierarchy from the cwd
+function! Findup(file)
+  return FindupFrom(getcwd(), a:file)
+endfunction
+
+" Find a file up the directory hierarchy from a given directory
+function! FindupFrom(dir, file)
+  let dir = fnamemodify(a:dir, ":p")
+  let trypath = dir . a:file
+  return PathExists(trypath) ? trypath : FindupFrom(fnamemodify(dir, ":p:h:h"), a:file)
+endfunction
+
+function! LineMatches(test)
+  return match(getline('.'), a:test) > -1
+endfunction
+
+function! PathExists(path)
+  return !empty(glob(a:path))
+endfunction
+
+function! EndsInSlash(thing)
+  return matchstr(thing, "/$") == "/"
+endfunction
+
+function! TrimTrailingSlash(thing)
+  return substitute(thing, "/$", "", "")
+endfunction
+
+function! ResolveRelativeToCurrentFile(file)
+  return fnamemodify(expand("%:p:h") . "/" . a:file, ":p")
+endfunction
