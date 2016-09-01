@@ -52,10 +52,6 @@ function! GetAllBufferText()
   return join(getline(1,'$'), "\n")
 endfunction
 
-function! GetVariableUnderCursor()
-  return substitute(split(expand("<cWORD>"), '\.')[0], '[^a-zA-Z0-9_]*', '', 'g')
-endfunction
-
 function! OpenVariableFile()
   let var = GetVariableUnderCursor()
   let text = GetAllBufferText()
@@ -119,55 +115,56 @@ function! OpenEmbeddedFile(subroot, ...)
 endfunction
 
 function! s:GetContextOfWord(...)
-  let curword = expand("<cword>")
-  let curWORD = expand("<cWORD>")
-  let variable = GetVariableUnderCursor()
-  let curfile = expand("<cfile>")
-  let file = expand("%:p:h")
+  let fileToOpen = graft#node#RequireContext()
+  if empty(fileToOpen)
+    let fileToOpen = graft#node#VariableContext()
+  endif
 
-  if LineContainsRequire() || LineContainsImport()
-    let req = ExtractRequiredFilename()
-    let filename = ResolveRelativeToCurrentFile(req)
-    let requirableFile = NodeRequireTree(filename, req)
-    if !empty(requirableFile)
-      execute ":tabe " . requirableFile
-      return
+  if !empty(fileToOpen)
+    if type(fileToOpen) == 1
+      execute ":tabe " . fileToOpen
+    elseif type(fileToOpen) == 3
+      execute ":tabe " . fileToOpen[0]
+      if !empty(fileToOpen[1])
+        call search("\\(exports\\.\\|export.*\\)\\zs" . fileToOpen[1] . "\\ze = ")
+        call matchadd("Search", fileToOpen[1])
+      endif
     endif
   endif
 
   " If we're in the client directory
-  if match(file, "manta-frontend/client") > -1
-    let view = a:0 ? a:1 : "tabe"
-    " If the cursor is on a service or controller
-    if variable == curword
-      " Controllers SHOULD all have "Controller" in them
-      if match(variable, "Controller") > -1
-        call FindMatchingAngularController(curword, view)
-      else
-        call FindMatchingAngularService(curword, view)
-      endif
-    " If the cursor is on a variable, <cfile> and <cword> are the same,
-    " so if they're not the same, the cursor is on a filename
-    elseif match(curWORD, "include") > -1
-      call OpenEmbeddedFile("client/app/templates", view)
-    " Otherwise, we're on a property of a service
-    else
-      call FindMatchingAngularService(variable, view, curword)
-    endif
-  elseif match(file, "manta-frontend/server") > -1
-    if match(curWORD, 'require') > -1
-      let view = a:0 ? a:1 : 'NodeTabGotoFile'
-      call NodeGotoOrCreateNew(view)
-    elseif variable == curword
-      call OpenVariableFile()
-    else
-      call JumpToPropertyInExport()
-    endif
-  endif
+  "if match(file, "manta-frontend/client") > -1
+    "let view = a:0 ? a:1 : "tabe"
+    "" If the cursor is on a service or controller
+    "if variable == curword
+      "" Controllers SHOULD all have "Controller" in them
+      "if match(variable, "Controller") > -1
+        "call FindMatchingAngularController(curword, view)
+      "else
+        "call FindMatchingAngularService(curword, view)
+      "endif
+    "" If the cursor is on a variable, <cfile> and <cword> are the same,
+    "" so if they're not the same, the cursor is on a filename
+    "elseif match(curWORD, "include") > -1
+      "call OpenEmbeddedFile("client/app/templates", view)
+    "" Otherwise, we're on a property of a service
+    "else
+      "call FindMatchingAngularService(variable, view, curword)
+    "endif
+  "elseif match(file, "manta-frontend/server") > -1
+    "if match(curWORD, 'require') > -1
+      "let view = a:0 ? a:1 : 'NodeTabGotoFile'
+      "call NodeGotoOrCreateNew(view)
+    "elseif variable == curword
+      "call OpenVariableFile()
+    "else
+      "call JumpToPropertyInExport()
+    "endif
+  "endif
 endfunction
 
 " Make node.vim not map gf by setting plug. It runs
-" is !hasmapto("<Plug>NodeGotoFile") before setting gf mappings
+" if !hasmapto("<Plug>NodeGotoFile") before setting gf mappings
 nmap <leader>req <Plug>NodeGotoFile
 
 " Now define my own mappings that set up gf/K better (i.e. to work with
