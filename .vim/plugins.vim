@@ -91,6 +91,8 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'godlygeek/tabular'
 Plug 'Julian/vim-textobj-variable-segment'
 Plug 'janko-m/vim-test'
+Plug 'ynkdir/vim-vimlparser'
+Plug 'syngan/vim-vimlint'
 
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
