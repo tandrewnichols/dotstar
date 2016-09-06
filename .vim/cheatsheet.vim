@@ -1,6 +1,3 @@
-" Expand sparkup in html
-insert <C-E>
-
 " Open Tagbar with autoclose
 normal <leader>tc
 
