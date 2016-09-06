@@ -92,8 +92,9 @@ Plug 'Julian/vim-textobj-variable-segment'
 Plug 'janko-m/vim-test'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'syngan/vim-vimlint'
-Plug '~/code/anichols/vim-plugins/graft.vim'
-Plug '~/code/anichols/vim-plugins/graft-node.vim'
+Plug '~/code/anichols/vim-plugins/vim-graft'
+Plug '~/code/anichols/vim-plugins/vim-graft-node'
+Plug '~/code/anichols/vim-plugins/vim-graft-angular'
 
 " ???
 "Plug 'tpope/vim-sexp-mappings-for-regular-people'
