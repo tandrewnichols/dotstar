@@ -14,6 +14,6 @@ let g:yankring_window_width = 60
 let g:yankring_window_increment = 40
 
 " Put yankring history in .vim folder
-let g:yankring_history_dir = '$VIM'
+let g:yankring_history_dir = '$HOME/.vim'
 
 nnoremap <leader>yr :YRShow<CR> 
