@@ -64,6 +64,7 @@ set noswapfile
 set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
+set timeoutlen=500
 if &term =~ '256color'
   set t_ut=
 endif
