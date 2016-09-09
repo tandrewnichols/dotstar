@@ -74,9 +74,16 @@ mkdir -p $HOME/code/anichols/{apps,forks,generators,gists,grunt-plugins,manta,mo
 ssh-keygen -t rsa -b 4096 -C "tandrewnichols@gmail.com" -f ~/.ssh/id_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
-xclip -sel clip < ~/.ssh/id_rsa.pub
-# Open the ssh settings page on github
-nohup xdg-open https://github.com/settings/ssh >& /dev/null &
+
+if [[ $OSTYPE == darwin* ]]; then
+  cat ~/.ssh/id_rsa.pub | pbcopy
+  nohup open https://github.com/settings/ssh >& /dev/null &
+else
+  xclip -sel clip < ~/.ssh/id_rsa.pub
+  # Open the ssh settings page on github
+  nohup xdg-open https://github.com/settings/ssh >& /dev/null &
+fi
+
 
 # Clone vim-plugins so that +PlugInstall works
 git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim-plugins
