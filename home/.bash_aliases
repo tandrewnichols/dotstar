@@ -64,7 +64,6 @@ alias neo="neo4j-instance"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
-  echo "OS is not darwin. Adding Linux aliases."
   alias ack="ack-grep"
   alias open="xdg-open"
   alias gimme="sudo apt-get install"
