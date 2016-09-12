@@ -59,6 +59,7 @@ alias forks="_goto ~/code/anichols/forks"
 alias generators="_goto ~/code/anichols/generators"
 alias plugins="_goto ~/code/anichols/grunt-plugins"
 alias play="_goto ~/code/anichols/manta/play"
+alias vp="_goto ~/code/anichols/vim-plugins"
 alias neo="neo4j-instance"
 
 # Linux specific aliases
