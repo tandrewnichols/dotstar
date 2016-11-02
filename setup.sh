@@ -111,13 +111,13 @@ vim +PlugInstall +qall
 # Install fonts for powerline
 git clone git@github.com:powerline/fonts.git $HOME/code/powerline-fonts
 $HOME/code/powerline-fonts/install.sh
+echo "Don't forget to set your Terminal font to Meslo LG S Regular for Powerline"
 
 # Setup n/node/npm
 curl -L http://git.io/n-install | bash
-n lts # latest v4
-n 5.12.0
+echo "Don't forget to run n ls and install node v4.x and node v5.x"
 n latest # latest v6
-~/n/bin/npm install -g grunt gulp
+~/n/bin/npm install -g grunt-cli gulp
 
 source ~/.bashrc
 
