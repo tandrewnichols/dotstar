@@ -29,6 +29,7 @@
   ours = "!f() { git co --ours $@ && git add $@; }; f"
   theirs = "!f() { git co --theirs $@ && git add $@; }; f"
   arc = "! f() { git tag archive/$1 $1 && git branch -D $1;}; f"
+  archived = "!git tag --list | grep archive"
 [push]
   default = upstream
 [branch]
