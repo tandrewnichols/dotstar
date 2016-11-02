@@ -14,7 +14,7 @@ linkFiles() {
   fi
   for file in $from
   do
-    if [ -f $file ]; then
+    if [ -f $file ] || [[ "$file" == */.vim/settings ]]; then
       echo "Linking $file to $to/$(basename $file)"
       ln -sf $file $to/$(basename $file)
     fi
@@ -23,7 +23,6 @@ linkFiles() {
 
 linkFiles home
 linkFiles .vim $HOME/.vim
-#ln -sf $PWD/.vim $HOME/.vim
 
 echo "Linking $PWD/.config/powerline to $HOME/.config/powerline"
 ln -sf $PWD/.config/powerline $HOME/.config/powerline
