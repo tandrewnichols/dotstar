@@ -39,8 +39,11 @@ if [[ $OSTYPE == darwin* ]]; then
   brew ls --version google-chrome || brew cask install google-chrome
 
 else # If this is Linux
-  sudo apt-get update
-  sudo apt-get install vim git-all tmux imagemagick tree xclip
+  sudo add-apt-repository -y ppa:pi-rho/dev
+  sudo apt-get -y purge runit git-all git
+  sudo apt-get -y autoremove
+  sudo apt-get -y update
+  sudo apt-get --yes --force-yes install git-daemon-sysvinit git-all tmux imagemagick tree xclip google-chrome-stable python-software-properties software-properties-common vim-gtk
 
   install_google_chrome() {
     cd /tmp
@@ -50,13 +53,14 @@ else # If this is Linux
   }
 
   # Install Google Chrome if not already installed
-  type google-chrome >/dev/null 2>&1 || install_google_chrome
+  # Not necessary? Install with apt-get above...
+  # type google-chrome >/dev/null 2>&1 || install_google_chrome
 
   # Make google-chrome open correctly
   perl -pi -e 's|^Exec=.*|Exec=(?!%U)/opt/google/chrome/chrome %U|' ~/.local/share/applications/google-chrome.desktop
 
   # Install jenv
-  git clone https://github.comgcuisinier/jenv.git ~/.jenv
+  git clone https://github.com/gcuisinier/jenv.git ~/.jenv
 fi
 
 # Install RVM and the latest ruby version
@@ -84,15 +88,19 @@ else
   nohup xdg-open https://github.com/settings/ssh >& /dev/null &
 fi
 
+read -p "Press [Enter] to resume install after adding key to github..."
 
 # Clone vim-plugins so that +PlugInstall works
-git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim-plugins
-git clone git@github.com:tandrewnichols/vim-graft-node.git $HOME/code/anichols/vim-plugins
-git clone git@github.com:tandrewnichols/vim-graft-angular.git $HOME/code/anichols/vim-plugins
+git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim-plugins/vim-graft
+git clone git@github.com:tandrewnichols/vim-graft-node.git $HOME/code/anichols/vim-plugins/vim-graft-node
+git clone git@github.com:tandrewnichols/vim-graft-angular.git $HOME/code/anichols/vim-plugins/vim-graft-angular
 
 # Install dot files from git repo
 git clone git@github.com:tandrewnichols/dotstar.git $HOME/code/anichols/dotstar
 cd code/anichols/dotstar
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s vim/plugins.vim ~/.vim/plugins.vim
 
 # Setup vim plugins
 vim +PlugInstall +qall
