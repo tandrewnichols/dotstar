@@ -1,0 +1,3 @@
+#!/usr/local/bin/bash
+
+vim -p `git status -s | sed s/^...//`
