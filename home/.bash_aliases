@@ -36,7 +36,7 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### CUSTOM ALIASES ####
-alias mgrep='grep -rIn --exclude=access*.log --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
+alias mgrep='grep -rIn --exclude=access*.log --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage --exclude-dir=node_modules.current --exclude-dir=node_modules.20160930'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
@@ -61,6 +61,7 @@ alias plugins="_goto ~/code/anichols/grunt-plugins"
 alias play="_goto ~/code/anichols/manta/play"
 alias vp="_goto ~/code/anichols/vim-plugins"
 alias neo="neo4j-instance"
+alias vi="vim -p"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -292,11 +293,7 @@ blogify() {
 #### GIT COMMANDS ####
 # Open pull request for current branch
 pr() {
-  remote=`git config --get remote.origin.url`
-  index=`expr index "$remote" :`
-  remote=${remote:index: -4}
-  branch=`git rev-parse --abbrev-ref HEAD`
-  open https://github.com/$remote/compare/$branch?expand=1
+  open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
 }
 
 # delete remote 
@@ -388,9 +385,16 @@ repo() {
   cd $1
 }
 
+get_git_user_repo() {
+  remote=`git config --get remote.origin.url`
+  remote=${remote#*:}
+  remote=${remote:0: -4}
+  echo $remote
+}
+
 ci() {
   remote=`git config --get remote.origin.url`
-  index=`expr index "$remote" :`
-  remote=${remote:index: -4}
-  open https://travis-ci.org/$remote/builds
+  remote=${remote#*:}
+  remote=${remote:0: -4}
+  open https://travis-ci.org/`get_git_user_repo`/builds
 }
