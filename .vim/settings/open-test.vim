@@ -13,6 +13,10 @@ function! s:OpenTestForCurrentBuffer(where)
     if dirpath == ""
       let dirpath = "/"
     endif
+
+    if dirpath !~ "^/"
+      let dirpath = "/" . dirpath
+    endif
     execute a:where . " " . root . "/spec" . dirpath . filename . "-spec.coffee"
   endif
 endfunction
