@@ -126,5 +126,13 @@ n latest # latest v6
 source ~/.bashrc
 
 # Install neo4j-instance
-mkdir ~/bin
 curl -L https://raw.githubusercontent.com/tandrewnichols/neo4j-instance/master/neo4j-instance.sh > ~/bin/neo4j-instance && chmod +x ~/bin/neo4j-instance
+
+# Clone manta-frontend so I can set up local gitconfig stuff
+git clone git@github.com:mantacode/manta-frontend.git $HOME/code/anichols/manta/manta-frontend
+git clone git@github.com:mantacode/manta-router.git $HOME/code/anichols/manta/manta-router
+cd $HOME/code/anichols/manta/manta-frontend
+git config --local user.name "Andrew Nichols"
+git config --local user.email "anichols@manta.com"
+npm i
+cd $HOME
