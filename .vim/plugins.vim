@@ -7,7 +7,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'scrooloose/nerdtree'
 " TODO: try this out for loading nerdtree when opening a directory
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind'] }
 "augroup nerd_loader
   "autocmd!
   "autocmd VimEnter * silent! autocmd! FileExplorer
