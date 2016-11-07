@@ -66,7 +66,9 @@ alias vi="vim -p"
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
   alias ack="ack-grep"
-  alias open="xdg-open"
+  open() {
+    xdg-open "$*" </dev/null &>/dev/null &
+  }
   alias gimme="sudo apt-get install"
 fi
 
