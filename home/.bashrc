@@ -286,7 +286,7 @@ if [ -f ~/.git-completion.bash ]; then
   source ~/.git-completion.bash
 fi
 
-ulimit -n 1024
+ulimit -n 2560
 
 ### Added by the Heroku Toolbelt
 
