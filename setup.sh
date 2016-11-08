@@ -125,6 +125,9 @@ n latest # latest v6
 
 source ~/.bashrc
 
+#Install vim-instant markdown
+npm -g install instant-markdown-d
+
 # Install neo4j-instance
 curl -L https://raw.githubusercontent.com/tandrewnichols/neo4j-instance/master/neo4j-instance.sh > ~/bin/neo4j-instance && chmod +x ~/bin/neo4j-instance
 
