@@ -91,6 +91,7 @@ Plug 'Julian/vim-textobj-variable-segment'
 Plug 'janko-m/vim-test'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'syngan/vim-vimlint'
+Plug 'Valloric/YouCompleteMe'
 
 " Local plugins
 Plug '~/code/anichols/vim-plugins/vim-graft'

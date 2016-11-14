@@ -11,7 +11,7 @@ if [[ $OSTYPE == darwin* ]]; then
   brew tap homebrew/dupes
 
   # Install common brew packages
-  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg ag jenv
+  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg ag jenv cmake
 
   # Homebrew TODO
   #ack coreutils ctags fontconfig fontforge apple-gcc42 binutils diffutils gawk gnutls gzip screen watch
@@ -43,7 +43,7 @@ else # If this is Linux
   sudo apt-get -y purge runit git-all git
   sudo apt-get -y autoremove
   sudo apt-get -y update
-  sudo apt-get --yes --force-yes install git-daemon-sysvinit git-all tmux imagemagick tree xclip google-chrome-stable python-software-properties software-properties-common vim-gtk
+  sudo apt-get --yes --force-yes install git-daemon-sysvinit git-all tmux imagemagick tree xclip google-chrome-stable python-software-properties software-properties-common vim-gtk build-essential cmake python-dev python3-dev
 
   install_google_chrome() {
     cd /tmp
@@ -124,6 +124,11 @@ n latest # latest v6
 ~/n/bin/npm install -g grunt-cli gulp
 
 source ~/.bashrc
+
+# Build YouCompleteMe
+cd ~/.vim/plugged/YouCompleteMe
+./install.py --clang-completer --tern-completer
+cd -
 
 #Install vim-instant markdown
 npm -g install instant-markdown-d
