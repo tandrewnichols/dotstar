@@ -42,6 +42,7 @@ set wildmode=longest:full,full
 set autoread
 set history=1000
 set tabpagemax=50
+set completeopt-=preview
 augroup filetypes
   autocmd!
   autocmd BufNewFile,BufRead *.json setf javascript
