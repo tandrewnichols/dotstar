@@ -33,7 +33,7 @@ Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
 Plug 'ap/vim-css-color'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
 Plug 'majutsushi/tagbar'
 Plug 'rstacruz/sparkup'
 Plug 'kshenoy/vim-signature'
