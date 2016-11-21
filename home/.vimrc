@@ -2,7 +2,9 @@
 set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
-source ~/.vim/plugins.vim
+if !exists('g:noplugins')
+  source ~/.vim/plugins.vim
+endif
 
 filetype plugin indent on 
 let mapleader = "\<Space>"
@@ -19,7 +21,9 @@ set undofile
 set foldmethod=marker
 set foldlevelstart=20
 set t_Co=256
-colorscheme jellybeans
+if !exists('g:noplugins')
+  colorscheme jellybeans
+endif
 syntax enable
 set tabstop=2 shiftwidth=2 expandtab
 set tw=0
@@ -72,16 +76,18 @@ endif
 autocmd BufEnter * set nocindent
 set showbreak=>>\ \ \ \ 
 
-" Load everything in settings
-let vimsettings = '~/.vim/settings'
-for fpath in split(globpath(vimsettings, '*.vim'), '\n')
-  if (fpath == expand(vimsettings) . "/mac.vim") && !g:isMac
-    continue " skip mac mappings for linux
-  endif
+if !exists('g:noplugins') && !exists('g:bones')
+  " Load everything in settings
+  let vimsettings = '~/.vim/settings'
+  for fpath in split(globpath(vimsettings, '*.vim'), '\n')
+    if (fpath == expand(vimsettings) . "/mac.vim") && !g:isMac
+      continue " skip mac mappings for linux
+    endif
 
-  if (fpath == expand(vimsettings) . "/linux.vim") && g:isMac
-    continue " skip linux mappings for mac
-  endif
+    if (fpath == expand(vimsettings) . "/linux.vim") && g:isMac
+      continue " skip linux mappings for mac
+    endif
 
-  exe 'source ' . fpath
-endfor
+    exe 'source ' . fpath
+  endfor
+endif
