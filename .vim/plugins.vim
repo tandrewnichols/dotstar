@@ -98,6 +98,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim-plugins/vim-graft'
   Plug '~/code/anichols/vim-plugins/vim-graft-node'
   Plug '~/code/anichols/vim-plugins/vim-graft-angular'
+  Plug '~/code/anichols/vim-plugins/vim-graft-vim'
 endif
 
 Plug 'flazz/vim-colorschemes'
