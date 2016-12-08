@@ -33,8 +33,6 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=red
 set nowrap
 set splitbelow
 set splitright
-set autoindent
-set smartindent
 set backspace=indent,eol,start
 set hidden
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -48,14 +46,14 @@ set history=1000
 set tabpagemax=50
 set completeopt-=preview
 augroup filetypes
-  autocmd!
-  autocmd BufNewFile,BufRead *.json setf javascript
-  autocmd BufNewFile,BufRead *.es6 setf javascript
-  autocmd BufNewFile,BufRead *.jsx setf javascript
-  autocmd BufNewFile,BufRead *.less setf less
-  autocmd BufNewFile,BufRead *.ejs setf html
-  autocmd BufNewFile,BufRead *.hbs setf html
-  autocmd BufNewFile,BufRead *.mustache setf html
+  au!
+  au BufNewFile,BufRead *.json setf javascript
+  au BufNewFile,BufRead *.es6 setf javascript
+  au BufNewFile,BufRead *.jsx setf javascript
+  au BufNewFile,BufRead *.less setf less
+  au BufNewFile,BufRead *.ejs setf html
+  au BufNewFile,BufRead *.hbs setf html
+  au BufNewFile,BufRead *.mustache setf html
 augroup END
 set scrolloff=3
 set sidescrolloff=15
