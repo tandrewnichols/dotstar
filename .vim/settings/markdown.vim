@@ -4,7 +4,6 @@ augroup markdownCodeFences
 augroup END
 
 function! EnableMarkdownCodeFences()
-  let text = join(getline(1,'$'), "\n")
   call TextEnableCodeSnip('javascript', '```js', '```', 'SpecialComment')
   call TextEnableCodeSnip('javascript', '```javascript', '```', 'SpecialComment')
   call TextEnableCodeSnip('javascript', '```json', '```', 'SpecialComment')
