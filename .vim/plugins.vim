@@ -24,7 +24,7 @@ if !exists('g:bones')
   Plug 'rking/ag.vim'
   Plug 'Chun-Yang/vim-action-ag'
   Plug 'pangloss/vim-javascript'
-  "Plug 'mxw/vim-jsx'
+  Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'tpope/vim-endwise'
   Plug 'scrooloose/syntastic'
