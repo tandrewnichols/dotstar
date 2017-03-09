@@ -22,6 +22,15 @@ snippet dir
 			}
 		};
 	});
+snippet comp
+	angular.module('app').directive('${1}', function(${2}) {
+		return {
+			restrict: 'E',
+			templateUrl: 'components/${3}.html',
+			controller: '${4}ComponentController',
+			scope: ${5}
+		};
+	});
 snippet l
 	console.log('${1}:', ${2});${0}
 snippet m
