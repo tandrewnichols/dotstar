@@ -81,6 +81,8 @@ g() {
     grunt $@
   elif [ -e $(git rev-parse --show-toplevel)/gulpfile.js ] || [ -e $(git rev-parse --show-toplevel)/gulpfile.coffee ]; then
     gulp $@
+  else
+    npm run $@
   fi
 }
 
