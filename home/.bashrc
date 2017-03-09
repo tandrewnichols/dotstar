@@ -309,3 +309,4 @@ if [ -z $JENV_INITIALIZED ]; then
   eval "$(jenv init -)"
   export JENV_INITIALIZED=1
 fi
+export INEO_HOME=/Users/AndrewNichols/.ineo; export PATH=$INEO_HOME/bin:$PATH

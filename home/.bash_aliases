@@ -64,6 +64,7 @@ alias neo="neo4j-instance"
 alias vi="vim -p"
 alias vimbones="vim -p --cmd 'let g:bones=1'"
 alias vimpure="vim -p --cmd 'let g:noplugins=1'"
+alias neo=ineo
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
