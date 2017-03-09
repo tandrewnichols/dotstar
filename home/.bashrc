@@ -182,7 +182,7 @@ else
   export PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[00m\]$ '
 fi
 
-curl_ifttt() {
+ifttt() {
   dir=$(git rev-parse --show-toplevel)
   cur=$(node -e "console.log(require('$dir/package.json').name)")
   version=$(node -e "console.log(require('$dir/package.json').version)")
@@ -190,15 +190,7 @@ curl_ifttt() {
   echo "Tweeting the following message:"
   echo "I just published ${cur}@${version}. See $url for details."
   curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
-  # Don't leave npm publish as the last history command
-  # in case the tmux pane is closed because when it's
-  # recreated, it will rerun this script.
-  history -s ls
-  history -s la
-  history -s ls
 }
-
-export PROMPT_COMMAND='prev=$(history 1 | cut -c 7-); [[ "$prev" =~ "npm publish" ]] &&  curl_ifttt'
 
 unset color_prompt force_color_prompt
 
