@@ -276,7 +276,7 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 add_after_path $HOME/bin:$HOME/.rvm/bin
-add_before_path /usr/local/Cellar/phantomjs/2.1.1/bin /usr/local/heroku/bin $HOME/.jenv/bin
+add_before_path /usr/local/Cellar/phantomjs/2.1.1/bin /usr/local/heroku/bin
 NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
@@ -305,8 +305,7 @@ if [ -z $GRUNT_COMPLETION_INITIALIZED ]; then
   export GRUNT_COMPLETION_INITIALIZED=1
 fi
 
-if [ -z $JENV_INITIALIZED ]; then
-  eval "$(jenv init -)"
-  export JENV_INITIALIZED=1
-fi
 export INEO_HOME=/Users/AndrewNichols/.ineo; export PATH=$INEO_HOME/bin:$PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR JENV TO WORK!!!
+[[ -s "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" ]] && source "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" && source "/Users/AndrewNichols/.jenv/commands/completion.sh"
