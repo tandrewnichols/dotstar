@@ -11,6 +11,6 @@ function! TabCloseLeft(bang)
     endwhile
 endfunction
 
-command! -bang Qr call TabCloseRight('<bang>')
-command! -bang Ql call TabCloseLeft('<bang>')
-command! -bang Qo :tabo
+command! -bang TabCloseRight call TabCloseRight('<bang>')
+command! -bang TabCloseLeft call TabCloseLeft('<bang>')
+command! -bang TabCloseOthers :tabo
