@@ -11,12 +11,12 @@
   co = checkout
   ci = commit
   cp = cherry-pick
-  diff = diff --color-words
+  df = diff --color-words=.
   amend = commit -a --amend --no-edit
   ammend = commit -a --amend --no-edit
   unstage = reset
   aliases = config --get-regexp ^alias\\.
-  alias = config --global alias.
+  alias = "!f() { git config --global alias.\"$@\"; }; f"
   nuke = !git clean -fd :/ && git reset --hard
   edit = config --global -e
   rename = branch -m
@@ -25,15 +25,33 @@
   lsd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
   ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=relative
   file = log -u
-  f = "!git ls-files | grep -i"
+  find = "!git ls-files | grep -i"
   ours = "!f() { git co --ours $@ && git add $@; }; f"
   theirs = "!f() { git co --theirs $@ && git add $@; }; f"
   arc = "! f() { git tag archive/$1 $1 && git branch -D $1;}; f"
   archived = "!git tag --list | grep archive"
+  d = branch -D
+	purge = remote prune origin
+	wat = diff --cached
+  pop = stash pop
+	save = stash save
+  drop = stash drop
+	list = stash list
+	grab = stash apply
+  wip = stash save -u "wip"
+  wips = "! git stash list | grep wip"
+	nana = "! f(){ git stash apply stash^{/wip} && git stash drop $(git list | grep wip | tail -1 | cut -f1 -d:); }; f"
+	whatsin = stash show -p
+  chunk = add -p
+  du = "!git status --porcelain | grep \"^DU\" | sed s/^...// | xargs git rm;"
+  conflict = "!git st | grep -P '^[A-Z]{2}'"
+  resolve = "! vim `git conflict | sed s/^...//` -p"
+  dirty = "!cd ${GIT_PREFIX:-.} && vim `git ls-files -m` -p"
+  st = "status -s"
 [push]
   default = upstream
 [branch]
-  autosetuprebase = always
+  autosetuprebase = never
 [color]
   ui = auto
 [core]
