@@ -82,7 +82,7 @@ snippet c
 	context('${1}', function() {
 		${0}
 	});
-snippet i
+snippet it
 	it('${1}', function(${2}) {
 		${0}
 	});
@@ -102,3 +102,13 @@ snippet cal
 	called${1}.should.be.${2}()${0}
 snippet calledw
 	calledWith(${1}).should.be.${2}()${0}
+snippet im
+	import ${1} from ${0}
+snippet ex
+	export default class ${1} extends React.Component {
+		render() {
+			return (
+				${0}
+			)
+		}
+	}
