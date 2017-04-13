@@ -47,14 +47,10 @@ set tabpagemax=50
 set completeopt-=preview
 augroup filetypes
   au!
-  au BufNewFile,BufRead *.json setf javascript
-  au BufNewFile,BufRead *.es6 setf javascript
-  au BufNewFile,BufRead *.jsx setf javascript
+  au BufNewFile,BufRead *.json,*.es6,*.jsx setf javascript
   au BufNewFile,BufRead *.less setf less
-  au BufNewFile,BufRead *.ejs setf html
-  au BufNewFile,BufRead *.hbs setf html
-  au BufNewFile,BufRead *.mustache setf html
-  au BufNewFile,BufRead *.html let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
+  au BufNewFile,BufRead *.ejs,*.hbs,*.mustache setf html
+  au BufNewFile,BufRead *.html,*.js,*.jsx,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
 augroup END
 set scrolloff=3
 set sidescrolloff=15
