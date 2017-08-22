@@ -40,7 +40,7 @@
 	grab = stash apply
   wip = stash save -u "wip"
   wips = "! git stash list | grep wip"
-	nana = "! f(){ git stash apply stash^{/wip} && git stash drop $(git list | grep wip | tail -1 | cut -f1 -d:); }; f"
+	nana = "! f(){ git stash apply stash^{/wip} && git stash drop $(git list | grep wip | head -1 | cut -f1 -d:); }; f"
 	whatsin = stash show -p
   chunk = add -p
   du = "!git status --porcelain | grep \"^DU\" | sed s/^...// | xargs git rm;"
