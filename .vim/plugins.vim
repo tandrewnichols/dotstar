@@ -48,7 +48,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-dispatch'
   Plug 'benmills/vimux'
   Plug 'suan/vim-instant-markdown'
-  Plug 'tom-dignan/Conque-Shell'
+  Plug 'basepi/vim-conque'
   Plug 'tpope/vim-eunuch'
   Plug 'unblevable/quick-scope'
   Plug 'stephpy/vim-yaml'
@@ -64,14 +64,24 @@ if !exists('g:bones')
   Plug 'airblade/vim-gitgutter'
   Plug 'YankRing.vim'
   Plug 'terryma/vim-expand-region'
-  Plug 'kana/vim-textobj-line'
-  Plug 'kana/vim-textobj-entire'
-  Plug 'kana/vim-textobj-user'
-  Plug 'kana/vim-textobj-indent'
-  Plug 'kana/vim-textobj-function'
-  Plug 'kana/vim-textobj-syntax'
-  Plug 'Julian/vim-textobj-variable-segment'
-  Plug 'whatyouhide/vim-textobj-xmlattr'
+  Plug 'tandrewnichols/vim-textobj-user'
+  Plug 'kana/vim-textobj-line' "yil
+  Plug 'kana/vim-textobj-entire' "yie
+  Plug 'kana/vim-textobj-indent' "yii
+  Plug 'kana/vim-textobj-function' "yif
+  Plug 'thinca/vim-textobj-function-javascript' "yif
+  Plug 'kana/vim-textobj-syntax' "yiy
+  Plug 'Julian/vim-textobj-variable-segment' "yiv
+  Plug 'tandrewnichols/vim-textobj-xmlattr' "yix
+  Plug 'glts/vim-textobj-comment' "yic
+  Plug 'whatyouhide/vim-textobj-erb' "yiE
+  Plug 'gilligan/textobj-gitgutter' "yih
+  Plug 'kana/vim-textobj-lastpat' "yi/ and yi?
+  Plug 'adriaanzon/vim-textobj-matchit' "yim
+  Plug 'reedes/vim-textobj-quote' "yiq
+  Plug 'saihoooooooo/vim-textobj-space' "yiS
+  Plug 'jceb/vim-textobj-uri' "yiu
+  Plug 'jasonlong/vim-textobj-css' "yic
   Plug 'leafgarland/typescript-vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'Valloric/MatchTagAlways'
