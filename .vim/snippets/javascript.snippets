@@ -2,6 +2,8 @@ snippet $s
 	$scope.${1} = function (${2}) {
 		${0}
 	};
+snippet $r
+	$rootScope.$apply()
 snippet cont
 	angular.module('app').controller('${1}', function(${2}) {
 		${0}
@@ -31,7 +33,7 @@ snippet comp
 			scope: ${5}
 		};
 	});
-snippet l
+snippet con
 	console.log('${1}:', ${2});${0}
 snippet m
 	module.exports = ${0}
@@ -49,11 +51,11 @@ snippet _.r
 	_.reduce(${1}, function(memo, ${2:item}) {
 		${3}
 		return memo;
-	}, ${4});${0}
+	}, ${4:[]});${0}
 snippet _.e
 	_.each(${1}, function(${2:item}) {
 		${0}
-	}
+	});
 snippet _.g
 	_.get(${1}, '${2}');${0}
 snippet _.s
