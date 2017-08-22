@@ -48,6 +48,9 @@
   resolve = "! vim `git conflict | sed s/^...//` -p"
   dirty = "!cd ${GIT_PREFIX:-.} && vim `git ls-files -m` -p"
   st = "status -s"
+  undo = "! f() { git revert $1 -m 1; }; f"
+  oops = "! f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
+	commti = commit
 [push]
   default = upstream
 [branch]
