@@ -297,10 +297,36 @@ blogify() {
    mogrify -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }
 
+replace() {
+  where=$(git rev-parse --show-toplevel)
+  find=$1
+  replace=$2
+  cmd="mgrep -rl \"$1\" $where | xargs sed -i '' 's/$find/$replace/g'"
+  echo $cmd
+  eval $cmd
+}
+
+oops() {
+  gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )
+}
+
 #### GIT COMMANDS ####
 # Open pull request for current branch
 pr() {
   open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
+}
+
+release() {
+  if [ -z $1 ]; then
+    type=patch
+  else
+    type=$1
+  fi
+  version=`npm version | head -1 | grep -o "[0-9\.]\+"`
+  npm version $type
+  git push --tags
+  git push
+  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
 }
 
 # delete remote 
