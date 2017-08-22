@@ -43,6 +43,8 @@ snippet $p
 	$provide.constant '${1:}', jasmine.createSpyObj '$1', ['${2}']${0}
 snippet $i
 	$injector.get('${1}')${0}
+snippet $r
+	$rootScope.$apply()${0}
 snippet stub
 	afterEach -> ${1:}.${2:}.restore()
 	Given -> sinon.stub $1, '$2'${0}
