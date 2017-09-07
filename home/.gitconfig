@@ -10,6 +10,7 @@
   a = add --all :/
   co = checkout
   ci = commit
+  commti = commit
   cp = cherry-pick
   df = diff --color-words=.
   amend = commit -a --amend --no-edit
@@ -20,37 +21,39 @@
   nuke = !git clean -fd :/ && git reset --hard
   edit = config --global -e
   rename = branch -m
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
+  l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
   lsd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
   ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=relative
   file = log -u
-  find = "!git ls-files | grep -i"
+  find = !git ls-files | grep -i
   ours = "!f() { git co --ours $@ && git add $@; }; f"
   theirs = "!f() { git co --theirs $@ && git add $@; }; f"
-  arc = "! f() { git tag archive/$1 $1 && git branch -D $1;}; f"
-  archived = "!git tag --list | grep archive"
+  arc = "!f() { git tag archive/$1 $1 && git branch -D $1;}; f"
+  archived = !git tag --list | grep archive
   d = branch -D
-	purge = remote prune origin
-	wat = diff --cached
+  purge = remote prune origin
+  cached = diff --cached
+  staged = diff --cached
   pop = stash pop
-	save = stash save
+  save = stash save
   drop = stash drop
-	list = stash list
-	grab = stash apply
+  list = stash list
+  grab = stash apply
+  ap = stash apply
   wip = stash save -u "wip"
-  wips = "! git stash list | grep wip"
-	nana = "! f(){ git stash apply stash^{/wip} && git stash drop $(git list | grep wip | head -1 | cut -f1 -d:); }; f"
-	whatsin = stash show -p
+  wips = !git stash list | grep wip
+  nana = "!f(){ git stash apply stash^{/wip} && git stash drop $(git list | grep wip | head -1 | cut -f1 -d:); }; f"
+  whatsin = stash show -p
   chunk = add -p
-  du = "!git status --porcelain | grep \"^DU\" | sed s/^...// | xargs git rm;"
-  conflict = "!git st | grep -P '^[A-Z]{2}'"
-  resolve = "! vim `git conflict | sed s/^...//` -p"
-  dirty = "!cd ${GIT_PREFIX:-.} && vim `git ls-files -m` -p"
-  st = "status -s"
-  undo = "! f() { git revert $1 -m 1; }; f"
-  oops = "! f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
-	commti = commit
+  du = !git status --porcelain | grep \"^DU\" | sed s/^...// | xargs git rm
+  conflict = !git st | grep -P '^[A-Z]{2}'
+  resolve = !vim `git conflict | sed s/^...//` -p
+  dirty = !cd ${GIT_PREFIX:-.} && vim `git ls-files -m` -p
+  st = status -s
+  undo = "!f() { git revert $1 -m 1; }; f"
+  oops = "!f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
+  ls = ls-tree -r --name-only
 [push]
   default = upstream
 [branch]
