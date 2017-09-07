@@ -5,7 +5,11 @@ augroup SwitchDefinitions
   autocmd!
   autocmd FileType coffee let g:switch_custom_definitions =
     \ [
-    \   ['Given', 'When', 'Then', 'And']
+    \   ['Given', 'When', 'Then', 'And'],
+    \   ['@service', '@scope'],
+    \   ['toBe', 'toEqual'],
+    \   ['toHaveBeenCalled', 'toHaveBeenCalledWith'],
+    \   ['thenResolveWith', 'thenRejectWith']
     \ ]
   autocmd FileType html let g:switch_custom_definitions =
     \ [
