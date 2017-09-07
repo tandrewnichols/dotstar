@@ -75,31 +75,31 @@ snippet for
 		${0}
 	}
 snippet r
-	require('${1}');${0}
+	require('${1}')${0}
 snippet d
-	describe('${1}', function() {
+	describe('${1}', () => {
 		${0}
-	});
+	})
 snippet c
-	context('${1}', function() {
+	context('${1}', () => {
 		${0}
-	});
+	})
 snippet it
-	it('${1}', function(${2}) {
+	it('${1}', (${2}) => {
 		${0}
-	});
+	})
 snippet sub
-	subject = require('proxyquire').noCallThru()('${1}');${0}
+	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet b
 	beforeEach(function(${1}) {
 		${0}
-	});
+	})
 snippet a
 	afterEach(function(${1}) {
 		${0}
-	});
+	})
 snippet sin
-	sinon.stub(${1});${0}
+	sinon.stub(${1})${0}
 snippet cal
 	called${1}.should.be.${2}()${0}
 snippet calledw
@@ -114,3 +114,5 @@ snippet ex
 			)
 		}
 	}
+snippet (
+	(${1}) => {${0}
