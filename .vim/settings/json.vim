@@ -1,3 +1,3 @@
-" Change .json to two space indents
-nnoremap <leader>json ggdG:r ! node -e "console.log(JSON.stringify(require('%:p'), null, 2))"<CR>
+" Format entire file (no longer JSON specific, but does work for json)
+nnoremap <leader>= ggvG=
 nnoremap <leader>dj :%s/\v"([^"]+)"\s*:/\1:/g<CR>
