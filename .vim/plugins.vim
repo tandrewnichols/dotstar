@@ -43,8 +43,8 @@ if !exists('g:bones')
   Plug 'digitaltoad/vim-jade'
   Plug 'kchmck/vim-coffee-script'
   Plug 'milkypostman/vim-togglelist'
-  Plug 'mutewinter/swap-parameters'
   Plug 'SirVer/ultisnips'
+  Plug 'machakann/vim-swap'
   Plug 'tpope/vim-dispatch'
   Plug 'benmills/vimux'
   Plug 'suan/vim-instant-markdown'
@@ -64,7 +64,7 @@ if !exists('g:bones')
   Plug 'airblade/vim-gitgutter'
   Plug 'YankRing.vim'
   Plug 'terryma/vim-expand-region'
-  Plug 'tandrewnichols/vim-textobj-user'
+  Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-line' "yil
   Plug 'kana/vim-textobj-entire' "yie
   Plug 'kana/vim-textobj-indent' "yii
