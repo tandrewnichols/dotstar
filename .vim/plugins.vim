@@ -85,6 +85,8 @@ if !exists('g:bones')
   Plug 'jasonlong/vim-textobj-css' "yic
   Plug 'kana/vim-textobj-datetime' "yid{a,d,f,t,z}
   Plug 'leafgarland/typescript-vim'
+  Plug 'kana/vim-operator-user'
+  Plug 'kana/vim-grex'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'Valloric/MatchTagAlways'
   Plug 'kana/vim-submode'
