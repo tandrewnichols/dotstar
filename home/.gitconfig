@@ -57,7 +57,7 @@
 [push]
   default = upstream
 [branch]
-  autosetuprebase = never
+  autosetuprebase = always
 [color]
   ui = auto
 [core]
