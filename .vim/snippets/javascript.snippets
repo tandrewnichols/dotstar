@@ -85,17 +85,17 @@ snippet c
 		${0}
 	})
 snippet it
-	it('${1}', (${2}) => {
+	it('${1}', () => {
 		${0}
 	})
 snippet sub
 	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet b
-	beforeEach(function(${1}) {
+	beforeEach(() => {
 		${0}
 	})
 snippet a
-	afterEach(function(${1}) {
+	afterEach(() => {
 		${0}
 	})
 snippet sin
