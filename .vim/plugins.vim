@@ -3,6 +3,7 @@ call plug#begin()
 if !exists('g:bones')
   Plug 'tmhedberg/matchit'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
   Plug 'garbas/vim-snipmate'
