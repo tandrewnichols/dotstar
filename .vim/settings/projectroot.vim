@@ -3,7 +3,7 @@ function! RootDirName()
 endfunction
 
 function! ImmediateRootSubDir()
-  let rel = substitute(expand("%:p"), projectroot#guess(expand("%"))."/", "", "")
+  let rel = RelativeToRoot(expand("%:p"))
   return split(rel, '/')[0]
 endfunction
 
@@ -21,8 +21,6 @@ function! GetRootRelative()
   return rel
 endfunction
 
-augroup SetProjRoot
-  autocmd!
-  autocmd BufEnter * let b:projroot = projectroot#guess()
-  autocmd BufEnter * let b:projrel = GetRootRelative()
-augroup END
+function! RelativeToRoot(where)
+  return substitute(a:where, projectroot#guess(expand("%"))."/", "", "")
+endfunction
