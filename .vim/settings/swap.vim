@@ -3,7 +3,7 @@ let g:swap#rules += [
   \   {
   \     'mode': 'n',
   \     'delimiter': ['/'],
-  \     'surrounds': ['[''" ]/\?', '[''" ?\n]']
+  \     'surrounds': ['[''" ]/\?', '[''"?\n]']
   \   }
   \ ]
 
