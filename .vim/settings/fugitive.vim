@@ -13,8 +13,11 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 " Git log
 nnoremap <silent> <leader>gl :Glog<CR>
 
-" Git edit
-nnoremap <silent> <leader>ge :Gedit<CR>
-
 " Git push
 nnoremap <silent> <leader>gp :Gpush<CR>
+
+command! -nargs=0 Gstage :silent exec ":Git add " expand("%:.")
+command! -nargs=0 Gunstage :silent exec ":Git reset " expand("%:.")
+
+nnoremap <silent> <leader>ga :Gstage<CR>
+nnoremap <silent> <leader>gu :Gunstage<CR>
