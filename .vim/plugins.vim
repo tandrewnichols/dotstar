@@ -22,8 +22,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-surround'
   Plug 'Gundo'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'rking/ag.vim'
-  Plug 'Chun-Yang/vim-action-ag'
+  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
