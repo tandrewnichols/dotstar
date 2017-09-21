@@ -1,4 +1,4 @@
-let g:submode_always_show_submodea = 1
+let g:submode_always_show_submode = 1
 let g:submode_timeoutlen = 3000
 
 " Tab mappings. Enter tab mode with gt (which I don't use).
@@ -87,10 +87,18 @@ call submode#map('pageup', 'n', 'x', 'j', 'j')
 call submode#map('pageup', 'n', 'x', 'k', 'k')
 call submode#map('pageup', 'n', 'x', 'l', 'l')
 
-call submode#enter_with('buffer', 'n', '', '>b', ':bnext<CR>')
-call submode#enter_with('buffer', 'n', '', '<b', ':bprev<CR>')
-call submode#map('buffer', 'n', '', '>', ':bnext<CR>')
-call submode#map('buffer', 'n', '', '<', ':bprev<CR>')
+call submode#enter_with('buffer', 'n', 'r', ']b', ':bnext<CR>')
+call submode#enter_with('buffer', 'n', 'r', '[b', ':bprev<CR>')
+call submode#map('buffer', 'n', '', ']', ':bnext<CR>')
+call submode#map('buffer', 'n', '', '[', ':bprev<CR>')
 call submode#map('buffer', 'n', '', '.', '@:')
 call submode#map('buffer', 'n', '', 'n', ':bnext<CR>')
 call submode#map('buffer', 'n', '', 'p', ':bprev<CR>')
+
+call submode#enter_with('gitgutterhunk', 'n', 'r', ']h', '<Plug>GitGutterNextHunk')
+call submode#enter_with('gitgutterhunk', 'n', 'r', '[h', '<Plug>GitGutterPrevHunk')
+call submode#map('gitgutterhunk', 'n', 'r', ']', '<Plug>GitGutterNextHunk')
+call submode#map('gitgutterhunk', 'n', 'r', '[', '<Plug>GitGutterPrevHunk')
+call submode#map('gitgutterhunk', 'n', 'r', 'n', '<Plug>GitGutterNextHunk')
+call submode#map('gitgutterhunk', 'n', 'r', 'p', '<Plug>GitGutterPrevHunk')
+call submode#map('gitgutterhunk', 'n', 'r', 'N', '<Plug>GitGutterPrevHunk')
