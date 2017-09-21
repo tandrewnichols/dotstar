@@ -106,6 +106,8 @@ if !exists('g:bones')
   Plug 'syngan/vim-vimlint'
   Plug 'Valloric/YouCompleteMe'
   Plug 'ervandew/supertab'
+  Plug 'tommcdo/vim-exchange'
+  Plug 'artnez/vim-wipeout'
 
   " Local plugins
   Plug '~/code/anichols/vim-plugins/vim-graft'
