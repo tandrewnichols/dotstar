@@ -17,6 +17,24 @@ call textobj#user#plugin('mustache', {
 \   }
 \ })
 
+call textobj#user#plugin('mustachetag', {
+\   'variable': {
+\     'pattern': ['{{[#^][^}]\{-}}}', '{{\/\?[^}]\{-}}}'],
+\     'select-a': 'aM',
+\     'select-i': 'iM'
+\   }
+\ })
+
+" Same as above but for linewise copy/paste
+call textobj#user#plugin('hogan', {
+\   'variable': {
+\     'pattern': ['{{[#^][^}]\{-}}}', '{{\/\?[^}]\{-}}}'],
+\     'select-a': 'aH',
+\     'select-i': 'iH',
+\     'region-type': 'V'
+\   }
+\ })
+
 " TODO: implement key/value grabbing
 " call textobj#user#plugin('keyvalue', {
 " \   'kv-i': {
