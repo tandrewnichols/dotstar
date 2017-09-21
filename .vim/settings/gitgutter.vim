@@ -2,8 +2,8 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_diff_args = '-w'
 
 " git next/previous (jump to next/prev hunk)
-nnoremap <leader>gn <Plug>GitGutterNextHunk
-nnoremap <leader>gN <Plug>GitGutterPrevHunk
+nnoremap ]h <Plug>GitGutterNextHunk
+nnoremap [h <Plug>GitGutterPrevHunk
 
 " git stage/revert
 nnoremap <Leader>gS <Plug>GitGutterStageHunk
