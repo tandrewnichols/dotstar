@@ -4,13 +4,11 @@
 .vim/backups/
 .vim/yankring_history/
 .vim/yankring_history_v2.txt
-.vim/after/
 .vim/autoload/
 .vim/colors/
 .vim/compiler/
 .vim/doc/
 .vim/ftdetect/
-.vim/ftplugin/
 .vim/indent/
 .vim/plugin/
 .vim/syntax/
