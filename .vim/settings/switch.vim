@@ -1,6 +1,6 @@
 let g:switch_mapping = ""
-nnoremap ga :Switch<CR>
-nnoremap gh :SwitchReverse<CR>
+nnoremap >s :Switch<CR>
+nnoremap <s :SwitchReverse<CR>
 
 augroup SwitchDefinitions
   autocmd!
