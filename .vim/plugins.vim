@@ -34,7 +34,7 @@ if !exists('g:bones')
   "augroup END
   Plug 'Gundo'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+  Plug 'mhinz/vim-grepper' 
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
