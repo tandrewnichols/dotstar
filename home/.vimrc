@@ -72,6 +72,10 @@ endif
 autocmd BufEnter * set nocindent
 set showbreak=>>\ \ \ \ 
 
+" Directory-specific settings use:
+" autocmd BufNewFile,BufRead /path/to/files/* set nowrap tabstop=4 shiftwidth=4
+" e.g.
+"   autocmd BufNewFile,BufRead */manta-frontend/client* setlocal path+=,app/templates
 if !exists('g:noplugins') && !exists('g:bones')
   " Load everything in settings
   let vimsettings = '~/.vim/settings'
