@@ -21,3 +21,6 @@ let g:expand_region_text_objects = {
   \ 'af'  :1,
   \ 'ie'  :0
 \ }
+
+nmap <leader>< <Plug>(expand_region_shrink)
+nmap <leader>> <Plug>(expand_region_expand)

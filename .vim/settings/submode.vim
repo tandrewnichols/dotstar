@@ -102,8 +102,3 @@ call submode#map('gitgutterhunk', 'n', 'r', '[', '<Plug>GitGutterPrevHunk')
 call submode#map('gitgutterhunk', 'n', 'r', 'n', '<Plug>GitGutterNextHunk')
 call submode#map('gitgutterhunk', 'n', 'r', 'p', '<Plug>GitGutterPrevHunk')
 call submode#map('gitgutterhunk', 'n', 'r', 'N', '<Plug>GitGutterPrevHunk')
-
-call submode#enter_with('switch', 'n', '', '>s', ':Switch<CR>')
-call submode#enter_with('switch', 'n', '', '<s', ':SwitchReverse<CR>')
-call submode#map('switch', 'n', 'r', '>', ':Switch<CR>')
-call submode#map('switch', 'n', 'r', '<', ':SwitchReverse<CR>')

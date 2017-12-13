@@ -18,6 +18,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-heroku'
+  Plug 'tpope/vim-projectionist'
   Plug 'tomtom/tlib_vim'
   Plug 'garbas/vim-snipmate'
   Plug 'scrooloose/nerdtree'
@@ -32,7 +33,7 @@ if !exists('g:bones')
           "\|   execute 'autocmd! nerd_loader'
           "\| endif
   "augroup END
-  Plug 'Gundo'
+  Plug 'vim-scripts/Gundo'
   Plug 'scrooloose/nerdcommenter'
   Plug 'mhinz/vim-grepper' 
   Plug 'pangloss/vim-javascript'
@@ -64,7 +65,7 @@ if !exists('g:bones')
   Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
   Plug 'airblade/vim-gitgutter'
-  Plug 'YankRing.vim'
+  Plug 'vim-scripts/YankRing.vim'
   Plug 'terryma/vim-expand-region'
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-line' "yil
@@ -100,21 +101,23 @@ if !exists('g:bones')
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'AndrewRadev/linediff.vim'
-  Plug 'genutils'
+  Plug 'vim-scripts/genutils'
   Plug 'godlygeek/tabular'
-  Plug 'janko-m/vim-test'
   Plug 'ynkdir/vim-vimlparser'
   Plug 'syngan/vim-vimlint'
   Plug 'Valloric/YouCompleteMe'
   Plug 'ervandew/supertab'
   Plug 'tommcdo/vim-exchange'
   Plug 'artnez/vim-wipeout'
+  Plug 'othree/csscomplete.vim'
+  Plug 'bkad/camelcasemotion'
 
   " Local plugins
   Plug '~/code/anichols/vim-plugins/vim-graft'
   Plug '~/code/anichols/vim-plugins/vim-graft-node'
   Plug '~/code/anichols/vim-plugins/vim-graft-angular'
   Plug '~/code/anichols/vim-plugins/vim-graft-vim'
+  " Plug '~/code/anichols/vim-plugins/vim-girlfriend'
 endif
 
 Plug 'flazz/vim-colorschemes'

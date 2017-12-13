@@ -1,8 +1,10 @@
 " Don't capture single letters
 let g:yankring_min_element_length = 2
 
-" Use . to repeat paste
-let g:yankring_dot_repeat_yank = 1
+" Egh . . . yankring gets in the way of repeating
+" vim-surround motions, like ds'. Not sure yet
+" what other ramifications this will have.
+let g:yankring_map_dot = 0
 
 " Use vertical split
 let g:yankring_window_use_horiz = 0

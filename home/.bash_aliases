@@ -36,7 +36,7 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### CUSTOM ALIASES ####
-alias mgrep='grep -rIn --exclude-dir=assets --exclude=access*.log --exclude=prebid*.js --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage --exclude-dir=node_modules.current --exclude-dir=node_modules.20160930'
+alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
@@ -316,17 +316,21 @@ pr() {
   open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
 }
 
+ghtag() {
+  version=`npm version | head -1 | grep -o "[0-9\.]\+"`
+  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
+}
+
 release() {
   if [ -z $1 ]; then
     type=patch
   else
     type=$1
   fi
-  version=`npm version | head -1 | grep -o "[0-9\.]\+"`
   npm version $type
   git push --tags
   git push
-  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
+  ghtag
 }
 
 # delete remote 
@@ -425,9 +429,12 @@ get_git_user_repo() {
   echo $remote
 }
 
+# Open current repo on Travis CI
 ci() {
-  remote=`git config --get remote.origin.url`
-  remote=${remote#*:}
-  remote=${remote:0: -4}
   open https://travis-ci.org/`get_git_user_repo`/builds
+}
+
+# Open current repo on codeclimate
+cc() {
+  open https://codeclimate.com/github/`get_git_user_repo`
 }

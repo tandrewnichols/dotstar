@@ -4,15 +4,18 @@ nnoremap <s :SwitchReverse<CR>
 
 augroup SwitchDefinitions
   autocmd!
-  autocmd FileType coffee let g:switch_custom_definitions =
+  autocmd FileType coffee let b:switch_custom_definitions =
     \ [
     \   ['Given', 'When', 'Then', 'And'],
     \   ['@service', '@scope'],
     \   ['toBe', 'toEqual'],
     \   ['toHaveBeenCalled', 'toHaveBeenCalledWith'],
-    \   ['thenResolveWith', 'thenRejectWith']
+    \   ['thenResolveWith', 'thenRejectWith'],
+    \   ['thenResolve', 'thenReject'],
+    \   ['context', 'describe'],
+    \   ['spyOn', 'spyOnAll']
     \ ]
-  autocmd FileType html let g:switch_custom_definitions =
+  autocmd FileType html let b:switch_custom_definitions =
     \ [
     \   {
     \     '{{#\([^}]\{-}\)}}': '{{^\1}}',
@@ -38,7 +41,7 @@ augroup SwitchDefinitions
     \   ['xs', 'sm', 'md', 'lg'],
     \   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
     \ ]
-  autocmd FileType javascript let g:switch_custom_definitions =
+  autocmd FileType javascript let b:switch_custom_definitions =
     \ [
     \   {
     \     'function(\([^)]\{-}\))': '(\1) =>',

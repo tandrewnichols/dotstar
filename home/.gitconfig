@@ -54,6 +54,7 @@
   undo = "!f() { git revert $1 -m 1; }; f"
   oops = "!f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
   ls = ls-tree -r --name-only
+  dr = "!f() { push origin :$1; }; f"
 [push]
   default = upstream
 [branch]

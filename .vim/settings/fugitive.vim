@@ -24,6 +24,8 @@ command! -nargs=0 Gdirty :call <SID>OpenDirty()
 command! -nargs=0 Gnuke :call <SID>GitWrapper('nuke')
 command! -nargs=0 Gconf :e ~/.gitconfig
 command! -nargs=0 Gchunk :silent Git chunk<CR>
+command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:."))
+command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:."))
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>

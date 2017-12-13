@@ -1,9 +1,16 @@
 let g:swap#rules = deepcopy(g:swap#default_rules)
+" 1. Parts of url paths
+" 2. Two halves of a ternary
 let g:swap#rules += [
   \   {
   \     'mode': 'n',
   \     'delimiter': ['/'],
   \     'surrounds': ['[''" ]/\?', '[''"?\n]']
+  \   },
+  \   {
+  \     'mode': 'n',
+  \     'delimiter': [':', ' : '],
+  \     'surrounds': ['?\s\?', '\s\?[);]']
   \   }
   \ ]
 
