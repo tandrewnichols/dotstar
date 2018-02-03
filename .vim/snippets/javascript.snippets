@@ -35,6 +35,8 @@ snippet comp
 	});
 snippet con
 	console.log('${1}:', ${2});${0}
+snippet log
+	console.log('$1:', $1);$0
 snippet m
 	module.exports = ${0}
 snippet e
@@ -67,7 +69,7 @@ snippet async.e
 		${4}
 	}
 snippet f
-	function(${2}) {
+	(${2}) => {
 		${0}
 	}${1}
 snippet for
@@ -79,40 +81,48 @@ snippet r
 snippet d
 	describe('${1}', () => {
 		${0}
-	})
+	});
 snippet c
 	context('${1}', () => {
 		${0}
-	})
+	});
 snippet it
-	it('${1}', () => {
+	it('${1}', (${2}) => {
 		${0}
-	})
+	});
 snippet sub
 	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet b
-	beforeEach(() => {
+	beforeEach((${1}) => {
 		${0}
-	})
+	});
 snippet a
-	afterEach(() => {
+	afterEach((${1}) => {
 		${0}
-	})
+	});
 snippet sin
-	sinon.stub(${1})${0}
+	sinon.stub(${1}, '${2}')${0}
 snippet cal
 	called${1}.should.be.${2}()${0}
 snippet calledw
 	calledWith(${1}).should.be.${2}()${0}
 snippet im
 	import ${1} from ${0}
+snippet ed
+	export default ${0}
+snippet edc
+	export default class ${0}
 snippet ex
-	export default class ${1} extends React.Component {
+	export ${0}
+snippet x
+	extends ${0}
+snippet RC
+	React.Component {
 		render() {
 			return (
 				${0}
 			)
 		}
 	}
-snippet (
-	(${1}) => {${0}
+snippet vm
+	vm.$1 = $1;$0
