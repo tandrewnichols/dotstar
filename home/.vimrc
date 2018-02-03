@@ -2,6 +2,7 @@
 set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
+
 if !exists('g:noplugins')
   source ~/.vim/plugins.vim
 endif
@@ -51,6 +52,7 @@ augroup filetypes
   au BufNewFile,BufRead *.json,*.es6,*.jsx setf javascript
   au BufNewFile,BufRead *.less setf less
   au BufNewFile,BufRead *.ejs,*.hbs,*.mustache setf html
+  au BufNewFile,BufRead *.md setf markdown
   au BufNewFile,BufRead *.html,*.js,*.jsx,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
   au FileType css setlocal omnifunc=csscomplete#CompleteCSS
   au FileType less setlocal omnifunc=csscomplete#CompleteCSS
