@@ -7,7 +7,6 @@ if !exists('g:bones')
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-unimpaired'
@@ -19,27 +18,14 @@ if !exists('g:bones')
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-heroku'
   Plug 'tpope/vim-projectionist'
+  Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
-  Plug 'garbas/vim-snipmate'
-  Plug 'scrooloose/nerdtree'
-  " TODO: try this out for loading nerdtree when opening a directory
-  "Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind'] }
-  "augroup nerd_loader
-    "autocmd!
-    "autocmd VimEnter * silent! autocmd! FileExplorer
-    "autocmd BufEnter,VimEnter *
-          "\  if isdirectory(expand('<amatch>'))
-          "\|   call plug#load('nerdtree')
-          "\|   execute 'autocmd! nerd_loader'
-          "\| endif
-  "augroup END
   Plug 'vim-scripts/Gundo'
-  Plug 'scrooloose/nerdcommenter'
   Plug 'mhinz/vim-grepper' 
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'scrooloose/syntastic'
+  Plug 'w0rp/ale'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'docunext/closetag.vim'
   Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
@@ -49,19 +35,16 @@ if !exists('g:bones')
   Plug 'rstacruz/sparkup'
   Plug 'kshenoy/vim-signature'
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'jlanzarotta/bufexplorer'
   Plug 'lunaru/vim-less'
-  Plug 'digitaltoad/vim-jade'
+  " Plug 'digitaltoad/vim-jade'
   Plug 'kchmck/vim-coffee-script'
   Plug 'milkypostman/vim-togglelist'
   Plug 'SirVer/ultisnips'
   Plug 'machakann/vim-swap'
   Plug 'benmills/vimux'
   Plug 'suan/vim-instant-markdown'
-  Plug 'basepi/vim-conque'
   Plug 'unblevable/quick-scope'
   Plug 'stephpy/vim-yaml'
-  Plug 'yegappan/mru'
   Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
   Plug 'airblade/vim-gitgutter'
@@ -86,21 +69,19 @@ if !exists('g:bones')
   Plug 'jceb/vim-textobj-uri' "yiu
   Plug 'jasonlong/vim-textobj-css' "yic
   Plug 'kana/vim-textobj-datetime' "yid{a,d,f,t,z}
-  Plug 'leafgarland/typescript-vim'
+  " Plug 'leafgarland/typescript-vim'
   Plug 'kana/vim-operator-user'
   Plug 'kana/vim-grex'
-  Plug 'ekalinin/Dockerfile.vim'
   Plug 'Valloric/MatchTagAlways'
   Plug 'kana/vim-submode'
   Plug 'skwp/greplace.vim'
   Plug 'wellle/targets.vim'
-  Plug 'szw/vim-g'
   Plug 'AndrewRadev/switch.vim'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'thinca/vim-visualstar'
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'tmux-plugins/vim-tmux'
-  Plug 'AndrewRadev/linediff.vim'
+  " Plug 'AndrewRadev/linediff.vim'
   Plug 'vim-scripts/genutils'
   Plug 'godlygeek/tabular'
   Plug 'ynkdir/vim-vimlparser'
@@ -111,6 +92,7 @@ if !exists('g:bones')
   Plug 'artnez/vim-wipeout'
   Plug 'othree/csscomplete.vim'
   Plug 'bkad/camelcasemotion'
+  Plug 'sk1418/Join'
 
   " Local plugins
   Plug '~/code/anichols/vim-plugins/vim-graft'
