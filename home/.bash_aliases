@@ -36,7 +36,7 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### CUSTOM ALIASES ####
-alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
+alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js --exclude-dir=.nyc_* --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
@@ -316,6 +316,10 @@ pr() {
   open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
 }
 
+gh() {
+  open https://github.com/`get_git_user_repo`
+}
+
 ghtag() {
   version=`npm version | head -1 | grep -o "[0-9\.]\+"`
   open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
@@ -437,4 +441,40 @@ ci() {
 # Open current repo on codeclimate
 cc() {
   open https://codeclimate.com/github/`get_git_user_repo`
+}
+
+clean() {
+  where=$PWD
+  if [[ where != $HOME && where != '/' ]]; then
+    cd ..
+    rm -rf $where
+  fi
+}
+
+ifttt() {
+  dir=$(git rev-parse --show-toplevel)
+  cur=$(node -e "console.log(require('$dir/package.json').name)")
+  version=$(node -e "console.log(require('$dir/package.json').version)")
+  url="https://github.com/`get_git_user_repo`/releases/tag/v$version"
+  echo "Tweeting the following message:"
+  echo "I just published ${cur}@${version}. See $url for details."
+  curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
+}
+
+tweet() {
+  tweet="$@"
+  len=${#tweet}
+  if [[ len -gt 280 ]]; then
+    echo "Tweet is $len characters, which is too long."
+  else
+    curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$tweet"'"}' https://maker.ifttt.com/trigger/tweet/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
+  fi
+}
+
+dirty() {
+  if [[ -z $1 ]]; then
+    vim -p `git status -s | sed s/^...//`
+  else
+    vim -p `git status -s $1 | sed s/^...//`
+  fi
 }
