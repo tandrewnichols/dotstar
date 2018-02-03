@@ -11,9 +11,9 @@ function! s:OpenDirty()
   redraw!
 endfunction
 
-command! -nargs=0 Gstage :call <SID>GitWrapper('add ' . expand("%:."))
+command! -nargs=0 Gstage :call <SID>GitWrapper('add ' . expand("%:p"))
 command! -nargs=0 Gadd :call <SID>GitWrapper('a')
-command! -nargs=0 Gunstage :call <SID>GitWrapper('reset ' . expand("%:."))
+command! -nargs=0 Gunstage :call <SID>GitWrapper('reset ' . expand("%:p"))
 command! -nargs=0 Gwip :call <SID>GitWrapper('wip')
 command! -nargs=0 Gnana :call <SID>GitWrapper('nana')
 command! -nargs=? Gstash :call <SID>GitWrapper("stash save -u <f-args>")
@@ -24,8 +24,8 @@ command! -nargs=0 Gdirty :call <SID>OpenDirty()
 command! -nargs=0 Gnuke :call <SID>GitWrapper('nuke')
 command! -nargs=0 Gconf :e ~/.gitconfig
 command! -nargs=0 Gchunk :silent Git chunk<CR>
-command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:."))
-command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:."))
+command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
+command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
