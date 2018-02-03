@@ -1,5 +1,6 @@
 let g:submode_always_show_submode = 1
 let g:submode_timeoutlen = 3000
+let g:submode_keep_leaving_key = 1
 
 " Tab mappings. Enter tab mode with gt (which I don't use).
 call submode#enter_with('tabs', 'n', '', 'gt')
