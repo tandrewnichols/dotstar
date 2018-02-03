@@ -1,6 +1,2 @@
-function! s:SetColorMode(color)
-  execute "colorscheme" a:color
-endfunction
-
-command! -nargs=0 Darkmode call <SID>SetColorMode('Jellybeans')
-command! -nargs=0 Lightmode call <SID>SetColorMode('PaperColor')
+command! -nargs=0 Darkmode colo jellybeans | set background=dark
+command! -nargs=0 Lightmode colo PaperColor | set background=light
