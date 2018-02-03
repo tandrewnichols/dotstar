@@ -1,7 +1,5 @@
 {
-  "options": {
-    "max_line_length": {
-      "level": "ignore"
-    }
+  "max_line_length": {
+    "level": "ignore"
   }
 }
