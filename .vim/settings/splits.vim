@@ -1,5 +1,7 @@
-nnoremap <leader>- <C-w>J
-nnoremap <leader><Bar> <C-w>L
+nnoremap <leader><right> <C-w>J
+nnoremap <leader><down> <C-w>L
+nnoremap <leader><up> <C-w>K
+nnoremap <leader><left> <C-w>H
 nnoremap <leader>T <C-w>T
 nnoremap <leader>= :let g:curbuf = bufnr('%')<CR>:bun<CR>
 
