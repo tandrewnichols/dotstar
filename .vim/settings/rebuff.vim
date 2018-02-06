@@ -21,6 +21,12 @@ call s:Set('show_help_entries', 0)
 call s:Set('show_nonexistent', 0)
 call s:Set('open_with_count', 1)
 call s:Set('copy_absolute_path', 1)
+call s:Set('incremental_filter', 1)
+call s:Set('preserve_toggles', 0)
+call s:Set('window_position', 'rightbelow')
+call s:Set('preview', 1)
+call s:Set('reset_timeout', 1)
+call s:Set('debounce_preview', 150)
 
 let s:sort_methods = ['num', 'name', 'extension', 'root', 'mru']
 
@@ -42,19 +48,21 @@ let s:help_text = [
       \ ' +           Show only modified files.',
       \ ' .           Filter by file extension.',
       \ ' /           Filter by arbitrary text.',
-      \ ' ,           Toggle help entries.',
       \ ' ~           Show only files in this project.',
       \ ' %           Copy path of buffer under cursor.',
+      \ ' }           Jump to bottom of list.',
+      \ ' {           Jump to top of list.',
       \ ' d           Toggle whether directories are shown.',
       \ ' e           Sort by file extension.',
       \ ' f           Sort by filename.',
       \ ' h           Toggle whether hidden buffers are shown.',
+      \ ' H           Toggle help entries.',
       \ ' j | <Down>  Preview next buffer.',
       \ ' k | <Up>    Preview previous buffer.',
       \ ' n           Sort by buffer number.',
-      \ ' q           Close Rebuff and revert to original buffer.',
-      \ ' r           Reverse current buffer listing.',
-      \ ' R           Reset original buffer list.',
+      \ ' q | <Esc>   Close Rebuff and revert to original buffer.',
+      \ ' r           Reset original buffer list.',
+      \ ' R           Reverse current buffer listing.',
       \ ' s           Open buffer under cursor in horizontal split.',
       \ ' S           Toggle sort method.',
       \ ' t           Open buffer under cursor in new tab.',
@@ -72,7 +80,13 @@ function! Rebuff()
   let size = s:Get('window_size')
   let command = s:Get('vertical_split') ? 'vnew' : 'new'
 
-  exec "keepjumps hide" size . command "[Rebuff]"
+  call s:CreateAugroup()
+
+  if !empty("g:rebuff_window_position") && s:Get('window_position')
+    exec s:Get('window_poisition') "keepjumps hide" size . command "[Rebuff]"
+  else
+    exec "keepjumps hide" size . command "[Rebuff]"
+  endif
 
   let b:logo = s:BuildLogo(size)
   let b:buffer_objects = s:ParseBufferList(rawBufs)
@@ -85,7 +99,6 @@ function! Rebuff()
   call s:Render()
 
   call s:ConfigureBuffer()
-  call s:SetMappings()
   call s:HighlightBuffer()
 endfunction
 
@@ -155,8 +168,14 @@ function! s:CheckFilename(entry)
   let entry.incwd = name =~ getcwd()
   let entry.inproject = getcwd() =~ root && !entry.help
 
-  if entry.incwd || entry.inproject || entry.help
+  if entry.help
     let name = entry.name
+  elseif entry.incwd
+    let name = fnamemodify(entry.name, ":.")
+  elseif entry.inproject && entry.name =~ '^\.\.'
+    let name = entry.name
+  elseif entry.inproject
+    let name = s:RelativeTo(name, root)
   elseif !empty(root)
     let name = matchstr(name, root . '/.*$')
   endif
@@ -172,6 +191,13 @@ function! s:CheckFilename(entry)
 
   let entry.name = name
   let entry.filename_length = len(entry.name)
+endfunction
+
+function! s:RelativeTo(name, where)
+  let head = fnamemodify(getcwd(), ":h")
+  let partial = substitute(head, '.*' . a:where, '', '')
+  let base = '..' . split(a:name, a:where)[1]
+  return substitute(partial, '\/[^\/]\+', '../', 'g') . base
 endfunction
 
 function! s:Matches(str, pat)
@@ -217,10 +243,18 @@ function! s:Pad(str, len)
   endif
 endfunction
 
+function! s:CreateAugroup()
+  augroup RebuffEnter
+    autocmd!
+    autocmd BufWinEnter \[Rebuff\] call s:SetMappings()
+    autocmd BufWinLeave \[Rebuff\] call s:OnExit()
+  augroup END
+endfunction
+
 function! s:SetBufferFlags()
   let b:current_sort = 'num'
   let b:current_filter = ''
-  let b:toggles = {
+  let b:toggles = exists('s:toggles') ? s:toggles : {
         \  'help': s:Get('show_help'),
         \  'help_entries': s:Get('show_help_entries'),
         \  'top_content': s:Get('show_top_content'),
@@ -234,6 +268,12 @@ function! s:SetBufferFlags()
 endfunction
 
 function! s:ConfigureBuffer()
+  let s:prev_timeout = &timeoutlen
+  
+  if s:Get('reset_timeout')
+    let &timeoutlen = 0
+  endif
+
   setlocal nonumber
   setlocal foldcolumn=0
   setlocal nofoldenable
@@ -255,19 +295,24 @@ call s:Plug('ToggleHelpText', ":call \<sid>Toggle('help')")
 call s:Plug('HandleEnter', ":\<C-u>call \<sid>HandleEnter(v:count)")
 call s:Plug('DeleteBuffer', ":call \<sid>BufferAction('bd')")
 call s:Plug('ToggleModified', ":call \<sid>Toggle('modified_only')")
-call s:Plug('FilterByExtension', ":call \<sid>FilterByExtension()")
-call s:Plug('FilterByText', ":call \<sid>FilterByText()")
+call s:Plug('FilterByExtension', ":call \<sid>FilterBy('extension')")
+call s:Plug('FilterByText', ":call \<sid>FilterBy('name')")
 call s:Plug('ToggleHelpEntries', ":call \<sid>Toggle('help_entries')")
 call s:Plug('ToggleInProject', ":call \<sid>Toggle('in_project')")
 call s:Plug('CopyPath', ":call \<sid>CopyPath()")
+call s:Plug('JumpToBottom', ":call \<sid>JumpTo(b:buffer_range[1])")
+call s:Plug('JumpToTop', ":call \<sid>JumpTo(b:buffer_range[0])")
 call s:Plug('ToggleDirectories', ":call \<sid>Toggle('directories')")
 call s:Plug('SortByExtension', ":call \<sid>SetSortTo('extension')")
 call s:Plug('SortByFilename', ":call \<sid>SetSortTo('name')")
 call s:Plug('ToggleHidden', ":call \<sid>Toggle('hidden')")
-call s:Plug('MoveDown', ":call \<sid>MoveTo('j')")
-call s:Plug('MoveUp', ":call \<sid>MoveTo('k')")
+call s:Plug('MoveDown', ":\<C-u>call \<sid>MoveTo('j', v:count)")
+call s:Plug('MoveUp', ":\<C-u>call \<sid>MoveTo('k', v:count)")
+call s:Plug('MoveDownAlt', ":\<C-u>call \<sid>MoveTo('j', v:count)")
+call s:Plug('MoveUpAlt', ":\<C-u>call \<sid>MoveTo('k', v:count)")
 call s:Plug('SortByBufferNumber', ":call \<sid>SetSortTo('num')")
 call s:Plug('RestoreOriginal', ":call \<sid>RestoreOriginalBuffer()\<CR>:bw")
+call s:Plug('EscapeRebuff', ":call \<sid>RestoreOriginalBuffer()\<CR>:bw")
 call s:Plug('Reverse', ":call \<sid>Toggle('reverse')")
 call s:Plug('Reset', ":call \<sid>Reset()")
 call s:Plug('HorizontalSplit', ":call \<sid>OpenCurrentBufferIn('sb')")
@@ -289,23 +334,26 @@ endfunction
 function! s:SetMappings()
   call s:CreateMap('?', 'ToggleHelpText')
   call s:CreateMap("\<CR>", 'HandleEnter')
+  call s:CreateMap("\<Esc>", 'EscapeRebuff')
   call s:CreateMap('-', 'DeleteBuffer')
   call s:CreateMap('+', 'ToggleModified')
   call s:CreateMap('.', 'FilterByExtension')
   call s:CreateMap('/', 'FilterByText')
-  call s:CreateMap(',', 'ToggleHelpEntries')
   call s:CreateMap('~', 'ToggleInProject')
   call s:CreateMap('%', 'CopyPath')
+  call s:CreateMap('}', 'JumpToBottom')
+  call s:CreateMap('{', 'JumpToTop')
   call s:CreateMap('d', 'ToggleDirectories')
   call s:CreateMap('e', 'SortByExtension')
   call s:CreateMap('f', 'SortByFilename')
   call s:CreateMap('h', 'ToggleHidden')
+  call s:CreateMap('H', 'ToggleHelpEntries')
   call s:CreateMap('j', 'MoveDown')
   call s:CreateMap('k', 'MoveUp')
   call s:CreateMap('n', 'SortByBufferNumber')
   call s:CreateMap('q', 'RestoreOriginal')
-  call s:CreateMap('r', 'Reverse')
-  call s:CreateMap('R', 'Reset')
+  call s:CreateMap('r', 'Reset')
+  call s:CreateMap('R', 'Reverse')
   call s:CreateMap('s', 'HorizontalSplit')
   call s:CreateMap('S', 'ToggleSort')
   call s:CreateMap('t', 'OpenInTab')
@@ -314,17 +362,26 @@ function! s:SetMappings()
   call s:CreateMap('v', 'VerticalSplit')
   call s:CreateMap('w', 'WipeoutBuffer')
   call s:CreateMap('x', 'ToggleTop')
-  call s:CreateMap("\<Down>", 'MoveDown')
-  call s:CreateMap("\<Up>", 'MoveUp')
-  for number in range(1, 9)
-    call s:CreateMap(number, 'HandleEnter')
-  endfor
+  call s:CreateMap("\<Down>", 'MoveDownAlt')
+  call s:CreateMap("\<Up>", 'MoveUpAlt')
+endfunction
+
+function! s:OnExit()
+  if s:Get('preserve_toggles')
+    let s:toggles = copy(b:toggles)
+  endif
+
+  if s:Get('reset_timeout')
+    let &timeoutlen = s:prev_timeout
+  endif
 endfunction
 
 function! s:PreviewBuffer()
-  let buf = s:GetBufferFromLine()
-  if !empty(buf)
-    call s:OpenInOtherSplit(buf.num)
+  if s:Get('preview')
+    let buf = s:GetBufferFromLine()
+    if !empty(buf)
+      call s:OpenInOtherSplit(buf.num)
+    endif
   endif
 endfunction
 
@@ -402,16 +459,38 @@ function! s:RemoveBuffer(buf)
   call remove(b:buffer_objects, i)
 endfunction
 
-function! s:FilterByExtension()
-  let extension = input('Extension: ')
-  let b:current_filter = 'v:val.extension =~ ''\.' . extension . '\>'''
-  call s:Render()
-endfunction
+function! s:FilterBy(prop)
+  if s:Get('incremental_filter')
+    if !exists("b:filter_text")
+      let b:filter_text = ""
+    endif
 
-function! s:FilterByText()
-  let text = input('By: ')
-  let b:current_filter = 'v:val.name =~ ''' . escape(text, '/.~') . ''''
-  call s:Render()
+    try
+      let code = getchar()
+    catch
+      let code = "\<Esc>"
+    endtry
+
+    let char = type(code) == 0 ? nr2char(code) : code
+
+    if char == "\<Esc>"
+      let b:filter_text = ""
+      let b:current_filter = ""
+      call s:Render()
+    elseif char == "\<CR>"
+      let b:filter_text = ""
+    else
+      let b:filter_text .= escape(char, '/.~')
+      let b:current_filter = 'v:val.' . a:prop . ' =~ ''' . b:filter_text . ''''
+      call s:Render()
+      redraw!
+      call s:FilterBy(a:prop)
+    endif
+  else
+    let text = input('/')
+    let b:current_filter = 'v:val.' . a:prop . ' =~ ''' . escape(text, '/.~') . ''''
+    call s:Render()
+  endif
 endfunction
 
 function! s:CopyPath()
@@ -473,10 +552,9 @@ function! s:FilterUnlisted(list)
   return list
 endfunction
 
-function! s:Render()
+function! s:Render(...)
   " Save off the current cursor position
   let currentBuffer = s:GetBufferFromLine()
-  let currentPos = getpos('.')
 
   setlocal modifiable
 
@@ -489,7 +567,9 @@ function! s:Render()
   endif
 
   let list = s:Filter()
-  let list = s:Sort(list)
+  if len(list)
+    let list = s:Sort(list)
+  endif
   let lines = s:Map(list, function('s:ConstructEntry'))
 
   if b:toggles.reverse
@@ -508,21 +588,26 @@ function! s:Render()
 
   setlocal nomodifiable
 
-  call s:SetCursorPosition(currentBuffer)
+  if a:0 == 1 && a:1 == 1
+    call search('%')
+    normal! 0
+  else
+    call s:SetCursorPosition(currentBuffer)
+  endif
 
   " And preview the current line
   call s:PreviewBuffer()
 endfunction
 
 function! s:SetBufferRange(lines)
-  let start = b:toggles.top_content ? len(b:logo) + 1 : 0
+  let start = b:toggles.top_content ? len(b:logo) : 0
   let end = start + len(a:lines)
   let b:buffer_range = [start, end]
 endfunction
 
 function! s:SetCursorPosition(currentBuffer)
   " Try to position onto the same buffer as before
-  if empty(a:currentBuffer) || !search(a:currentBuffer.num + '')
+  if empty(a:currentBuffer) || !search(a:currentBuffer.num . '')
     " If that fails, position on the current buffer
     if !search('%')
       " And then if that fails (e.g. when filtering) just
@@ -556,17 +641,25 @@ function! s:Toggle(option)
   call s:Render()
 endfunction
 
-function! s:MoveTo(dir)
-  let pos = getcurpos()
-  let lineNum = pos[1]
-  let lineNum = a:dir == 'j' ? lineNum + 1 : lineNum - 1
-  try
-    let line = getline(lineNum)
-    if line !~ '^ *$'
-      exec "normal!" a:dir
-      call s:PreviewBuffer()
+function! s:MoveTo(dir, count)
+  let suffix = !empty(a:count) ? a:count . a:dir : a:dir
+  exec "normal!" suffix
+
+  " Debounce previewing for faster scrolling
+  if s:Get('debounce_preview')
+    if exists("b:preview_timeout")
+      call timer_stop(b:preview_timeout)
     endif
-  endtry
+
+    let b:preview_timeout = timer_start(s:Get('debounce_preview'), function('s:CallPreview'))
+  else
+    call s:PreviewBuffer()
+  endif
+endfunction
+
+function! s:CallPreview(...)
+  unlet b:preview_timeout
+  call s:PreviewBuffer()
 endfunction
 
 function! s:HighlightBuffer()
@@ -586,7 +679,7 @@ function! s:HighlightBuffer()
     " Help content definitions
     syn match rebuffHelpBorder "^=\+ HELP =\+$"
     syn match rebuffDesc       " [A-Z][Ra-z ]\+\."
-    syn match rebuffShortcut   "^ \([?+\.\/,~%defhnqrRsStTuvwx-]\|\[count\]<CR>\|j | <Down>\|k | <Up>\)"
+    syn match rebuffShortcut   "^ \([?+\.\/{},~%defhHnqrRsStTuvwx-]\|\[count\]<CR>\|j | <Down>\|k | <Up>\|q | <Esc>\)"
 
 
     " Top content highlighting
@@ -639,7 +732,6 @@ endfunction
 function! s:SortBy(list, by)
   let by = a:by
   let list = copy(a:list)
-  let context = { 'by': a:by }
 
   function! s:SortAlpha(first, second) closure
     let a = a:first[ by ]
@@ -705,7 +797,7 @@ endfunction
 
 function! s:Reset()
   call s:SetBufferFlags()
-  call s:Render()
+  call s:Render(1)
 endfunction
 
 function! s:HandleEnter(count)
@@ -725,6 +817,12 @@ endfunction
 function! s:FindByNumber(count)
   call search('^[ +]\+' . a:count)
   normal! 0
+endfunction
+
+function! s:JumpTo(line)
+  exec a:line
+  normal! 0
+  call s:PreviewBuffer()
 endfunction
 
 command! -nargs=0 Ls :call Rebuff()
