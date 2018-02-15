@@ -19,13 +19,13 @@ function! s:InterruptAndClose()
 endfunction
 
 nnoremap <leader>vc :call <SID>InterruptAndClose()<CR>
-
+let s:raised_hands = '🙌'
 function! s:GenerateTestFile()
   let path = expand("%:p")
   let target = path =~ 'manta-frontend/client' ? 'ng' : 'unit'
   let file = split(path, 'manta-frontend/')[1]
   call system('grunt testify:' . target . ':' . file)
-  echo "Generated test file for " . file
+  echo " " emoji#for('raised_hands') " Generated test file for" file
 endfunction
 
 command! -nargs=0 Testify call s:GenerateTestFile()

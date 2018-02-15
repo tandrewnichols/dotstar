@@ -29,7 +29,9 @@ call s:Set('reset_timeout', 1)
 call s:Set('debounce_preview', 150)
 
 let s:sort_methods = ['num', 'name', 'extension', 'root', 'mru']
-
+sign define rebuff_pin text=📌
+sign define rebuff_eye text=👁️
+let s:pinned = []
 let s:logo = [
       \  '   ___      __        ______',
       \  '  / _ \___ / /  __ __/ _/ _/',
@@ -37,40 +39,37 @@ let s:logo = [
       \  '/_/|_|\__/_.__/\_,_/_//_/   '
       \]
 
-let s:help_text = [
-      \ '',
-      \ '',
-      \ '======================= HELP =======================',
-      \ ' ?           Toggle help.',
-      \ ' [count]<CR> With count, jump to or open buffer number [count].',
-      \ '             Without count, open buffer under cursor.',
-      \ ' -           Delete buffer under cursor.',
-      \ ' +           Show only modified files.',
-      \ ' .           Filter by file extension.',
-      \ ' /           Filter by arbitrary text.',
-      \ ' ~           Show only files in this project.',
-      \ ' %           Copy path of buffer under cursor.',
-      \ ' }           Jump to bottom of list.',
-      \ ' {           Jump to top of list.',
-      \ ' d           Toggle whether directories are shown.',
-      \ ' e           Sort by file extension.',
-      \ ' f           Sort by filename.',
-      \ ' h           Toggle whether hidden buffers are shown.',
-      \ ' H           Toggle help entries.',
-      \ ' j | <Down>  Preview next buffer.',
-      \ ' k | <Up>    Preview previous buffer.',
-      \ ' n           Sort by buffer number.',
-      \ ' q | <Esc>   Close Rebuff and revert to original buffer.',
-      \ ' r           Reset original buffer list.',
-      \ ' R           Reverse current buffer listing.',
-      \ ' s           Open buffer under cursor in horizontal split.',
-      \ ' S           Toggle sort method.',
-      \ ' t           Open buffer under cursor in new tab.',
-      \ ' T           Open buffer under cursor in background tab.',
-      \ ' u           Toggle whether unlisted buffers are shown.',
-      \ ' v           Open buffer under cursor in vertical split.',
-      \ ' w           Wipeout buffer under cursor.',
-      \ ' x           Toggle top content.',
+let s:help_legend = [
+      \ ['?',            'Toggle help.'],
+      \ ['[count]<CR>',  'With count, jump to or open buffer number [count]. Without count, open buffer under cursor.'],
+      \ ['-',            'Delete buffer under cursor.'],
+      \ ['+',            'Show only modified files.'],
+      \ ['.',            'Filter by file extension.'],
+      \ ['/',            'Filter by arbitrary text.'],
+      \ ['~',            'Show only files in this project.'],
+      \ ['%',            'Copy path of buffer under cursor.'],
+      \ ['}',            'Jump to bottom of list.'],
+      \ ['{',            'Jump to top of list.'],
+      \ ['d',            'Toggle whether directories are shown.'],
+      \ ['e',            'Sort by file extension.'],
+      \ ['f',            'Sort by filename.'],
+      \ ['h',            'Toggle whether hidden buffers are shown.'],
+      \ ['H',            'Toggle help entries.'],
+      \ ['j | <Down>',   'Preview next buffer.'],
+      \ ['k | <Up>',     'Preview previous buffer.'],
+      \ ['n',            'Sort by buffer number.'],
+      \ ['p',            'Pin entry to top.'],
+      \ ['q | <Esc>',    'Close Rebuff and revert to original buffer.'],
+      \ ['r',            'Reset original buffer list.'],
+      \ ['R',            'Reverse current buffer listing.'],
+      \ ['s',            'Open buffer under cursor in horizontal split.'],
+      \ ['S',            'Toggle sort method.'],
+      \ ['t',            'Open buffer under cursor in new tab.'],
+      \ ['T',            'Open buffer under cursor in background tab.'],
+      \ ['u',            'Toggle whether unlisted buffers are shown.'],
+      \ ['v',            'Open buffer under cursor in vertical split.'],
+      \ ['w',            'Wipeout buffer under cursor.'],
+      \ ['x',            'Toggle top content.']
       \]
 
 function! Rebuff()
@@ -89,6 +88,8 @@ function! Rebuff()
   endif
 
   let b:logo = s:BuildLogo(size)
+  let b:help_text = s:BuildHelp(size)
+
   let b:buffer_objects = s:ParseBufferList(rawBufs)
   let b:orig_buffers = copy(b:buffer_objects)
 
@@ -227,17 +228,39 @@ function! s:CheckFlags(entry)
     let entry[ key ] = s:Matches(flags, s:flags[key])
   endfor
 
+  let found = s:Find(s:pinned, { 'num': entry.num })
+  let entry.pinned = type(found) != 0
+
   let entry.flags = flags
   let entry.flag_length = len(flags)
+endfunction
+
+function! s:Find(list, predicate)
+  for item in a:list
+    let found = 1
+    for key in keys(a:predicate)
+      if item[ key ] != a:predicate[ key ]
+        let found = 0
+        break
+      endif
+    endfor
+
+    if found
+      return item
+    endif
+  endfor
+
+  return -1
 endfunction
 
 function! s:Trim(str)
   return substitute(substitute(a:str, '^ \+', '', ''), ' \+$', '', '')
 endfunction
 
-function! s:Pad(str, len)
+function! s:Pad(str, len, ...)
   if len(a:str) < a:len
-    return repeat(' ', a:len - len(a:str)) . a:str
+    let padding = repeat(' ', a:len - len(a:str))
+    return a:0 == 1 ? a:str . padding : padding . a:str
   else
     return a:str
   endif
@@ -246,8 +269,10 @@ endfunction
 function! s:CreateAugroup()
   augroup RebuffEnter
     autocmd!
+    autocmd BufEnter \[Rebuff\] call s:SetTimeout()
     autocmd BufWinEnter \[Rebuff\] call s:SetMappings()
     autocmd BufWinLeave \[Rebuff\] call s:OnExit()
+    autocmd BufLeave \[Rebuff\] call s:ResetTimeout()
   augroup END
 endfunction
 
@@ -268,12 +293,6 @@ function! s:SetBufferFlags()
 endfunction
 
 function! s:ConfigureBuffer()
-  let s:prev_timeout = &timeoutlen
-  
-  if s:Get('reset_timeout')
-    let &timeoutlen = 0
-  endif
-
   setlocal nonumber
   setlocal foldcolumn=0
   setlocal nofoldenable
@@ -311,8 +330,9 @@ call s:Plug('MoveUp', ":\<C-u>call \<sid>MoveTo('k', v:count)")
 call s:Plug('MoveDownAlt', ":\<C-u>call \<sid>MoveTo('j', v:count)")
 call s:Plug('MoveUpAlt', ":\<C-u>call \<sid>MoveTo('k', v:count)")
 call s:Plug('SortByBufferNumber', ":call \<sid>SetSortTo('num')")
-call s:Plug('RestoreOriginal', ":call \<sid>RestoreOriginalBuffer()\<CR>:bw")
-call s:Plug('EscapeRebuff', ":call \<sid>RestoreOriginalBuffer()\<CR>:bw")
+call s:Plug('Pin', ":call \<sid>Pin()")
+call s:Plug('RestoreOriginal', ":call \<sid>RestoreOriginalBuffer()")
+call s:Plug('EscapeRebuff', ":call \<sid>RestoreOriginalBuffer()")
 call s:Plug('Reverse', ":call \<sid>Toggle('reverse')")
 call s:Plug('Reset', ":call \<sid>Reset()")
 call s:Plug('HorizontalSplit', ":call \<sid>OpenCurrentBufferIn('sb')")
@@ -351,6 +371,7 @@ function! s:SetMappings()
   call s:CreateMap('j', 'MoveDown')
   call s:CreateMap('k', 'MoveUp')
   call s:CreateMap('n', 'SortByBufferNumber')
+  call s:CreateMap('p', 'Pin')
   call s:CreateMap('q', 'RestoreOriginal')
   call s:CreateMap('r', 'Reset')
   call s:CreateMap('R', 'Reverse')
@@ -371,9 +392,20 @@ function! s:OnExit()
     let s:toggles = copy(b:toggles)
   endif
 
+  call s:ResetTimeout()
+endfunction
+
+function! s:ResetTimeout()
   if s:Get('reset_timeout')
     let &timeoutlen = s:prev_timeout
   endif
+endfunction
+
+function! s:SetTimeout()
+  if s:Get('reset_timeout')
+    let s:prev_timeout = &timeoutlen
+    let &timeoutlen = 0
+ endif
 endfunction
 
 function! s:PreviewBuffer()
@@ -387,7 +419,7 @@ endfunction
 
 function! s:GetBufferFromLine()
   let line = getline('.')
-  if !empty(line) && line =~ '^[ +]\+\d\+ [u%#ah=RF?x -]\+ [\~a-zA-Z0-9\/\._-]\+$'
+  if !empty(line) && line =~ '^[ +]\+\d\+ [u%#ah=RF?x+ -]\+ [\~a-zA-Z0-9\/\._-]\+$'
     let num = s:ExtractBufNum(line)
     return s:FindBuffer('num', num)
   endif
@@ -409,6 +441,8 @@ endfunction
 
 function! s:RestoreOriginalBuffer()
   call s:OpenInOtherSplit(s:originBuffer)
+  bw
+  normal! ze
 endfunction
 
 function! s:OpenCurrentBufferInTab(...)
@@ -511,7 +545,7 @@ let s:filters = {
 
 function! s:Filter()
   let list = copy(b:buffer_objects)
-  let predicate = []
+  let predicate = ['!v:val.pinned']
 
   if !b:toggles.unlisted
     if b:toggles.help_entries
@@ -559,31 +593,19 @@ function! s:Render(...)
   setlocal modifiable
 
   " Clear the whole buffer
-  normal! "_ggdG
+  normal! gg"_dG
 
   " Render the top content unless it's being hidden
   if b:toggles.top_content
     call setline(1, b:logo)
   endif
 
-  let list = s:Filter()
-  if len(list)
-    let list = s:Sort(list)
-  endif
-  let lines = s:Map(list, function('s:ConstructEntry'))
-
-  if b:toggles.reverse
-    call reverse(lines)
-  endif
-
-  " Render the current list
-  call setline('$', lines)
-
-  call s:SetBufferRange(lines)
+  let pins = s:GetPins()
+  call s:RenderLines(pins)
 
   " Render help unless it's being hidden
   if b:toggles.help
-    call append('$', s:help_text)
+    call append('$', b:help_text)
   endif
 
   setlocal nomodifiable
@@ -597,6 +619,48 @@ function! s:Render(...)
 
   " And preview the current line
   call s:PreviewBuffer()
+endfunction
+
+function! s:GetPins()
+  let pinned = filter(copy(b:buffer_objects), 'v:val.pinned')
+  if len(pinned)
+    let pinned = s:Sort(pinned, 'pinned')
+    let pinnedLines = s:Map(pinned, function('s:ConstructEntry'))
+    return pinnedLines
+  endif
+endfunction
+
+function! s:RenderLines(pins)
+  let list = s:Filter()
+  if len(list)
+    let list = s:Sort(list, b:current_sort)
+  endif
+  let lines = s:Map(list, function('s:ConstructEntry'))
+
+  if b:toggles.reverse
+    call reverse(lines)
+  endif
+
+  " Render the current list
+  exec "sign unplace * buffer=" . bufnr('\[Rebuff\]')
+  if !empty(a:pins)
+    let lines = a:pins + lines
+  endif
+  call setline('$', lines)
+
+  call s:SetBufferRange(lines)
+
+  if !empty(a:pins)
+    call s:RenderPins(a:pins)
+  endif
+endfunction
+
+function! s:RenderPins(pins)
+  let start = b:buffer_range[0]
+  for pin in a:pins
+    exec "sign place" start "line=" . start "name=rebuff_pin file=" . expand("%:p")
+    let start += 1
+  endfor
 endfunction
 
 function! s:SetBufferRange(lines)
@@ -627,7 +691,7 @@ endfunction
 function! s:ConstructEntry(i, entry)
   let entry = a:entry
   let line = '  '
-  let line .= entry.modified ? '+' : ' '
+  let line .= entry.modified ? '+ ' : '  '
   let line .= s:Pad(entry.num, 3)
   let line .= ' '
   let line .= s:Pad(entry.flags, 5)
@@ -658,7 +722,9 @@ function! s:MoveTo(dir, count)
 endfunction
 
 function! s:CallPreview(...)
-  unlet b:preview_timeout
+  if exists("b:preview_timeout")
+    unlet b:preview_timeout
+  endif
   call s:PreviewBuffer()
 endfunction
 
@@ -679,8 +745,9 @@ function! s:HighlightBuffer()
     " Help content definitions
     syn match rebuffHelpBorder "^=\+ HELP =\+$"
     syn match rebuffDesc       " [A-Z][Ra-z ]\+\."
-    syn match rebuffShortcut   "^ \([?+\.\/{},~%defhHnqrRsStTuvwx-]\|\[count\]<CR>\|j | <Down>\|k | <Up>\|q | <Esc>\)"
 
+    let shortcuts = escape(join(map(copy(s:help_legend), 'v:val[0]'), '\|'), '[]/.~')
+    exec 'syn match rebuffShortcut   "^ \(' . shortcuts . '\)"'
 
     " Top content highlighting
     hi def link rebuffBorder     Keyword
@@ -717,12 +784,14 @@ function! s:SetSortTo(type)
   call s:Render()
 endfunction
 
-function! s:Sort(list)
-  if has_key(a:list[0], b:current_sort)
-    if b:current_sort == 'num'
-      return sort(a:list, 's:Compare')
+function! s:Sort(list, by)
+  if has_key(a:list[0], a:by)
+    if a:by == 'num'
+      return sort(a:list, s:Compare('num'))
+    elseif a:by == 'pinned'
+      return sort(a:list, s:Compare('pinned'))
     else
-      return s:SortBy(a:list, b:current_sort)
+      return s:SortBy(a:list, a:by)
     endif
   else
     return a:list
@@ -733,7 +802,7 @@ function! s:SortBy(list, by)
   let by = a:by
   let list = copy(a:list)
 
-  function! s:SortAlpha(first, second) closure
+  function! SortAlpha(first, second) closure
     let a = a:first[ by ]
     let b = a:second[ by ]
 
@@ -749,20 +818,24 @@ function! s:SortBy(list, by)
     return 1
   endfunction
 
-  return sort(list, 's:SortAlpha')
+  return sort(list, 'SortAlpha')
 endfunction
 
-function! s:Compare(a, b)
-  let a = a:a.num + 0
-  let b = a:b.num + 0
+function! s:Compare(prop)
+  function! SortNumeric(a, b) closure
+    let a = a:a[ a:prop ] + 0
+    let b = a:b[ a:prop ] + 0
 
-  if a < b
-    return -1
-  elseif a == b
-    return 0
-  else
-    return 1
-  endif
+    if a < b
+      return -1
+    elseif a == b
+      return 0
+    else
+      return 1
+    endif
+  endfunction
+
+  return function('SortNumeric')
 endfunction
 
 function! s:ExtractFilename(entry)
@@ -795,6 +868,39 @@ function! s:BuildLogo(size)
   return lines
 endfunction
 
+function! s:BuildHelp(size)
+  let isEven = fmod(a:size, 2) == 0.0
+  let left = float2nr(floor((a:size - 6) / 2))
+  let right = isEven ? left : left + 1
+
+  let header = repeat('=', left) . ' HELP ' . repeat('=', right)
+  let lines = [ '', '', header ]
+
+  for entry in s:help_legend
+    let help_key = ' ' . s:Pad(entry[0], 15, 1)
+    let desc = entry[1]
+
+    let remainder = a:size - len(help_key)
+
+    if len(desc) > remainder
+      let idx = stridx(desc, ' ')
+      let prev_idx = 0
+      while len(desc[0:idx]) < remainder
+        let prev_idx = idx
+        let idx = stridx(desc, ' ', idx + 1)
+      endwhile
+      let first = desc[0:prev_idx]
+      let second = repeat(' ', 15) . desc[prev_idx:]
+      call add(lines, help_key . first)
+      call add(lines, second)
+    else
+      call add(lines, help_key . desc)
+    endif
+  endfor
+
+  return lines
+endfunction
+
 function! s:Reset()
   call s:SetBufferFlags()
   call s:Render(1)
@@ -805,12 +911,14 @@ function! s:HandleEnter(count)
     if s:Get('open_with_count')
       bw
       exec "b" a:count
+      normal! ze
     else
       call s:FindByNumber(a:count)
       call s:PreviewBuffer()
     endif
   else
     bw
+    normal! ze
   endif
 endfunction
 
@@ -823,6 +931,34 @@ function! s:JumpTo(line)
   exec a:line
   normal! 0
   call s:PreviewBuffer()
+endfunction
+
+function! s:Pin()
+  let entry = s:GetBufferFromLine()
+  if !empty(entry.pinned)
+    let entry.pinned = 0
+    call remove(s:pinned, index(s:pinned, entry))
+    call s:RebuildLogo(0)
+    call s:RebuildHelp(0)
+  else
+    call s:RebuildLogo(-2)
+    call s:RebuildHelp(-2)
+    let entry.pinned = localtime()
+    call add(s:pinned, entry)
+  endif
+  call s:Render()
+endfunction
+
+function! s:RebuildLogo(num)
+  if !len(s:pinned)
+    let b:logo = s:BuildLogo(s:Get('window_size') + a:num)
+  endif
+endfunction
+
+function! s:RebuildHelp(num)
+  if !len(s:pinned)
+    let b:help_text = s:BuildHelp(s:Get('window_size') + a:num)
+  endif
 endfunction
 
 command! -nargs=0 Ls :call Rebuff()
