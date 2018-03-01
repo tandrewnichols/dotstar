@@ -38,8 +38,13 @@ augroup SwitchDefinitions
     \     '<a\([^>]\{-}\)>\([^<]\{-}\)</a>': '<button\1>\2</button>',
     \     '<button\([^>]\{-}\)>\([^<]\{-}\)</button>': '<a\1>\2</a>'
     \   },
-    \   ['xs', 'sm', 'md', 'lg'],
-    \   ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    \   {
+    \     'col-\(xs\|sm\|md\|lg\)-12': 'col-\1-6',
+    \     'col-\(xs\|sm\|md\|lg\)-6': 'col-\1-4',
+    \     'col-\(xs\|sm\|md\|lg\)-4': 'col-\1-3',
+    \     'col-\(xs\|sm\|md\|lg\)-3': 'col-\1-2',
+    \     'col-\(xs\|sm\|md\|lg\)-2': 'col-\1-12'
+    \   }
     \ ]
   autocmd FileType javascript let b:switch_custom_definitions =
     \ [
