@@ -19,9 +19,6 @@ nnoremap <C-y> 3<C-y>
 nnoremap ' `
 nnoremap ` '
 
-" Remap C-a so tmux can use C-a
-map <C-b> <C-a>
-
 " Always navigate line-wise
 nnoremap j gj
 nnoremap k gk
