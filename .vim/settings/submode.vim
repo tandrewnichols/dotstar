@@ -72,3 +72,18 @@ call submode#enter_with('gitgutterhunk', 'n', 'r', ']h', '<Plug>GitGutterNextHun
 call submode#enter_with('gitgutterhunk', 'n', 'r', '[h', '<Plug>GitGutterPrevHunk')
 call submode#map('gitgutterhunk', 'n', 'r', ']', '<Plug>GitGutterNextHunk')
 call submode#map('gitgutterhunk', 'n', 'r', '[', '<Plug>GitGutterPrevHunk')
+
+call submode#enter_with('movewin', 'n', '', '<C-e>', '<C-e>')
+call submode#enter_with('movewin', 'n', '', '<C-y>', '<C-y>')
+call submode#map('movewin', 'n', '', 'e', '<C-e>')
+call submode#map('movewin', 'n', '', 'y', '<C-y>')
+
+call submode#enter_with('scrollwin', 'n', '', '<C-d>', '<C-d>')
+call submode#enter_with('scrollwin', 'n', '', '<C-u>', '<C-u>')
+call submode#map('scrollwin', 'n', '', 'd', '<C-d>')
+call submode#map('scrollwin', 'n', '', 'u', '<C-u>')
+
+call submode#enter_with('pager', 'n', '', '<C-f>', '<C-f>')
+call submode#enter_with('pager', 'n', '', '<C-b>', '<C-b>')
+call submode#map('pager', 'n', '', 'f', '<C-f>')
+call submode#map('pager', 'n', '', 'b', '<C-b>')
