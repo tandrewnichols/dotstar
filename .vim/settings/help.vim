@@ -1,4 +1,4 @@
-hi CursorColumn ctermbg=Red
+hi ColorColumn ctermbg=red
 
 function! s:ToggleHelpGuide()
   if empty(&colorcolumn)
