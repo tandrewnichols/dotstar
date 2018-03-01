@@ -29,3 +29,5 @@ vnoremap k gk
 function! YRRunAfterMaps()
   nnoremap Y :<C-U>YRYankCount 'y$'<CR>
 endfunction
+
+let g:vim_indent_cont = &sw
