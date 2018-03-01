@@ -20,8 +20,8 @@ if !isdirectory(expand('~').'/.vim/backups')
 endif
 set undodir=~/.vim/backups
 set undofile
-set foldmethod=marker
-set foldlevelstart=20
+set foldmethod=syntax
+set foldlevelstart=99
 set t_Co=256
 if !exists('g:noplugins')
   colorscheme jellybeans
@@ -32,6 +32,7 @@ set tw=0
 set number
 set nohlsearch
 hi MatchParen cterm=bold ctermbg=none ctermfg=red
+set fo+=j
 set nowrap
 set splitbelow
 set splitright
@@ -70,6 +71,7 @@ set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
 set timeoutlen=500
+set cursorline
 if &term =~ '256color'
   set t_ut=
 endif
