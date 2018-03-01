@@ -365,10 +365,18 @@ clone() {
 
 # status
 st() {
-  if [ $(git status -s | grep -c ".*") -eq 0 ]; then
-    git status
+  if [ -z $1 ]; then
+    if [ $(git status -s | grep -c ".*") -eq 0 ]; then
+      git status
+    else
+      git status -s
+    fi
   else
-    git status -s
+    if [ $(git status -s $1 | grep -c ".*") -eq 0 ]; then
+      git status $1
+    else
+      git status -s $1
+    fi
   fi
 }
 
