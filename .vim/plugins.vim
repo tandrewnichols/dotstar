@@ -109,6 +109,7 @@ if !exists('g:bones')
   Plug 'bkad/camelcasemotion'
   Plug 'junegunn/vim-emoji'
   Plug 'junegunn/vader.vim'
+  Plug 'junegunn/limelight.vim'
   Plug 'justinmk/vim-sneak'
   Plug 'lfilho/cosco.vim'
   Plug 'nathanaelkane/vim-indent-guides'
