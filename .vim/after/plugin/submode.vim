@@ -27,4 +27,5 @@ if !exists('g:noplugins') && !exists('g:bones')
   call submode#enter_with('rum-nav', 'n', 'r', ']r', '<Plug>RumNext')
   call submode#map('rum-nav', 'n', 'r', '[', '<Plug>RumPrev')
   call submode#map('rum-nav', 'n', 'r', ']', '<Plug>RumNext')
+  call submode#map('rum-nav', 'n', 'r', 'R', '<Plug>RumSuspend')
 endif
