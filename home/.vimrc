@@ -20,7 +20,6 @@ if !isdirectory(expand('~').'/.vim/backups')
 endif
 set undodir=~/.vim/backups
 set undofile
-set foldmethod=syntax
 set foldlevelstart=99
 set t_Co=256
 if !exists('g:noplugins')
