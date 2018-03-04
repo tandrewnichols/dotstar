@@ -1,9 +1,10 @@
-" let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \   'javascript': ['eslint'],
       \   'css': ['stylelint'],
       \   'less': ['stylelint'],
-      \   'coffee': ['coffeelint -f ~/.coffeelint.json']
+      \   'coffee': ['coffeelint'],
+      \   'html': ['htmlhint']
       \ }
 
 let g:ale_sign_error = '🚨'
@@ -11,11 +12,14 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-" let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
+let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
+let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 
 let g:ale_fixers = {
-      \   'javascript': ['eslint']
-      \ }
+  \   'javascript': ['eslint'],
+  \   'css': ['stylelint'],
+  \   'less': ['stylelint']
+  \ }
 
 let g:ale_lint_delay = 500
 let g:ale_pattern_options = {
@@ -42,9 +46,10 @@ function! s:SetCorrectEslintConfig()
   let b:ale_javascript_eslint_options = '-c ' . eslintFile
 endfunction
 
-augroup EslintConfig
+augroup AleConfig
   au!
   au BufEnter *.js call <SID>SetCorrectEslintConfig()
+  au BufEnter *.coffee let b:ale_coffee_coffeelint_options = '-f ~/.coffeelint.json'
 augroup END
 
 
