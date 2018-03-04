@@ -87,3 +87,8 @@ call submode#enter_with('pager', 'n', '', '<C-f>', '<C-f>')
 call submode#enter_with('pager', 'n', '', '<C-b>', '<C-b>')
 call submode#map('pager', 'n', '', 'f', '<C-f>')
 call submode#map('pager', 'n', '', 'b', '<C-b>')
+
+call submode#enter_with('jumplist', 'n', '', '[j', '<C-i>')
+call submode#enter_with('jumplist', 'n', '', ']j', '<C-o>')
+call submode#map('jumplist', 'n', '', '[', '<C-i>')
+call submode#map('jumplist', 'n', '', ']', '<C-o>')
