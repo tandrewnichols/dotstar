@@ -40,6 +40,7 @@ if !exists('g:bones')
   Plug 'syngan/vim-vimlint'
   Plug 'othree/csscomplete.vim'
   Plug 'rhysd/vim-gfm-syntax'
+  Plug 'othree/html5.vim'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
