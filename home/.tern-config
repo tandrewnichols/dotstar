@@ -1,0 +1,13 @@
+{
+  "libs": [
+    "browser",
+    "jquery",
+    "underscore",
+    "ecmascript"
+  ],
+  "plugins": {
+    "node": {},
+    "jasmine": {},
+    "grunt": {}
+  }
+}
