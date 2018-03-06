@@ -21,7 +21,7 @@ function! s:Annotate(action, pattern, flags, ...)
   call cursor(pos[1], pos[2])
 endfunction
 
-function! s:GetAnnotation(type)
+function! s:GetAnnotation(type) abort
   let isMf = expand("%") =~ 'manta-frontend'
   if (a:type == 'add')
     return isMf ? 'ix' : 'ea.skip'
@@ -30,49 +30,60 @@ function! s:GetAnnotation(type)
   endif
 endfunction
 
-function! s:ClearAnnotation(pattern)
+function! s:ClearAnnotation(pattern) abort
   let pos = getcurpos()
-  echo "%s/" . a:pattern . "/\\1/g"
-  exec "%s/" . a:pattern . "/\\1/g"
-  call cursor(pos[1], pos[2])
+  try
+    exec "%s/" . a:pattern . "/\\1/g"
+    call cursor(pos[1], pos[2])
+  catch /E486/
+    echo "No isolated tests"
+    " Ignore pattern not found
+  endtry
 endfunction
   
-" Top-only
-nnoremap <silent> <Plug>only-top :call <sid>Annotate('ea.only', '^describe', '', 'keepj normal G')<CR>
-nmap <silent> <leader>to <Plug>only-top
+function! s:CreateMappings()
+  " Top-only
+  nnoremap <silent> <Plug>only-top :call <sid>Annotate('ea.only', '^describe', '', 'keepj normal G')<CR>
+  nmap <silent> <buffer> <leader>to <Plug>only-top
 
-" Describe-only
-nnoremap <silent> <Plug>only-describe :call <sid>Annotate('ea.only', '\(^describe\\|  describe\)', 'b')<CR>
-nmap <silent> <leader>do <Plug>only-describe
+  " Describe-only
+  nnoremap <silent> <Plug>only-describe :call <sid>Annotate('ea.only', '\(^describe\\|  describe\)', 'b')<CR>
+  nmap <silent> <buffer> <leader>do <Plug>only-describe
 
-" Context-only
-nnoremap <silent> <Plug>only-context :call <sid>Annotate('ea.only', '  context', 'b')<CR>
-nmap <silent> <leader>co <Plug>only-context
+  " Context-only
+  nnoremap <silent> <Plug>only-context :call <sid>Annotate('ea.only', '  context', 'b')<CR>
+  nmap <silent> <buffer> <leader>co <Plug>only-context
 
-" it-only
-nnoremap <silent> <Plug>it-context :call <sid>Annotate('ea.only', '  it\>', 'b')<CR>
-nmap <silent> <leader>io <Plug>it-context
+  " it-only
+  nnoremap <silent> <Plug>it-context :call <sid>Annotate('ea.only', '  it\>', 'b')<CR>
+  nmap <silent> <buffer> <leader>io <Plug>it-context
 
-" Nearest-only
-nnoremap <silent> <Plug>only-nearest :call <sid>Annotate('ea.only', '\(^describe\\|  describe\\|  context\\|  it\)', 'b')<CR>
-nmap <silent> <leader>no <Plug>only-nearest
- 
-" Remove-only: Remove all occurrences of .only
-nnoremap <silent> <Plug>only-remove :call <sid>ClearAnnotation('\(describe\\|context\\|it\)\.only')<CR>
-nmap <silent> <leader>ro <Plug>only-remove
+  " Nearest-only
+  nnoremap <silent> <Plug>only-nearest :call <sid>Annotate('ea.only', '\(^describe\\|  describe\\|  context\\|  it\)', 'b')<CR>
+  nmap <silent> <buffer> <leader>no <Plug>only-nearest
+  
+  " Remove-only: Remove all occurrences of .only
+  nnoremap <silent> <Plug>only-remove :call <sid>ClearAnnotation('\(describe\\|context\\|it\)\.only')<CR>
+  nmap <silent> <buffer> <leader>ro <Plug>only-remove
 
-" xdescribe: xdescribe nearest describe
-nnoremap <silent> <Plug>skip-describe :call <sid>Annotate(<sid>GetAnnotation('add'), '\(^describe\\|  \zsdescribe\)', 'b')<CR>
-nmap <silent> <leader>dx <Plug>skip-describe
+  " xdescribe: xdescribe nearest describe
+  nnoremap <silent> <Plug>skip-describe :call <sid>Annotate(<sid>GetAnnotation('add'), '\(^describe\\|  \zsdescribe\)', 'b')<CR>
+  nmap <silent> <buffer> <leader>dx <Plug>skip-describe
 
-" xcontext: xcontext nearest context
-nnoremap <silent> <Plug>skip-context :call <sid>Annotate(<sid>GetAnnotation('add'), '  \zscontext', 'b')<CR>
-nmap <silent> <leader>cx <Plug>skip-context
+  " xcontext: xcontext nearest context
+  nnoremap <silent> <Plug>skip-context :call <sid>Annotate(<sid>GetAnnotation('add'), '  \zscontext', 'b')<CR>
+  nmap <silent> <buffer> <leader>cx <Plug>skip-context
 
-" it.skip: skip nearest it
-nnoremap <silent> <Plug>skip-it :call <sid>Annotate('ea.skip', '  it\>', 'b')<CR>
-nmap <silent> <leader>ix <Plug>skip-it
+  " it.skip: skip nearest it
+  nnoremap <silent> <Plug>skip-it :call <sid>Annotate('ea.skip', '  it\>', 'b')<CR>
+  nmap <silent> <buffer> <leader>ix <Plug>skip-it
 
-" Remove x: Remove all occurrences of .skip and change xdescribe/xcontext to describe/context
-nnoremap <silent> <Plug>skip-remove :call <sid>ClearAnnotation(<sid>GetAnnotation('clear'))<CR>
-nmap <silent> <leader>xx <Plug>skip-remove
+  " Remove x: Remove all occurrences of .skip and change xdescribe/xcontext to describe/context
+  nnoremap <silent> <Plug>skip-remove :call <sid>ClearAnnotation(<sid>GetAnnotation('clear'))<CR>
+  nmap <silent> <buffer> <leader>xx <Plug>skip-remove
+endfunction
+
+augroup TestOnly
+  au!
+  au BufRead,BufNew */spec*/*,*/test/* call s:CreateMappings()
+augroup END
