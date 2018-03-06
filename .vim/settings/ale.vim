@@ -1,11 +1,14 @@
+let g:ale_json_fixjson_executable = 'fixjson'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'css': ['stylelint'],
-      \   'less': ['stylelint'],
-      \   'coffee': ['coffeelint'],
-      \   'html': ['htmlhint']
-      \ }
+  \   'javascript': ['eslint'],
+  \   'css': ['stylelint'],
+  \   'less': ['stylelint'],
+  \   'coffee': ['coffeelint'],
+  \   'html': ['htmlhint'],
+  \   'json': ['fixjson', 'jsonlint'],
+  \   'markdown': ['remark-lint']
+  \ }
 
 let g:ale_sign_error = '🚨'
 let g:ale_sign_warning = '⚠️'
@@ -15,10 +18,15 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
 let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 
+" TODO: Pending a patch to ALE
+let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
+" let g:ale_markdown_remark_lint_options = '-r ~/.remarkrc.json'
+
 let g:ale_fixers = {
   \   'javascript': ['eslint'],
   \   'css': ['stylelint'],
-  \   'less': ['stylelint']
+  \   'less': ['stylelint'],
+  \   'json': ['fixjson']
   \ }
 
 let g:ale_lint_delay = 500

@@ -47,7 +47,8 @@ if !exists('g:bones')
   Plug 'tomtom/tlib_vim'
   Plug 'vim-scripts/Gundo'
   Plug 'mhinz/vim-grepper'
-  Plug 'w0rp/ale'
+  " Plug 'w0rp/ale'
+  Plug '~/code/anichols/forks/ale'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'docunext/closetag.vim'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
