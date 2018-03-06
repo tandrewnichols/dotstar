@@ -45,7 +45,6 @@ alias pg="pgadmin3"
 alias vimf="MYVIMRC=~/.vimfrc ~/code/floo-vim/src/vim -u ~/.vimfrc"
 alias playdev="export PLAY_ENV=\"dev\""
 alias playtest="export PLAY_ENV=\"test\""
-alias vim="vim -p"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
 alias fe="_goto ~/code/anichols/manta/manta-frontend"
@@ -61,9 +60,9 @@ alias plugins="_goto ~/code/anichols/grunt-plugins"
 alias play="_goto ~/code/anichols/manta/play"
 alias vp="_goto ~/code/anichols/vim-plugins"
 alias neo="neo4j-instance"
-alias vi="vim -p"
-alias vimbones="vim -p --cmd 'let g:bones=1'"
-alias vimpure="vim -p --cmd 'let g:noplugins=1'"
+alias vi="vim"
+alias vimbones="vim --cmd 'let g:bones=1'"
+alias vimpure="vim --cmd 'let g:noplugins=1'"
 alias neo=ineo
 
 # Linux specific aliases
@@ -481,8 +480,8 @@ tweet() {
 
 dirty() {
   if [[ -z $1 ]]; then
-    vim -p `git status -s | sed s/^...//`
+    vim `git status -s | sed s/^...//`
   else
-    vim -p `git status -s $1 | sed s/^...//`
+    vim `git status -s $1 | sed s/^...//`
   fi
 }
