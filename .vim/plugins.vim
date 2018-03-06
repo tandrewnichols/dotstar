@@ -33,7 +33,8 @@ if !exists('g:bones')
   Plug 'lunaru/vim-less'
   " Plug 'digitaltoad/vim-jade'
   Plug 'kchmck/vim-coffee-script'
-  Plug 'suan/vim-instant-markdown'
+  " Plug 'suan/vim-instant-markdown'
+  Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
   " Plug 'leafgarland/typescript-vim'
   Plug 'ynkdir/vim-vimlparser'
