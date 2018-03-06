@@ -55,6 +55,7 @@
   oops = "!f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
   ls = ls-tree -r --name-only
   unpush = "!f() { git push origin :$1; }; f"
+  wat = "!git log master..`git rev-parse --abbrev-ref HEAD`"
 [push]
   default = upstream
 [branch]
