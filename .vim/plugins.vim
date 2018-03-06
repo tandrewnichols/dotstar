@@ -120,6 +120,8 @@ if !exists('g:bones')
   Plug 'lfilho/cosco.vim'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'wellle/visual-split.vim'
+  Plug 'jceb/vim-editqf'
+  Plug 'jceb/vim-hier'
 
   " Local plugins
   Plug '~/code/anichols/vim-plugins/vim-graft'
@@ -130,6 +132,9 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim-plugins/vim-rumrunner'
   Plug '~/code/anichols/vim-plugins/vim-rebuff'
   " Plug '~/code/anichols/vim-plugins/vim-girlfriend'
+
+  " Last to override any settings
+  Plug 'editorconfig/editorconfig-vim'
 endif
 
 Plug 'flazz/vim-colorschemes'
