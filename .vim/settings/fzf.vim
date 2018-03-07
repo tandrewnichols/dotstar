@@ -112,6 +112,7 @@ nnoremap \m :Maps<CR>
 nnoremap \r :Rip 
 nnoremap \R :RunScript<CR>
 nnoremap \s :Scripts<CR>
+nnoremap \S :SoScript<CR>
 nnoremap \/ :History/<CR>
 nnoremap \: :Commands<CR>
 
