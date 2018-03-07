@@ -1,3 +1,5 @@
+let g:limelight_conceal_ctermfg = 'DarkGray'
+
 augroup ConfigureLimelight
   au!
   au ColorScheme jellybeans let g:limelight_conceal_ctermfg = 'DarkGray'
