@@ -120,8 +120,8 @@ if !exists('g:bones')
   Plug 'lfilho/cosco.vim'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'wellle/visual-split.vim'
-  Plug 'jceb/vim-editqf'
-  Plug 'jceb/vim-hier'
+  Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-reload'
 
   " Local plugins
   Plug '~/code/anichols/vim-plugins/vim-graft'
