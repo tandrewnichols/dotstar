@@ -4,12 +4,7 @@
 .vim/backups/
 .vim/yankring_history/
 .vim/yankring_history_v2.txt
-.vim/autoload/
+.vim/autoload/plug.vim
 .vim/colors/
 .vim/compiler/
-.vim/doc/
-.vim/ftdetect/
-.vim/indent/
-.vim/plugin/
-.vim/syntax/
 .vim/snapshots
