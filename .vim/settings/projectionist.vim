@@ -1,3 +1,14 @@
+function! s:PlaceCursor()
+  if &modifiable && search('[\~][%]')
+    normal! "_ddk
+  endif
+endfunction
+
+augroup ProjectionistCursor
+  au!
+  au User ProjectionistActivate call s:PlaceCursor()
+augroup END
+
 let g:projectionist_heuristics = {
   \   "lib/|test/": {
   \     "lib/*.js": {
