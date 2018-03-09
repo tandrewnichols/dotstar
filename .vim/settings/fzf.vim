@@ -38,7 +38,7 @@ function! s:CallRipGrep(smartcase, where, ...) abort
   endif
 
   let cmd .= term  . ' ' . where
-  call fzf#vim#grep(cmd, 1, 0)
+  call fzf#vim#grep(cmd, 1, { 'options': '--expect='. join(keys(s:actions), ',') })
 endfunction
 
 let s:actions = {
