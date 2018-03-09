@@ -1,3 +1,5 @@
+" TODO: Delete this file and plugin?
+
 let g:expand_region_text_objects = {
   \ 'iw'  :0,
   \ 'iW'  :0,
