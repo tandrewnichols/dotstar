@@ -18,4 +18,7 @@ let g:yankring_window_increment = 40
 " Put yankring history in .vim folder
 let g:yankring_history_dir = '$HOME/.vim'
 
+" Don't map gp and gP
+let g:yankring_paste_using_g = 0
+
 nnoremap <leader>y :YRShow<CR>
