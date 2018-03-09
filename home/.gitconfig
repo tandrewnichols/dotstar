@@ -11,6 +11,7 @@
   co = checkout
   ci = commit
   commti = commit
+  commmit = commit
   cp = cherry-pick
   df = diff --color-words=.
   amend = commit -a --amend --no-edit
