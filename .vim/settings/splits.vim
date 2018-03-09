@@ -18,13 +18,16 @@ nnoremap <leader>H :call <sid>OpenCurBuf('sb')<CR>
 function! s:OpenFromSameDir(cmd, ...) abort
   let extension = '.' . expand('%:e')
   for arg in a:000
-    if filereadable(expand("%:h/"). '/' . arg . extension)
+    if stridx(arg, '.') > -1 && filereadable(expand('%:h/') . '/' .arg)
+      exec a:cmd "%:h/" . arg
+    elseif filereadable(expand("%:h/"). '/' . arg . extension)
       exec a:cmd "%:h/" . arg . extension
     endif
   endfor
 endfunction
 
-command! -nargs=+ Hedit call s:OpenFromSameDir('e', <f-args>)
-command! -nargs=+ HSplit call s:OpenFromSameDir('sp', <f-args>)
-command! -nargs=+ HVSplit call s:OpenFromSameDir('vsp', <f-args>)
-command! -nargs=+ HTabe call s:OpenFromSameDir('tabe', <f-args>)
+" TODO: file completion is not quite right. Need to do something custom.
+command! -nargs=+ -complete=file Hedit call s:OpenFromSameDir('e', <f-args>)
+command! -nargs=+ -complete=file HSplit call s:OpenFromSameDir('sp', <f-args>)
+command! -nargs=+ -complete=file HVSplit call s:OpenFromSameDir('vsp', <f-args>)
+command! -nargs=+ -complete=file HTabe call s:OpenFromSameDir('tabe', <f-args>)
