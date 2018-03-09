@@ -1,7 +1,7 @@
 let s:fzf_no_graph = '--color="always" --pretty=format:"%C(green)%<(14)%cn %C(auto)%h%d %s %C(cyan)%cr"'
 let s:fzf_with_graph = '--graph --color="always" --pretty=format:"%C(green)%cn %C(auto)%h%d %s %C(cyan)%cr"'
 
-let s:base_rip = 'rg --column --line-number --no-heading --fixed-strings --hidden --follow --color "always" --glob "!node_modules/*" --glob "!*/bower_components/*" --glob "!.git/*"'
+let s:base_rip = 'rg --column --line-number --no-heading --fixed-strings --hidden --follow --color "always" --glob "!node_modules/*" --glob "!*/bower_components/*"'
 
 let g:fzf_tags_command = 'es-ctags -R --exclude node_modules --exclude bower_components'
 
@@ -13,7 +13,7 @@ function! s:CallRipGrep(smartcase, where, ...) abort
   let cmd = s:base_rip
 
   if a:smartcase
-    let cmd .= '--smart-case '
+    let cmd .= ' --smart-case '
   endif
 
   for arg in args
@@ -30,7 +30,8 @@ function! s:CallRipGrep(smartcase, where, ...) abort
     let where = remove(terms, -1)
   endif
 
-  let term = '"' . substitute(shellescape(join(terms, ' ')), "'", '', 'g') . '"'
+  let term = join(terms, ' ')
+  let term = '"' . term . '"'
 
   if len(flags)
     let cmd .= join(flags, ' ') . ' '
