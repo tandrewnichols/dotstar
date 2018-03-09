@@ -46,7 +46,6 @@ if !exists('g:bones')
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
   Plug 'vim-scripts/Gundo'
-  Plug 'mhinz/vim-grepper'
   " Plug 'w0rp/ale'
   Plug '~/code/anichols/forks/ale'
   Plug 'Lokaltog/vim-easymotion'
@@ -124,10 +123,10 @@ if !exists('g:bones')
   Plug 'xolox/vim-reload'
 
   " Local plugins
-  Plug '~/code/anichols/vim-plugins/vim-graft'
-  Plug '~/code/anichols/vim-plugins/vim-graft-node'
-  Plug '~/code/anichols/vim-plugins/vim-graft-angular'
-  Plug '~/code/anichols/vim-plugins/vim-graft-vim'
+  " Plug '~/code/anichols/vim-plugins/vim-graft'
+  " Plug '~/code/anichols/vim-plugins/vim-graft-node'
+  " Plug '~/code/anichols/vim-plugins/vim-graft-angular'
+  " Plug '~/code/anichols/vim-plugins/vim-graft-vim'
   Plug '~/code/anichols/vim-plugins/vim-lodash'
   Plug '~/code/anichols/vim-plugins/vim-rumrunner'
   Plug '~/code/anichols/vim-plugins/vim-rebuff'
