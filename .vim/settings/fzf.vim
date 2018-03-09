@@ -131,7 +131,50 @@ command! -bang -nargs=0 Scripts :call s:FzfScriptnames(<bang>0)
 command! -bang -nargs=0 SoScript :call s:FzfScriptnames(<bang>0, 'so')
 command! -bang -nargs=0 RunScript :call s:FzfScriptnames(<bang>0, 'Runtime!')
 
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><tab> <plug>(fzf-maps-i)
+
+function! s:GitCheckoutAction(branch)
+  exec "silent! Git checkout" a:branch
+  redraw!
+endfunction
+
+function! s:GitDeleteAction(branches)
+  exec "silent! Git branch -D" join(a:branches, ' ')
+  redraw!
+endfunction
+
+function! s:FzfBranches(bang, all, fn, ...)
+  let extra = a:0 == 1 ? a:1 . ' ' : ''
+  let branches = split(system('git branch'), '\n')[0:-2]
+  let branches = filter(branches, 'stridx(v:val, "\*")')
+  let branches = map(branches, 'substitute(v:val, "^ *", "", "")')
+  let branches = map(branches, 'substitute(v:val, " *$", "", "")')
+  let opts = {
+    \   'source': branches,
+    \   'options': extra . '-x --ansi --header-lines=1 -d "\s\+" --prompt="Branch> "'
+    \ }
+
+  if a:all
+    let opts['sink*'] = function(a:fn)
+  else
+    let opts.sink = function(a:fn)
+  endif
+
+  call fzf#run(fzf#wrap('gitbranch', opts, a:bang))
+endfunction
+
+command! -bang -nargs=0 Branches :call s:FzfBranches(<bang>0, 0, 's:GitCheckoutAction')
+command! -bang -nargs=0 GbranchDel :call s:FzfBranches(<bang>0, 1, 's:GitDeleteAction', '-m')
+
 nnoremap \b :Buffers<CR>
+nnoremap \B :Branches<CR>
 nnoremap \c :call <SID>CommitFormat(1)<CR>
 nnoremap \C :call <SID>CommitFormat(0)<CR>
 nnoremap \f :Files<CR>
@@ -146,15 +189,6 @@ nnoremap \s :Scripts<CR>
 nnoremap \S :SoScript<CR>
 nnoremap \/ :History/<CR>
 nnoremap \: :Commands<CR>
-
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-imap <c-x><tab> <plug>(fzf-maps-i)
 
 
 "--- Lifted from junegunn/fzf.vim ---"
