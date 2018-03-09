@@ -41,6 +41,36 @@ function! s:CallRipGrep(smartcase, where, ...) abort
   call fzf#vim#grep(cmd, 1, { 'options': '--expect='. join(keys(s:actions), ',') })
 endfunction
 
+function! s:RipWithRange(smartcase, where) range
+  let lines = join(getline(a:firstline, a:lastline), '\n')
+  call s:CallRipGrep(a:smartcase, a:where, lines)
+endfunction
+
+function! SetRipOpDir(dir) abort
+  let s:rip_opt_dir = a:dir
+endfunction
+
+function! OperatorRip(wiseness) abort
+  if a:wiseness ==# 'char'
+    normal! `[v`]"ay
+    call s:CallRipGrep(1, s:rip_opt_dir, @a)
+  elseif a:wiseness ==# 'line'
+    '[,']call s:RipWithRange(1, s:rip_opt_dir)
+  endif
+endfunction
+
+nmap gr <Plug>(operator-ripgrep-root)
+vmap gr <Plug>(operator-ripgrep-root)
+call operator#user#define('ripgrep-root', 'OperatorRip', 'call SetRipOpDir(projectroot#guess(expand("%:p")))')
+
+nmap gR <Plug>(operator-ripgrep-rel)
+vmap gR <Plug>(operator-ripgrep-rel)
+call operator#user#define('ripgrep-rel', 'OperatorRip', 'call SetRipOpDir(expand("%:h"))')
+
+nmap g- <Plug>(operator-ripgrep-cwd)
+vmap g- <Plug>(operator-ripgrep-cwd)
+call operator#user#define('ripgrep-cwd', 'OperatorRip', 'call SetRipOpDir(getcwd())')
+
 let s:actions = {
   \   'ctrl-t': 'tabe',
   \   'ctrl-x': 'split',
