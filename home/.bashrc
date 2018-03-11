@@ -182,16 +182,6 @@ else
   export PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[00m\]$ '
 fi
 
-ifttt() {
-  dir=$(git rev-parse --show-toplevel)
-  cur=$(node -e "console.log(require('$dir/package.json').name)")
-  version=$(node -e "console.log(require('$dir/package.json').version)")
-  url="https://github.com/`get_git_user_repo`/releases/tag/v$version"
-  echo "Tweeting the following message:"
-  echo "I just published ${cur}@${version}. See $url for details."
-  curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
-}
-
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -210,10 +200,6 @@ esac
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
-fi
-
-if [ -f ~/code/nvm/nvm.sh ]; then
-  source ~/code/nvm/nvm.sh
 fi
 
 if [ -f ~/.git-prompt.sh ]; then
@@ -246,6 +232,7 @@ if [[ $OSTYPE == darwin* ]]; then
   ssh-add ~/.ssh/anichols_rsa &>/dev/null
 fi
 
+# Pass extra keys through to vim
 bind -r '\C-s'
 stty -ixon
 
@@ -309,3 +296,30 @@ export INEO_HOME=/Users/AndrewNichols/.ineo; export PATH=$INEO_HOME/bin:$PATH
 jenv_init() {
   [[ -s "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" ]] && source "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" && source "/Users/AndrewNichols/.jenv/commands/completion.sh"
 }
+
+eval "$(hub alias -s)"
+
+if [ -f ~/.env.bash ]; then
+  source ~/.env.bash
+  export GITHUB_TOKEN=$RHUBARB_GITHUB_TOKEN
+  export GITHUB_USER=tandrewnichols@gmail.com
+fi
+
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/opt/mono/bin:/usr/local/opt/rust/bin
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
+if [ -z "$TMUX" ]; then
+  list=`tmux ls`
+  if [ -z "$list" ]; then
+    tmux new -s anichols
+  else
+    index=`echo $list | wc -l`
+    index=$((index + 1))
+    session=anichols${index}
+    tmux new -s $session
+  fi
+fi
