@@ -26,8 +26,27 @@ function! s:OpenFromSameDir(cmd, ...) abort
   endfor
 endfunction
 
+function! HeadLineCustomComplete(lead, ...)
+  let dir = expand("%:h")
+
+  if !empty(a:lead) && stridx(a:lead, '\/') > -1
+    let dir .= '/' . join(split(a:lead, '\/')[0:-2], '/')
+  endif
+
+  let files = glob(dir . '/*', 0, 1)
+
+  let maybedir = dir . '/' . a:lead
+  if !empty(a:lead) && index(files, maybedir) > -1 && isdirectory(a:lead)
+    let files = glob(maybedir . '/*', 0, 1)
+  endif
+
+  let heads = map(map(files, 'split(v:val, "\/")[-1]'), 'isdirectory(v:val) ? v:val . "/" : v:val')
+
+  return join(heads, "\n")
+endfunction
+
 " TODO: file completion is not quite right. Need to do something custom.
-command! -nargs=+ -complete=file Hedit call s:OpenFromSameDir('e', <f-args>)
-command! -nargs=+ -complete=file HSplit call s:OpenFromSameDir('sp', <f-args>)
-command! -nargs=+ -complete=file HVSplit call s:OpenFromSameDir('vsp', <f-args>)
-command! -nargs=+ -complete=file HTabe call s:OpenFromSameDir('tabe', <f-args>)
+command! -nargs=+ -complete=custom,HeadLineCustomComplete Hedit call s:OpenFromSameDir('e', <f-args>)
+command! -nargs=+ -complete=custom,HeadLineCustomComplete HSplit call s:OpenFromSameDir('sp', <f-args>)
+command! -nargs=+ -complete=custom,HeadLineCustomComplete HVSplit call s:OpenFromSameDir('vsp', <f-args>)
+command! -nargs=+ -complete=custom,HeadLineCustomComplete HTabe call s:OpenFromSameDir('tabe', <f-args>)
