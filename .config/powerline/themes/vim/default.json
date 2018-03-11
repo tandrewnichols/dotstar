@@ -60,11 +60,6 @@
       },
       {
         "exclude_modes": ["nc"],
-        "function": "powerline.segments.vim.plugin.syntastic.syntastic",
-        "priority": 50
-      },
-      {
-        "exclude_modes": ["nc"],
         "function": "powerline.segments.vim.plugin.tagbar.current_tag",
         "draw_soft_divider": false,
         "priority": 50
@@ -79,27 +74,29 @@
     ],
     "right": [
       {
-        "function": "line_percent",
-        "priority": 50,
-        "width": 4,
-        "align": "r"
+        "function": "file_type",
+        "priority": 10
       },
       {
-        "function": "csv_col_current",
-        "priority": 30
+        "function": "bufnr",
+        "priority": 50
       },
       {
         "function": "line_current",
         "draw_soft_divider": false,
-        "width": 3,
         "align": "r"
+      },
+      {
+        "function": "line_count",
+        "draw_soft_divider": false,
+        "align": "r",
+        "before": "/"
       },
       {
         "function": "virtcol_current",
         "draw_soft_divider": false,
         "priority": 20,
         "before": ":",
-        "width": 3,
         "align": "l"
       }
     ]
