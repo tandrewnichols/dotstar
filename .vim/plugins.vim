@@ -123,14 +123,14 @@ if !exists('g:bones')
   Plug 'xolox/vim-reload'
 
   " Local plugins
-  " Plug '~/code/anichols/vim-plugins/vim-graft'
-  " Plug '~/code/anichols/vim-plugins/vim-graft-node'
-  " Plug '~/code/anichols/vim-plugins/vim-graft-angular'
-  " Plug '~/code/anichols/vim-plugins/vim-graft-vim'
-  Plug '~/code/anichols/vim-plugins/vim-lodash'
-  Plug '~/code/anichols/vim-plugins/vim-rumrunner'
-  Plug '~/code/anichols/vim-plugins/vim-rebuff'
-  " Plug '~/code/anichols/vim-plugins/vim-girlfriend'
+  " Plug '~/code/anichols/vim/vim-graft'
+  " Plug '~/code/anichols/vim/vim-graft-node'
+  " Plug '~/code/anichols/vim/vim-graft-angular'
+  " Plug '~/code/anichols/vim/vim-graft-vim'
+  Plug '~/code/anichols/vim/vim-lodash'
+  Plug '~/code/anichols/vim/vim-rumrunner'
+  Plug '~/code/anichols/vim/vim-rebuff'
+  Plug '~/code/anichols/vim/vim-girlfriend'
 
   " Last to override any settings
   Plug 'editorconfig/editorconfig-vim'
