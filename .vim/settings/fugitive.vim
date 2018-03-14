@@ -36,3 +36,30 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>ga :Gstage<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gu :Gunstage<CR>
+
+function! s:ReopenStatus() abort
+  if system('git status') !~ 'nothing to commit'
+    Gstatus
+  endif
+endfunction
+
+function! s:HandleGitCommit() abort
+  cnoreabbrev <buffer> wq :silent! wq<CR>:call <SID>ReopenStatus()<CR>
+endfunction
+
+function! s:ReturnToStatus() abort
+  try
+    let winnum = bufwinnr('.git/index')
+    echom winnum
+    if winnum > -1
+      exec winnum . "wincmd \<C-w>"
+    endif
+  catch *
+  endtry
+endfunction
+
+augroup GitCommit
+  au!
+  au Filetype gitcommit call s:HandleGitCommit()
+  " au BufHidden .git/* if &diff | call s:ReturnToStatus() | endif
+augroup END
