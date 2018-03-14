@@ -60,12 +60,12 @@ augroup AleConfig
   au BufEnter *.coffee let b:ale_coffee_coffeelint_options = '-f ~/.coffeelint.json'
 augroup END
 
-
-nmap <silent> [c <Plug>(ale_previous_wrap)
-nmap <silent> ]c <Plug>(ale_next_wrap)
+" Don't overwrite [c and ]c in diffs
+nmap <expr> <silent> [c &diff ? ':normal! [c' : '<Plug>(ale_previous_wrap)'
+nmap <expr> <silent> ]c &diff ? ':normal! ]c' : '<Plug>(ale_next_wrap)'
 
 " Mnemonic: c = checker
-call submode#enter_with('ale-marker', 'n', 'r', '[c', '<Plug>(ale_previous_wrap)')
-call submode#enter_with('ale-marker', 'n', 'r', ']c', '<Plug>(ale_next_wrap)')
-call submode#map('ale-marker', 'n', 'r', '[', '<Plug>(ale_previous_wrap)')
-call submode#map('ale-marker', 'n', 'r', ']', '<Plug>(ale_next_wrap)')
+call submode#enter_with('ale-marker', 'n', 'er', '[c', '&diff ? '':normal! [c<CR>'' : ''<Plug>(ale_previous_wrap)''')
+call submode#enter_with('ale-marker', 'n', 'er', ']c', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
+call submode#map('ale-marker', 'n', 'er', '[', '&diff ? '':normal! [c<CR>'' : ''<Plug>(ale_previous_wrap)''')
+call submode#map('ale-marker', 'n', 'er', ']', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
