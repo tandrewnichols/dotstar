@@ -30,15 +30,20 @@ let g:projectionist_heuristics = {
   \     "plugin/*.vim": {
   \       "alternate": "test/{}.vim",
   \       "template": [
-  \         "if exists(\"g:{}_loaded\") || &cp | finish | endif",
+  \         "if exists(\"g:loaded_{}\") || &cp | finish | endif",
   \         "",
-  \         "let g:{}_loaded = 1"
+  \         "let g:loaded_{} = 1"
   \       ],
   \       "type": "plugin"
   \     },
   \     "autoload/*.vim": {
   \       "alternate": "test/{}.vim",
-  \       "type": "autoload"
+  \       "type": "autoload",
+  \       "template": [
+  \         "if exists(\"g:autoloaded_{snakecase}\") | finish | endif",
+  \         "",
+  \         "let g:autoloaded_{snakecase} = 1"
+  \       ]
   \     },
   \     "doc/*.txt": {
   \       "type": "help",
