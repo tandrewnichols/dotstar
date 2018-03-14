@@ -1,7 +1,11 @@
 let s:mappingchars = ['.', ';', '(', '<Space>']
 
+function! depute#unmap()
+  iunmap <buffer> <Esc>
+endfunction
+
 function! depute#inject(fn)
-  exec "imap \<buffer> \<Esc> \<C-c>'':iunmap <buffer> <ESC>\<CR>" 
+  inoremap <buffer> <Esc> <C-c>'':call depute#unmap()<CR>
   exec "call depute#inject#" . a:fn . "()"
   startinsert
   normal! l
