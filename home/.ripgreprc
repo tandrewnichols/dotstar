@@ -1,8 +1,8 @@
 -g
-!node_modules/*
+!node_modules
 
 -g
-!*/bower_components/*
+!bower_components
 
 -g
-!.git/*
+!.git
