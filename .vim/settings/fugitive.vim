@@ -29,7 +29,7 @@ command! -nargs=0 Push :silent call system('push') | redraw!
 command! -nargs=0 GOpenPR :silent call system('pr') | redraw!
 command! -nargs=0 Gci :silent call system('ci') | redraw!
 
-nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <expr> <leader>gs bufwinnr('.git/index') > -1 ? ':close <C-r>=(bufwinnr(".git/index"))<CR><CR>' : ':Gstatus<CR>'
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
