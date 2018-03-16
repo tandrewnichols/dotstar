@@ -23,7 +23,6 @@ command! -nargs=1 Gapply :call <SID>GitWrapper("stash apply <f-args>")
 command! -nargs=0 Gdirty :call <SID>OpenDirty()
 command! -nargs=0 Gnuke :call <SID>GitWrapper('nuke')
 command! -nargs=0 Gconf :e ~/.gitconfig
-command! -nargs=0 Gchunk :silent Git chunk<CR>
 command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
 command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
 
