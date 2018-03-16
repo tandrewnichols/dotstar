@@ -59,7 +59,7 @@ endfunction
 
 nmap gr <Plug>(operator-ripgrep-root)
 vmap gr <Plug>(operator-ripgrep-root)
-call operator#user#define('ripgrep-root', 'OperatorRip', 'call SetRipOpDir(projectroot#guess(expand("%:p")))')
+call operator#user#define('ripgrep-root', 'OperatorRip', 'call SetRipOpDir(RootRelativeToCwd())')
 
 nmap gR <Plug>(operator-ripgrep-rel)
 vmap gR <Plug>(operator-ripgrep-rel)
@@ -121,7 +121,7 @@ function! s:CommitFormat(buffer)
   endif
 endfunction
 
-command! -bang -nargs=* Rip :call s:CallRipGrep(<bang>1, projectroot#guess(expand("%:p")), <f-args>)
+command! -bang -nargs=* Rip :call s:CallRipGrep(<bang>1, RootRelativeToCwd(), <f-args>)
 command! -bang -nargs=* Ripcwd :call s:CallRipGrep(<bang>1, getcwd(), <f-args>)
 command! -bang -nargs=* Ripfile :call s:CallRipGrep(<bang>1, expand("%:h"), <f-args>)
 command! -bang -nargs=* -complete=file Ripwhere :call s:CallRipGrep(<bang>1, '', <f-args>)
