@@ -119,22 +119,17 @@ echo "Run tmux Prefix + I to install tmux plugins"
 
 # Setup n/node/npm
 curl -L http://git.io/n-install | bash
-echo "Don't forget to run n ls and install node v4.x and node v5.x"
-n latest # latest v6
 ~/n/bin/npm install -g grunt-cli gulp
 
 source ~/.bashrc
 
 # Build YouCompleteMe
 cd ~/.vim/plugged/YouCompleteMe
-./install.py --clang-completer --tern-completer
+./install.py --all
 cd -
 
-#Install vim-instant markdown
-npm -g install instant-markdown-d
-
 # Install neo4j-instance
-curl -L https://raw.githubusercontent.com/tandrewnichols/neo4j-instance/master/neo4j-instance.sh > ~/bin/neo4j-instance && chmod +x ~/bin/neo4j-instance
+# curl -L https://raw.githubusercontent.com/tandrewnichols/neo4j-instance/master/neo4j-instance.sh > ~/bin/neo4j-instance && chmod +x ~/bin/neo4j-instance
 
 # Clone manta-frontend so I can set up local gitconfig stuff
 git clone git@github.com:mantacode/manta-frontend.git $HOME/code/anichols/manta/manta-frontend
@@ -142,5 +137,4 @@ git clone git@github.com:mantacode/manta-router.git $HOME/code/anichols/manta/ma
 cd $HOME/code/anichols/manta/manta-frontend
 git config --local user.name "Andrew Nichols"
 git config --local user.email "anichols@manta.com"
-npm i
 cd $HOME
