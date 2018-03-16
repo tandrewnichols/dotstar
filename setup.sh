@@ -72,7 +72,7 @@ gem install bundler rails
 gem install travis -v 1.8.1 --no-rdoc --no-ri
 
 # Create common directories
-mkdir -p $HOME/code/anichols/{apps,forks,generators,gists,grunt-plugins,manta,modules,vim-plugins}
+mkdir -p $HOME/code/anichols/{apps,forks,generators,gists,grunt-plugins,manta,modules,vim}
 
 # Generate a key in ~/.ssh/id_rsa with no password
 ssh-keygen -t rsa -b 4096 -C "tandrewnichols@gmail.com" -f ~/.ssh/id_rsa -N ""
@@ -90,10 +90,10 @@ fi
 
 read -p "Press [Enter] to resume install after adding key to github..."
 
-# Clone vim-plugins so that +PlugInstall works
-git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim-plugins/vim-graft
-git clone git@github.com:tandrewnichols/vim-graft-node.git $HOME/code/anichols/vim-plugins/vim-graft-node
-git clone git@github.com:tandrewnichols/vim-graft-angular.git $HOME/code/anichols/vim-plugins/vim-graft-angular
+# Clone vim plugins so that +PlugInstall works
+git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim/vim-graft
+git clone git@github.com:tandrewnichols/vim-graft-node.git $HOME/code/anichols/vim/vim-graft-node
+git clone git@github.com:tandrewnichols/vim-graft-angular.git $HOME/code/anichols/vim/vim-graft-angular
 
 # Install dot files from git repo
 git clone git@github.com:tandrewnichols/dotstar.git $HOME/code/anichols/dotstar
