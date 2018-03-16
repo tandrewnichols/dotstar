@@ -201,12 +201,12 @@ replace() {
   eval $cmd
 }
 
+#### GIT COMMANDS ####
+# Open pull request for current branch
 oops() {
   gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )
 }
 
-#### GIT COMMANDS ####
-# Open pull request for current branch
 pr() {
   open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
 }
