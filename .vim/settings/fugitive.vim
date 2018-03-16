@@ -4,8 +4,8 @@ function! s:GitWrapper(action)
 endfunction
 
 function! s:OpenDirty()
-  silent !git ls-files -m | pbcopy
-  for file in split(@*, '\n')
+  let files = split(system('git ls-files -m'), '\n')
+  for file in files
     silent exec "e" file
   endfor
   redraw!
@@ -49,19 +49,19 @@ function! s:HandleGitCommit() abort
   cnoreabbrev <buffer> wq :silent! wq<CR>:call <SID>ReopenStatus()<CR>
 endfunction
 
-function! s:ReturnToStatus() abort
-  try
-    let winnum = bufwinnr('.git/index')
-    echom winnum
-    if winnum > -1
-      exec winnum . "wincmd \<C-w>"
-    endif
-  catch *
-  endtry
+function! ReturnToStatus(cmd) abort
+  exec a:cmd
+  let num = bufwinnr('.git/index')
+  exec num . "wincmd w"
+endfunction
+
+function! s:CreateReturnToStatusMapping() abort
+  exec "cnoreabbrev <expr> <buffer> wq (getcmdtype()==':' && getcmdpos() < 4 ? 'call ReturnToStatus(''' . getcmdline() . ''')' : getcmdline())"
+  exec "cnoreabbrev <expr> <buffer> q (getcmdtype()==':' && getcmdpos() < 3 ? 'call ReturnToStatus(''' . getcmdline() . ''')' : getcmdline())"
 endfunction
 
 augroup GitCommit
   au!
   au Filetype gitcommit call s:HandleGitCommit()
-  " au BufHidden .git/* if &diff | call s:ReturnToStatus() | endif
+  au BufEnter fugitive://* call s:CreateReturnToStatusMapping()
 augroup END
