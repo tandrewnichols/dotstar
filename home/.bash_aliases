@@ -116,17 +116,6 @@ init() {
   fi
 }
 
-wd() {
-  if [ -z $1 ]; then
-    grunt wd
-  else
-    for ((i=1;i<=$1;i++))
-    do
-      grunt wd
-    done
-  fi
-}
-
 profile() {
   re='^[0-9]+$'
   if [[ $1 =~ $re ]]; then
@@ -153,94 +142,6 @@ up() {
       cd ..
     done
   fi
-}
-
-src_usage() {
-cat << EOF
-usage: srcrr options
-
-Sync the current repository to a sandbox using srcrr.
-
-OPTIONS:
--c Command: the default is 'sync'. Other options are 'reset' and 'config'.
--s Sandbox: the sandbox to sync to
--p Port: the port to sync to
--l Log: log the command before executing
--v Verbose: turn on logging
-EOF
-}
-
-# srcrr sync
-src() {
-  if [[ -n $1 ]] && [ "$1" == "help" ]; then
-    src_usage
-    return
-  fi
-  
-  line="node /Users/AndrewNichols/code/anichols/manta/srcrr-client/srcrr"
-  command="sync"
-  sandbox=
-  port=
-  log=0
-  verbose=0
-  OPTIND=1
-  while getopts ":c:s:p:lv" opt
-  do
-    case $opt in
-      c)
-        command="$OPTARG"
-        ;;
-      s)
-        sandbox="$OPTARG"
-        ;;
-      p)
-        port="$OPTARG"
-        ;;
-      l)
-        log=1
-        ;;
-      v)
-        verbose=1
-        ;;
-      ?)
-        src_usage
-        return
-        ;;
-    esac
-  done
-  
-  if [ $command = "config" ]; then
-    shift; shift;
-    line="$line $command $@"
-    $line
-    return
-  fi
-  
-  if [ $(echo $sandbox | grep -c "^[0-9]\{2,3\}$") -gt 0 ]; then
-    sandbox="ecnext$sandbox.ecnext.com"
-  elif [ $(echo $sandbox | grep -c "^[a-z]\{1,\}$") -gt 0 ]; then
-    sandbox="$sandbox-sbx"
-  elif [ $(echo $sandbox | grep -c "^[0-9]\{1,3\}\.[0-9]\{1,3\}$") -gt 0 ]; then
-    sandbox="192.168.$sandbox"
-  fi
-  
-  line="$line $command"
-  if [[ -n $sandbox ]]; then
-    line="$line -s $sandbox"
-  fi
-  
-  if [[ -n $port ]]; then
-    line="$line -p $port"
-  fi
-  
-  if [ $verbose -eq 1 ]; then
-    line="$line -v"
-  fi
-  
-  if [ $log -eq 1 ]; then
-    echo $line
-  fi
-  $line
 }
 
 linkFiles() {
@@ -281,11 +182,6 @@ unlinkFiles() {
       fi
     fi
   done
-}
-
-subid() {
-  echo '1hgfcmbh1s5xdn1'
-  echo '1hgfcmbh1s5xdn1' | xclip -selection clipboard
 }
 
 resolve() {
