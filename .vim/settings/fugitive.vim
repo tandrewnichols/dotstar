@@ -25,13 +25,16 @@ command! -nargs=0 Gnuke :call <SID>GitWrapper('nuke')
 command! -nargs=0 Gconf :e ~/.gitconfig
 command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
 command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
+command! -nargs=0 Push :silent call system('push') | redraw!
+command! -nargs=0 GOpenPR :silent call system('pr') | redraw!
+command! -nargs=0 Gci :silent call system('ci') | redraw!
 
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
+nnoremap <silent> <leader>gp :Push<CR>
 nnoremap <silent> <leader>ga :Gstage<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gu :Gunstage<CR>
