@@ -323,3 +323,5 @@ if [ -z "$TMUX" ]; then
     tmux new -s $session
   fi
 fi
+
+# export CDPATH=".:/Users/AndrewNichols/code/anichols/manta/manta-frontend:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/modules:/Users/AndrewNichols/code/anichols/apps:/Users/AndrewNichols/code/anichols/generators:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/grunt-plugins:/Users/AndrewNichols/code/anichols/forks:/Users/AndrewNichols/code/anichols"
