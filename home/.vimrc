@@ -42,7 +42,8 @@ set incsearch
 set showmatch
 set shiftround
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=longest,full
+" set wildmode=longest:full,full
 set autoread
 set history=1000
 set tabpagemax=50
