@@ -317,7 +317,7 @@ if [ -z "$TMUX" ]; then
   if [ -z "$list" ]; then
     tmux new -s anichols
   else
-    index=`echo $list | wc -l`
+    index=`echo "$list" | wc -l`
     index=$((index + 1))
     session=anichols${index}
     tmux new -s $session
