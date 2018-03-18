@@ -1,0 +1,6 @@
+.DS_Store
+*~
+*.sw*
+.tern-project
+.projections.json
+**/tags

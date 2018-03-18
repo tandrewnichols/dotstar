@@ -24,8 +24,6 @@ linkFiles() {
 linkFiles home
 linkFiles .vim $HOME/.vim
 linkFiles bin $HOME/bin
-
-echo "Linking $PWD/.config/powerline to $HOME/.config/powerline"
-ln -sf $PWD/.config/powerline $HOME/.config/powerline
+linkFiles .config $HOME/.config
 
 shopt -u dotglob
