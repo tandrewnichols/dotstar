@@ -1,2 +1,4 @@
-command! -nargs=0 Tweet :silent call system('tweet <f-args>') | redraw!
-
+function! s:Tweet(...)
+  silent call system('tweet ' . shellescape(join(a:000, ' ')))
+endfunction
+command! -nargs=* Tweet :call s:Tweet('<args>')
