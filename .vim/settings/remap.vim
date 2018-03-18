@@ -25,9 +25,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" Make Y yank to end of line (and still work with yankring)
-function! YRRunAfterMaps()
-  nnoremap Y :<C-U>YRYankCount 'y$'<CR>
-endfunction
-
+" The default shiftwidth for linebreaks in vimscript is (absurdly)
+" 3 TIMES shiftwidth by default. Let's be more reasonable, Bram.
 let g:vim_indent_cont = &sw

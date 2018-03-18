@@ -22,3 +22,14 @@ let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_paste_using_g = 0
 
 nnoremap <leader>y :YRShow<CR>
+
+" Make Y yank to end of line (and still work with yankring)
+function! YRRunAfterMaps()
+  nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+  " Overwrite ib and ab to mean paragraph in order to
+  " free up p to mean previous for targets.vim
+  xnoremap ab ap
+  onoremap ab ap
+  xnoremap ib ip
+  onoremap ib ip
+endfunction

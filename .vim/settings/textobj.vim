@@ -77,14 +77,24 @@ onoremap <silent> aCo :call TextObjWordBasedColumn("aW")<CR>
 onoremap <silent> ico :call TextObjWordBasedColumn("iw")<CR>
 onoremap <silent> iCo :call TextObjWordBasedColumn("iW")<CR>
 
-xmap an <Plug>(textobj-lastpat-n)
-omap an <Plug>(textobj-lastpat-n)
-xmap in <Plug>(textobj-lastpat-n)
-omap in <Plug>(textobj-lastpat-n)
-xmap aN <Plug>(textobj-lastpat-N)
-omap aN <Plug>(textobj-lastpat-N)
-xmap iN <Plug>(textobj-lastpat-N)
-omap iN <Plug>(textobj-lastpat-N)
+xmap aN <Plug>(textobj-lastpat-n)
+omap aN <Plug>(textobj-lastpat-n)
+xmap iN <Plug>(textobj-lastpat-n)
+omap iN <Plug>(textobj-lastpat-n)
+xmap aP <Plug>(textobj-lastpat-N)
+omap aP <Plug>(textobj-lastpat-N)
+xmap iP <Plug>(textobj-lastpat-N)
+omap iP <Plug>(textobj-lastpat-N)
+
+" b for block, as in paragraph, not the
+" standard ab and ib block which can also
+" be done with { and }.
+" See ../yankring.vim
+" xnoremap ab ap
+" onoremap ab ap
+" xnoremap ib ip
+" onoremap ib ip
+let g:targets_nl = 'np'
 
 "======textobjs=======
 " " = quotes
@@ -111,7 +121,8 @@ omap iN <Plug>(textobj-lastpat-N)
 " Co = columns, but bigger?
 " E = ERB interpolation
 " M = mustache tag (contents of the tag, linewise)
-" N = lastpat backwards
+" N = lastpat forwards
+" P = lastpat backwards
 " S = space
 " W = WORD
 " [ = brackets
@@ -120,7 +131,7 @@ omap iN <Plug>(textobj-lastpat-N)
 " _ = underscores
 " ` = backticks
 " a = argument
-" b = parens
+" b = block
 " cs = css
 " cc = comment
 " co = column
@@ -136,9 +147,9 @@ omap iN <Plug>(textobj-lastpat-N)
 " i = indent
 " l = line
 " m = mustache tag(contents of the tag, non-linewise)
-" n = lastpat forwards
+" n = next
 " o = object path
-" p = paragraph
+" p = previous
 " q = quote
 " s = sentence
 " t = tag
