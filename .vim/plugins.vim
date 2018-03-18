@@ -22,6 +22,10 @@ if !exists('g:bones')
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
+  Plug 'tpope/vim-rsi'
+  " If marcos with <Esc> don't work
+  " try this instead.
+  " Plug 'vim-utils/vim-husk'
   " Plug 'tpope/vim-classpath'
 
   " Filetype plugins
