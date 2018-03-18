@@ -1,4 +1,4 @@
-function! s:SystemClipboard(type, let)
+function! s:SystemClipboard(type, let) abort
   let reg="+"
   if g:isMac
     let reg="*"
@@ -10,20 +10,20 @@ function! s:SystemClipboard(type, let)
   endif
 endfunction
 
-function! s:yOpfunc(type)
-  :call s:SystemClipboard(a:type, 'y')
+function! s:yOpfunc(type) abort
+  call s:SystemClipboard(a:type, 'y')
 endfunction
 
-function! s:dOpfunc(type)
-  :call s:SystemClipboard(a:type, 'd')
+function! s:dOpfunc(type) abort
+  call s:SystemClipboard(a:type, 'd')
 endfunction
 
-function! s:sOpfunc(type)
-  :call s:SystemClipboard(a:type, 's')
+function! s:sOpfunc(type) abort
+  call s:SystemClipboard(a:type, 's')
 endfunction
 
-function! s:cOpfunc(type)
-  :call s:SystemClipboard(a:type, 'c')
+function! s:cOpfunc(type) abort
+  call s:SystemClipboard(a:type, 'c')
 endfunction
 
 nnoremap <silent> <leader>;y :set opfunc=<SID>yOpfunc<CR>g@
