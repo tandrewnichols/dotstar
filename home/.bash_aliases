@@ -64,6 +64,7 @@ alias vimbones="vim --cmd 'let g:bones=1'"
 alias vimpure="vim --cmd 'let g:noplugins=1'"
 alias neo=ineo
 alias ..="cd .."
+alias r="ranger"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
