@@ -12,7 +12,7 @@ command! -nargs=0 HelpGuide call s:ToggleHelpGuide()
 
 augroup Help
   au!
-  au Filetype help nnoremap q q
+  au Filetype help nnoremap q :q<CR>
   au Filetype help nnoremap <buffer> <leader>h :setf text<CR>
   au Filetype text nnoremap <buffer> <leader>h :setf help<CR>
   au Filetype help nnoremap <buffer> <leader>g :HelpGuide<CR>

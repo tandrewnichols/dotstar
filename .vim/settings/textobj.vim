@@ -35,6 +35,47 @@ call textobj#user#plugin('mustchetag', {
 \   }
 \ })
 
+" TODO: end at next block of the same level instead of the next block of any kind
+function! s:SelectContextA() abort
+  call search('x\?\(context\|describe\)\(\.only\)\? ''.\+'', ->', 'bcWz')
+  let start = getpos('.')
+  call search('x\?\(context\|describe\)\(\.only\)\? ''.\+'', ->', 'Wz')
+  let end = getpos('.')
+  return ['V', start, end]
+endfunction
+
+function! s:SelectContextI() abort
+  call search('x\?\(context\|describe\)\(\.only\)\? ''.\+'', ->', 'bcWz')
+  normal! j
+  let start = getpos('.')
+  call search('x\?\(context\|describe\)\(\.only\)\? ''.\+'', ->', 'Wz')
+  normal! k
+  if getline('.') =~ '^$'
+    normal! k
+  endif
+  let end = getpos('.')
+  return ['V', start, end]
+endfunction
+
+let s:sfile = expand("<sfile>")
+
+function! s:CreateTestContextTextObj() abort
+  call textobj#user#plugin('testcontext', {
+    \   'variable': {
+    \     'sfile': s:sfile,
+    \     'select-a': 'aT',
+    \     'select-i': 'iT',
+    \     'select-a-function': 's:SelectContextA',
+    \     'select-i-function': 's:SelectContextI'
+    \   }
+    \ })
+endfunction
+
+augroup TextObjTestContext
+  au!
+  au BufEnter *spec*.coffee call s:CreateTestContextTextObj()
+augroup END
+
 " TODO: implement key/value grabbing
 " call textobj#user#plugin('keyvalue', {
 " \   'kv-i': {

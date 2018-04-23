@@ -1,7 +1,8 @@
 function! depute#inject#angular()
   call search('angular.module', 'sw')
   normal! $F)
-  if getline('.')[col('.') - 2] !~ '[(\s]' 
+  echom 'Char is:' getline('.')[col('.') - 2]
+  if getline('.')[col('.') - 2] !~ '[( ]' 
     normal! i, 
   else
     normal! h

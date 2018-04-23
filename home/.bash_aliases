@@ -40,7 +40,6 @@ alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
-alias conflict="st | grep -P '^[A-Z]{2}'"
 alias pg="pgadmin3"
 alias playdev="export PLAY_ENV=\"dev\""
 alias playtest="export PLAY_ENV=\"test\""
@@ -273,6 +272,14 @@ st() {
     else
       git status -s $1
     fi
+  fi
+}
+
+conflict() {
+  if [ -z $1 ]; then
+    st | grep -P '^[A-Z]{2}'
+  else
+    st $1 | grep -P '^[A-Z]{2}'
   fi
 }
 

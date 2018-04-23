@@ -26,6 +26,8 @@ nnoremap <leader>y :YRShow<CR>
 " Make Y yank to end of line (and still work with yankring)
 function! YRRunAfterMaps()
   nnoremap Y :<C-U>YRYankCount 'y$'<CR>
+  " nnoremap p :<C-U>YRPaste 'p'<CR>=`]
+  " nnoremap P :<C-U>YRPaste 'P'<CR>=`]
   " Overwrite ib and ab to mean paragraph in order to
   " free up p to mean previous for targets.vim
   xnoremap ab ap

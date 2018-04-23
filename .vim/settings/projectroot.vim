@@ -1,4 +1,8 @@
 function! RootRelativeToCwd()
+  if getcwd() == projectroot#guess()
+    return '.'
+  endif
+
   let relative = split(getcwd(), b:projectroot_name . '/')
   if len(relative) == 0
     return b:projectroot_name

@@ -13,7 +13,8 @@ augroup SwitchDefinitions
     \   ['thenResolveWith', 'thenRejectWith'],
     \   ['thenResolve', 'thenReject'],
     \   ['context', 'describe'],
-    \   ['spyOn', 'spyOnAll']
+    \   ['spyOn', 'spyOnAll'],
+    \   ['createSpyObj', 'fluentSpyObj']
     \ ]
   autocmd FileType html let b:switch_custom_definitions =
     \ [

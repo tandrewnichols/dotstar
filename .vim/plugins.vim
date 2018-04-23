@@ -1,6 +1,7 @@
 call plug#begin()
 
 if !exists('g:bones')
+  Plug 'drmikehenry/vim-fixkey'
   Plug 'tmhedberg/matchit'
   Plug 'MarcWeber/vim-addon-mw-utils'
 
@@ -22,10 +23,9 @@ if !exists('g:bones')
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
-  Plug 'tpope/vim-rsi'
   " If marcos with <Esc> don't work
   " try this instead.
-  " Plug 'vim-utils/vim-husk'
+  Plug 'vim-utils/vim-husk'
   " Plug 'tpope/vim-classpath'
 
   " Filetype plugins
@@ -97,7 +97,7 @@ if !exists('g:bones')
   Plug 'kana/vim-operator-user'
   Plug 'kana/vim-grex'
 
-  Plug 'Valloric/MatchTagAlways'
+  " Plug 'Valloric/MatchTagAlways'
   Plug 'kana/vim-submode'
   Plug 'skwp/greplace.vim'
   Plug 'AndrewRadev/switch.vim'
@@ -131,7 +131,7 @@ if !exists('g:bones')
   " Plug '~/code/anichols/vim/vim-graft-node'
   " Plug '~/code/anichols/vim/vim-graft-angular'
   " Plug '~/code/anichols/vim/vim-graft-vim'
-  Plug '~/code/anichols/vim/vim-lodash'
+  Plug '~/code/anichols/vim/vim-vigor'
   Plug '~/code/anichols/vim/vim-rumrunner'
   Plug '~/code/anichols/vim/vim-rebuff'
   Plug '~/code/anichols/vim/vim-girlfriend'

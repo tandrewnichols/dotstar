@@ -25,7 +25,7 @@ command! -nargs=0 Gnuke :call <SID>GitWrapper('nuke')
 command! -nargs=0 Gconf :e ~/.gitconfig
 command! -nargs=0 Gours :call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
 command! -nargs=0 Gtheirs :call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
-command! -nargs=0 Push :silent call system('push') | redraw!
+command! -nargs=0 Push :silent call system('push') | redraw! | echo "Changes pushed"
 command! -nargs=0 GOpenPR :silent call system('pr') | redraw!
 command! -nargs=0 Gci :silent call system('ci') | redraw!
 

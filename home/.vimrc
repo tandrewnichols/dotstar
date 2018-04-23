@@ -3,34 +3,6 @@ set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
 
-" Map meta keys to work correctly with option
-set <M-a>=a
-set <M-b>=b
-set <M-c>=c
-set <M-d>=d
-set <M-e>=e
-set <M-f>=f
-set <M-g>=g
-set <M-h>=h
-set <M-i>=i
-set <M-j>=j
-set <M-k>=k
-set <M-l>=l
-set <M-m>=m
-set <M-n>=n
-set <M-o>=o
-set <M-p>=p
-set <M-q>=q
-set <M-r>=r
-set <M-s>=s
-set <M-t>=t
-set <M-u>=u
-set <M-v>=v
-set <M-w>=w
-set <M-x>=x
-set <M-y>=y
-set <M-z>=z
-
 if !exists('g:noplugins')
   source ~/.vim/plugins.vim
 endif
@@ -99,7 +71,9 @@ set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
 set timeoutlen=500
-set cursorline
+set nocursorline
+set ttyfast
+set lazyredraw
 
 if &term =~ '256color'
   set t_ut=

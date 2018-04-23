@@ -2,7 +2,7 @@ let g:netrw_banner=1
 nnoremap <leader>- :bd<CR>
 
 function! s:NonNetrwMappings()
-  nnoremap <Bar> :Vexplore<CR>
+  nnoremap <buffer> <Bar> :Vexplore!<CR>
   nnoremap <buffer> <leader>+ :Texplore<CR>
 endfunction
 

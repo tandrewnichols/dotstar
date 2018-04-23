@@ -176,6 +176,7 @@ nnoremap \B :Branches<CR>
 nnoremap \c :call <SID>CommitFormat(1)<CR>
 nnoremap \C :call <SID>CommitFormat(0)<CR>
 nnoremap \f :Files<CR>
+nnoremap \F :GFiles<CR>
 nnoremap \g :GFiles?<CR>
 nnoremap \h :History:<CR>
 nnoremap \H :Helptags<CR>

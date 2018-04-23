@@ -60,3 +60,8 @@ call submode#enter_with('jumplist', 'n', '', '[j', '<C-o>')
 call submode#enter_with('jumplist', 'n', '', ']j', '<C-i>')
 call submode#map('jumplist', 'n', '', '[', '<C-o>')
 call submode#map('jumplist', 'n', '', ']', '<C-i>')
+
+call submode#enter_with('changelist', 'n', '', 'g;', 'g;')
+call submode#enter_with('changelist', 'n', '', 'g,', 'g,')
+call submode#map('changelist', 'n', '', ';', 'g;')
+call submode#map('changelist', 'n', '', ',', 'g,')

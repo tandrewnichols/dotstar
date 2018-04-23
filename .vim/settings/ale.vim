@@ -10,8 +10,8 @@ let g:ale_linters = {
   \   'markdown': ['remark-lint']
   \ }
 
-let g:ale_sign_error = '🚨'
-let g:ale_sign_warning = '⚠️'
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '?⚠️'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
@@ -57,7 +57,6 @@ endfunction
 augroup AleConfig
   au!
   au BufEnter *.js call <SID>SetCorrectEslintConfig()
-  au BufEnter *.coffee let b:ale_coffee_coffeelint_options = '-f ~/.coffeelint.json'
 augroup END
 
 " Don't overwrite [c and ]c in diffs
