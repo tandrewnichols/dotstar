@@ -11,25 +11,10 @@ if [[ $OSTYPE == darwin* ]]; then
   brew tap homebrew/dupes
 
   # Install common brew packages
-  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg ag jenv cmake
+  brew install wget git bash tmux imagemagick tree ttygif ttyrec postgresql gnupg ag jenv cmake fzf figlet fontconfig fontforge gswatch gawk gcc46 gifsickle gnu-sed gnu-tar gnutls go highlight hub jpeg jpegoptim openjpeg openssh openssl optipng pandoc phantomjs pixman pkg-config pngout python ranger readline reattach-to-user-namespace ripgrep rsync rust sqlite tidy-html5 upx urlview w3m yank
 
-  # Homebrew TODO
-  #ack coreutils ctags fontconfig fontforge apple-gcc42 binutils diffutils gawk gnutls gzip screen watch
-# TODO
-#brew install ed --default-names
-#brew install findutils --with-default-names
-#brew install gawk
-#brew install gnu-indent --with-default-names
-#brew install gnu-sed --with-default-names
-#brew install gnu-tar --with-default-names
-#brew install gnu-which --with-default-names
-#brew install gnutls
-#brew install grep --with-default-names
-#brew install gzip
-#brew install screen
-#brew install watch
-#brew install wdiff --with-gettext
-#brew install wget
+  brew install gnu-indent gnu-sed gnu-tar gnu-which grep findutils --with-default-names
+  brew install wdiff --with-gettext
  
   # Set shell as the updated bash
   sudo bash -c "echo /usr/local/bin/bash >> /etc/shells"
@@ -91,9 +76,11 @@ fi
 read -p "Press [Enter] to resume install after adding key to github..."
 
 # Clone vim plugins so that +PlugInstall works
-git clone git@github.com:tandrewnichols/vim-graft.git $HOME/code/anichols/vim/vim-graft
-git clone git@github.com:tandrewnichols/vim-graft-node.git $HOME/code/anichols/vim/vim-graft-node
-git clone git@github.com:tandrewnichols/vim-graft-angular.git $HOME/code/anichols/vim/vim-graft-angular
+git clone git@github.com:tandrewnichols/ale.git $HOME/code/anichols/forks/ale
+git clone git@github.com:tandrewnichols/vim-vigor.git $HOME/code/anichols/vim/vim-vigor
+git clone git@github.com:tandrewnichols/vim-rumrunner.git $HOME/code/anichols/vim/vim-rumrunner
+git clone git@github.com:tandrewnichols/vim-rebuff.git $HOME/code/anichols/vim/vim-rebuff
+git clone git@github.com:tandrewnichols/vim-girlfriend.git $HOME/code/anichols/vim/vim-girlfriend
 
 # Install dot files from git repo
 git clone git@github.com:tandrewnichols/dotstar.git $HOME/code/anichols/dotstar
@@ -129,7 +116,8 @@ cd ~/.vim/plugged/YouCompleteMe
 cd -
 
 # Install neo4j-instance
-# curl -L https://raw.githubusercontent.com/tandrewnichols/neo4j-instance/master/neo4j-instance.sh > ~/bin/neo4j-instance && chmod +x ~/bin/neo4j-instance
+curl -sSL https://raw.githubusercontent.com/tandrewnichols/ineo/master/ineo | bash -s install
+source ~/.bashrc
 
 # Clone manta-frontend so I can set up local gitconfig stuff
 git clone git@github.com:mantacode/manta-frontend.git $HOME/code/anichols/manta/manta-frontend
