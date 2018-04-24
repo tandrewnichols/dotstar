@@ -1,0 +1,152 @@
+{
+  "client/app/js/*.js": {
+    "alternate": "client/spec/{}-spec.coffee"
+  },
+  "client/app/js/controllers/*.js": {
+    "type": "controller",
+    "template": [
+      "angular.module('app').controller('{basename|camelcase|capitalize}', function($scope) {",
+      "  ",
+      "});"
+    ]
+  },
+  "client/app/js/controllers/components/*.js": {
+    "template": [
+      "angular.module('app').controller('{basename|camelcase|capitalize}', function() {",
+      "  var vm = this;",
+      "",
+      "  /* Interface */",
+      "});"
+    ]
+  },
+  "client/app/js/directives/components/*.js": {
+    "type": "component",
+    "path": ["client/app/templates"],
+    "alternate": "client/app/templates/components/{}.html",
+    "template": [
+      "angular.module('app').directive('{basename|camelcase}', function() {",
+      "  return {",
+      "    restrict: 'E',",
+      "    templateUrl: 'components/{basename}.html',",
+      "    controllerAs: 'vm',",
+      "    bindToController: true,",
+      "    controller: '{basename|camelcase|capitalize}ComponentController',",
+      "    scope: {",
+      "      ~%",
+      "    }",
+      "  };",
+      "});"
+    ]
+  },
+  "client/app/js/directives/admin/*.js": {
+    "type": "component",
+    "path": ["client/app/templates"],
+    "alternate": "client/app/templates/admin/{}.html",
+    "template": [
+      "angular.module('app').directive('{basename|camelcase}', function() {",
+      "  return {",
+      "    restrict: 'E',",
+      "    templateUrl: 'admin/{basename}.html',",
+      "    controllerAs: 'vm',",
+      "    bindToController: true,",
+      "    scope: {",
+      "    }",
+      "  };",
+      "});"
+    ]
+  },
+  "client/app/js/directives/*.js": {
+    "type": "directive",
+    "template": [
+      "angular.module('app').directive('{camelcase}', function() {",
+      "  return {",
+      "  };",
+      "});"
+    ],
+    "path": ["client/app/templates"]
+  },
+  "client/app/js/services/*.js": {
+    "type": "service",
+    "template": [
+      "angular.module('app').factory('{camelcase|capitalize}', function() {",
+      "  var service = {",
+      "    ",
+      "  };",
+      "",
+      "  return service;",
+      "});"
+    ]
+  },
+  "client/app/templates/*.html": {
+    "type": "template",
+    "path": "client/app/templates"
+  },
+  "client/app/templates/components/*.html": {
+    "type": "componentTemplate",
+    "alternate": "client/app/js/directives/components/{}.js"
+  },
+  "client/spec/*-spec.coffee": {
+    "type": "spec",
+    "alternate": "client/app/js/{}.js"
+  },
+  "server/views/*.html": {
+    "type": "view",
+    "path": ["server/views/partials"]
+  },
+  "server/views/partials/*.html": {
+    "type": "partial",
+    "path": ["server/views/partials"]
+  },
+  "server/*.js": {
+    "alternate": "server/spec/{}-spec.coffee"
+  },
+  "server/routes/*.js": {
+    "type": "router",
+    "template": [
+      "const router = module.exports = require('express').Router();",
+      "const middleware = require('../lib/middleware');",
+      "const gateway = require('../lib/gateway-funnel');",
+      "const _ = require('lodash');",
+      "",
+      "router.get('*', handler);",
+      "",
+      "function handler(req, res, next) {",
+      "  req.stats.pageName = '{basename}';",
+      "  gateway.pour(req, [], (err, data) => {",
+      "    if (err) {",
+      "      next(err);",
+      "    } else {",
+      "      req.template = {",
+      "        name: '{basename}',",
+      "        builder: false,",
+      "        data: data",
+      "      };",
+      "      next();",
+      "    }",
+      "  });",
+      "}"
+    ]
+  },
+  "server/lib/middleware/*.js": {
+    "type": "middleware"
+  },
+  "server/lib/data-builders/*.js": {
+    "type": "builder",
+    "template": [
+      "exports.build = (req, data) => {",
+      "  return {",
+      "    ",
+      "  };",
+      "};"
+    ]
+  },
+  "server/config/ftoggle.*.json": {
+    "type": "ftoggle"
+  },
+  "server/config/app.*.json": {
+    "type": "config"
+  },
+  "server/spec/*-spec.coffee": {
+    "alternate": "server/{}.js"
+  }
+}
