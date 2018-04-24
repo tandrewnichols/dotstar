@@ -14,7 +14,7 @@ linkFiles() {
   fi
   for file in $from
   do
-    if [ -f $file ] || [[ "$file" == */.vim/settings ]] || [[ "$file" == */.vim/snippets ]]; then
+    if [ -f $file ] || [[ "$file" == */.vim/settings ]] || [[ "$file" == */.vim/snippets ]] || [[ "$file" == */.vim/after ]]; then
       echo "Linking $file to $to/$(basename $file)"
       ln -sf $file $to/$(basename $file)
     fi
@@ -23,6 +23,8 @@ linkFiles() {
 
 linkFiles home
 linkFiles .vim $HOME/.vim
+linkFiles .vim/autoload $HOME/.vim/autoload
+ln -sf .vim/autoload/depute $HOME/.vim/autoload/depute
 linkFiles bin $HOME/bin
 linkFiles .config $HOME/.config
 
