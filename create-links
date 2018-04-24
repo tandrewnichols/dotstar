@@ -25,6 +25,7 @@ linkFiles home
 linkFiles .vim $HOME/.vim
 linkFiles .vim/autoload $HOME/.vim/autoload
 ln -sf .vim/autoload/depute $HOME/.vim/autoload/depute
+linkFiles .config $HOME/.config
 linkFiles bin $HOME/bin
 linkFiles .config $HOME/.config
 
