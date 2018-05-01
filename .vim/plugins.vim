@@ -10,7 +10,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-dispatch'
+  " Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
@@ -25,7 +25,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-ragtag'
   " If marcos with <Esc> don't work
   " try this instead.
-  Plug 'vim-utils/vim-husk'
+  " Plug 'vim-utils/vim-husk'
   " Plug 'tpope/vim-classpath'
 
   " Filetype plugins
