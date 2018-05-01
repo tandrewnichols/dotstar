@@ -1,4 +1,5 @@
 *.swp
+.config/ranger/colorschemes/*.pyo
 .vim/plugged/
 .vim/.netrwhist
 .vim/backups/
