@@ -65,8 +65,8 @@ nmap gR <Plug>(operator-ripgrep-rel)
 vmap gR <Plug>(operator-ripgrep-rel)
 call operator#user#define('ripgrep-rel', 'OperatorRip', 'call SetRipOpDir(expand("%:h"))')
 
-nmap g- <Plug>(operator-ripgrep-cwd)
-vmap g- <Plug>(operator-ripgrep-cwd)
+nmap g. <Plug>(operator-ripgrep-cwd)
+vmap g. <Plug>(operator-ripgrep-cwd)
 call operator#user#define('ripgrep-cwd', 'OperatorRip', 'call SetRipOpDir(getcwd())')
 
 let s:actions = {
