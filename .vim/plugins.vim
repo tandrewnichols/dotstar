@@ -1,7 +1,6 @@
 call plug#begin()
 
 if !exists('g:bones')
-  Plug 'drmikehenry/vim-fixkey'
   Plug 'tmhedberg/matchit'
   Plug 'MarcWeber/vim-addon-mw-utils'
 
@@ -25,7 +24,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-ragtag'
   " If marcos with <Esc> don't work
   " try this instead.
-  " Plug 'vim-utils/vim-husk'
+  Plug 'vim-utils/vim-husk'
   " Plug 'tpope/vim-classpath'
 
   " Filetype plugins
@@ -49,7 +48,7 @@ if !exists('g:bones')
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
-  Plug 'vim-scripts/Gundo'
+  Plug 'mbbill/undotree'
   " Plug 'w0rp/ale'
   Plug '~/code/anichols/forks/ale'
   Plug 'Lokaltog/vim-easymotion'
