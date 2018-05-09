@@ -1,3 +1,5 @@
+let g:textobj_matchit_no_default_key_mappings = 1
+
 call textobj#user#plugin('object', {
 \   'path': {
 \     'pattern': "[\$a-zA-Z0-9_.]\*",
