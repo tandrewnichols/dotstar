@@ -1,3 +1,5 @@
+autocmd QuickFixCmdPost *grep* cwindow
+
 function! s:GitWrapper(action)
   silent exec ":silent Git" a:action
   redraw!
