@@ -85,5 +85,5 @@ endfunction
 
 augroup TestOnly
   au!
-  au BufRead,BufNew */spec*/*,*/test/* call s:CreateMappings()
+  au BufRead,BufNew */spec*/*,*/test/*,*/*-spec* call s:CreateMappings()
 augroup END
