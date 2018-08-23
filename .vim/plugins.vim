@@ -19,7 +19,9 @@ if !exists('g:bones')
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-heroku'
-  Plug 'tpope/vim-projectionist'
+  Plug 'tpope/vim-dadbod'
+  Plug 'tandrewnichols/vim-projectionist', { 'branch': 'patch-1' }
+  " Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
   " If marcos with <Esc> don't work
@@ -31,7 +33,7 @@ if !exists('g:bones')
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
+  " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
   " Plug 'digitaltoad/vim-jade'
@@ -61,7 +63,6 @@ if !exists('g:bones')
   Plug 'milkypostman/vim-togglelist'
   Plug 'SirVer/ultisnips'
   Plug 'machakann/vim-swap'
-  Plug 'benmills/vimux'
   Plug 'unblevable/quick-scope'
   Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
