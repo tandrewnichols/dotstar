@@ -15,7 +15,7 @@ let g:ale_sign_warning = '?⚠️'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
+" let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
 let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 
 " TODO: Pending a patch to ALE
@@ -37,16 +37,19 @@ let g:ale_pattern_options = {
 
 function! s:SetCorrectEslintConfig()
   let currentFile = expand("%:p")
-  let project = projectroot#guess(currentFile)
-  let eslintFile = project . '/.eslint.json'
+  if empty(get(b:, "projectroot"))
+    let b:projectroot = projectroot#guess()
+  endif
+
+  let eslintFile = b:projectroot . '/.eslint.json'
 
   if currentFile =~ 'manta-frontend/client'
     " Check for client first
-    let eslintFile = project . '/.eslint.client.json'
-  elseif project =~ 'manta-frontend'
+    let eslintFile = b:projectroot . '/.eslint.client.json'
+  elseif b:projectroot =~ 'manta-frontend'
     " Always use the server eslint for everything in manta-frontend
     " that's not in client
-    let eslintFile = project . '/.eslint.server.json'
+    let eslintFile = b:projectroot . '/.eslint.server.json'
   elseif empty(glob(eslintFile))
     let eslintFile = '~/.eslint.json'
   endif
@@ -54,9 +57,21 @@ function! s:SetCorrectEslintConfig()
   let b:ale_javascript_eslint_options = '-c ' . eslintFile
 endfunction
 
+function! s:SetCorrectStylelintConfig()
+  let currentfile = expand("%:p")
+  let stylelintFile = b:projectroot . '/stylelint.json'
+
+  if empty(glob(stylelintFile))
+    let stylelintFile = '~/stylelint.json'
+  endif
+
+  let b:ale_less_stylelint_options = '--config ' . stylelintFile
+endfunction
+
 augroup AleConfig
   au!
   au BufEnter *.js call <SID>SetCorrectEslintConfig()
+  au BufEnter *.less call <SID>SetCorrectStylelintConfig()
 augroup END
 
 " Don't overwrite [c and ]c in diffs
