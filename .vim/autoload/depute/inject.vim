@@ -1,5 +1,5 @@
 function! depute#inject#angular()
-  call search('angular.module', 'sw')
+  call search('\.\(controller\|service\|factory\|filter\|provider\)(', 'sw')
   normal! $F)
   echom 'Char is:' getline('.')[col('.') - 2]
   if getline('.')[col('.') - 2] !~ '[( ]' 
