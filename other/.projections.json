@@ -1,61 +1,98 @@
 {
-  "client/app/js/*.js": {
-    "alternate": "client/spec/{}-spec.coffee"
+  "client/app/filters/*.js": {
+    "alternate": "client/spec/filters/{}-spec.coffee"
   },
-  "client/app/js/controllers/*.js": {
-    "type": "controller",
+  "client/app/admin/controller/*.js": {
+    "alternate": "client/spec/controllers/admin/{}-spec.coffee",
+    "type": "admincontroller",
     "template": [
       "angular.module('app').controller('{basename|camelcase|capitalize}', function($scope) {",
       "  ",
       "});"
     ]
   },
-  "client/app/js/controllers/components/*.js": {
+  "client/app/controllers/*.js": {
+    "type": "controller",
+    "alternate": "client/spec/controllers/{}-spec.coffee",
     "template": [
-      "angular.module('app').controller('{basename|camelcase|capitalize}', function() {",
-      "  var vm = this;",
+      "angular.module('app').controller('{basename|camelcase|capitalize}', function($scope) {",
+      "  ",
+      "});"
+    ]
+  },
+  "client/app/components/*.js": {
+    "type": "component",
+    "path": ["client/app/components", "client/app/components/{basename}"],
+    "alternate": "client/app/components/{}-spec.coffee",
+    "template": [
+      "angular.module('app')",
+      "  .directive('{basename|camelcase}', function() {",
+      "    return {",
+      "      restrict: 'E',",
+      "      templateUrl: '{}.html',",
+      "      controller: '{basename|camelcase|capitalize}ComponentController',",
+      "      controllerAs: 'vm',",
+      "      bindToController: true,",
+      "      scope: {",
+      "      }",
+      "    };",
+      "  })",
+      "  .controller('{basename|camelcase|capitalize}ComponentController', function() {",
+      "    var vm = this;",
       "",
-      "  /* Interface */",
-      "});"
+      "    /* Interface */",
+      "  });"
     ]
   },
-  "client/app/js/directives/components/*.js": {
-    "type": "component",
-    "path": ["client/app/templates"],
-    "alternate": "client/app/templates/components/{}.html",
+  "client/app/admin/components/*.js": {
+    "type": "admincomponent",
+    "path": ["client/app/admin/components", "client/app/admin/components/{basename}"],
+    "alternate": "client/app/admin/components/{}-spec.coffee",
     "template": [
-      "angular.module('app').directive('{basename|camelcase}', function() {",
-      "  return {",
-      "    restrict: 'E',",
-      "    templateUrl: 'components/{basename}.html',",
-      "    controllerAs: 'vm',",
-      "    bindToController: true,",
-      "    controller: '{basename|camelcase|capitalize}ComponentController',",
-      "    scope: {",
-      "      ~%",
-      "    }",
-      "  };",
-      "});"
+      "angular.module('app')",
+      "  .directive('{basename|camelcase}', function() {",
+      "    return {",
+      "      restrict: 'E',",
+      "      templateUrl: 'admin/{}.html',",
+      "      controller: '{basename|camelcase|capitalize}ComponentController',",
+      "      controllerAs: 'vm',",
+      "      bindToController: true,",
+      "      scope: {",
+      "      }",
+      "    };",
+      "  })",
+      "  .controller('{basename|camelcase|capitalize}ComponentController', function() {",
+      "    var vm = this;",
+      "",
+      "    /* Interface */",
+      "  });"
     ]
   },
-  "client/app/js/directives/admin/*.js": {
-    "type": "component",
-    "path": ["client/app/templates"],
-    "alternate": "client/app/templates/admin/{}.html",
+  "client/app/dev/components/*.js": {
+    "type": "devcomponent",
+    "path": ["client/app/dev/components", "client/app/dev/components/{basename}"],
+    "alternate": "client/app/dev/components/{}-spec.coffee",
     "template": [
-      "angular.module('app').directive('{basename|camelcase}', function() {",
-      "  return {",
-      "    restrict: 'E',",
-      "    templateUrl: 'admin/{basename}.html',",
-      "    controllerAs: 'vm',",
-      "    bindToController: true,",
-      "    scope: {",
-      "    }",
-      "  };",
-      "});"
+      "angular.module('app')",
+      "  .directive('{basename|camelcase}', function() {",
+      "    return {",
+      "      restrict: 'E',",
+      "      templateUrl: 'dev/{}.html',",
+      "      controller: '{basename|camelcase|capitalize}ComponentController',",
+      "      controllerAs: 'vm',",
+      "      bindToController: true,",
+      "      scope: {",
+      "      }",
+      "    };",
+      "  })",
+      "  .controller('{basename|camelcase|capitalize}ComponentController', function() {",
+      "    var vm = this;",
+      "",
+      "    /* Interface */",
+      "  });"
     ]
   },
-  "client/app/js/directives/*.js": {
+  "client/app/directives/*.js": {
     "type": "directive",
     "template": [
       "angular.module('app').directive('{camelcase}', function() {",
@@ -65,7 +102,8 @@
     ],
     "path": ["client/app/templates"]
   },
-  "client/app/js/services/*.js": {
+  "client/app/services/*.js": {
+    "alternate": "client/spec/services/{}-spec.coffee",
     "type": "service",
     "template": [
       "angular.module('app').factory('{camelcase|capitalize}', function() {",
@@ -81,13 +119,21 @@
     "type": "template",
     "path": "client/app/templates"
   },
-  "client/app/templates/components/*.html": {
-    "type": "componentTemplate",
-    "alternate": "client/app/js/directives/components/{}.js"
+  "client/spec/controllers/*-spec.coffee": {
+    "type": "controllerspec",
+    "alternate": "client/app/controllers/{}.js"
   },
-  "client/spec/*-spec.coffee": {
-    "type": "spec",
-    "alternate": "client/app/js/{}.js"
+  "client/spec/controllers/admin/*-spec.coffee": {
+    "type": "admincontrollerspec",
+    "alternate": "client/app/admin/controllers/{}.js"
+  },
+  "client/spec/services/*-spec.coffee": {
+    "type": "servicespec",
+    "alternate": "client/app/services/{}.js"
+  },
+  "client/spec/filters/*-spec.coffee": {
+    "type": "filterspec",
+    "alternate": "client/app/filters/{}.js"
   },
   "server/views/*.html": {
     "type": "view",
@@ -140,8 +186,17 @@
       "};"
     ]
   },
-  "server/config/ftoggle.*.json": {
-    "type": "ftoggle"
+  "server/lib/data-summoners/*.js": {
+    "type": "summoner",
+    "template": [
+      "exports.makeSummoner = (params, req) => {",
+      "  return {",
+      "    summon: (cb, dependencies) => {",
+      "      ",
+      "    }",
+      "  };",
+      "};"
+    ]
   },
   "server/config/app.*.json": {
     "type": "config"
