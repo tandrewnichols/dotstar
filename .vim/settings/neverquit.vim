@@ -1,6 +1,6 @@
 " Don't allow quitting vim with JUST q (type quit or wq).
 " Learn to stay in vim for more things.
-cnoreabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>
+call vigor#map#cremap('q', 'close', { 'mode': ':' })
 
 function! s:ToggleNeverQuit(disable)
   redir => abbrevs
