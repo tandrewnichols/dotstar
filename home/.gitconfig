@@ -63,6 +63,7 @@
   root = rev-parse --show-toplevel
   pkg = "!f() { rm `git root`/package-lock.json; npm i --package-lock-only; }; f"
   review = "!f() { dir=`pwd`; cd `git root`; br `git name`-review; rm -rf node_modules; git fetch origin master; git co FETCH_HEAD -- node_modules; git a; git commit -m \"Remove node_modules for review\"; push; cd $dir; pr; }; f"
+  message = "!f() { rev=$(git rev-parse stash@{$1}) && git drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; f"
 [push]
   default = upstream
 [branch]
