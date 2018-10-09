@@ -2,7 +2,7 @@
   "client/app/filters/*.js": {
     "alternate": "client/spec/filters/{}-spec.coffee"
   },
-  "client/app/admin/controller/*.js": {
+  "client/app/admin/controllers/*.js": {
     "alternate": "client/spec/controllers/admin/{}-spec.coffee",
     "type": "admincontroller",
     "template": [
