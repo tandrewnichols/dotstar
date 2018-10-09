@@ -64,6 +64,8 @@ alias vimpure="vim --cmd 'let g:noplugins=1'"
 alias neo=ineo
 alias ..="cd .."
 alias r="ranger"
+alias aliases="rg \"^ *alias\" ~/.bash_aliases"
+alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
 # alias cc=clear
 
 # Linux specific aliases
