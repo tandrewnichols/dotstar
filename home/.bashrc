@@ -222,11 +222,6 @@ else
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 fi
 
-# added by travis gem
-if [ -e ~/.travis/travis.sh ]; then
-  source ~/.travis/travis.sh
-fi
-
 if [[ $OSTYPE == darwin* ]]; then
   ssh-add ~/.ssh/manta_rsa &>/dev/null
   ssh-add ~/.ssh/anichols_rsa &>/dev/null
