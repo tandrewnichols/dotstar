@@ -25,6 +25,8 @@ if !exists('g:bones')
   Plug 'tpope/vim-ragtag'
   " Plug 'tpope/vim-classpath'
 
+  Plug 'vim-utils/vim-husk'
+
   " Filetype plugins
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
@@ -116,12 +118,18 @@ if !exists('g:bones')
   Plug 'wellle/visual-split.vim'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-reload'
+  Plug 'AaronLasseigne/yank-code'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
   Plug '~/code/anichols/vim/vim-rumrunner'
   Plug '~/code/anichols/vim/vim-rebuff'
   Plug '~/code/anichols/vim/vim-girlfriend'
+  Plug '~/code/anichols/vim/vim-determined'
+  Plug '~/code/anichols/vim/vim-whelp'
+  Plug '~/code/anichols/vim/vim-headfirst'
+  Plug '~/code/anichols/vim/vim-docile'
+  Plug '~/code/anichols/vim/vim-tapir'
 
   " Last to override any settings
   Plug 'editorconfig/editorconfig-vim'
