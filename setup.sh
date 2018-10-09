@@ -145,6 +145,10 @@ git clone git@github.com:tandrewnichols/vim-vigor.git $HOME/code/anichols/vim/vi
 git clone git@github.com:tandrewnichols/vim-rumrunner.git $HOME/code/anichols/vim/vim-rumrunner
 git clone git@github.com:tandrewnichols/vim-rebuff.git $HOME/code/anichols/vim/vim-rebuff
 git clone git@github.com:tandrewnichols/vim-girlfriend.git $HOME/code/anichols/vim/vim-girlfriend
+git clone git@github.com:tandrewnichols/vim-determined.git $HOME/code/anichols/vim/vim-determined
+git clone git@github.com:tandrewnichols/vim-whelp.git $HOME/code/anichols/vim/vim-whelp
+git clone git@github.com:tandrewnichols/vim-headfirst.git $HOME/code/anichols/vim/vim-headfirst
+git clone git@github.com:tandrewnichols/vim-docile.git $HOME/code/anichols/vim/vim-docile
 
 # Install dot files from git repo
 echo "\[\033[0;36m\]Cloning dotfiles.\[\033[0m\]"
@@ -276,12 +280,10 @@ git config --local user.name "Andrew Nichols"
 git config --local user.email "anichols@manta.com"
 cd $HOME
 
-# Setup vim plugins
-# doesn't work?
-# vim +PlugInstall +qall
+vim -u NONE -c "PlugInstall" -c q
+
 echo "Don't forget the following manual steps:"
 echo ""
 echo "  \[\033[1;30m\]1\[\033[0m\]. Run tmux \[\033[0;32m\]Prefix + I\[\033[0m\] to install tmux plugins"
-echo "  \[\033[1;30m\]2\[\033[0m\]. Exit your and restart your shell so you're using the right version of vim"
-echo "  \[\033[1;30m\]3\[\033[0m\]. Run \[\033[0;32m\]vimpure\[\033[0m\] and then \[\033[0;32m\]:PlugInstall\[\033[0m\] to install all plugins"
+echo "  \[\033[1;30m\]2\[\033[0m\]. Exit and restart your shell so you're using the right version of vim"
 echo "  \[\033[1;30m\]4\[\033[0m\]. Set your Terminal font to \[\033[0;32m\]Meslo LG S Powerline, Regular 12 point\[\033[0m\]"
