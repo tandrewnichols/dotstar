@@ -1,10 +1,28 @@
+nnoremap <C-w><C-f> <C-w>vgf
+
 call girlfriend#register#directory('manta-frontend', {
+  \   'server/routes/*': {
+  \     'suffixesadd': ['js', 'html'],
+  \     'path': ['server/views', 'server/lib/data-builders'],
+  \     'includeexpr': 'join([v:fname, "index"], "/")',
+  \     'scopes': [
+  \       {
+  \         'pattern': [
+  \           'name: ''\zs\f\+\ze''' 
+  \         ]
+  \       },
+  \       {
+  \         'pattern': [
+  \           'builder: ''\zs\f\+\ze''' 
+  \         ]
+  \       }
+  \     ]
+  \   },
   \   'server/views/*': {
   \     'suffixesadd': 'html',
   \     'path': 'server/views/partials',
   \     'scopes': [
   \       {
-  \         'ft_whitelist': 'html',
   \         'pattern': [
   \           '{{>\s*\zs\f\+\ze\s*}}'
   \         ]
@@ -13,18 +31,27 @@ call girlfriend#register#directory('manta-frontend', {
   \   },
   \   'client/app/*': {
   \     'suffixesadd': 'js',
-  \     'path': ['client/app/templates', 'client/app/js/directives/**', 'client/app/js/controllers/**', 'client/app/js/services'],
-  \     'includeexpr': 'g:Abolish.dashcase(v:fname)',
+  \     'path': [
+  \       'client/app/directives/**',
+  \       'client/app/controllers/**',
+  \       'client/app/admin/controllers/**',
+  \       'client/app/components/**',
+  \       'client/app/admin/components/**',
+  \       'client/app/services',
+  \       'client/app/templates',
+  \       'client/app/admin/templates'
+  \     ],
+  \     'includeexpr': 'v:fname =~ "/" ? substitute(v:fname, "^admin/", "", "") : g:Abolish.dashcase(v:fname)',
   \     'scopes': [
   \       {
-  \         'ft_whitelist': 'javascript',
+  \         'ft_include': 'javascript',
   \         'pattern': [
   \           'templateUrl: ''\zs\f\+\ze''',
   \           'controller: ''\zs\k\+\ze'''
   \         ]
   \       },
   \       {
-  \         'ft_whitelist': 'html',
+  \         'ft_include': 'html',
   \         'pattern': [
   \           '\(ng-\)\?include="''\zs\f\+\ze''',
   \           'ng-controller="\zs\k\+\ze\( as vm\)\?"'
