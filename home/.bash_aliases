@@ -219,8 +219,8 @@ gh() {
 }
 
 ghtag() {
-  version=`npm version | head -1 | grep -o "[0-9\.]\+"`
-  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
+  version=`git describe --tags`
+  open https://github.com/`get_git_user_repo`/releases/new?tag=$version
 }
 
 release() {
@@ -390,5 +390,103 @@ dirty() {
     vim `git status -s | sed s/^...//`
   else
     vim `git status -s $1 | sed s/^...//`
+  fi
+}
+
+vimball() {
+  dir=`pwd`
+  if [[ $# < 2 ]]; then
+    if [[ $# == 0 ]]; then
+      version=1.0.0
+    else
+      version=$1
+    fi
+    parts=(${dir//\// })
+    repo=${parts[-1]}
+  elif [[ $# == 2 ]]; then
+    repo=$1
+    version=$2
+  else
+    echo "Function 'vimball' called with an incorrect number of arguments. Signature is vimball([repo], [version])"
+  fi
+
+  if ! [[ $repo =~ ^vim- ]]; then
+    repo=vim-$repo
+  fi
+
+  if ! [[ `git describe --tags 2>&1` =~ ^fatal ]]; then
+    oldversion=`git tag --list --sort=-creatordate | head -n 1`
+    if [[ $oldversion =~ ^v ]]; then
+      oldversion=${oldversion:1}
+    fi
+
+    if [[ $version == "patch" || $version == "minor" || $version == "major" ]]; then
+      versionparts=(${oldversion//./ })
+      major=${versionparts[0]}
+      minor=${versionparts[1]}
+      patch=${versionparts[2]}
+      if [[ $version == "patch" ]]; then
+        version=${major}.${minor}.$((patch + 1))
+      elif [[ $version == "minor" ]]; then
+        version=${major}.$((minor + 1)).0
+      else
+        version=$((major + 1)).0.0
+      fi
+    fi
+
+    if [[ $version =~ ^v ]]; then
+      version=${version:1}
+    fi
+
+    echo -e "Executing \033[0;32mrg -l \"$oldversion\" | xargs sed -i \"s/$oldversion/$version/g\"\033[0m"
+    rg -l "$oldversion" | xargs sed -i "s/$oldversion/$version/g"
+    echo
+    echo -e "Commiting version \033[0;36m$version\033[0m"
+    git commit -am "Version $version"
+    git push
+    echo
+  fi
+
+  echo -e "Tarring repo to \033[0;36m~/code/anichols/vim/dist/$repo-v$version.tar.gz\033[0m"
+  cd ~/code/anichols/vim
+  tar -zcvf dist/$repo-v$version.tar.gz $repo/{plugin,autoload,syntax,after,colors,compiler,ftplugin,indent,keymap,lang,macros,tools,print,spell,pack,tutor,ftdetect,doc/*.txt} 2> /dev/null
+  cd $repo
+  echo
+
+  echo -e "Creating tag \033[0;36mv$version\033[0m"
+  git tag v$version
+  git push --tags
+  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
+  echo
+
+  cd $dir
+}
+
+vimpublish() {
+  version=`git tag --list --sort=-creatordate | head -n 1`
+
+  if [[ $version == 'v1.0.0' ]]; then
+    repo=`get_git_user_repo`
+    echo "Via Plug:
+
+  Plug '$repo'
+  :PlugInstall
+
+Via Vundle:
+
+  Plugin '$repo'
+  :BundleInstall
+
+Via NeoBundle:
+
+  NeoBundle '$repo'
+  :BundleInstall
+
+Via Pathogen:
+
+  git clone https://github.com/$repo.git ~/.vim/bundle/${PWD##*/}" | pbcopy
+    open https://www.vim.org/scripts/add_script.php
+  else
+    open https://www.vim.org/account/index.php
   fi
 }
