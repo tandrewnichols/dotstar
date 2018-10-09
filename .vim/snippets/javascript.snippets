@@ -4,45 +4,16 @@ snippet $s
 	};
 snippet $r
 	$rootScope.$apply()
-snippet cont
-	angular.module('app').controller('${1}', function(${2}) {
-		${0}
-	});
-snippet serv
-	angular.module('app').factory('${1}', function(${2}) {
-		var service = {
-			${0}
-		};
-
-		return service;
-	});
-snippet dir
-	angular.module('app').directive('${1}', function(${2}) {
-		return {
-			link: function($scope, $element, $attributes) {
-				${0}
-			}
-		};
-	});
-snippet comp
-	angular.module('app').directive('${1}', function(${2}) {
-		return {
-			restrict: 'E',
-			templateUrl: 'components/${3}.html',
-			controller: '${4}ComponentController',
-			scope: ${5}
-		};
-	});
 snippet con
 	console.log('${1}:', ${2});${0}
 snippet log
-	console.log('$1:', $1);$0
-snippet m
+	console.log('${1}:', ${1});${0}
+snippet mod
 	module.exports = ${0}
-snippet e
+snippet ex
 	exports.${1} = ${0}
 snippet route
-	function (req, res, next) {
+	function ${1}(req, res, next) {
 		${0}
 	}
 snippet proto
@@ -78,11 +49,11 @@ snippet for
 	}
 snippet r
 	require('${1}')${0}
-snippet d
+snippet des
 	describe('${1}', () => {
 		${0}
 	});
-snippet c
+snippet con
 	context('${1}', () => {
 		${0}
 	});
@@ -92,11 +63,11 @@ snippet it
 	});
 snippet sub
 	subject = require('proxyquire').noCallThru()('${1}')${0}
-snippet b
+snippet bef
 	beforeEach((${1}) => {
 		${0}
 	});
-snippet a
+snippet aft
 	afterEach((${1}) => {
 		${0}
 	});
@@ -125,6 +96,6 @@ snippet RC
 		}
 	}
 snippet vm
-	vm.$1 = $1;$0
+	vm.${1} = ${1};${0}
 snippet dd
 	data

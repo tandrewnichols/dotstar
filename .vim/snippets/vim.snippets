@@ -1,10 +1,23 @@
 snippet nn
-	nnoremap <leader>${1} ${0}
+	nnoremap ${1} ${0}
 snippet in
 	inoremap ${1} ${0}
 snippet vn
-	vnoremap <leader>${1} ${0}
+	vnoremap ${1} ${0}
 snippet xn
-	xnoremap <leader>${1} ${0}
+	xnoremap ${1} ${0}
 snippet on
 	onoremap ${1} ${0}
+snippet cn
+	cnoremap ${1} ${0}
+snippet f
+	function! ${1}(${2}) abort
+		${0}
+	endfunction
+snippet sub
+	substitute(${1}, '${2}', '${3}', '${4}')${0}
+snippet au
+	augroup ${1}
+		au!
+		${0}
+	augroup END
