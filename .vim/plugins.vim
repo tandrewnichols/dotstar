@@ -9,7 +9,6 @@ if !exists('g:bones')
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-endwise'
-  " Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
@@ -24,9 +23,6 @@ if !exists('g:bones')
   " Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
-  " If marcos with <Esc> don't work
-  " try this instead.
-  Plug 'vim-utils/vim-husk'
   " Plug 'tpope/vim-classpath'
 
   " Filetype plugins
@@ -38,7 +34,6 @@ if !exists('g:bones')
   Plug 'lunaru/vim-less'
   " Plug 'digitaltoad/vim-jade'
   Plug 'kchmck/vim-coffee-script'
-  " Plug 'suan/vim-instant-markdown'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
   " Plug 'leafgarland/typescript-vim'
@@ -97,12 +92,10 @@ if !exists('g:bones')
   Plug 'kana/vim-operator-user'
   Plug 'kana/vim-grex'
 
-  " Plug 'Valloric/MatchTagAlways'
   Plug 'kana/vim-submode'
   Plug 'skwp/greplace.vim'
   Plug 'AndrewRadev/switch.vim'
   Plug 'AndrewRadev/splitjoin.vim'
-  " Plug 'AndrewRadev/linediff.vim'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'thinca/vim-visualstar'
   Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -119,18 +112,12 @@ if !exists('g:bones')
   Plug 'junegunn/vim-peekaboo'
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'justinmk/vim-sneak'
-  Plug 'lfilho/cosco.vim'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'wellle/visual-split.vim'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-reload'
 
   " Local plugins
-  " Plug '~/code/anichols/vim/vim-graft'
-  " Plug '~/code/anichols/vim/vim-graft-node'
-  " Plug '~/code/anichols/vim/vim-graft-angular'
-  " Plug '~/code/anichols/vim/vim-graft-vim'
   Plug '~/code/anichols/vim/vim-vigor'
   Plug '~/code/anichols/vim/vim-rumrunner'
   Plug '~/code/anichols/vim/vim-rebuff'
@@ -142,9 +129,5 @@ endif
 
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
-
-" ???
-"Plug 'tpope/vim-sexp-mappings-for-regular-people'
-"Plug 'guns/vim-sexp'
 
 call plug#end()
