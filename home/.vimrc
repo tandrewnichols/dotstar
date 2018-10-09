@@ -68,7 +68,7 @@ set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
 set timeoutlen=500
-set nocursorline
+set cursorline
 set ttyfast
 set lazyredraw
 
