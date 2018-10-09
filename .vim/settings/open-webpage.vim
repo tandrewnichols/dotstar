@@ -20,3 +20,5 @@ function! OpenLodashDocs()
 endfunction
 
 nnoremap <leader>_ :call OpenLodashDocs()<CR>
+
+command! -nargs=1 Open :call s:OpenUrl(<q-args>)
