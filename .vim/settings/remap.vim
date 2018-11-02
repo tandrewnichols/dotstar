@@ -28,3 +28,5 @@ vnoremap k gk
 " The default shiftwidth for linebreaks in vimscript is (absurdly)
 " 3 TIMES shiftwidth by default. Let's be more reasonable, Bram.
 let g:vim_indent_cont = &sw
+
+nnoremap <C-w><C-f> <C-w>vgf 
