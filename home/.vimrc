@@ -52,8 +52,8 @@ augroup filetypes
   au BufNewFile,BufRead *.ejs,*.hbs,*.mustache setf html
   au BufNewFile,BufRead *.md setf markdown
   au BufNewFile,BufRead *.html,*.js,*.jsx,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
-  au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  au FileType less setlocal omnifunc=csscomplete#CompleteCSS
+  au FileType html,css setlocal isk+=45
+  au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
 set scrolloff=3
 set sidescrolloff=15
