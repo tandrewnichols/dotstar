@@ -1,0 +1,24 @@
+policies:
+  ProhibitAutocmdWithNoGroup:
+    enable: true
+
+  ProhibitCommandRelyOnUser:
+    enable: false
+
+  ProhibitNoAbortFunction:
+    enable: true
+
+  ProhibitSetNoCompatible:
+    enable: false
+
+  ProhibitUnnecessaryDoubleQuote:
+    enable: true
+
+  ProhibitUnusedVariable:
+    enable: true
+
+  ProhibitUsingUndeclaredVariable:
+    enable: true
+
+  ProhibitImplicitScopeVariable:
+    enable: false
