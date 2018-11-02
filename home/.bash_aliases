@@ -211,16 +211,16 @@ oops() {
 }
 
 pr() {
-  open https://github.com/`get_git_user_repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
+  open https://github.com/`git repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
 }
 
 gh() {
-  open https://github.com/`get_git_user_repo`
+  open https://github.com/`git repo`
 }
 
 ghtag() {
   version=`git describe --tags`
-  open https://github.com/`get_git_user_repo`/releases/new?tag=$version
+  open https://github.com/`git repo`/releases/new?tag=$version
 }
 
 release() {
@@ -340,21 +340,14 @@ repo() {
   cd $1
 }
 
-get_git_user_repo() {
-  remote=`git config --get remote.origin.url`
-  remote=${remote#*:}
-  remote=${remote:0: -4}
-  echo $remote
-}
-
 # Open current repo on Travis CI
 ci() {
-  open https://travis-ci.org/`get_git_user_repo`/builds
+  open https://travis-ci.org/`git repo`/builds
 }
 
 # Open current repo on codeclimate
 cc() {
-  open https://codeclimate.com/github/`get_git_user_repo`
+  open https://codeclimate.com/github/`git repo`
 }
 
 clean() {
@@ -369,7 +362,7 @@ ifttt() {
   dir=$(git rev-parse --show-toplevel)
   cur=$(node -e "console.log(require('$dir/package.json').name)")
   version=$(node -e "console.log(require('$dir/package.json').version)")
-  url="https://github.com/`get_git_user_repo`/releases/tag/v$version"
+  url="https://github.com/`git repo`/releases/tag/v$version"
   echo "Tweeting the following message:"
   echo "I just published ${cur}@${version}. See $url for details."
   curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
@@ -456,7 +449,7 @@ vimball() {
   echo -e "Creating tag \033[0;36mv$version\033[0m"
   git tag v$version
   git push --tags
-  open https://github.com/`get_git_user_repo`/releases/new?tag=v$version
+  open https://github.com/`git repo`/releases/new?tag=v$version
   echo
 
   cd $dir
@@ -466,7 +459,7 @@ vimpublish() {
   version=`git tag --list --sort=-creatordate | head -n 1`
 
   if [[ $version == 'v1.0.0' ]]; then
-    repo=`get_git_user_repo`
+    repo=`git repo`
     echo "Via Plug:
 
   Plug '$repo'
@@ -489,4 +482,8 @@ Via Pathogen:
   else
     open https://www.vim.org/account/index.php
   fi
+}
+
+lns() {
+  ln -s `realpath $1` $2
 }
