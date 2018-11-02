@@ -7,11 +7,12 @@ let g:ale_linters = {
   \   'coffee': ['coffeelint'],
   \   'html': ['htmlhint'],
   \   'json': ['fixjson', 'jsonlint'],
-  \   'markdown': ['remark-lint']
+  \   'markdown': ['remark-lint'],
+  \   'vim': ['vint']
   \ }
 
 let g:ale_sign_error = '!'
-let g:ale_sign_warning = '?⚠️'
+let g:ale_sign_warning = '?'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
@@ -43,7 +44,7 @@ function! s:SetCorrectEslintConfig()
 
   let eslintFile = b:projectroot . '/.eslint.json'
 
-  if currentFile =~ 'manta-frontend/client'
+  if currentFile =~ 'manta-frontend\d*/client'
     " Check for client first
     let eslintFile = b:projectroot . '/.eslint.client.json'
   elseif b:projectroot =~ 'manta-frontend'
@@ -83,3 +84,6 @@ call submode#enter_with('ale-marker', 'n', 'er', '[c', '&diff ? '':normal! [c<CR
 call submode#enter_with('ale-marker', 'n', 'er', ']c', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
 call submode#map('ale-marker', 'n', 'er', '[', '&diff ? '':normal! [c<CR>'' : ''<Plug>(ale_previous_wrap)''')
 call submode#map('ale-marker', 'n', 'er', ']', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
+
+hi ALEWarningSignAlt cterm=bold ctermfg=yellow
+highlight link ALEWarningSign ALEWarningSignAlt
