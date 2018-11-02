@@ -5,6 +5,9 @@
 !bower_components
 
 -g
+!generated
+
+-g
 !.git
 
 -g
@@ -15,3 +18,6 @@
 
 -g
 !*.map
+
+-g
+!prebid.js
