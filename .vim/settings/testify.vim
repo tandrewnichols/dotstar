@@ -1,6 +1,6 @@
 function! s:GenerateTestFile(filename) abort
-  if a:filename =~ 'manta-frontend/'
-    let file = split(a:filename, 'manta-frontend/')[1]
+  if a:filename =~ 'manta-frontend'
+    let file = split(a:filename, 'manta-frontend\d*/')[1]
     call system('grunt testify:' . file)
     echo " " emoji#for('raised_hands') " Generated test file for" file
   else
@@ -9,9 +9,9 @@ function! s:GenerateTestFile(filename) abort
 endfunction
 
 function! s:MoveTestFile(a, b) abort
-  if a:a =~ 'manta-frontend/' && a:b =~ 'manta-frontend/'
-    let fileA = split(a:a, 'manta-frontend/')[1]
-    let fileB = split(a:b, 'manta-frontend/')[1]
+  if a:a =~ 'manta-frontend' && a:b =~ 'manta-frontend'
+    let fileA = split(a:a, 'manta-frontend\d*/')[1]
+    let fileB = split(a:b, 'manta-frontend\d*/')[1]
     call system('grunt testify:' . fileA . ':' . fileB)
     echo " " emoji#for('raised_hands') " Moved test file for" fileA
   endif
