@@ -1,5 +1,5 @@
 function! s:PlaceCursor()
-  if &modifiable && search('[\~][%]')
+  if &modifiable && search('[~][%]')
     normal! "_ddk
   endif
 endfunction
@@ -34,7 +34,7 @@ let g:projectionist_heuristics = {
   \         "",
   \         "let g:loaded_{} = 1",
   \         "",
-  \         "let g:{}_VERSION = '1.0.0.'"
+  \         "let g:{}_VERSION = '1.0.0'"
   \       ],
   \       "type": "plugin"
   \     },
