@@ -33,7 +33,6 @@
     "no-empty": ["error", {
       "allowEmptyCatch": true
     }],
-    "no-template-curly-in-string": "warn",
     "no-unreachable": "error",
     "valid-typeof": "error",
     "dot-notation": ["error", {
