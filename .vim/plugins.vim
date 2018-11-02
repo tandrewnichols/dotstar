@@ -39,8 +39,6 @@ if !exists('g:bones')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
   " Plug 'leafgarland/typescript-vim'
-  Plug 'ynkdir/vim-vimlparser'
-  Plug 'syngan/vim-vimlint'
   Plug 'othree/csscomplete.vim'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'othree/html5.vim'
@@ -119,6 +117,8 @@ if !exists('g:bones')
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-reload'
   Plug 'AaronLasseigne/yank-code'
+  Plug 'matze/vim-move'
+  Plug 'markonm/traces.vim'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
@@ -130,6 +130,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-headfirst'
   Plug '~/code/anichols/vim/vim-docile'
   Plug '~/code/anichols/vim/vim-tapir'
+  Plug '~/code/anichols/vim/vim-replete'
 
   " Last to override any settings
   Plug 'editorconfig/editorconfig-vim'
