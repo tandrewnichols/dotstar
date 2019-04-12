@@ -66,7 +66,10 @@ alias ..="cd .."
 alias r="ranger"
 alias aliases="rg \"^ *alias\" ~/.bash_aliases"
 alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
-# alias cc=clear
+alias dd=clear
+alias pdev="PLAY_ENV=dev sbt"
+alias ptest="PLAY_ENV=test sbt"
+alias psmoke="PLAY_ENV=smoketest sbt"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then

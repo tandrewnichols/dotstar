@@ -8,8 +8,6 @@ snippet log
 	console.log('${1}:', ${2:$1});${0}
 snippet mod
 	module.exports = ${0}
-snippet ex
-	exports.${1} = ${0}
 snippet route
 	function ${1}(req, res, next) {
 		${0}
@@ -48,13 +46,9 @@ snippet for
 snippet r
 	require('${1}')${0}
 snippet des
-	describe('${1}', () => {
-		${0}
-	});
+	describe('${1}', () => ${0});
 snippet con
-	context('${1}', () => {
-		${0}
-	});
+	context('${1}', () => ${0});
 snippet it
 	it('${1}', (${2}) => {
 		${0}
@@ -62,13 +56,9 @@ snippet it
 snippet sub
 	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet bef
-	beforeEach((${1}) => {
-		${0}
-	});
+	beforeEach((${1}) => ${2});${0}
 snippet aft
-	afterEach((${1}) => {
-		${0}
-	});
+	afterEach((${1}) => ${0});${0}
 snippet sin
 	sinon.stub(${1}, '${2}')${0}
 snippet cal
@@ -81,19 +71,35 @@ snippet ed
 	export default ${0}
 snippet edc
 	export default class ${0}
-snippet ex
-	export ${0}
-snippet x
-	extends ${0}
-snippet RC
-	React.Component {
+snippet react
+	import React from 'react';
+
+	export default class ${1} extends React.PureComponent {
+		propTypes = {
+			${2}
+		};
+
 		render() {
 			return (
 				${0}
-			)
+			);
 		}
 	}
+snippet ex
+	export ${1}
+snippet ec
+	export const ${0}
+snippet ef
+	export function ${0}
+snippet x
+	extends ${0}
 snippet vm
 	vm.${1} = ${1};${0}
 snippet dd
 	data
+snippet icon
+	import { ${1} } from '@fortawesome/free-solid-svg-icons';
+	import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';${0}
+snippet proxy
+	proxyquire = require('proxyquire').noCallThru();
+	${0}

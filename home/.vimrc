@@ -51,7 +51,8 @@ augroup filetypes
   au BufNewFile,BufRead *.less setf less
   au BufNewFile,BufRead *.ejs,*.hbs,*.mustache setf html
   au BufNewFile,BufRead *.md setf markdown
-  au BufNewFile,BufRead *.html,*.js,*.jsx,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
+  au BufNewFile,BufRead *.html,*.js,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
+  au FileType jsx let b:unaryTagsStack = ""
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
 augroup END

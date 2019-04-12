@@ -34,7 +34,7 @@
   arc = "!f() { git tag archive/$1 $1 && git branch -D $1;}; f"
   archived = !git tag --list | grep archive
   d = branch -D
-  purge = remote prune origin
+  rpo = remote prune origin
   cached = diff --cached
   staged = diff --cached
   pop = stash pop

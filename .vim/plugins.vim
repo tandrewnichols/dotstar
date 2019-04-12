@@ -23,14 +23,13 @@ if !exists('g:bones')
   " Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
-  " Plug 'tpope/vim-classpath'
+  Plug 'tpope/vim-classpath'
 
   Plug 'vim-utils/vim-husk'
 
   " Filetype plugins
-  Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'tandrewnichols/javascript-libraries-syntax.vim'
   " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
@@ -131,6 +130,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-docile'
   Plug '~/code/anichols/vim/vim-tapir'
   Plug '~/code/anichols/vim/vim-replete'
+  Plug '~/code/anichols/vim/vim-contemplate'
 
   " Last to override any settings
   Plug 'editorconfig/editorconfig-vim'
@@ -138,5 +138,6 @@ endif
 
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()

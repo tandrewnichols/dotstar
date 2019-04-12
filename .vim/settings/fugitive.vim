@@ -1,4 +1,5 @@
 autocmd QuickFixCmdPost *grep* cwindow
+autocmd FileType qf wincmd L
 
 function! s:GitWrapper(action)
   silent exec ":silent Git" a:action
@@ -88,3 +89,14 @@ augroup GitCommit
   au Filetype gitcommit call s:HandleGitCommit()
   au BufEnter fugitive://* call s:CreateReturnToStatusMapping()
 augroup END
+
+" function! s:checkQf() abort
+"   if !len(getqflist())
+"     silent Glog
+"   endif
+"
+"   cprev
+" endfunction
+"
+" nnoremap ]g :call <SID>checkQf()<CR>
+" nnoremap [g cnext

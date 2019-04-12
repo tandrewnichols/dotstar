@@ -213,18 +213,13 @@ export NEXUS_USERNAME="manta_ro"
 export NEXUS_PASSWORD="px9tlR2IkNP60Y7D7vb2EpP6pRzdoSE7"
 export PLAY_ENV="dev"
 export LOG_PATH="~/code/anichols/manta/play/logs"
-export MAVEN_HOME="/usr/local/Cellar/maven/3.2.3/libexec"
+export MAVEN_HOME="/usr/local/Cellar/maven/3.6.0/libexec"
 export USERNAME="anichols"
 
 if [[ $OSTYPE == darwin* ]]; then
   export USERNAME=anichols
 else
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-fi
-
-if [[ $OSTYPE == darwin* ]]; then
-  ssh-add ~/.ssh/manta_rsa &>/dev/null
-  ssh-add ~/.ssh/anichols_rsa &>/dev/null
 fi
 
 # Pass extra keys through to vim
@@ -244,8 +239,6 @@ function add_before_path() {
     [[ :$PATH: == *":$arg:"* ]] || PATH="$arg:$PATH"
   done
 }
-
-add_after_path ~/activator
 
 if [[ $OSTYPE == darwin* ]]; then
   add_before_path /usr/local/opt/coreutils/libexec/gnubin /usr/local/Cellar/grep/2.18/bin /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/opt/gnu-tar/libexec/gnubin
@@ -321,5 +314,11 @@ fi
 
 export W3MIMGDISPLAY_PATH=`which w3m`
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 
 # export CDPATH=".:/Users/AndrewNichols/code/anichols/manta/manta-frontend:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/modules:/Users/AndrewNichols/code/anichols/apps:/Users/AndrewNichols/code/anichols/generators:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/grunt-plugins:/Users/AndrewNichols/code/anichols/forks:/Users/AndrewNichols/code/anichols"
+
+[ -f ~/.config/manta/mf-completion.bash ] && source ~/.config/manta/mf-completion.bash
+
+export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:~/apache-storm-1.0.2/bin

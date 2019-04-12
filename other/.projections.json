@@ -7,7 +7,7 @@
     "type": "admincontroller",
     "template": [
       "angular.module('app').controller('{basename|camelcase|capitalize}', function($scope) {",
-      "  ",
+      "  ~%",
       "});"
     ]
   },
@@ -16,7 +16,7 @@
     "alternate": "client/spec/controllers/{}-spec.coffee",
     "template": [
       "angular.module('app').controller('{basename|camelcase|capitalize}', function($scope) {",
-      "  ",
+      "  ~%",
       "});"
     ]
   },
@@ -34,6 +34,7 @@
       "      controllerAs: 'vm',",
       "      bindToController: true,",
       "      scope: {",
+      "        ~%",
       "      }",
       "    };",
       "  })",
@@ -58,6 +59,7 @@
       "      controllerAs: 'vm',",
       "      bindToController: true,",
       "      scope: {",
+      "        ~%",
       "      }",
       "    };",
       "  })",
@@ -82,6 +84,7 @@
       "      controllerAs: 'vm',",
       "      bindToController: true,",
       "      scope: {",
+      "        ~%",
       "      }",
       "    };",
       "  })",
@@ -97,6 +100,7 @@
     "template": [
       "angular.module('app').directive('{camelcase}', function() {",
       "  return {",
+      "    ~%",
       "  };",
       "});"
     ],
@@ -108,7 +112,7 @@
     "template": [
       "angular.module('app').factory('{camelcase|capitalize}', function() {",
       "  var service = {",
-      "    ",
+      "    ~%",
       "  };",
       "",
       "  return service;",
@@ -181,7 +185,7 @@
     "template": [
       "exports.build = (req, data) => {",
       "  return {",
-      "    ",
+      "    ~%",
       "  };",
       "};"
     ]
@@ -192,7 +196,7 @@
       "exports.makeSummoner = (params, req) => {",
       "  return {",
       "    summon: (cb, dependencies) => {",
-      "      ",
+      "      ~%",
       "    }",
       "  };",
       "};"

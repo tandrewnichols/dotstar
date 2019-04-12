@@ -1,5 +1,5 @@
 function! s:PlaceCursor()
-  if &modifiable && search('[~][%]')
+  if &modifiable && search('[~][%]') && expand("%:t") !~ 'projections.json'
     normal! "_ddk
   endif
 endfunction
@@ -10,6 +10,55 @@ augroup ProjectionistCursor
 augroup END
 
 let g:projectionist_heuristics = {
+  \   "src/|node_modules/": {
+  \     "src/components/*.js": {
+  \       "type": "component",
+  \       "template": [
+  \         "import React from 'react';",
+  \         "",
+  \         "export default class {basename|capitalize} extends React.Component {",
+  \         "  render() {",
+  \         "    return (",
+  \         "      <div></div>",
+  \         "    );",
+  \         "  }",
+  \         "}"
+  \       ]
+  \     },
+  \     "src/containers/*.js": {
+  \       "type": "container",
+  \       "template": [
+  \         "import {open} connect {close} from 'react-redux';",
+  \         "import {basename|capitalize} from '../components/{basename}';",
+  \         "import * as actions from '../actions/{basename}';",
+  \         "",
+  \         "const mapStateToProps = ({ {basename} }) => {",
+  \         "  return { {basename} };",
+  \         "};",
+  \         "",
+  \         "const mapDispatchToProps = (dispatch) => {",
+  \         "  return {",
+  \         "",
+  \         "  };",
+  \         "};",
+  \         "",
+  \         "export default connect(mapStateToProps, mapDispatchToProps)({basename|capitalize});"
+  \       ]
+  \     },
+  \     "src/reducers/*.js": {
+  \       "type": "reducer",
+  \       "template": [
+  \         "import {open} Map {close} from 'immutable';",
+  \         "",
+  \         "const initialState = Map();",
+  \         "",
+  \         "export function {basename}(state = initialState, action) {",
+  \         "  switch (action.type) {",
+  \         "  }",
+  \         "}"
+  \       ]
+  \     }
+  \   },
   \   "lib/|test/": {
   \     "lib/*.js": {
   \       "alternate": "test/{}.js"
@@ -146,7 +195,7 @@ let g:projectionist_heuristics = {
   \         "",
   \         "The MIT License (MIT)",
   \         "",
-  \         "Copyright (c) 2018 Andrew Nichols",
+  \         "Copyright (c) 2019 Andrew Nichols",
   \         "",
   \         "Permission is hereby granted, free of charge, to any person obtaining a copy of",
   \         "this software and associated documentation files (the \"Software\"), to deal in",
