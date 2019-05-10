@@ -1,1 +1,0 @@
-/Users/andrewnichols/code/anichols/manta/manta-frontend/cli/mf-completion.bash
