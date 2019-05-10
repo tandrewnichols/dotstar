@@ -4,12 +4,12 @@
 if [[ $OSTYPE == darwin* ]]; then
   # Install homebrew
   echo "\[\033[0;36m\]Installing homebrew.\[\033[0m\]"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew fake 2> /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
   brew doctor
 
   brew_install() {
-    brew ls --version $1 || brew install "$@"
+    brew ls $1 2> /dev/null || brew install "$@"
   }
 
   echo "\[\033[0;36m\]Installing homebrew packages.\[\033[0m\]"
@@ -79,7 +79,7 @@ if [[ $OSTYPE == darwin* ]]; then
 
   echo "\[\033[0;36m\]Installing Google Chrome via homebrew.\[\033[0m\]"
   # Install Google Chrome (brew cask FTW)
-  brew ls --version google-chrome || brew cask install google-chrome
+  brew ls google-chrome 2> /dev/null || brew cask install google-chrome
 
 else # If this is Linux
   sudo add-apt-repository -y ppa:pi-rho/dev
@@ -121,22 +121,24 @@ echo "\[\033[0;36m\]Creating common code directories.\[\033[0m\]"
 mkdir -p $HOME/code/anichols/{apps,forks,generators,gists,grunt-plugins,manta,modules,vim}
 
 
-# Generate a key in ~/.ssh/id_rsa with no password
-echo "\[\033[0;36m\]Generating ssh key for github\[\033[0m\]"
-ssh-keygen -t rsa -b 4096 -C "tandrewnichols@gmail.com" -f ~/.ssh/id_rsa -N ""
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+# Generate a key in ~/.ssh/github with no password
+if [ ! -f ~/.ssh/github ]; then
+  echo "\[\033[0;36m\]Generating ssh key for github\[\033[0m\]"
+  ssh-keygen -t rsa -b 4096 -C "tandrewnichols@gmail.com" -f ~/.ssh/github -N ""
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/github
 
-if [[ $OSTYPE == darwin* ]]; then
-  cat ~/.ssh/id_rsa.pub | pbcopy
-  nohup open https://github.com/settings/ssh >& /dev/null &
-else
-  xclip -sel clip < ~/.ssh/id_rsa.pub
-  # Open the ssh settings page on github
-  nohup xdg-open https://github.com/settings/ssh >& /dev/null &
+  if [[ $OSTYPE == darwin* ]]; then
+    cat ~/.ssh/github.pub | pbcopy
+    nohup open https://github.com/settings/ssh >& /dev/null &
+  else
+    xclip -sel clip < ~/.ssh/github.pub
+    # Open the ssh settings page on github
+    nohup xdg-open https://github.com/settings/ssh >& /dev/null &
+  fi
+
+  read -p "Press [Enter] to resume install after adding key to github..."
 fi
-
-read -p "Press [Enter] to resume install after adding key to github..."
 
 # Clone vim plugins so that +PlugInstall works
 echo "\[\033[0;36m\]Cloning local vim plugins.\[\033[0m\]"
@@ -149,10 +151,16 @@ git clone git@github.com:tandrewnichols/vim-determined.git $HOME/code/anichols/v
 git clone git@github.com:tandrewnichols/vim-whelp.git $HOME/code/anichols/vim/vim-whelp
 git clone git@github.com:tandrewnichols/vim-headfirst.git $HOME/code/anichols/vim/vim-headfirst
 git clone git@github.com:tandrewnichols/vim-docile.git $HOME/code/anichols/vim/vim-docile
+git clone git@github.com:tandrewnichols/vim-contemplate.git $HOME/code/anichols/vim/vim-contemplate
+git clone git@github.com:tandrewnichols/vim-dadbod-extensions.git $HOME/code/anichols/vim/vim-dadbod-extensions
+git clone git@github.com:tandrewnichols/vim-debug.git $HOME/code/anichols/vim/vim-debug
+git clone git@github.com:tandrewnichols/vim-replete.git $HOME/code/anichols/vim/vim-replete
+git clone git@github.com:tandrewnichols/vim-tapir.git $HOME/code/anichols/vim/vim-tapir
+git clone git@github.com:tandrewnichols/vim-textobj-xmlattr.git $HOME/code/anichols/vim/vim-textobj-xmlattr
 
 # Install dot files from git repo
 echo "\[\033[0;36m\]Cloning dotfiles.\[\033[0m\]"
-git clone git@github.com:tandrewnichols/dotstar.git $HOME/code/anichols/dotstar
+ls $HOME/code/anichols/dotstar 2> /dev/null || git clone git@github.com:tandrewnichols/dotstar.git $HOME/code/anichols/dotstar
 cd code/anichols/dotstar
 
 echo "\[\033[0;36m\]Installing Plug.\[\033[0m\]"
