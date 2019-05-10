@@ -45,6 +45,7 @@ set autoread
 set history=1000
 set tabpagemax=50
 set completeopt-=preview
+
 augroup filetypes
   au!
   au BufNewFile,BufRead *.json,*.es6,*.jsx setf javascript
@@ -56,6 +57,12 @@ augroup filetypes
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
+
+augroup startup
+  au!
+  au StdinReadPost * :set buftype=nofile
+augroup END
+
 set scrolloff=3
 set sidescrolloff=15
 set sidescroll=1

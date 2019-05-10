@@ -118,6 +118,7 @@ if !exists('g:bones')
   Plug 'AaronLasseigne/yank-code'
   Plug 'matze/vim-move'
   Plug 'markonm/traces.vim'
+  Plug 'rhysd/git-messenger.vim'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
@@ -131,6 +132,8 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-tapir'
   Plug '~/code/anichols/vim/vim-replete'
   Plug '~/code/anichols/vim/vim-contemplate'
+  Plug '~/code/anichols/vim/vim-dadbod-extensions'
+  Plug '~/code/anichols/forks/javascript-libraries-syntax.vim'
 
   " Last to override any settings
   Plug 'editorconfig/editorconfig-vim'
@@ -139,5 +142,6 @@ endif
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'pangloss/vim-javascript'
+" Plug 'rafi/awesome-vim-colorschemes'
 
 call plug#end()

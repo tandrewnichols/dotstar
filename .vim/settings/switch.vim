@@ -54,6 +54,8 @@ augroup SwitchDefinitions
     \     '(\([^)]\{-}\)) =>': 'function(\1)'
     \   },
     \   ['var', 'let', 'const'],
+    \   ['resolves', 'rejects'],
+    \   ['equal', 'eql'],
     \   {
     \     'export default class \([A-Za-z]\+\) extends React\.Component {': 'const \1 = () => {',
     \     'const \([A-Za-z]\+\) = (.*) =>': 'export default class \1 extends React.Component'

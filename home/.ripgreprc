@@ -5,7 +5,7 @@
 !bower_components
 
 -g
-!font-aweseome-pro-5.7.1-web
+!fontawesome-pro-5.7.1-web
 
 -g
 !cli/json-files
@@ -27,3 +27,6 @@
 
 -g
 !prebid.js
+
+-g
+!*.svg
