@@ -64,13 +64,13 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install urlview
   brew_install vim --HEAD
   brew_install w3myank
-  brew_install gnu-indent --with-default-names
-  brew_install gnu-sed --with-default-names
-  brew_install gnu-tar --with-default-names
-  brew_install gnu-which --with-default-names
-  brew_install grep --with-default-names
-  brew_install findutils --with-default-names
-  brew_install brew_install wdiff --with-gettext
+  brew_install gnu-indent
+  brew_install gnu-sed
+  brew_install gnu-tar
+  brew_install gnu-which
+  brew_install grep
+  brew_install findutils
+  brew_install brew_install wdiff
 
   echo "\[\033[0;36m\]Updating shell to /usr/local/bin/bash.\[\033[0m\]"
   # Set shell as the updated bash
