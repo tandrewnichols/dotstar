@@ -215,7 +215,7 @@ export NEXUS_USERNAME="manta_ro"
 export NEXUS_PASSWORD="px9tlR2IkNP60Y7D7vb2EpP6pRzdoSE7"
 export PLAY_ENV="dev"
 export LOG_PATH="~/code/anichols/manta/play/logs"
-export MAVEN_HOME="/usr/local/Cellar/maven/3.6.0/libexec"
+export MAVEN_HOME="/usr/local/Cellar/maven/3.6.1/libexec"
 export USERNAME="anichols"
 
 if [[ $OSTYPE == darwin* ]]; then
