@@ -29,7 +29,6 @@ if !exists('g:bones')
 
   " Filetype plugins
   Plug 'mxw/vim-jsx'
-  Plug 'tandrewnichols/javascript-libraries-syntax.vim'
   " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
