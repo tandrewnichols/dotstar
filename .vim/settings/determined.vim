@@ -1,4 +1,5 @@
 call determined#command('Npm', 'npm', { 'vertical': 0, 'autoclose': 1, 'rows': '5', 'cols': '40%' })
+call determined#command('Run', 'npm run', { 'reuse': 1 })
 call determined#command('Repl', 'node', { 'background': 0 })
 call determined#command('Node', 'node', { 'background': 0, 'vertical': 0, 'rows': '10', 'cols': '40%' })
 call determined#command('Rg', 'rg', { 'expand': 1, 'background': 0, 'reuse': 1, 'complete': replete#byArg('Rg', ['replete#complete#bufwords', 'file'], '-\{1,2}[^ ]\{-} ') })

@@ -167,7 +167,7 @@ function get_ps1_path () {
 if [ -f ~/.git-prompt.sh ]; then
   export GIT_PS1_SHOWDIRTYSTATE=
   # Updates git branch color based on dirty state
-  export PS1=$Yellow'anichols'$Color_Off':'$Cyan'$(get_ps1_path)'$Color_Off'$(git branch &>/dev/null;\
+  export PS1=$Yellow'\u'$Color_Off':'$Cyan'$(get_ps1_path)'$Color_Off'$(git branch &>/dev/null;\
   if [ $? -eq 0 ]; then \
     echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
     if [ "$?" -eq "0" ]; then \
@@ -238,7 +238,10 @@ function add_after_path() {
 function add_before_path() {
   for arg in "$@"
   do
-    [[ :$PATH: == *":$arg:"* ]] || PATH="$arg:$PATH"
+    if [[ :$PATH: == *":$arg:"* ]]; then
+      PATH=${PATH/$arg//}
+    fi
+    PATH="$arg:$PATH"
   done
 }
 
@@ -250,6 +253,8 @@ if [[ $OSTYPE == darwin* ]]; then
     MANPATH="$brewpath/gnuman:$MANPATH"
   done
 fi
+
+add_before_path /usr/local/opt/gnu-getopt/bin
 
 add_after_path $HOME/bin:$HOME/.rvm/bin
 add_after_path /usr/local/opt/go/libexec/bin:/usr/local/opt/rust/bin

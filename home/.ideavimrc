@@ -3,3 +3,4 @@ set scrolloff=3
 set sidescrolloff=5
 set wrapscan
 set ignorecase
+set surround

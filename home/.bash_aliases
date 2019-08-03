@@ -41,8 +41,6 @@ alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias master="git checkout master && git pull"
 alias pg="pgadmin3"
-alias playdev="export PLAY_ENV=\"dev\""
-alias playtest="export PLAY_ENV=\"test\""
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
 alias fe="_goto ~/code/anichols/manta/manta-frontend"
@@ -55,7 +53,6 @@ alias apps="_goto ~/code/anichols/apps"
 alias forks="_goto ~/code/anichols/forks"
 alias generators="_goto ~/code/anichols/generators"
 alias plugins="_goto ~/code/anichols/grunt-plugins"
-alias play="_goto ~/code/anichols/manta/play"
 alias vp="_goto ~/code/anichols/vim"
 alias neo="neo4j-instance"
 alias vi="vim"
@@ -67,9 +64,6 @@ alias r="ranger"
 alias aliases="rg \"^ *alias\" ~/.bash_aliases"
 alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
 alias dd=clear
-alias pdev="PLAY_ENV=dev sbt"
-alias ptest="PLAY_ENV=test sbt"
-alias psmoke="PLAY_ENV=smoketest sbt"
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -490,3 +484,33 @@ Via Pathogen:
 lns() {
   ln -s `realpath $1` $2
 }
+
+findup() {
+  local DIR=$(pwd)
+  while [ ! -z "$DIR" ]; do
+    if [ -e "$DIR/$1" ]; then
+      echo $DIR/$1
+      break
+    else
+      DIR="${DIR%\/*}"
+    fi
+  done
+}
+
+# play() {
+#   port=5700
+#   if [ -n "$2" ]; then
+#     port=$2
+#   fi
+#   if [[ $1 == 'test' ]]; then
+#     local root=$(dirname $(findup .git))
+#     if [ -e $root/dataloader/dataloader.sh ]; then
+#       $root/dataloader/dataloader.sh
+#     fi
+#     PLAY_ENV=test sbt test
+#   elif [[ $1 == 'run' ]]; then
+#     PLAY_ENV=smoketest sbt "run $port"
+#   elif [[ $1 == 'debug' ]]; then
+#     PLAY_ENV=smoketest sbt -jvm-debug 9999 "run $port"
+#   fi
+# }

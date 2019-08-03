@@ -59,6 +59,10 @@ augroup SwitchDefinitions
     \   {
     \     'export default class \([A-Za-z]\+\) extends React\.Component {': 'const \1 = () => {',
     \     'const \([A-Za-z]\+\) = (.*) =>': 'export default class \1 extends React.Component'
+    \   },
+    \   {
+    \     "it('[^']\{-}', () => {": "it('\1', async () => {",
+    \     "it('[^']\{-}', async () => {": "it('\1', () => {"
     \   }
     \ ]
 augroup END

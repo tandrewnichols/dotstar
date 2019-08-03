@@ -59,12 +59,12 @@ let g:projectionist_heuristics = {
   \       ]
   \     }
   \   },
-  \   "lib/|test/": {
-  \     "lib/*.js": {
+  \   "node_modules/|test/": {
+  \     "*.js": {
   \       "alternate": "test/{}.js"
   \     },
   \     "test/*.js": {
-  \       "alternate": "lib/{}.js"
+  \       "alternate": "{}.js"
   \     }
   \   },
   \   "tasks/|test/": {

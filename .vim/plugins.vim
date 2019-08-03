@@ -40,6 +40,7 @@ if !exists('g:bones')
   Plug 'othree/csscomplete.vim'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'othree/html5.vim'
+  Plug 'ElmCast/elm-vim'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
@@ -118,6 +119,7 @@ if !exists('g:bones')
   Plug 'matze/vim-move'
   Plug 'markonm/traces.vim'
   Plug 'rhysd/git-messenger.vim'
+  Plug 'neowit/vim-force.com'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
