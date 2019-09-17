@@ -26,7 +26,10 @@
 !*.map
 
 -g
-!prebid.js
+!prebid.js/
 
 -g
 !*.svg
+
+-g
+!package-lock.json
