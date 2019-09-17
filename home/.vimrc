@@ -57,6 +57,7 @@ augroup filetypes
   au FileType jsx let b:unaryTagsStack = ""
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
+  au FileType netrw setl bufhidden=delete
 augroup END
 
 augroup startup
