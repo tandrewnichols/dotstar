@@ -41,6 +41,7 @@ if !exists('g:bones')
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'othree/html5.vim'
   Plug 'ElmCast/elm-vim'
+  Plug 'jidn/vim-dbml'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
