@@ -5,30 +5,23 @@ shopt -s expand_aliases
 #### PRE-ADDED ALIASES ####
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+if [[ -n `command -v dircolors` ]]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto -G'
+  alias la='ls --color=auto -AG'
+  alias ll='ls --color=auto -AlG'
+  alias l='ls --color=auto -CG'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-if [[ $OSTYPE == darwin* ]]; then
-  alias ls='ls -G'
-  alias la='ls -AG'
-  alias ll='ls -alGF'
-  alias l='ls -CFG'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
+else
+  alias ls='ls -G'
+  alias la='ls -AG'
+  alias ll='ls -AlG'
+  alias l='ls -CG'
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -194,9 +187,16 @@ blogify() {
 
 replace() {
   where=$(git rev-parse --show-toplevel)
-  find=$1
-  replace=$2
-  cmd="mgrep -rl \"$1\" $where | xargs sed -i '' 's/$find/$replace/g'"
+  if [[  -n $3 ]]; then
+    find=$1
+    replace=$2
+    with=$3
+  else
+    find=$1
+    replace=$1
+    with=$2
+  fi
+  cmd="rg -l \"$1\" $where | xargs sed -i 's/$replace/$with/g'"
   echo $cmd
   eval $cmd
 }
