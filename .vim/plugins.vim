@@ -19,6 +19,7 @@ if !exists('g:bones')
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-heroku'
   Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
   Plug 'tandrewnichols/vim-projectionist', { 'branch': 'patch-1' }
   " Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
@@ -135,7 +136,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-tapir'
   Plug '~/code/anichols/vim/vim-replete'
   Plug '~/code/anichols/vim/vim-contemplate'
-  Plug '~/code/anichols/vim/vim-dadbod-extensions'
+  " Plug '~/code/anichols/vim/vim-dadbod-extensions'
   Plug '~/code/anichols/forks/javascript-libraries-syntax.vim'
 
   " Last to override any settings
@@ -145,6 +146,5 @@ endif
 Plug 'flazz/vim-colorschemes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'pangloss/vim-javascript'
-" Plug 'rafi/awesome-vim-colorschemes'
 
 call plug#end()
