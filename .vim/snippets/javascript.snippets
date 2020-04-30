@@ -46,9 +46,13 @@ snippet for
 snippet r
 	require('${1}')${0}
 snippet des
-	describe('${1}', () => ${0});
+	describe('${1}', () => {
+		${0}
+	});
 snippet con
-	context('${1}', () => ${0});
+	context('${1}', () => {
+		${0}
+	});
 snippet it
 	it('${1}', ${2}() => {
 		${0}
@@ -61,10 +65,12 @@ snippet aft
 	afterEach((${1}) => ${0});${0}
 snippet sin
 	sinon.stub(${1}, '${2}')${0}
-snippet cal
-	called${1}.should.be.${2}()${0}
-snippet calledw
-	calledWith(${1}).should.be.${2}()${0}
+snippet she
+	should.eql(${1});${0}
+snippet shc
+	should.have.been.called${0}
+snippet shn
+	should.not.have.been.called();${0}
 snippet im
 	import ${1} from ${0}
 snippet ed
@@ -94,7 +100,7 @@ snippet ef
 snippet x
 	extends ${0}
 snippet vm
-	vm.${1} = ${1};${0}
+	vm.${1} = ${2:$1};${0}
 snippet da
 	data
 snippet icon
@@ -103,3 +109,8 @@ snippet icon
 snippet proxy
 	proxyquire = require('proxyquire').noCallThru();
 	${0}
+# snippet action
+# 	export const $1 = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}');
+# 	export const $1Success = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_SUCCESS');
+# 	export const $1Error = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_ERROR');
+# 	export const $1Pending = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_PENDING');

@@ -56,7 +56,8 @@ alias ..="cd .."
 alias r="ranger"
 alias aliases="rg \"^ *alias\" ~/.bash_aliases"
 alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
-alias dd=clear
+alias dd='clear'
+alias show='pygmentize -f terminal256 -O style=monokai -g'
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -187,7 +188,12 @@ blogify() {
 
 replace() {
   where=$(git rev-parse --show-toplevel)
-  if [[  -n $3 ]]; then
+  if [[ -n $4 ]]; then
+    find=$1
+    replace=$2
+    with=$3
+    where=$4
+  elif [[ -n $3 ]]; then
     find=$1
     replace=$2
     with=$3
@@ -196,7 +202,7 @@ replace() {
     replace=$1
     with=$2
   fi
-  cmd="rg -l \"$1\" $where | xargs sed -i 's/$replace/$with/g'"
+  cmd="rg -l \"$find\" $where | xargs sed -i 's/$replace/$with/g'"
   echo $cmd
   eval $cmd
 }
@@ -208,7 +214,7 @@ oops() {
 }
 
 pr() {
-  open https://github.com/`git repo`/compare/`git rev-parse --abbrev-ref HEAD`?expand=1
+  open https://github.com/`git repo`/compare/`git name`?expand=1
 }
 
 gh() {
@@ -497,20 +503,6 @@ findup() {
   done
 }
 
-# play() {
-#   port=5700
-#   if [ -n "$2" ]; then
-#     port=$2
-#   fi
-#   if [[ $1 == 'test' ]]; then
-#     local root=$(dirname $(findup .git))
-#     if [ -e $root/dataloader/dataloader.sh ]; then
-#       $root/dataloader/dataloader.sh
-#     fi
-#     PLAY_ENV=test sbt test
-#   elif [[ $1 == 'run' ]]; then
-#     PLAY_ENV=smoketest sbt "run $port"
-#   elif [[ $1 == 'debug' ]]; then
-#     PLAY_ENV=smoketest sbt -jvm-debug 9999 "run $port"
-#   fi
-# }
+vf() {
+  vim `fzf`
+}

@@ -8,6 +8,5 @@
   "src-not-empty": true,
   "attr-no-duplication": true,
   "title-require": true,
-  "id-class-ad-disabled": true,
-  "id-class-value": "dash"
+  "id-class-ad-disabled": true
 }

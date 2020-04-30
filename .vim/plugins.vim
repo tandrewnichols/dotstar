@@ -121,6 +121,7 @@ if !exists('g:bones')
   Plug 'markonm/traces.vim'
   Plug 'rhysd/git-messenger.vim'
   Plug 'neowit/vim-force.com'
+  Plug 'dyng/ctrlsf.vim'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'

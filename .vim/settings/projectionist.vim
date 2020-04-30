@@ -44,19 +44,6 @@ let g:projectionist_heuristics = {
   \         "",
   \         "export default connect(mapStateToProps, mapDispatchToProps)({basename|capitalize});"
   \       ]
-  \     },
-  \     "src/reducers/*.js": {
-  \       "type": "reducer",
-  \       "template": [
-  \         "import {open} Map {close} from 'immutable';",
-  \         "",
-  \         "const initialState = Map();",
-  \         "",
-  \         "export function {basename}(state = initialState, action) {",
-  \         "  switch (action.type) {",
-  \         "  }",
-  \         "}"
-  \       ]
   \     }
   \   },
   \   "node_modules/|test/": {

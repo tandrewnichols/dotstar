@@ -41,6 +41,7 @@ set shiftround
 set wildmenu
 set wildmode=longest,full
 " set wildmode=longest:full,full
+set wildignore=package-lock.json
 set autoread
 set history=1000
 set tabpagemax=50
@@ -58,6 +59,7 @@ augroup filetypes
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
   au FileType netrw setl bufhidden=delete
+  au Filetype elm set tabstop=4 shiftwidth=4
 augroup END
 
 augroup startup
