@@ -10,55 +10,6 @@ augroup ProjectionistCursor
 augroup END
 
 let g:projectionist_heuristics = {
-  \   "src/|node_modules/": {
-  \     "src/components/*.js": {
-  \       "type": "component",
-  \       "template": [
-  \         "import React from 'react';",
-  \         "",
-  \         "export default class {basename|capitalize} extends React.Component {",
-  \         "  render() {",
-  \         "    return (",
-  \         "      <div></div>",
-  \         "    );",
-  \         "  }",
-  \         "}"
-  \       ]
-  \     },
-  \     "src/containers/*.js": {
-  \       "type": "container",
-  \       "template": [
-  \         "import {open} connect {close} from 'react-redux';",
-  \         "import {basename|capitalize} from '../components/{basename}';",
-  \         "import * as actions from '../actions/{basename}';",
-  \         "",
-  \         "const mapStateToProps = ({ {basename} }) => {",
-  \         "  return { {basename} };",
-  \         "};",
-  \         "",
-  \         "const mapDispatchToProps = (dispatch) => {",
-  \         "  return {",
-  \         "",
-  \         "  };",
-  \         "};",
-  \         "",
-  \         "export default connect(mapStateToProps, mapDispatchToProps)({basename|capitalize});"
-  \       ]
-  \     },
-  \     "src/reducers/*.js": {
-  \       "type": "reducer",
-  \       "template": [
-  \         "import {open} Map {close} from 'immutable';",
-  \         "",
-  \         "const initialState = Map();",
-  \         "",
-  \         "export function {basename}(state = initialState, action) {",
-  \         "  switch (action.type) {",
-  \         "  }",
-  \         "}"
-  \       ]
-  \     }
-  \   },
   \   "node_modules/|test/": {
   \     "*.js": {
   \       "alternate": "test/{}.js"
