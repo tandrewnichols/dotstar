@@ -304,8 +304,6 @@ if [ -z "$TMUX" ]; then
   fi
 fi
 
-export W3MIMGDISPLAY_PATH=`which w3m`
-export RANGER_LOAD_DEFAULT_RC=FALSE
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 
 # export CDPATH=".:/Users/AndrewNichols/code/anichols/manta/manta-frontend:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/modules:/Users/AndrewNichols/code/anichols/apps:/Users/AndrewNichols/code/anichols/generators:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/grunt-plugins:/Users/AndrewNichols/code/anichols/forks:/Users/AndrewNichols/code/anichols"
