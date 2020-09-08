@@ -13,6 +13,10 @@ if [[ $OSTYPE == darwin* ]]; then
     brew ls $1 2> /dev/null || brew install "$@"
   }
 
+  cask_install() {
+    brew ls $1 2> /dev/null || brew cask install "$@"
+  }
+
   echo "\[\033[0;36m\]Installing homebrew packages.\[\033[0m\]"
   # Install common brew packages, each separately so the whole chain doesn't end if one fails.
   brew_install install
@@ -26,34 +30,24 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install ttyrec
   brew_install postgresql
   brew_install gnupg
-  brew_install ag
   brew_install jenv
   brew_install cmake
   brew_install fzf
   brew_install figlet
   brew_install fontconfig
-  brew_install fontforge
+  cask_install fontforge
   brew_install fswatch
   brew_install gawk
-  brew_install gcc46
-  brew_install gifsickle
+  brew_install gcc
   brew_install gnutls
   brew_install go
   brew_install highlight
   brew_install hub
   brew_install jpeg
-  brew_install jpegoptim
-  brew_install openjpeg
   brew_install openssh
   brew_install openssl
-  brew_install optipng
   brew_install pandoc
-  brew_install phantomjs
-  brew_install pixman
-  brew_install pkg-config
-  brew_install pngout
   brew_install python
-  brew_install ranger
   brew_install readline
   brew_install reattach-to-user-namespace
   brew_install ripgrep
@@ -61,10 +55,7 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install rust
   brew_install sqlite
   brew_install tidy-html5
-  brew_install upx
-  brew_install urlview
   brew_install vim --HEAD
-  brew_install w3myank
   brew_install gnu-indent
   brew_install gnu-sed
   brew_install gnu-tar
@@ -72,8 +63,8 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install grep
   brew_install findutils
   brew_install wdiff
-  brew cask install font-meslo-for-powerline
-  brew cask install font-meslolg-nerd-font
+  cask_install font-meslo-for-powerline
+  cask_install font-meslo-lg-nerd-font
 
   echo "\[\033[0;36m\]Updating shell to /usr/local/bin/bash.\[\033[0m\]"
   # Set shell as the updated bash
@@ -82,7 +73,7 @@ if [[ $OSTYPE == darwin* ]]; then
 
   echo "\[\033[0;36m\]Installing Google Chrome via homebrew.\[\033[0m\]"
   # Install Google Chrome (brew cask FTW)
-  brew ls google-chrome 2> /dev/null || brew cask install google-chrome
+  cask_install google-chrome
 
 else # If this is Linux
   sudo add-apt-repository -y ppa:pi-rho/dev
@@ -145,7 +136,6 @@ fi
 
 # Clone vim plugins so that +PlugInstall works
 echo "\[\033[0;36m\]Cloning local vim plugins.\[\033[0m\]"
-git clone git@github.com:tandrewnichols/ale.git $HOME/code/anichols/forks/ale
 git clone git@github.com:tandrewnichols/vim-vigor.git $HOME/code/anichols/vim/vim-vigor
 git clone git@github.com:tandrewnichols/vim-rumrunner.git $HOME/code/anichols/vim/vim-rumrunner
 git clone git@github.com:tandrewnichols/vim-rebuff.git $HOME/code/anichols/vim/vim-rebuff
