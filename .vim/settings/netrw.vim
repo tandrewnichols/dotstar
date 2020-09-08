@@ -25,4 +25,5 @@ augroup NetrwMappings
   au!
   au BufEnter * if &ft != 'netrw' | call <sid>NonNetrwMappings() | endif
   au FileType netrw call <sid>MakeNetrwMappings()
+  au FileType netrw nmap <buffer> coh yoh
 augroup END

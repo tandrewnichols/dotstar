@@ -29,6 +29,9 @@
 !prebid.js/
 
 -g
+!static/
+
+-g
 !*.svg
 
 -g

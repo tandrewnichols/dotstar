@@ -8,7 +8,8 @@ let g:ale_linters = {
   \   'html': ['htmlhint'],
   \   'json': ['fixjson', 'jsonlint'],
   \   'markdown': ['remark-lint'],
-  \   'vim': ['vint']
+  \   'vim': ['vint'],
+  \   'sh': ['shellcheck']
   \ }
 
 let g:ale_sign_error = '!'
@@ -16,6 +17,7 @@ let g:ale_sign_warning = '?'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_save = 1
 " let g:ale_less_stylelint_options = '--config ~/stylelint.config.js'
 let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 
@@ -36,34 +38,12 @@ let g:ale_pattern_options = {
       \   '\.min\.css$': {'ale_linters': [], 'ale_fixers': []}
       \ }
 
-function! s:SetCorrectEslintConfig()
-  let currentFile = expand("%:p")
-  if empty(get(b:, "projectroot"))
-    let b:projectroot = projectroot#guess()
-  endif
-
-  let eslintFile = b:projectroot . '/.eslint.json'
-
-  if currentFile =~ 'manta-frontend\d*/client'
-    " Check for client first
-    let eslintFile = b:projectroot . '/.eslint.client.json'
-  elseif b:projectroot =~ 'manta-frontend'
-    " Always use the server eslint for everything in manta-frontend
-    " that's not in client
-    let eslintFile = b:projectroot . '/.eslint.server.json'
-  elseif empty(glob(eslintFile))
-    let eslintFile = '~/.eslint.json'
-  endif
-
-  let b:ale_javascript_eslint_options = '-c ' . eslintFile
-endfunction
-
 function! s:SetCorrectStylelintConfig()
   let currentfile = expand("%:p")
   let stylelintFile = b:projectroot . '/stylelint.json'
 
   if empty(glob(stylelintFile))
-    let stylelintFile = '~/stylelint.json'
+    let stylelintFile = '~/stylelint.config.json'
   endif
 
   let b:ale_less_stylelint_options = '--config ' . stylelintFile
@@ -71,8 +51,7 @@ endfunction
 
 augroup AleConfig
   au!
-  au BufEnter *.js call <SID>SetCorrectEslintConfig()
-  au BufEnter *.less call <SID>SetCorrectStylelintConfig()
+  au BufEnter *.less,*.css,*.sass call <SID>SetCorrectStylelintConfig()
 augroup END
 
 " Don't overwrite [c and ]c in diffs

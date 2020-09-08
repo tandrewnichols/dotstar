@@ -28,4 +28,9 @@ if !exists('g:noplugins') && !exists('g:bones')
   call submode#map('rum-nav', 'n', 'r', '[', '<Plug>RumPrev')
   call submode#map('rum-nav', 'n', 'r', ']', '<Plug>RumNext')
   call submode#map('rum-nav', 'n', 'r', 'R', '<Plug>RumSuspend')
+
+  call submode#enter_with('spell', 'n', '', '[s', '[s')
+  call submode#enter_with('spell', 'n', '', ']s', ']s')
+  call submode#map('spell', 'n', '', '[', '[s')
+  call submode#map('spell', 'n', '', ']', ']s')
 endif

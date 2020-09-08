@@ -7,6 +7,7 @@ if [[ $OSTYPE == darwin* ]]; then
   brew fake 2> /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
   brew doctor
+  brew tap homebrew/cask-fonts
 
   brew_install() {
     brew ls $1 2> /dev/null || brew install "$@"
@@ -70,7 +71,9 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install gnu-which
   brew_install grep
   brew_install findutils
-  brew_install brew_install wdiff
+  brew_install wdiff
+  brew cask install font-meslo-for-powerline
+  brew cask install font-meslolg-nerd-font
 
   echo "\[\033[0;36m\]Updating shell to /usr/local/bin/bash.\[\033[0m\]"
   # Set shell as the updated bash
@@ -172,9 +175,9 @@ echo "\[\033[0;36m\]Linking files.\[\033[0m\]"
 ./create-links
 
 # Install fonts for powerline
-echo "\[\033[0;36m\]Installing powerline.\[\033[0m\]"
-git clone git@github.com:powerline/fonts.git $HOME/code/powerline-fonts
-$HOME/code/powerline-fonts/install.sh
+# echo "\[\033[0;36m\]Installing powerline.\[\033[0m\]"
+# git clone git@github.com:powerline/fonts.git $HOME/code/powerline-fonts
+# $HOME/code/powerline-fonts/install.sh
 
 echo "\[\033[0;36m\]Installing tpm for tmux-plugins.\[\033[0m\]"
 mkdir -p $HOME/.tmux/plugins
@@ -215,7 +218,6 @@ $HOME/n/bin/npm install -g jsonlint
 $HOME/n/bin/npm install -g karma-cli
 $HOME/n/bin/npm install -g less
 $HOME/n/bin/npm install -g loadtest
-$HOME/n/bin/npm install -g lodash
 $HOME/n/bin/npm install -g mocha
 $HOME/n/bin/npm install -g nd
 $HOME/n/bin/npm install -g npm-check
@@ -223,30 +225,6 @@ $HOME/n/bin/npm install -g npm-name-cli
 $HOME/n/bin/npm install -g npm-remote-ls
 $HOME/n/bin/npm install -g nyc
 $HOME/n/bin/npm install -g plato
-$HOME/n/bin/npm install -g remark
-$HOME/n/bin/npm install -g remark-cli
-$HOME/n/bin/npm install -g remark-lint-blockquote-indentation
-$HOME/n/bin/npm install -g remark-lint-checkbox-character-style
-$HOME/n/bin/npm install -g remark-lint-code-block-style
-$HOME/n/bin/npm install -g remark-lint-emphasis-marker
-$HOME/n/bin/npm install -g remark-lint-fenced-code-flag
-$HOME/n/bin/npm install -g remark-lint-fenced-code-marker
-$HOME/n/bin/npm install -g remark-lint-first-heading-level
-$HOME/n/bin/npm install -g remark-lint-heading-style
-$HOME/n/bin/npm install -g remark-lint-no-consecutive-blank-lines
-$HOME/n/bin/npm install -g remark-lint-no-duplicate-headings-in-section
-$HOME/n/bin/npm install -g remark-lint-no-heading-like-paragraph
-$HOME/n/bin/npm install -g remark-lint-no-inline-padding
-$HOME/n/bin/npm install -g remark-lint-no-literal-urls
-$HOME/n/bin/npm install -g remark-lint-no-missing-blank-lines
-$HOME/n/bin/npm install -g remark-lint-no-multiple-toplevel-headings
-$HOME/n/bin/npm install -g remark-lint-no-tabs
-$HOME/n/bin/npm install -g remark-lint-ordered-list-marker-style
-$HOME/n/bin/npm install -g remark-lint-ordered-list-marker-value
-$HOME/n/bin/npm install -g remark-lint-rule-style
-$HOME/n/bin/npm install -g remark-lint-strong-marker
-$HOME/n/bin/npm install -g remark-lint-table-cell-padding
-$HOME/n/bin/npm install -g remark-lint-unordered-list-marker-style
 $HOME/n/bin/npm install -g rename
 $HOME/n/bin/npm install -g renamer
 $HOME/n/bin/npm install -g speed-test
@@ -256,18 +234,15 @@ $HOME/n/bin/npm install -g svgo
 $HOME/n/bin/npm install -g tern-gulp
 $HOME/n/bin/npm install -g tern-jasmine
 $HOME/n/bin/npm install -g tern-jsx
-$HOME/n/bin/npm install -g testem
 $HOME/n/bin/npm install -g trombone
 $HOME/n/bin/npm install -g typescript
 $HOME/n/bin/npm install -g uglify-js
-$HOME/n/bin/npm install -g underscore-cli
 $HOME/n/bin/npm install -g unused-deps
 $HOME/n/bin/npm install -g vimdebug
 $HOME/n/bin/npm install -g webpack
 $HOME/n/bin/npm install -g whimsy
 $HOME/n/bin/npm install -g wip
 $HOME/n/bin/npm install -g yo
-$HOME/n/bin/npm install -g yslow
 
 source ~/.bashrc
 
@@ -282,7 +257,13 @@ source ~/.bashrc
 
 # Clone manta-frontend so I can set up local gitconfig stuff
 git clone git@github.com:mantacode/manta-frontend.git $HOME/code/anichols/manta/manta-frontend
-git clone git@github.com:mantacode/manta-router.git $HOME/code/anichols/manta/manta-router
+git clone git@github.com:mantacode/fe-directory.git $HOME/code/anichols/manta/fe-directory
+git clone git@github.com:mantacode/dev-hub.git $HOME/code/anichols/manta/dev-hub
+git clone git@github.com:mantacode/cli-tools.git $HOME/code/anichols/manta/cli-tools
+git clone git@github.com:mantacode/gateway-api.git $HOME/code/anichols/manta/gateway-api
+git clone git@github.com:mantacode/launchpad-service.git $HOME/code/anichols/manta/launchpad-service
+git clone git@github.com:mantacode/node-utils.git $HOME/code/anichols/manta/node-utils
+git clone git@github.com:mantacode/prebid-service.git $HOME/code/anichols/manta/prebid-service
 cd $HOME/code/anichols/manta/manta-frontend
 git config --local user.name "Andrew Nichols"
 git config --local user.email "anichols@manta.com"

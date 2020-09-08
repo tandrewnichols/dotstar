@@ -20,6 +20,7 @@ set undofile
 set foldlevelstart=99
 set t_Co=256
 if !exists('g:noplugins')
+  let g:jellybeans_background_color_256='NONE'
   colorscheme jellybeans
 endif
 syntax enable
@@ -46,6 +47,7 @@ set autoread
 set history=1000
 set tabpagemax=50
 set completeopt-=preview
+set encoding=UTF-8
 
 augroup filetypes
   au!

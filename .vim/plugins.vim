@@ -47,8 +47,7 @@ if !exists('g:bones')
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
   Plug 'mbbill/undotree'
-  " Plug 'w0rp/ale'
-  Plug '~/code/anichols/forks/ale'
+  Plug 'dense-analysis/ale'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'docunext/closetag.vim'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
@@ -123,6 +122,7 @@ if !exists('g:bones')
   Plug 'rhysd/git-messenger.vim'
   Plug 'neowit/vim-force.com'
   Plug 'dyng/ctrlsf.vim'
+  Plug 'ryanoasis/vim-devicons'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
@@ -136,7 +136,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-tapir'
   Plug '~/code/anichols/vim/vim-replete'
   Plug '~/code/anichols/vim/vim-contemplate'
-  " Plug '~/code/anichols/vim/vim-dadbod-extensions'
+  Plug '~/code/anichols/vim/vim-dadbod-extensions'
   Plug '~/code/anichols/forks/javascript-libraries-syntax.vim'
 
   " Last to override any settings
