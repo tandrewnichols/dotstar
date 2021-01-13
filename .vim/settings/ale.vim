@@ -9,7 +9,8 @@ let g:ale_linters = {
   \   'json': ['fixjson', 'jsonlint'],
   \   'markdown': ['remark-lint'],
   \   'vim': ['vint'],
-  \   'sh': ['shellcheck']
+  \   'sh': ['shellcheck'],
+  \   'go': ['gopls']
   \ }
 
 let g:ale_sign_error = '!'
@@ -25,11 +26,23 @@ let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
 " let g:ale_markdown_remark_lint_options = '-r ~/.remarkrc.json'
 
+function s:ConfigurePrettierForOlive() abort
+  let b:ale_fixers = ['prettier']
+  let b:ale_fix_on_save = 1
+endfunction
+
+augroup aleconfig
+	au!
+	au BufEnter */olive/*.jsx,*/olive/*.js call <SID>ConfigurePrettierForOlive()
+	au BufEnter *.go let b:ale_fix_on_save = 1
+augroup END
+
 let g:ale_fixers = {
   \   'javascript': ['eslint'],
   \   'css': ['stylelint'],
   \   'less': ['stylelint'],
-  \   'json': ['fixjson']
+  \   'json': ['fixjson'],
+  \   'go': ['gofmt']
   \ }
 
 let g:ale_lint_delay = 500

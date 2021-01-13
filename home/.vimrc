@@ -40,7 +40,7 @@ set incsearch
 set showmatch
 set shiftround
 set wildmenu
-set wildmode=longest,full
+set wildmode=full
 " set wildmode=longest:full,full
 set wildignore=package-lock.json
 set autoread
@@ -60,8 +60,9 @@ augroup filetypes
   au FileType jsx let b:unaryTagsStack = ""
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
-  au FileType netrw setl bufhidden=delete
-  au Filetype elm set tabstop=4 shiftwidth=4
+  au FileType netrw setlocal bufhidden=delete
+  au Filetype elm setlocal tabstop=4 shiftwidth=4
+  au Filetype go setlocal noexpandtab
 augroup END
 
 augroup startup

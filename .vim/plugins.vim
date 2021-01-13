@@ -37,6 +37,7 @@ if !exists('g:bones')
   Plug 'kchmck/vim-coffee-script'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
+  Plug 'fatih/vim-go'
   " Plug 'leafgarland/typescript-vim'
   Plug 'othree/csscomplete.vim'
   Plug 'rhysd/vim-gfm-syntax'
