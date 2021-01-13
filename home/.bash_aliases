@@ -36,6 +36,7 @@ alias master="git checkout master && git pull"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
+alias olive="_goto ~/code/anichols/olive"
 alias fe="_goto ~/code/anichols/manta/manta-frontend"
 alias server="_goto ~/code/anichols/manta/manta-frontend/server"
 alias client="_goto ~/code/anichols/manta/manta-frontend/client"
@@ -209,22 +210,29 @@ replace() {
 }
 
 #### GIT COMMANDS ####
-# Open pull request for current branch
 oops() {
   gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )
 }
 
+# Open pull request for current branch
 pr() {
-  open https://github.com/`git repo`/compare/`git name`?expand=1
+  remote=`git url`
+  if [[ $remote =~ "github" ]]; then
+    open "$remote/compare/`git name`?expand=1"
+  elif [[ $remote =~ "bitbucket" ]]; then
+    open "$remote/pull-requests/new?source=`git name`&event_source=branch_list"
+  else
+    echo "The remote does not match any known git host."
+  fi
 }
 
 gh() {
-  open https://github.com/`git repo`
+  open `git url`
 }
 
 ghtag() {
   version=`git describe --tags`
-  open https://github.com/`git repo`/releases/new?tag=$version
+  open `git url`/releases/new?tag=$version
 }
 
 release() {
@@ -366,7 +374,7 @@ ifttt() {
   dir=$(git rev-parse --show-toplevel)
   cur=$(node -e "console.log(require('$dir/package.json').name)")
   version=$(node -e "console.log(require('$dir/package.json').version)")
-  url="https://github.com/`git repo`/releases/tag/v$version"
+  url="`git url`/releases/tag/v$version"
   echo "Tweeting the following message:"
   echo "I just published ${cur}@${version}. See $url for details."
   curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
@@ -453,7 +461,7 @@ vimball() {
   echo -e "Creating tag \033[0;36mv$version\033[0m"
   git tag v$version
   git push --tags
-  open https://github.com/`git repo`/releases/new?tag=v$version
+  open `git url`/releases/new?tag=v$version
   echo
 
   cd $dir

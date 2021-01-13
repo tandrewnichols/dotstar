@@ -60,6 +60,7 @@
   wat = "!git log master..`git name`"
   name = rev-parse --abbrev-ref HEAD
   repo = "!f() { remote=`git config --get remote.origin.url`; remote=${remote#*:}; remote=${remote%.git}; echo $remote; }; f"
+  url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
   p = "!f() { if [[ -n `git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)` ]]; then git push; else git push -u origin `git name`; fi; }; f"
   root = rev-parse --show-toplevel
   pkg = "!f() { rm `git root`/package-lock.json; npm i --package-lock-only; }; f"
@@ -70,13 +71,18 @@
 [push]
   default = upstream
 [branch]
-  autosetuprebase = always
+  autosetuprebase = never
 [color]
   ui = auto
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+	ignorecase = true
 [merge]
   renamelimit = 7248
 [clean]
   requireForce = false
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[pull]
+	rebase = false
