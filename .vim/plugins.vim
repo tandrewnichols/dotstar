@@ -24,7 +24,7 @@ if !exists('g:bones')
   " Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-ragtag'
-  Plug 'tpope/vim-classpath'
+  " Plug 'tpope/vim-classpath'
 
   Plug 'vim-utils/vim-husk'
 

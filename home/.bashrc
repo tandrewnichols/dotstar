@@ -317,3 +317,5 @@ export INEO_HOME=/Users/andrew/.ineo
 add_before_path $INEO_HOME/bin
 
 export PATH
+
+[ -f ~/.npm-completion ] && source ~/.npm-completion
