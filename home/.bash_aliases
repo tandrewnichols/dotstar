@@ -60,6 +60,7 @@ alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
 alias dd='clear'
 alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias co='git branch-select -l'
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then

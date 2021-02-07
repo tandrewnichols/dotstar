@@ -52,6 +52,10 @@ let g:ale_pattern_options = {
       \ }
 
 function! s:SetCorrectStylelintConfig()
+  if !exists("b:projectroot")
+    return
+  endif
+
   let currentfile = expand("%:p")
   let stylelintFile = b:projectroot . '/stylelint.json'
 

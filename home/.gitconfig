@@ -68,6 +68,7 @@
   message = "!f() { rev=$(git rev-parse stash@{$1}) && git drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; f"
   cam = commit -am
   head = show HEAD
+  bs = branch-select
 [push]
   default = upstream
 [branch]

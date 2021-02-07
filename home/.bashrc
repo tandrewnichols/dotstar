@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
 
@@ -262,9 +261,7 @@ add_after_path /usr/local/opt/go/libexec/bin:/usr/local/opt/rust/bin
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-if [ -f ~/.git-completion.bash ]; then
-  source ~/.git-completion.bash
-fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 ulimit -n 2560
 
@@ -316,4 +313,21 @@ add_after_path ~/apache-storm-1.0.2/bin
 export INEO_HOME=/Users/andrew/.ineo
 add_before_path $INEO_HOME/bin
 
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+
 export PATH
+
+if [ -f ~/.oliverc ]; then
+  source ~/.oliverc
+fi
+
+export NODE_VERSION=`node -v`
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+if [ -f ~/.npm-completion ]; then
+  source ~/.npm-completion
+fi

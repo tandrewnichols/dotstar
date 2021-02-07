@@ -29,7 +29,7 @@ if !exists('g:bones')
   Plug 'vim-utils/vim-husk'
 
   " Filetype plugins
-  Plug 'mxw/vim-jsx'
+  Plug 'amadeus/vim-jsx'
   " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
