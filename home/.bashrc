@@ -328,6 +328,4 @@ export NODE_VERSION=`node -v`
 # Display a list of the matching files
 bind "set show-all-if-ambiguous on"
 
-if [ -f ~/.npm-completion ]; then
-  source ~/.npm-completion
-fi
+[ -f ~/.npm-completion ] && source ~/.npm-completion

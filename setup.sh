@@ -30,6 +30,7 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install ttyrec
   brew_install postgresql
   brew_install gnupg
+  brew_install coreutils
   brew_install jenv
   brew_install cmake
   brew_install fzf
