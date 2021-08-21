@@ -28,12 +28,13 @@ let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
 
 function s:ConfigurePrettierForOlive() abort
   let b:ale_fixers = ['prettier']
+  let b:ale_pattern_options = { 'node_modules': {'ale_fixes': []}}
   let b:ale_fix_on_save = 1
 endfunction
 
 augroup aleconfig
 	au!
-	au BufEnter */olive/*.jsx,*/olive/*.js call <SID>ConfigurePrettierForOlive()
+	au BufEnter */olive/*.jsx,*/olive/*.* call <SID>ConfigurePrettierForOlive()
 	au BufEnter *.go let b:ale_fix_on_save = 1
 augroup END
 
