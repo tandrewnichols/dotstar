@@ -11,8 +11,7 @@ augroup triggers
 augroup END
 
 function! s:Trigger(cmd) abort
-  echo "au triggers BufWritePost <buffer>" a:cmd
   exec "au triggers BufWritePost <buffer>" a:cmd
 endfunction
 
-command! -nargs=+ Trigger call <SID>Trigger(<q-args>)
+command! -nargs=+ -complete=command Trigger call <SID>Trigger(<q-args>)

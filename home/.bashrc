@@ -330,8 +330,6 @@ bind "set show-all-if-ambiguous on"
 
 [ -f ~/.npm-completion ] && source ~/.npm-completion
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
 export JAVA_8_HOME=/usr/bin/java
 export JAVA_11_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.9
 export JAVA_13_HOME=$(brew --prefix)/Cellar/openjdk/13.0.2+8_2
@@ -342,3 +340,5 @@ alias java13='export JAVA_HOME=$JAVA_13_HOME'
 
 # default to Java 11
 java11
+
+export BASH_ENV="~/.bash_aliases"

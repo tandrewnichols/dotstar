@@ -30,6 +30,7 @@
   file = log -u
   find = !git ls-files | grep -i
   ours = "!f() { git co --ours $@ && git add $@; }; f"
+  mine = "!f() { git co --ours $@ && git add $@; }; f"
   theirs = "!f() { git co --theirs $@ && git add $@; }; f"
   arc = "!f() { git tag archive/$1 $1 && git branch -D $1;}; f"
   archived = !git tag --list | grep archive

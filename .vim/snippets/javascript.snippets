@@ -73,20 +73,6 @@ snippet ed
 	export default ${0}
 snippet edc
 	export default class ${0}
-snippet react
-	import React from 'react';
-
-	export default class ${1} extends React.PureComponent {
-		propTypes = {
-			${2}
-		};
-
-		render() {
-			return (
-				${0}
-			);
-		}
-	}
 snippet ex
 	export ${1}
 snippet ec
@@ -97,16 +83,11 @@ snippet x
 	extends ${0}
 snippet vm
 	vm.${1} = ${2:$1};${0}
-snippet da
+snippet dd
 	data
 snippet icon
-	import { ${1} } from '@fortawesome/free-solid-svg-icons';
+	import { ${1} } from '@fortawesome/${2:free}-solid-svg-icons';
 	import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';${0}
 snippet proxy
 	proxyquire = require('proxyquire').noCallThru();
 	${0}
-# snippet action
-# 	export const $1 = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}');
-# 	export const $1Success = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_SUCCESS');
-# 	export const $1Error = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_ERROR');
-# 	export const $1Pending = createAction('${1/([^A-Z]*)([A-Z][^A-Z]*)/\U\1_\2/g}_PENDING');

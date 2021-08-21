@@ -47,7 +47,6 @@ command! -nargs=0 Gtheirs call <SID>GitWrapper('checkout --theirs ' . expand("%:
 command! -nargs=* -complete=customlist,<SID>GetGitBranches Gcheckout call <SID>GitWrapper('checkout <args>')
 
 " Related, but not strictly git
-command! -nargs=0 Push silent call system('push') | redraw! | echo "Changes pushed"
 command! -nargs=1 Br silent call system('br <args>') | redraw! | echo "Switched to new branch <args>"
 command! -nargs=0 Pr silent call system('pr') | redraw!
 command! -nargs=0 Ci silent call system('ci') | redraw!
@@ -58,6 +57,7 @@ nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
+" This is now in ./determined.vim
 nnoremap <silent> <leader>gp :Push<CR>
 nnoremap <silent> <leader>ga :Gstage<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
