@@ -2,6 +2,7 @@
 set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
+set shell=/usr/local/bin/bash
 
 if !exists('g:noplugins')
   source ~/.vim/plugins.vim
@@ -51,13 +52,14 @@ set encoding=UTF-8
 
 augroup filetypes
   au!
-  au BufNewFile,BufRead *.json,*.es6,*.jsx setf javascript
-  au BufNewFile,BufRead *.less setf less
-  au BufNewFile,BufRead *.ejs,*.hbs,*.mustache setf html
-  au BufNewFile,BufRead *.md setf markdown
+  au BufNewFile,BufRead *.es6,*.jsx :set ft=javascript.jsx
+  au BufNewFile,BufRead *.less :set ft=less
+  au BufNewFile,BufRead *.ejs,*.hbs,*.mustache :set ft=html
+  au BufNewFile,BufRead *.md :set ft=markdown
   au BufNewFile,BufRead *.html,*.js,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
-  au BufNewFile,BufRead *.apex setf apexcode
+  au BufNewFile,BufRead *.apex :set ft=apexcode
   au FileType jsx let b:unaryTagsStack = ""
+  au FileType javascriptreact :set ft=javascript.jsx
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
   au FileType netrw setlocal bufhidden=delete
