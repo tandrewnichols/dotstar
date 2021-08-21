@@ -310,8 +310,8 @@ export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 add_before_path ~/.npm-global/bin
 add_after_path ~/apache-storm-1.0.2/bin
 
-export INEO_HOME=/Users/andrew/.ineo
-add_before_path $INEO_HOME/bin
+export NEO4J_HOME=/Users/andrew/neo4j
+add_before_path $NEO4J_HOME/bin
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
@@ -329,3 +329,16 @@ export NODE_VERSION=`node -v`
 bind "set show-all-if-ambiguous on"
 
 [ -f ~/.npm-completion ] && source ~/.npm-completion
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+export JAVA_8_HOME=/usr/bin/java
+export JAVA_11_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.9
+export JAVA_13_HOME=$(brew --prefix)/Cellar/openjdk/13.0.2+8_2
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+alias java13='export JAVA_HOME=$JAVA_13_HOME'
+
+# default to Java 11
+java11
