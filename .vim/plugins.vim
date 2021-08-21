@@ -44,6 +44,7 @@ if !exists('g:bones')
   Plug 'othree/html5.vim'
   Plug 'ElmCast/elm-vim'
   Plug 'jidn/vim-dbml'
+  Plug 'jparise/vim-graphql'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
