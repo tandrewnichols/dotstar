@@ -35,10 +35,6 @@ snippet async.e
 	}, function(err) {
 		${4}
 	}
-snippet f
-	(${2}) => {
-		${0}
-	}${1}
 snippet for
 	for (var i = 0; i < ${1}.length; i++) {
 		${0}
@@ -62,7 +58,7 @@ snippet sub
 snippet bef
 	beforeEach((${1}) => ${2});${0}
 snippet aft
-	afterEach((${1}) => ${0});${0}
+	afterEach((${1}) => ${1});${0}
 snippet sin
 	sinon.stub(${1}, '${2}')${0}
 snippet she
@@ -95,7 +91,7 @@ snippet ex
 	export ${1}
 snippet ec
 	export const ${0}
-snippet ef
+snippet ef "export function" b
 	export function ${0}
 snippet x
 	extends ${0}
