@@ -501,6 +501,14 @@ lns() {
   ln -s `realpath $1` $2
 }
 
+jest() {
+  cur=$PWD
+  dir=`realpath --relative-to=. $(findup node_modules)`
+  cd $dir && cd ..
+  ./node_modules/.bin/jest "$@"
+  cd $cur
+}
+
 findup() {
   local DIR=$(pwd)
   while [ ! -z "$DIR" ]; do
