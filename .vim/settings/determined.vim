@@ -5,3 +5,5 @@ call determined#command('Node', 'node', { 'background': 0, 'vertical': 0, 'rows'
 call determined#command('Rg', 'rg', { 'expand': 1, 'background': 0, 'reuse': 1, 'complete': replete#byArg('Rg', ['replete#complete#bufwords', 'file'], '-\{1,2}[^ ]\{-} ') })
 call determined#command('Grunt', 'grunt', { 'reuse': 1 })
 call determined#command('Gulp', 'gulp', { 'reuse': 1 })
+call determined#command('Push', 'push', { 'vertical': 0, 'autoclose': 1, 'rows': '3' })
+call determined#command('Mocha', 'mocha --fgrep %', { 'expand': 1, 'reuse': 1 })
