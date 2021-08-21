@@ -124,6 +124,7 @@ if !exists('g:bones')
   Plug 'neowit/vim-force.com'
   Plug 'dyng/ctrlsf.vim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'umaumax/vim-lcov'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
