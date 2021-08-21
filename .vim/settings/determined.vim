@@ -5,3 +5,6 @@ call determined#command('Node', 'node', { 'background': 0, 'vertical': 0, 'rows'
 call determined#command('Rg', 'rg', { 'expand': 1, 'background': 0, 'reuse': 1, 'complete': replete#byArg('Rg', ['replete#complete#bufwords', 'file'], '-\{1,2}[^ ]\{-} ') })
 call determined#command('Grunt', 'grunt', { 'reuse': 1 })
 call determined#command('Gulp', 'gulp', { 'reuse': 1 })
+call determined#command('Push', 'push', { 'vertical': 0, 'autoclose': 0, 'rows': '5' })
+call determined#command('Jest', &shell . ' -c "jest %"', { 'reuse': 1, 'expand': 1 })
+call determined#command('JestAll', &shell . ' -c "jest --coverage --passWithNoTests"', { 'reuse': 1 })
