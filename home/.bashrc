@@ -329,3 +329,5 @@ export NODE_VERSION=`node -v`
 bind "set show-all-if-ambiguous on"
 
 [ -f ~/.npm-completion ] && source ~/.npm-completion
+
+export BASH_ENV="~/.bash_aliases"
