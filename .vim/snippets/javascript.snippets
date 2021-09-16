@@ -86,8 +86,8 @@ snippet vm
 snippet dd
 	data
 snippet icon
-	import { ${1} } from '@fortawesome/${2:free}-solid-svg-icons';
-	import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';${0}
+	import { ${1} } from '@fortawesome/${2:free}-${3:solid}-svg-icons';
+	import Icon from 'app/components/icon';${0}
 snippet proxy
 	proxyquire = require('proxyquire').noCallThru();
 	${0}
