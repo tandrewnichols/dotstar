@@ -62,3 +62,5 @@ augroup redux
   au!
   au FileType javascript call CreateAction()
 augroup END
+
+nnoremap <leader>j :Jest<CR>
