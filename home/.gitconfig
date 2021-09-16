@@ -70,6 +70,7 @@
   cam = commit -am
   head = show HEAD
   bs = branch-select
+  when = log -1 --format=%ai
 [push]
   default = upstream
 [branch]
