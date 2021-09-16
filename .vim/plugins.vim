@@ -45,6 +45,7 @@ if !exists('g:bones')
   Plug 'ElmCast/elm-vim'
   Plug 'jidn/vim-dbml'
   Plug 'jparise/vim-graphql'
+  Plug 'neo4j-contrib/cypher-vim-syntax'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
