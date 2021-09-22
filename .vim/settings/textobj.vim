@@ -78,13 +78,6 @@ augroup TextObjTestContext
   au BufEnter *spec*.coffee call s:CreateTestContextTextObj()
 augroup END
 
-" TODO: implement key/value grabbing
-" call textobj#user#plugin('keyvalue', {
-" \   'kv-i': {
-" \     'pattern': '[\'"]\<\?[^:]\{-}:\s?[\'"]
-" \   }
-" \ })
-
 " Redefine matchit textobj mapping
 xmap a%  <Plug>(textobj-matchit-a)
 omap a%  <Plug>(textobj-matchit-a)
