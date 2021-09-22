@@ -141,6 +141,7 @@ if !exists('g:bones')
   Plug '~/code/anichols/vim/vim-replete'
   Plug '~/code/anichols/vim/vim-contemplate'
   Plug '~/code/anichols/vim/vim-dadbod-extensions'
+  Plug '~/code/anichols/vim/vim-textobj-keyvalue-pair'
   Plug '~/code/anichols/forks/javascript-libraries-syntax.vim'
 
   " Last to override any settings
