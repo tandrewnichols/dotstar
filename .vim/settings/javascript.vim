@@ -53,14 +53,40 @@ function! s:ViewAction(name) abort
   " set hls
 endfunction
 
-function! CreateAction() abort
-  command! -buffer -nargs=1 Action call s:DoAction(<f-args>)
-  command! -buffer -nargs=1 ViewAction call s:ViewAction(<f-args>)
+function! s:MakeSpec(...) abort
+  let fname = expand("%:.:r") . ".spec.js"
+  exec "vsp" fname
+  if !filereadable(fname) && a:0 > 0
+    exec "Contemplate" a:1
+  endif
 endfunction
 
-augroup redux
-  au!
-  au FileType javascript call CreateAction()
-augroup END
+function! s:SetAlt() abort
+  let testfile = expand("%:.:r") . ".spec.js"
+  if filereadable(testfile)
+    if bufexists(testfile)
+      let @# = testfile
+    else
+      exec "balt" testfile
+    endif
+    nnoremap <buffer> <leader>sp :vsp#<CR>
+  else
+    nnoremap <buffer> <leader>sp :Spec<space>
+  endif
+endfunction
 
-nnoremap <leader>j :Jest<CR>
+function! s:SetupJS() abort
+  command! -buffer -nargs=1 Action call s:DoAction(<f-args>)
+  command! -buffer -nargs=1 ViewAction call s:ViewAction(<f-args>)
+  command! -buffer -nargs=? -complete=customlist,contemplate#complete Spec call s:MakeSpec(<f-args>)
+  command! -buffer -nargs=0 SetAlt call s:SetAlt()
+
+  nnoremap <buffer> <leader>j :Jest<CR>
+  nnoremap <buffer> <leader>sa :SetAlt<CR>
+endfunction
+
+augroup javascript_environment
+  au!
+  au FileType javascript call s:SetupJS()
+  au BufEnter *.js,*.jsx call s:SetAlt()
+augroup END
