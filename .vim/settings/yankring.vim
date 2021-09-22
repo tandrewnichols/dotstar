@@ -21,6 +21,8 @@ let g:yankring_history_dir = '$HOME/.vim'
 " Don't map gp and gP
 let g:yankring_paste_using_g = 0
 
+" let g:yankring_o_keys  = 'b B w W e E d h j k l H M L y G ^ 0 $ , ;'
+
 nnoremap <leader>y :YRShow<CR>
 
 " Make Y yank to end of line (and still work with yankring)
