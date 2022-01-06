@@ -45,8 +45,6 @@ if [[ $OSTYPE == darwin* ]]; then
   brew_install highlight
   brew_install hub
   brew_install jpeg
-  brew_install openssh
-  brew_install openssl
   brew_install pandoc
   brew_install python
   brew_install readline
