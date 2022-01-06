@@ -1,44 +1,7 @@
-snippet $s
-	$scope.${1} = function (${2}) {
-		${0}
-	};
-snippet $r
-	$rootScope.$apply()
 snippet log
-	console.log('${1}:', ${2:$1});${0}
+	console.log({ ${0} });
 snippet mod
 	module.exports = ${0}
-snippet route
-	function ${1}(req, res, next) {
-		${0}
-	}
-snippet proto
-	${1}.prototype.${2} = function(${3}) {
-		${0}
-	};
-snippet _.r
-	_.reduce(${1}, function(memo, ${2:item}) {
-		${3}
-		return memo;
-	}, ${4:[]});${0}
-snippet _.e
-	_.each(${1}, function(${2:item}) {
-		${0}
-	});
-snippet _.g
-	_.get(${1}, '${2}');${0}
-snippet _.s
-	_.set(${1}, '${2}', ${3});${0}
-snippet async.e
-	async.each(${1}, function(${2:item}, next) {
-		${3}
-	}, function(err) {
-		${4}
-	}
-snippet for
-	for (var i = 0; i < ${1}.length; i++) {
-		${0}
-	}
 snippet r
 	require('${1}')${0}
 snippet des
@@ -53,20 +16,14 @@ snippet it
 	it('${1}', ${2}() => {
 		${0}
 	});
-snippet sub
-	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet bef
-	beforeEach((${1}) => ${2});${0}
+	beforeEach(() => {
+		${0}
+	});
 snippet aft
-	afterEach((${1}) => ${1});${0}
-snippet sin
-	sinon.stub(${1}, '${2}')${0}
-snippet she
-	should.eql(${1});${0}
-snippet shc
-	should.have.been.called${0}
-snippet shn
-	should.not.have.been.called();${0}
+	afterEach(() => {
+		${0}
+	});
 snippet im
 	import ${1} from ${0}
 snippet ed
@@ -81,15 +38,22 @@ snippet ef "export function" b
 	export function ${0}
 snippet x
 	extends ${0}
-snippet vm
-	vm.${1} = ${2:$1};${0}
 snippet dd
 	data
 snippet icon
 	import { ${1} } from '@fortawesome/${2:free}-${3:solid}-svg-icons';
 	import Icon from 'app/components/icon';${0}
-snippet proxy
-	proxyquire = require('proxyquire').noCallThru();
-	${0}
 snippet cd
 	customData
+snippet when
+	when(${1}).calledWith(${2}).mock${3:Resolved}Value(${4});${0}
+snippet ae
+	await expect(subject.${1}).${2:resolves}.${3:toEqual}(${0});
+snippet @p
+	@param {${1}} ${2} - ${0}
+snippet @prop
+	@property {${1}} ${2} - ${0}
+snippet @r
+	@returns {${1}} - ${0}
+snippet mock
+	jest.mock('${1}');${0}
