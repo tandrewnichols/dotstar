@@ -45,6 +45,7 @@ command! -nargs=0 Gconf e ~/.gitconfig
 command! -nargs=0 Gours call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
 command! -nargs=0 Gtheirs call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
 command! -nargs=* -complete=customlist,<SID>GetGitBranches Gcheckout call <SID>GitWrapper('checkout <args>')
+command! -nargs=* Gblame Git blame
 
 " Related, but not strictly git
 command! -nargs=1 Br silent call system('br <args>') | redraw! | echo "Switched to new branch <args>"
