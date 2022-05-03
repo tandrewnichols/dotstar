@@ -62,7 +62,7 @@ if !exists('g:bones')
   Plug 'SirVer/ultisnips'
   Plug 'machakann/vim-swap'
   Plug 'unblevable/quick-scope'
-  Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-scripts/YankRing.vim'
@@ -101,7 +101,6 @@ if !exists('g:bones')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'thinca/vim-visualstar'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'vim-scripts/genutils'
   Plug 'godlygeek/tabular'

@@ -60,6 +60,9 @@ alias dd='clear'
 alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
+alias ne='n exec 14.19.0'
+
+export ll=src/renderers/screens/loopLibrary
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then

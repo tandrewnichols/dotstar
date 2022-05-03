@@ -2,7 +2,7 @@
 set nocp
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
-set shell=/usr/local/bin/bash
+let shell=trim(system("which bash"))
 
 if !exists('g:noplugins')
   source ~/.vim/plugins.vim

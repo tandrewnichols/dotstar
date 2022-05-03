@@ -1,4 +1,5 @@
 let g:switch_mapping = ""
+
 nnoremap >s :Switch<CR>
 nnoremap <s :SwitchReverse<CR>
 

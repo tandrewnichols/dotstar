@@ -27,7 +27,7 @@ let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
 " let g:ale_markdown_remark_lint_options = '-r ~/.remarkrc.json'
 
 function s:ConfigurePrettierForOlive() abort
-  let b:ale_fixers = ['prettier']
+  let b:ale_fixers = ['eslint']
   let b:ale_pattern_options = { 'node_modules': {'ale_fixes': []}}
   let b:ale_fix_on_save = 1
 endfunction

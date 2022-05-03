@@ -45,7 +45,6 @@ command! -nargs=0 Gconf e ~/.gitconfig
 command! -nargs=0 Gours call <SID>GitWrapper('checkout --ours ' . expand("%:p"))
 command! -nargs=0 Gtheirs call <SID>GitWrapper('checkout --theirs ' . expand("%:p"))
 command! -nargs=* -complete=customlist,<SID>GetGitBranches Gcheckout call <SID>GitWrapper('checkout <args>')
-command! -nargs=* Gblame Git blame
 
 " Related, but not strictly git
 command! -nargs=1 Br silent call system('br <args>') | redraw! | echo "Switched to new branch <args>"
@@ -53,43 +52,16 @@ command! -nargs=0 Pr silent call system('pr') | redraw!
 command! -nargs=0 Ci silent call system('ci') | redraw!
 command! -nargs=0 Master silent call system('master') | redraw!
 
-nnoremap <silent> <expr> <leader>gs bufwinnr('.git/index') > -1 ? ':close <C-r>=(bufwinnr(".git/index"))<CR><CR>' : ':Gstatus<CR>'
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <expr> <leader>gs bufwinnr('.git/index') > -1 ? ':close <C-r>=(bufwinnr(".git/index"))<CR><CR>' : ':Git<CR>'
+nnoremap <silent> <leader>gb :Git blame<CR>
+nnoremap <silent> <leader>gd :Gdiffsplit<CR>
+nnoremap <silent> <leader>gc :Git commit<CR>
+nnoremap <silent> <leader>gl :Gclog<CR>
 " This is now in ./determined.vim
 nnoremap <silent> <leader>gp :Push<CR>
 nnoremap <silent> <leader>ga :Gstage<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gu :Gunstage<CR>
-
-function! s:ReopenStatus() abort
-  if system('git status') !~ 'nothing to commit'
-    Gstatus
-  endif
-endfunction
-
-function! s:HandleGitCommit() abort
-  cnoreabbrev <buffer> wq :silent! wq<CR>:call <SID>ReopenStatus()<CR>
-endfunction
-
-function! ReturnToStatus(cmd) abort
-  exec a:cmd
-  let num = bufwinnr('.git/index')
-  exec num . "wincmd w"
-endfunction
-
-function! s:CreateReturnToStatusMapping() abort
-  exec "cnoreabbrev <expr> <buffer> wq (getcmdtype()==':' && getcmdpos() < 4 ? 'call ReturnToStatus(''' . getcmdline() . ''')' : getcmdline())"
-  exec "cnoreabbrev <expr> <buffer> q (getcmdtype()==':' && getcmdpos() < 3 ? 'call ReturnToStatus(''' . getcmdline() . ''')' : getcmdline())"
-endfunction
-
-augroup GitCommit
-  au!
-  au Filetype gitcommit call s:HandleGitCommit()
-  au BufEnter fugitive://* call s:CreateReturnToStatusMapping()
-augroup END
 
 " function! s:checkQf() abort
 "   if !len(getqflist())

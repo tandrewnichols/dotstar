@@ -54,7 +54,7 @@ function! s:ViewAction(name) abort
 endfunction
 
 function! s:MakeSpec(...) abort
-  let fname = expand("%:.:r") . ".spec.js"
+  let fname = expand("%:.:r") . ".spec." . expand("%:e")
   exec "vsp" fname
   if !filereadable(fname) && a:0 > 0
     exec "Contemplate" a:1
@@ -62,7 +62,7 @@ function! s:MakeSpec(...) abort
 endfunction
 
 function! s:SetAlt() abort
-  let testfile = expand("%:.:r") . ".spec.js"
+  let testfile = expand("%:.:r") . ".spec." . expand("%:e")
   if filereadable(testfile)
     if bufexists(testfile)
       let @# = testfile
@@ -87,6 +87,6 @@ endfunction
 
 augroup javascript_environment
   au!
-  au FileType javascript call s:SetupJS()
+  au FileType javascript,javascript.jsx call s:SetupJS()
   au BufEnter *.js,*.jsx call s:SetAlt()
 augroup END
