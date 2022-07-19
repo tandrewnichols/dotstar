@@ -87,6 +87,6 @@ endfunction
 
 augroup javascript_environment
   au!
-  au FileType javascript,javascript.jsx call s:SetupJS()
-  au BufEnter *.js,*.jsx call s:SetAlt()
+  au FileType javascript,javascript.jsx,typescript,typescript.tsx call s:SetupJS()
+  au BufEnter *.js,*.jsx,*.ts,*.tsx call s:SetAlt()
 augroup END

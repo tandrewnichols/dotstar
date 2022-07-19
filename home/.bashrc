@@ -347,3 +347,4 @@ alias java13='export JAVA_HOME=$JAVA_13_HOME'
 java11
 
 export BASH_ENV="~/.bash_aliases"
+. "$HOME/.cargo/env"

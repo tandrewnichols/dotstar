@@ -4,7 +4,8 @@ function! RootRelativeToCwd()
   endif
 
   let relative = split(getcwd(), b:projectroot_name . '/')
-  if len(relative) == 0
+
+  if len(relative) > 1
     return b:projectroot_name
   else
     let relative = relative[1]

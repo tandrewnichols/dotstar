@@ -2,6 +2,9 @@ let g:ale_json_fixjson_executable = 'fixjson'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
   \   'javascript': ['eslint'],
+  \   'javascript.jsx': ['eslint'],
+  \   'typescript': ['tsserver'],
+  \   'typescript.tsx': ['tsserver'],
   \   'css': ['stylelint'],
   \   'less': ['stylelint'],
   \   'coffee': ['coffeelint'],
@@ -26,15 +29,16 @@ let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
 " let g:ale_markdown_remark_lint_options = '-r ~/.remarkrc.json'
 
-function s:ConfigurePrettierForOlive() abort
-  let b:ale_fixers = ['eslint']
+function s:ConfigurePrettierForOlive(type) abort
+  let b:ale_fixers = [a:type]
   let b:ale_pattern_options = { 'node_modules': {'ale_fixes': []}}
   let b:ale_fix_on_save = 1
 endfunction
 
 augroup aleconfig
 	au!
-	au BufEnter */olive/*.jsx,*/olive/*.* call <SID>ConfigurePrettierForOlive()
+  au BufEnter */olive/*.* call <SID>ConfigurePrettierForOlive('prettier')
+  au BufEnter */olive/ui/*.tsx,*/olive/ui/*.ts,*/olive/ui/*.jsx,*/olive/ui/*.js call <SID>ConfigurePrettierForOlive('eslint')
 	au BufEnter *.go let b:ale_fix_on_save = 1
 augroup END
 
@@ -43,7 +47,8 @@ let g:ale_fixers = {
   \   'css': ['stylelint'],
   \   'less': ['stylelint'],
   \   'json': ['fixjson'],
-  \   'go': ['gofmt']
+  \   'go': ['gofmt'],
+  \   'rust': ['rustfmt']
   \ }
 
 let g:ale_lint_delay = 500

@@ -1,5 +1,5 @@
 [user]
-  name = Andrew Nichols
+	name = Andrew Nichols
   email = tandrewnichols@gmail.com
 [diff]
   tool = vimdiff
@@ -60,8 +60,9 @@
   unpush = "!f() { git push origin :$1; }; f"
   wat = "!git log `git_default_branch`..`git name`"
   name = rev-parse --abbrev-ref HEAD
-  repo = "!f() { remote=`git config --get remote.origin.url`; remote=${remote#*:}; remote=${remote%.git}; echo $remote; }; f"
-  url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
+  repo = "!f() { remote=`git config --get remote.origin.url`;remote=${remote##ssh://} remote=${remote#*:}; remote=${remote#[0-9][0-9][0-9][0-9]/}; remote=${remote%.git}; echo $remote; }; f"
+  url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote##ssh://}; remote=${remote/:[0-9][0-9][0-9][0-9]}; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
+  open = "!f() { open `git url`; }; f"
   p = "!f() { if [[ -n `git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)` ]]; then git push; else git push -u origin `git name`; fi; }; f"
   root = rev-parse --show-toplevel
   pkg = "!f() { rm `git root`/package-lock.json; npm i --package-lock-only; }; f"

@@ -35,7 +35,7 @@ alias remotes="git branch -r"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
-alias olive="_goto ~/code/anichols/olive"
+alias o="_goto ~/code/anichols/olive"
 alias fe="_goto ~/code/anichols/manta/manta-frontend"
 alias server="_goto ~/code/anichols/manta/manta-frontend/server"
 alias client="_goto ~/code/anichols/manta/manta-frontend/client"
@@ -61,6 +61,7 @@ alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
 alias ne='n exec 14.19.0'
+alias neuron='olive neuron'
 
 export ll=src/renderers/screens/loopLibrary
 
@@ -226,8 +227,6 @@ pr() {
   elif [[ $remote =~ "bitbucket" ]]; then
     open "$remote/pull-requests/new?source=$branch&event_source=branch_list"
   elif [[ $remote =~ "gitlab.oliveai" ]]; then
-    remote=${remote//ssh\/\/\//}
-    remote=${remote//:2224/}
     open "$remote/-/merge_requests/new?merge_request%5Bsource_branch%5D=$branch"
   else
     echo "The remote does not match any known git host."

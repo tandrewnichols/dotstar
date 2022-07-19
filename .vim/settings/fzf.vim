@@ -57,17 +57,17 @@ function! OperatorRip(wiseness) abort
   endif
 endfunction
 
-nmap gr <Plug>(operator-ripgrep-root)
-vmap gr <Plug>(operator-ripgrep-root)
-call operator#user#define('ripgrep-root', 'OperatorRip', 'call SetRipOpDir(RootRelativeToCwd())')
-
-nmap gR <Plug>(operator-ripgrep-rel)
-vmap gR <Plug>(operator-ripgrep-rel)
-call operator#user#define('ripgrep-rel', 'OperatorRip', 'call SetRipOpDir(expand("%:h"))')
-
-nmap g. <Plug>(operator-ripgrep-cwd)
-vmap g. <Plug>(operator-ripgrep-cwd)
-call operator#user#define('ripgrep-cwd', 'OperatorRip', 'call SetRipOpDir(getcwd())')
+" nmap gr <Plug>(operator-ripgrep-root)
+" vmap gr <Plug>(operator-ripgrep-root)
+" call operator#user#define('ripgrep-root', 'OperatorRip', 'call SetRipOpDir(RootRelativeToCwd())')
+"
+" nmap gR <Plug>(operator-ripgrep-rel)
+" vmap gR <Plug>(operator-ripgrep-rel)
+" call operator#user#define('ripgrep-rel', 'OperatorRip', 'call SetRipOpDir(expand("%:h"))')
+"
+" nmap g. <Plug>(operator-ripgrep-cwd)
+" vmap g. <Plug>(operator-ripgrep-cwd)
+" call operator#user#define('ripgrep-cwd', 'OperatorRip', 'call SetRipOpDir(getcwd())')
 
 let s:actions = {
   \   'ctrl-t': 'tabe',
