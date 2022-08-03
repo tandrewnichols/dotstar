@@ -1,2 +1,2 @@
-nunmap >s<ESC>
-nunmap <s<ESC>
+silent! nunmap >s<ESC>
+silent! nunmap <s<ESC>
