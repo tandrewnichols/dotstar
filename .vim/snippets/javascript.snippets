@@ -56,9 +56,13 @@ snippet it
 snippet sub
 	subject = require('proxyquire').noCallThru()('${1}')${0}
 snippet bef
-	beforeEach((${1}) => ${2});${0}
+	beforeEach((${1}) => {
+		${0}
+	});
 snippet aft
-	afterEach((${1}) => ${1});${0}
+	afterEach((${1}) => {
+		${0}
+	});
 snippet sin
 	sinon.stub(${1}, '${2}')${0}
 snippet she
