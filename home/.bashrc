@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+export PATH=$HOME/code/homebrew/bin:$PATH
+export BREW_PREFIX=`brew --prefix`
+
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
 
@@ -215,7 +218,7 @@ export NEXUS_PASSWORD="px9tlR2IkNP60Y7D7vb2EpP6pRzdoSE7"
 export PLAY_ENV="dev"
 # Akash says I don't need this
 # export LOG_PATH="$HOME/code/anichols/manta/play/logs"
-export MAVEN_HOME="/usr/local/Cellar/maven/3.6.1/libexec"
+export MAVEN_HOME="$BREW_PREFIX/Cellar/maven/3.6.1/libexec"
 export USERNAME="anichols"
 
 if [[ $OSTYPE == darwin* ]]; then
@@ -248,20 +251,22 @@ function add_before_path() {
 if [[ $OSTYPE == darwin* ]]; then
   for brewbin in coreutils grep gnu-sed gnu-tar gnu-indent gnu-which findutils wdiff
   do
-    brewpath=/usr/local/opt/$brewbin/libexec
+    brewpath=$BREW_PREFIX/opt/$brewbin/libexec
     add_before_path $brewpath/gnubin
     MANPATH="$brewpath/gnuman:$MANPATH"
   done
 fi
 
-add_before_path /usr/local/opt/gnu-getopt/bin
+add_before_path $BREW_PREFIX/opt/gnu-getopt/bin
 
 add_after_path $HOME/bin:$HOME/.rvm/bin
-add_after_path /usr/local/opt/go/libexec/bin:/usr/local/opt/rust/bin
+add_after_path $BREW_PREFIX/opt/go/libexec/bin:$BREW_PREFIX/opt/rust/bin
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+
+[[ -r "$HOME/.git-completion.bash" ]] && . "$HOME/.git-completion.bash"
 
 ulimit -n 2560
 
@@ -314,7 +319,7 @@ export NEO4J_HOME=/Users/andrew/neo4j
 add_before_path $NEO4J_HOME/bin
 
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=$BREW_PREFIX/opt/go/libexec
 PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
 export PATH
@@ -331,8 +336,8 @@ bind "set show-all-if-ambiguous on"
 [ -f ~/.npm-completion ] && source ~/.npm-completion
 
 export JAVA_8_HOME=/usr/bin/java
-export JAVA_11_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.9
-export JAVA_13_HOME=$(brew --prefix)/Cellar/openjdk/13.0.2+8_2
+export JAVA_11_HOME=$BREW_PREFIX/Cellar/openjdk@11/11.0.9
+export JAVA_13_HOME=$BREW_PREFIX/Cellar/openjdk/13.0.2+8_2
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
@@ -342,3 +347,4 @@ alias java13='export JAVA_HOME=$JAVA_13_HOME'
 java11
 
 export BASH_ENV="~/.bash_aliases"
+. "$HOME/.cargo/env"

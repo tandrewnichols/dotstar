@@ -1,5 +1,5 @@
 [user]
-  name = Andrew Nichols
+	name = Andrew Nichols
   email = tandrewnichols@gmail.com
 [diff]
   tool = vimdiff
@@ -58,19 +58,21 @@
   oops = "!f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
   ls = ls-tree -r --name-only
   unpush = "!f() { git push origin :$1; }; f"
-  wat = "!git log master..`git name`"
+  wat = "!git log `git_default_branch`..`git name`"
   name = rev-parse --abbrev-ref HEAD
-  repo = "!f() { remote=`git config --get remote.origin.url`; remote=${remote#*:}; remote=${remote%.git}; echo $remote; }; f"
-  url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
+  repo = "!f() { remote=`git config --get remote.origin.url`;remote=${remote##ssh://} remote=${remote#*:}; remote=${remote#[0-9][0-9][0-9][0-9]/}; remote=${remote%.git}; echo $remote; }; f"
+  url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote##ssh://}; remote=${remote/:[0-9][0-9][0-9][0-9]}; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
+  open = "!f() { open `git url`; }; f"
   p = "!f() { if [[ -n `git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)` ]]; then git push; else git push -u origin `git name`; fi; }; f"
   root = rev-parse --show-toplevel
   pkg = "!f() { rm `git root`/package-lock.json; npm i --package-lock-only; }; f"
-  review = "!f() { dir=`pwd`; cd `git root`; git checkout -b `git name`-review; rm -rf node_modules; git fetch origin master; git co FETCH_HEAD -- node_modules; git a; git commit -m \"Remove node_modules for review\"; git push -u origin `git name`; cd $dir; open https://github.com/`git repo`/compare/`git name`?expand=1; }; f"
+  review = "!f() { dir=`pwd`; cd `git root`; git checkout -b `git name`-review; rm -rf node_modules; git fetch origin `git_default_branch`; git co FETCH_HEAD -- node_modules; git a; git commit -m \"Remove node_modules for review\"; git push -u origin `git name`; cd $dir; open https://github.com/`git repo`/compare/`git name`?expand=1; }; f"
   message = "!f() { rev=$(git rev-parse stash@{$1}) && git drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; f"
   cam = commit -am
   head = show HEAD
   bs = branch-select
   when = log -1 --format=%ai
+  latest = describe --tags --abbrev=0
 [push]
   default = upstream
 [branch]

@@ -29,7 +29,8 @@ if !exists('g:bones')
   Plug 'vim-utils/vim-husk'
 
   " Filetype plugins
-  Plug 'amadeus/vim-jsx'
+  " Plug 'amadeus/vim-jsx'
+  Plug 'MaxMEllon/vim-jsx-pretty'
   " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
@@ -38,7 +39,7 @@ if !exists('g:bones')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
   Plug 'fatih/vim-go'
-  " Plug 'leafgarland/typescript-vim'
+  Plug 'leafgarland/typescript-vim'
   Plug 'othree/csscomplete.vim'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'othree/html5.vim'
@@ -46,6 +47,7 @@ if !exists('g:bones')
   Plug 'jidn/vim-dbml'
   Plug 'jparise/vim-graphql'
   Plug 'neo4j-contrib/cypher-vim-syntax'
+  Plug 'hashivim/vim-terraform'
 
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
@@ -62,7 +64,7 @@ if !exists('g:bones')
   Plug 'SirVer/ultisnips'
   Plug 'machakann/vim-swap'
   Plug 'unblevable/quick-scope'
-  Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-scripts/YankRing.vim'
@@ -101,11 +103,11 @@ if !exists('g:bones')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'thinca/vim-visualstar'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'vim-scripts/genutils'
   Plug 'godlygeek/tabular'
-  Plug 'Valloric/YouCompleteMe'
+  " Plug 'Valloric/YouCompleteMe'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ervandew/supertab'
   Plug 'artnez/vim-wipeout'
   Plug 'bkad/camelcasemotion'

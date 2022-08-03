@@ -9,3 +9,4 @@ call determined#command('Push', 'push', { 'vertical': 0, 'autoclose': 1, 'rows':
 call determined#command('Mocha', 'mocha --fgrep %', { 'expand': 1, 'reuse': 1 })
 call determined#command('Jest', &shell . ' -c "NODE_ENV=development jest %"', { 'reuse': 1, 'expand': 1 })
 call determined#command('JestAll', &shell . ' -c "NODE_ENV=development jest --coverage --passWithNoTests"', { 'reuse': 1 })
+call determined#command('Cargo', 'cargo', { 'reuse': 1, 'background': 0, 'expand': 1 })

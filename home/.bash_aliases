@@ -32,11 +32,10 @@ fi
 alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js --exclude-dir=.nyc_* --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
-alias master="git checkout master && git pull"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
 alias manta="_goto ~/code/anichols/manta"
-alias olive="_goto ~/code/anichols/olive"
+alias o="_goto ~/code/anichols/olive"
 alias fe="_goto ~/code/anichols/manta/manta-frontend"
 alias server="_goto ~/code/anichols/manta/manta-frontend/server"
 alias client="_goto ~/code/anichols/manta/manta-frontend/client"
@@ -61,6 +60,10 @@ alias dd='clear'
 alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
+alias ne='n exec 14.19.0'
+alias neuron='olive neuron'
+
+export ll=src/renderers/screens/loopLibrary
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -218,10 +221,13 @@ oops() {
 # Open pull request for current branch
 pr() {
   remote=`git url`
+  branch=`git name`
   if [[ $remote =~ "github" ]]; then
-    open "$remote/compare/`git name`?expand=1"
+    open "$remote/compare/$branch?expand=1"
   elif [[ $remote =~ "bitbucket" ]]; then
-    open "$remote/pull-requests/new?source=`git name`&event_source=branch_list"
+    open "$remote/pull-requests/new?source=$branch&event_source=branch_list"
+  elif [[ $remote =~ "gitlab.oliveai" ]]; then
+    open "$remote/-/merge_requests/new?merge_request%5Bsource_branch%5D=$branch"
   else
     echo "The remote does not match any known git host."
   fi
@@ -252,13 +258,13 @@ release() {
 dr() {
   if [ -z $1 ]; then
     branch=$(git rev-parse --abbrev-ref HEAD)
-    if [ "$branch" = "master" ]; then
-      echo "You're on master, stupid"
+    if [ "$branch" = "`git_default_branch`" ]; then
+      echo "You're on `git_default_branch`, stupid"
     else
       git push origin :$branch
     fi
   else
-    if [ "$1" = "master" ]; then
+    if [ "$1" = "`git_default_branch`" ]; then
       echo "That's a bad idea."
     else
       git push origin :$1
@@ -321,11 +327,11 @@ db() {
   branch=$(git rev-parse --abbrev-ref HEAD)
   if [[ -n $1 ]]; then
     if [ $branch = $1 ] || [ $branch = "heads/$1" ]; then
-      git checkout master
+      git checkout `git_default_branch`
     fi
     git branch -D $1
   else
-    git checkout master
+    git checkout `git_default_branch`
     git branch -D $branch
   fi
 }
@@ -523,4 +529,21 @@ findup() {
 
 vf() {
   vim `fzf`
+}
+
+git_default_branch() {
+  if command git show-ref -q --verify refs/remotes/origin/master; then
+    echo 'master'
+  else
+    echo 'main'
+  fi
+}
+
+master() {
+  git checkout `git_default_branch`
+  git pull
+}
+
+main() {
+  master
 }
