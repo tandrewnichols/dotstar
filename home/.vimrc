@@ -58,6 +58,8 @@ augroup filetypes
   au BufNewFile,BufRead *.md :set ft=markdown
   au BufNewFile,BufRead *.html,*.js,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
   au BufNewFile,BufRead *.apex :set ft=apexcode
+  au BufNewFile,BufRead *.lss :set ft=xml
+  au BufNewFile,BufRead *.asc :set ft=json
   au FileType jsx let b:unaryTagsStack = ""
   au FileType javascriptreact :set ft=javascript.jsx
   au FileType html,css setlocal isk+=45
