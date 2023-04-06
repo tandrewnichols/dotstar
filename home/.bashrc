@@ -273,6 +273,8 @@ add_before_path ~/.npm-global/bin
 export NEO4J_HOME=/Users/andrew/neo4j
 add_before_path $NEO4J_HOME/bin
 
+[[ $(type -P "psql") ]] || add_before_path "$BREW_PREFIX/opt/postgresql@14/bin"
+
 export GOPATH=$HOME/go
 export GOROOT=$BREW_PREFIX/opt/go/libexec
 PATH=$PATH:$GOPATH/bin:$GOROOT/bin
