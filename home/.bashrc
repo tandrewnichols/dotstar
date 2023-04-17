@@ -273,7 +273,7 @@ add_before_path ~/.npm-global/bin
 export NEO4J_HOME=/Users/andrew/neo4j
 add_before_path $NEO4J_HOME/bin
 
-[[ $(type -P "psql") ]] || add_before_path "$BREW_PREFIX/opt/postgresql@14/bin"
+[[ $(type -P "psql") ]] || add_before_path "$BREW_PREFIX/opt/postgresql@15/bin"
 
 export GOPATH=$HOME/go
 export GOROOT=$BREW_PREFIX/opt/go/libexec
@@ -292,3 +292,6 @@ bind "set show-all-if-ambiguous on"
 export BASH_ENV="$HOME/.bash_aliases"
 
 [ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
+
+export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
