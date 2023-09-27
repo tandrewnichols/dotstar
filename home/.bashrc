@@ -112,20 +112,9 @@ shopt -s globstar
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 export TERM=xterm-256color
-#if [[ $OSTYPE == darwin* ]]; then
-  #export VIMRUNTIME=/usr/share/vim/vim73
-#else
-  #export VIMRUNTIME=/usr/share/vim/vim74
-#fi
-# set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+  xterm-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -160,11 +149,10 @@ ssh-add ~/.ssh/ht > /dev/null 2>&1
 ssh-add ~/.ssh/github > /dev/null 2>&1
 
 function get_ps1_path () {
-  gitroot=$(git rev-parse --show-toplevel 2>/dev/null)
-  if [ $? -eq 0 ]; then
-    echo ${PWD/#$gitroot/$(basename $gitroot)}
+  if gitroot=$(git rev-parse --show-toplevel 2>/dev/null); then
+    echo "${PWD/#$gitroot/$(basename "$gitroot")}"
   else
-    echo ${PWD/#$HOME/\~}
+    echo "${PWD/#$HOME/\~}"
   fi
 }
 
@@ -199,28 +187,10 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
-fi
-
-if [ -f ~/.git-prompt.sh ]; then
-  source ~/.git-prompt.sh
-fi
+[ -f ~/.bash_aliases ] && source "$HOME/.bash_aliases"
+[ -f ~/.git-prompt.sh ] && source "$HOME/.git-prompt.sh"
 
 export EDITOR=vim
-export LINES=$LINES
-export COLUMNS=$COLUMNS
-export NEXUS_USERNAME="manta_ro"
-export NEXUS_PASSWORD="px9tlR2IkNP60Y7D7vb2EpP6pRzdoSE7"
-export PLAY_ENV="dev"
-# Akash says I don't need this
-# export LOG_PATH="$HOME/code/anichols/manta/play/logs"
-export MAVEN_HOME="$BREW_PREFIX/Cellar/maven/3.6.1/libexec"
 export USERNAME="anichols"
 
 if [[ $OSTYPE == darwin* ]]; then
@@ -254,48 +224,44 @@ if [[ $OSTYPE == darwin* ]]; then
   for brewbin in coreutils grep gnu-sed gnu-tar gnu-indent gnu-which findutils wdiff
   do
     brewpath=$BREW_PREFIX/opt/$brewbin/libexec
-    add_before_path $brewpath/gnubin
+    add_before_path "$brewpath/gnubin"
     MANPATH="$brewpath/gnuman:$MANPATH"
   done
 fi
 
-add_before_path $BREW_PREFIX/opt/gnu-getopt/bin
+add_before_path "$BREW_PREFIX/opt/gnu-getopt/bin"
 
-add_after_path $HOME/bin:$HOME/.rvm/bin
-add_after_path $BREW_PREFIX/opt/go/libexec/bin:$BREW_PREFIX/opt/rust/bin
+add_after_path "$HOME/bin:$HOME/.rvm/bin"
+add_after_path "$BREW_PREFIX/opt/go/libexec/bin:$BREW_PREFIX/opt/rust/bin"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
-[[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+[[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && source "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
 
-[[ -r "$HOME/.git-completion.bash" ]] && . "$HOME/.git-completion.bash"
+[[ -r "$HOME/.git-completion.bash" ]] && source "$HOME/.git-completion.bash"
 
 ulimit -n 4096
 
-if [ -f ~/.rvm/scripts/rvm ]; then
-  source ~/.rvm/scripts/rvm
-fi
+[ -f ~/.rvm/scripts/rvm ] && source "$HOME/.rvm/scripts/rvm"
 
 set -o vi
 export TREE_COLORS='di=00;36:ln=00;32:ex=00;31'
 
-jenv_init() {
-  [[ -s "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" ]] && source "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" && source "/Users/AndrewNichols/.jenv/commands/completion.sh"
-}
-
 eval "$(hub alias -s)"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source "$HOME/.fzf.bash"
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 if [ -z "$TMUX" ]; then
-  list=`tmux ls`
+  list=$(tmux ls)
   if [ -z "$list" ]; then
     tmux new -s anichols
   else
-    index=`echo "$list" | wc -l`
+    index=$(echo "$list" | wc -l)
     index=$((index + 1))
     session=anichols${index}
     tmux new -s $session
@@ -304,15 +270,12 @@ fi
 
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 
-# export CDPATH=".:/Users/AndrewNichols/code/anichols/manta/manta-frontend:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/modules:/Users/AndrewNichols/code/anichols/apps:/Users/AndrewNichols/code/anichols/generators:/Users/AndrewNichols/code/anichols/vim:/Users/AndrewNichols/code/anichols/grunt-plugins:/Users/AndrewNichols/code/anichols/forks:/Users/AndrewNichols/code/anichols"
-
-[ -f ~/.config/manta/mf-completion.bash ] && source ~/.config/manta/mf-completion.bash
-
 add_before_path ~/.npm-global/bin
-add_after_path ~/apache-storm-1.0.2/bin
 
 export NEO4J_HOME=/Users/andrew/neo4j
 add_before_path $NEO4J_HOME/bin
+
+[[ $(type -P "psql") ]] || add_before_path "$BREW_PREFIX/opt/postgresql@15/bin"
 
 export GOPATH=$HOME/go
 export GOROOT=$BREW_PREFIX/opt/go/libexec
@@ -321,22 +284,28 @@ PATH=$PATH:~/.composer/vendor/bin
 
 export PATH
 
+<<<<<<< HEAD
 export NODE_VERSION=`node -v`
+=======
+NODE_VERSION=$(node -v)
+export NODE_VERSION
+>>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98
 
 # Display a list of the matching files
 bind "set show-all-if-ambiguous on"
 
-[ -f ~/.npm-completion ] && source ~/.npm-completion
+[ -f ~/.npm-completion ] && source "$HOME/.npm-completion"
 
-export JAVA_8_HOME=/usr/bin/java
-export JAVA_11_HOME=$BREW_PREFIX/Cellar/openjdk@11/11.0.9
-export JAVA_13_HOME=$BREW_PREFIX/Cellar/openjdk/13.0.2+8_2
+export BASH_ENV="$HOME/.bash_aliases"
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-alias java13='export JAVA_HOME=$JAVA_13_HOME'
+[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
 
+<<<<<<< HEAD
 # default to Java 11
 java11
 
 export BASH_ENV="~/.bash_aliases"
+=======
+export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+>>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98

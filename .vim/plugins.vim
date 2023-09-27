@@ -29,7 +29,9 @@ if !exists('g:bones')
   Plug 'vim-utils/vim-husk'
 
   " Filetype plugins
-  Plug 'MaxMEllon/vim-jsx-pretty'
+  " Plug 'amadeus/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
+  " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
   " Plug 'digitaltoad/vim-jade'
@@ -61,7 +63,7 @@ if !exists('g:bones')
   Plug 'milkypostman/vim-togglelist'
   Plug 'machakann/vim-swap'
   Plug 'unblevable/quick-scope'
-  Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'dbakker/vim-projectroot'
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-scripts/YankRing.vim'
