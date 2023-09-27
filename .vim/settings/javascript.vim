@@ -62,14 +62,14 @@ function! s:MakeSpec(...) abort
 endfunction
 
 function! s:SetAlt() abort
+  if has_key(b:, 'alt_testfile')
+    return
+  endif
+
   let testfile = expand("%:.:r") . ".spec." . expand("%:e")
   if filereadable(testfile)
-    if bufexists(testfile)
-      let @# = testfile
-    else
-      exec "balt" testfile
-    endif
-    nnoremap <buffer> <leader>sp :vsp#<CR>
+    let b:alt_testfile = testfile
+    exec "nnoremap <buffer> <leader>sp :vsp" testfile . "<CR>"
   else
     nnoremap <buffer> <leader>sp :Spec<space>
   endif
@@ -90,3 +90,36 @@ augroup javascript_environment
   au FileType javascript,javascript.jsx,typescript,typescript.tsx call s:SetupJS()
   au BufEnter *.js,*.jsx,*.ts,*.tsx call s:SetAlt()
 augroup END
+
+function! s:LintProject() abort
+  set makeprg=npm\ run\ eslint\ --silent\ --\ -f\ unix
+  Amake
+  copen
+endfunction
+
+function! s:Lint(...) abort
+  if a:0 > 0
+    let pathname = "apps/" . a:1
+    if !isdirectory(pathname)
+      let pathname = "libs/" . a:1
+    endif
+  else
+    let pathname = join(split(expand("%"), '/')[0:1], '/')
+  endif
+
+  let cwd = getcwd()
+
+  exec "set makeprg=eslint\\\ " . pathname . "/src/**/*.ts\\\ --quiet\\\ --format\\\ compact"
+  set errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ Error\ -\ %m
+  make
+endfunction
+
+function! s:NxComplete(lead, ...)
+  let lead = a:lead
+  let paths = split(globpath("libs", lead . "*"), "\n")
+  let paths += split(globpath("apps", lead . "*"), "\n")
+  return map(paths, 'split(v:val, "/")[1]')
+endfunction
+
+command! -nargs=0 LintProject call s:LintProject()
+command! -nargs=? -complete=customlist,s:NxComplete Lint call s:Lint(<f-args>)

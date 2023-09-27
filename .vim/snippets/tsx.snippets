@@ -58,3 +58,10 @@ snippet <p
 	<p className="text-grey-paragraph${1}">
 		${0}
 	</p>
+snippet jmr
+	jest.mock('react', () => ({
+		...jest.requireActual('react'),
+		useEffect: jest.fn(),
+	}));
+snippet ujm
+	(useEffect as jest.Mock).mockImplementation((fn) => fn());

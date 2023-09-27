@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export PATH=$HOME/code/homebrew/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 export BREW_PREFIX=`brew --prefix`
 
 # Reset
@@ -155,6 +155,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+ssh-add ~/.ssh/github-ht > /dev/null 2>&1
+ssh-add ~/.ssh/ht > /dev/null 2>&1
 ssh-add ~/.ssh/github > /dev/null 2>&1
 
 function get_ps1_path () {
@@ -268,7 +270,7 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 
 [[ -r "$HOME/.git-completion.bash" ]] && . "$HOME/.git-completion.bash"
 
-ulimit -n 2560
+ulimit -n 4096
 
 if [ -f ~/.rvm/scripts/rvm ]; then
   source ~/.rvm/scripts/rvm
@@ -276,12 +278,6 @@ fi
 
 set -o vi
 export TREE_COLORS='di=00;36:ln=00;32:ex=00;31'
-
-if [ -z $GRUNT_COMPLETION_INITIALIZED ]; then
-  eval "$(grunt --completion=bash)"
-  export GRUNT_COMPLETION_INITIALIZED=1
-fi
-
 
 jenv_init() {
   [[ -s "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" ]] && source "/Users/AndrewNichols/.jenv/bin/jenv-init.sh" && source "/Users/AndrewNichols/.jenv/commands/completion.sh"
@@ -321,12 +317,9 @@ add_before_path $NEO4J_HOME/bin
 export GOPATH=$HOME/go
 export GOROOT=$BREW_PREFIX/opt/go/libexec
 PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+PATH=$PATH:~/.composer/vendor/bin
 
 export PATH
-
-if [ -f ~/.oliverc ]; then
-  source ~/.oliverc
-fi
 
 export NODE_VERSION=`node -v`
 
@@ -347,4 +340,3 @@ alias java13='export JAVA_HOME=$JAVA_13_HOME'
 java11
 
 export BASH_ENV="~/.bash_aliases"
-. "$HOME/.cargo/env"

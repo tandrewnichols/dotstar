@@ -1,7 +1,7 @@
 function! s:StripTrailingWhitespaces()
   let l = line(".")
   let c = col(".")
-  %s/\s\+$//e
+  %s/[^\S\r\n]\+$//e
   call cursor(l, c)
 endfunction
 

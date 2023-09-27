@@ -3,6 +3,32 @@ let g:switch_mapping = ""
 nnoremap >s :Switch<CR>
 nnoremap <s :SwitchReverse<CR>
 
+let jstsDefs = [
+  \   {
+  \     'function(\([^)]\{-}\))': '(\1) =>',
+  \     '(\([^)]\{-}\)) =>': 'function(\1)'
+  \   },
+  \   ['var', 'let', 'const'],
+  \   ['resolves', 'rejects'],
+  \   ['equal', 'eql'],
+  \   {
+  \     'export default class \([A-Za-z]\+\) extends React\.Component {': 'const \1 = () => {',
+  \     'const \([A-Za-z]\+\) = (.*) =>': 'export default class \1 extends React.Component'
+  \   },
+  \   {
+  \     "it('[^']\{-}', () => {": "it('\1', async () => {",
+  \     "it('[^']\{-}', async () => {": "it('\1', () => {"
+  \   },
+  \   {
+  \     '\(\k\+\)\[''\(\k\+\)''\]': '\1.\2',
+  \     '\(\k\+\)\.\(\k\+\)\>': '\1[''\2'']'
+  \   },
+  \   {
+  \     'className="\([^"]\+\)"': 'className={classnames(''\1'')}',
+  \     'className={classnames(''\([^'']\+\)'')}': 'className="\1"'
+  \   }
+  \ ]
+
 augroup SwitchDefinitions
   autocmd!
   autocmd FileType coffee let b:switch_custom_definitions =
@@ -48,26 +74,6 @@ augroup SwitchDefinitions
     \     'col-\(xs\|sm\|md\|lg\)-2': 'col-\1-12'
     \   }
     \ ]
-  autocmd FileType javascript let b:switch_custom_definitions =
-    \ [
-    \   {
-    \     'function(\([^)]\{-}\))': '(\1) =>',
-    \     '(\([^)]\{-}\)) =>': 'function(\1)'
-    \   },
-    \   ['var', 'let', 'const'],
-    \   ['resolves', 'rejects'],
-    \   ['equal', 'eql'],
-    \   {
-    \     'export default class \([A-Za-z]\+\) extends React\.Component {': 'const \1 = () => {',
-    \     'const \([A-Za-z]\+\) = (.*) =>': 'export default class \1 extends React.Component'
-    \   },
-    \   {
-    \     "it('[^']\{-}', () => {": "it('\1', async () => {",
-    \     "it('[^']\{-}', async () => {": "it('\1', () => {"
-    \   },
-    \   {
-    \     '\(\k\+\)\[''\(\k\+\)''\]': '\1.\2',
-    \     '\(\k\+\)\.\(\k\+\)\>': '\1[''\2'']'
-    \   }
-    \ ]
+  autocmd FileType javascript let b:switch_custom_definitions = jstsDefs
+  autocmd FileType typescript let b:switch_custom_definitions = jstsDefs
 augroup END

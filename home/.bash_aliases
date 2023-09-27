@@ -34,18 +34,18 @@ alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
+alias ht="_goto ~/code/anichols/ht"
 alias manta="_goto ~/code/anichols/manta"
-alias o="_goto ~/code/anichols/olive"
-alias fe="_goto ~/code/anichols/manta/manta-frontend"
-alias server="_goto ~/code/anichols/manta/manta-frontend/server"
-alias client="_goto ~/code/anichols/manta/manta-frontend/client"
-alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
+# alias fe="_goto ~/code/anichols/manta/manta-frontend"
+# alias server="_goto ~/code/anichols/manta/manta-frontend/server"
+# alias client="_goto ~/code/anichols/manta/manta-frontend/client"
+# alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
 alias modules="_goto ~/code/anichols/modules"
 alias mod="_goto ~/code/anichols/modules"
 alias apps="_goto ~/code/anichols/apps"
 alias forks="_goto ~/code/anichols/forks"
-alias generators="_goto ~/code/anichols/generators"
-alias plugins="_goto ~/code/anichols/grunt-plugins"
+# alias generators="_goto ~/code/anichols/generators"
+# alias plugins="_goto ~/code/anichols/grunt-plugins"
 alias vp="_goto ~/code/anichols/vim"
 alias neo="neo4j-instance"
 alias vi="vim"
@@ -53,17 +53,16 @@ alias vimbones="vim --cmd 'let g:bones=1'"
 alias vimpure="vim --cmd 'let g:noplugins=1'"
 alias neo=ineo
 alias ..="cd .."
-alias r="ranger"
 alias aliases="rg \"^ *alias\" ~/.bash_aliases"
 alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
 alias dd='clear'
 alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
-alias ne='n exec 14.19.0'
-alias neuron='olive neuron'
+# alias ne='n exec 14.19.0'
+alias dc='docker compose'
 
-export ll=src/renderers/screens/loopLibrary
+# export ll=src/renderers/screens/loopLibrary
 
 # Linux specific aliases
 if [[ $OSTYPE != darwin* ]]; then
@@ -233,7 +232,7 @@ pr() {
   fi
 }
 
-gh() {
+gbrowse() {
   open `git url`
 }
 
@@ -299,9 +298,9 @@ st() {
 
 conflict() {
   if [ -z $1 ]; then
-    st | grep -P '^[A-Z]{2}'
+    st | rg '^[A-Z]{2}'
   else
-    st $1 | grep -P '^[A-Z]{2}'
+    st $1 | rg '^[A-Z]{2}'
   fi
 }
 
@@ -532,11 +531,7 @@ vf() {
 }
 
 git_default_branch() {
-  if command git show-ref -q --verify refs/remotes/origin/master; then
-    echo 'master'
-  else
-    echo 'main'
-  fi
+  echo `git remote show origin | sed -n '/HEAD branch/s/.*: //p'`
 }
 
 master() {

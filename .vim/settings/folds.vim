@@ -7,8 +7,8 @@ endfunction
 
 augroup MapEnter
   au!
-  au FileType javascript,json nnoremap <CR> :call <SID>SyntaxFold('za')<CR>
-  au FileType javascript,json nnoremap <leader><CR> :call <SID>SyntaxFold('zA')<CR>
+  au FileType typescript,typescript.tsx,javascript,javascript.jsx,json nnoremap <CR> :call <SID>SyntaxFold('za')<CR>
+  au FileType typescript,typescript.tsx,javascript,javascript.jsx,json nnoremap <leader><CR> :call <SID>SyntaxFold('zA')<CR>
   au FileType html nnoremap <expr> <CR> foldclosed('.') == -1 ? 'zfat' : 'zA'
 augroup END
 

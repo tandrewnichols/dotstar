@@ -73,6 +73,8 @@
   bs = branch-select
   when = log -1 --format=%ai
   latest = describe --tags --abbrev=0
+  has = "!f() { git branch --contains tags/$1; }; f"
+  bump = git commit --allow-empty -m "Bump"
 [push]
   default = upstream
 [branch]
@@ -91,3 +93,5 @@
 	insteadOf = https://bitbucket.org/
 [pull]
 	rebase = false
+[url "git@github-ht:hometownticketing/"]
+  insteadOf = git@github.com:hometownticketing/
