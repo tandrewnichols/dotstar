@@ -30,6 +30,8 @@ snippet ed
 	export default ${0}
 snippet edc
 	export default class ${0}
+snippet edf
+	export default function ${0}
 snippet ex
 	export ${1}
 snippet ec
@@ -55,3 +57,9 @@ snippet @r
 	@returns {${1}} - ${0}
 snippet mock
 	jest.mock('${1}');${0}
+snippet jest.un
+	jest.unstable_mockModule('${1}', () => ({
+		${0}
+	}));
+snippet def
+	(await import('${1}')).default;${0}

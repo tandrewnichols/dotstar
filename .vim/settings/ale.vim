@@ -29,16 +29,16 @@ let g:ale_html_htmlhint_options = '--config ~/htmlhintrc.json'
 let g:ale_coffee_coffeelint_options = '-f ~/.coffeelint'
 " let g:ale_markdown_remark_lint_options = '-r ~/.remarkrc.json'
 
-function s:ConfigurePrettierForOlive(type) abort
-  let b:ale_fixers = [a:type]
-  let b:ale_pattern_options = { 'node_modules': {'ale_fixes': []}}
-  let b:ale_fix_on_save = 1
-endfunction
+" function s:ConfigurePrettierForOlive(type) abort
+"   let b:ale_fixers = [a:type]
+"   let b:ale_pattern_options = { 'node_modules': {'ale_fixes': []}}
+"   let b:ale_fix_on_save = 1
+" endfunction
 
 augroup aleconfig
 	au!
-  au BufEnter */olive/*.* call <SID>ConfigurePrettierForOlive('prettier')
-  au BufEnter */olive/ui/*.tsx,*/olive/ui/*.ts,*/olive/ui/*.jsx,*/olive/ui/*.js call <SID>ConfigurePrettierForOlive('eslint')
+  " au BufEnter */olive/*.* call <SID>ConfigurePrettierForOlive('prettier')
+  " au BufEnter */olive/ui/*.tsx,*/olive/ui/*.ts,*/olive/ui/*.jsx,*/olive/ui/*.js call <SID>ConfigurePrettierForOlive('eslint')
 	au BufEnter *.go let b:ale_fix_on_save = 1
 augroup END
 

@@ -1,5 +1,6 @@
 " Bundles
 set nocp
+set shell=/bin/bash
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
 let shell=trim(system("which bash"))
@@ -53,15 +54,17 @@ set encoding=UTF-8
 augroup filetypes
   au!
   au BufNewFile,BufRead *.es6,*.jsx :set ft=javascript.jsx
+  au BufNewFile,BufRead *.tsx :set ft=typescript.tsx
   au BufNewFile,BufRead *.less :set ft=less
   au BufNewFile,BufRead *.ejs,*.hbs,*.mustache :set ft=html
-  au BufNewFile,BufRead *.md :set ft=markdown
+  au BufNewFile,BufRead *.md,*.mdx :set ft=markdown
   au BufNewFile,BufRead *.html,*.js,*.ejs,*.hbs,*.mustache let b:unaryTagsStack = "area base br dd dt hr img input link meta param"
   au BufNewFile,BufRead *.apex :set ft=apexcode
   au BufNewFile,BufRead *.lss :set ft=xml
   au BufNewFile,BufRead *.asc :set ft=json
   au FileType jsx let b:unaryTagsStack = ""
   au FileType javascriptreact :set ft=javascript.jsx
+  au FileType typescriptreact :set ft=typescript.tsx
   au FileType html,css setlocal isk+=45
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
   au FileType netrw setlocal bufhidden=delete
@@ -90,6 +93,8 @@ set timeoutlen=500
 set cursorline
 set ttyfast
 set lazyredraw
+
+set isf+=[,],(,)
 
 if &term =~ '256color'
   set t_ut=

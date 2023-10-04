@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-BREW_PREFIX=$(brew --prefix)
-export BREW_PREFIX
+export PATH=/opt/homebrew/bin:$PATH
+export BREW_PREFIX=`brew --prefix`
 
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
@@ -144,6 +144,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+ssh-add ~/.ssh/github-ht > /dev/null 2>&1
+ssh-add ~/.ssh/ht > /dev/null 2>&1
 ssh-add ~/.ssh/github > /dev/null 2>&1
 
 function get_ps1_path () {
@@ -240,7 +242,7 @@ export N_PREFIX="$HOME/n"
 
 [[ -r "$HOME/.git-completion.bash" ]] && source "$HOME/.git-completion.bash"
 
-ulimit -n 2560
+ulimit -n 4096
 
 [ -f ~/.rvm/scripts/rvm ] && source "$HOME/.rvm/scripts/rvm"
 
@@ -278,11 +280,16 @@ add_before_path $NEO4J_HOME/bin
 export GOPATH=$HOME/go
 export GOROOT=$BREW_PREFIX/opt/go/libexec
 PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+PATH=$PATH:~/.composer/vendor/bin
 
 export PATH
 
+<<<<<<< HEAD
+export NODE_VERSION=`node -v`
+=======
 NODE_VERSION=$(node -v)
 export NODE_VERSION
+>>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98
 
 # Display a list of the matching files
 bind "set show-all-if-ambiguous on"
@@ -293,5 +300,12 @@ export BASH_ENV="$HOME/.bash_aliases"
 
 [ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
 
+<<<<<<< HEAD
+# default to Java 11
+java11
+
+export BASH_ENV="~/.bash_aliases"
+=======
 export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
 export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+>>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98

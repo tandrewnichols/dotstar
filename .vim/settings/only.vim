@@ -1,15 +1,6 @@
 " -------------
-" JASMINE/MOCHA
+" JASMINE/MOCHA/JEST
 " -------------
-
-function! s:RecordCurrentPosition()
-  let b:current_position = getcurpos()
-endfunction
-
-function! s:JumpToLast()
-  echom "Setting cursor position to" . b:current_position[1] . ":" . b:current_position[2]
-  call cursor(b:current_position[1], b:current_position[2])
-endfunction
 
 function! s:Annotate(action, pattern, flags, ...)
   let pos = getcurpos()
@@ -19,15 +10,6 @@ function! s:Annotate(action, pattern, flags, ...)
   call search(a:pattern, 'cw' . a:flags)
   exec "normal" a:action
   call cursor(pos[1], pos[2])
-endfunction
-
-function! s:GetAnnotation(type) abort
-  let isMf = expand("%") =~ 'manta-frontend'
-  if (a:type == 'add')
-    return isMf ? 'ix' : 'ea.skip'
-  else
-    return isMf ? 'x\(describe\|context\)' : '\(describe\|context\|it\)\.skip'
-  endif
 endfunction
 
 function! s:ClearAnnotation(pattern) abort
@@ -67,11 +49,11 @@ function! s:CreateMappings()
   nmap <silent> <buffer> <leader>ro <Plug>only-remove
 
   " xdescribe: xdescribe nearest describe
-  nnoremap <silent> <Plug>skip-describe :call <sid>Annotate(<sid>GetAnnotation('add'), '\(^describe\\|  \zsdescribe\)', 'b')<CR>
+  nnoremap <silent> <Plug>skip-describe :call <sid>Annotate('ea.skip', '\(^describe\\|  \zsdescribe\)', 'b')<CR>
   nmap <silent> <buffer> <leader>dx <Plug>skip-describe
 
   " xcontext: xcontext nearest context
-  nnoremap <silent> <Plug>skip-context :call <sid>Annotate(<sid>GetAnnotation('add'), '  \zscontext', 'b')<CR>
+  nnoremap <silent> <Plug>skip-context :call <sid>Annotate('ea.skip', '  \zscontext', 'b')<CR>
   nmap <silent> <buffer> <leader>cx <Plug>skip-context
 
   " it.skip: skip nearest it
@@ -79,7 +61,7 @@ function! s:CreateMappings()
   nmap <silent> <buffer> <leader>ix <Plug>skip-it
 
   " Remove x: Remove all occurrences of .skip and change xdescribe/xcontext to describe/context
-  nnoremap <silent> <Plug>skip-remove :call <sid>ClearAnnotation(<sid>GetAnnotation('clear'))<CR>
+  nnoremap <silent> <Plug>skip-remove :call <sid>ClearAnnotation('\(describe\|context\|it\)\.skip')<CR>
   nmap <silent> <buffer> <leader>xx <Plug>skip-remove
 endfunction
 

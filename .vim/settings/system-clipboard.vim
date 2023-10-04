@@ -33,7 +33,8 @@ nnoremap <silent> <leader>;c :set opfunc=<SID>cOpfunc<CR>g@
 
 if g:isMac
   nnoremap <leader>;yy "*yy
-  nnoremap <leader>;Y "*Y
+  nnoremap <leader>;y$ "*y$
+  nnoremap <leader>;Y "*y$
   nnoremap <leader>;p "*p
   nnoremap <leader>;P "*P
   nnoremap <leader>;x "*x
@@ -48,7 +49,8 @@ if g:isMac
   vnoremap <leader>;r "*r
 else
   nnoremap <leader>;yy "+yy
-  nnoremap <leader>;Y "+Y
+  nnoremap <leader>;y$ "+y$
+  nnoremap <leader>;Y "+y$
   nnoremap <leader>;p "+p
   nnoremap <leader>;P "+P
   nnoremap <leader>;x "+x

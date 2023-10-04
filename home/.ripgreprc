@@ -1,3 +1,5 @@
+--hidden
+
 -g
 !node_modules
 
@@ -36,3 +38,9 @@
 
 -g
 !package-lock.json
+
+-g
+!dist
+
+-g
+!.test-results.json

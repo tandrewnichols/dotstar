@@ -73,3 +73,8 @@ nnoremap <silent> <leader>gu :Gunstage<CR>
 "
 " nnoremap ]g :call <SID>checkQf()<CR>
 " nnoremap [g cnext
+
+augroup fugitiveBufferCommands
+  au!
+  au BufEnter *.fugitiveblame nnoremap q :q<CR>
+augroup END

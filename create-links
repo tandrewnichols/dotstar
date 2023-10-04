@@ -2,31 +2,11 @@
 
 shopt -s dotglob
 
-linkFiles() {
-  from=$(pwd)
-  if [[ -n $1 ]]; then
-    from=$from/$1
-  fi
-  from=$from/*
-  to=${2:-~}
-  if [[ ! -d $to ]]; then
-    mkdir $to
-  fi
-  for file in $from
-  do
-    if [ -f $file ] || [[ "$file" == */.vim/settings ]] || [[ "$file" == */.vim/snippets ]] || [[ "$file" == */.vim/after ]]; then
-      echo "Linking $file to $to/$(basename $file)"
-      ln -sf `realpath $file` $to/$(basename $file)
-    fi
-  done
-}
-
-linkFiles home
-linkFiles .vim $HOME/.vim
-linkFiles .vim/autoload $HOME/.vim/autoload
-ln -sf `realpath .vim/autoload/depute` $HOME/.vim/autoload/depute
-linkFiles .config $HOME/.config
-linkFiles bin $HOME/bin
-linkFiles .config $HOME/.config
+ln -s `realpath .vim` ~/.vim
+ln -s `realpath .config` ~/.config
+for file in home/*
+do
+  ln -s `realpath $file` ~/`basename $file`
+done
 
 shopt -u dotglob

@@ -3,7 +3,7 @@ nnoremap <leader>= ggvG=
 nnoremap <leader>dj :%s/\v"([^"]+)"\s*:/\1:/g<CR>
 
 function! s:FormatAsJson()
-  :%!python -m json.tool
+  :%!which python 2> /dev/null && python -m json.tool || python3 -m json.tool
   setf json
   normal! ggvG=
 endfunction

@@ -1,3 +1,3 @@
-set grepprg=rg
+set grepprg=rg\ --vimgrep
 
-let g:grep_cmd_opts = '--vimgrep'
+" let g:grep_cmd_opts = '--vimgrep'

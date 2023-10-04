@@ -8,12 +8,12 @@ if !exists('g:bones')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-vinegar'
+  " Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-jdaddy'
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-scriptease'
@@ -36,7 +36,6 @@ if !exists('g:bones')
   Plug 'lunaru/vim-less'
   " Plug 'digitaltoad/vim-jade'
   Plug 'kchmck/vim-coffee-script'
-  Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'stephpy/vim-yaml'
   Plug 'fatih/vim-go'
   Plug 'leafgarland/typescript-vim'
@@ -49,19 +48,19 @@ if !exists('g:bones')
   Plug 'neo4j-contrib/cypher-vim-syntax'
   Plug 'hashivim/vim-terraform'
 
+  " Functionality plugins
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
   Plug 'mbbill/undotree'
   Plug 'dense-analysis/ale'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'docunext/closetag.vim'
+  Plug 'tandrewnichols/closetag.vim'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
-  Plug 'rstacruz/sparkup'
   Plug 'kshenoy/vim-signature'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'milkypostman/vim-togglelist'
-  Plug 'SirVer/ultisnips'
   Plug 'machakann/vim-swap'
   Plug 'unblevable/quick-scope'
   Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -69,6 +68,7 @@ if !exists('g:bones')
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-scripts/YankRing.vim'
   Plug 'terryma/vim-expand-region'
+  Plug 'edkolev/vim-amake'
 
   " Text object plugins
   Plug 'kana/vim-textobj-user'
@@ -106,9 +106,9 @@ if !exists('g:bones')
   Plug 'tmux-plugins/vim-tmux'
   Plug 'vim-scripts/genutils'
   Plug 'godlygeek/tabular'
-  " Plug 'Valloric/YouCompleteMe'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ervandew/supertab'
+  Plug 'SirVer/ultisnips'
   Plug 'artnez/vim-wipeout'
   Plug 'bkad/camelcasemotion'
   Plug 'junegunn/vim-emoji'
@@ -127,8 +127,17 @@ if !exists('g:bones')
   Plug 'rhysd/git-messenger.vim'
   Plug 'neowit/vim-force.com'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'ryanoasis/vim-devicons'
+  Plug 'lambdalisue/nerdfont.vim'
   Plug 'umaumax/vim-lcov'
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+  Plug 'lambdalisue/fern-git-status.vim'
+  Plug 'lambdalisue/fern-hijack.vim'
+  Plug 'lambdalisue/fern-bookmark.vim'
+  Plug 'lambdalisue/fern-mapping-git.vim'
+  Plug 'lambdalisue/fern-mapping-project-top.vim'
+  Plug 'lambdalisue/fern-mapping-quickfix.vim'
+  Plug 'andykog/fern-copynode.vim'
 
   " Local plugins
   Plug '~/code/anichols/vim/vim-vigor'
