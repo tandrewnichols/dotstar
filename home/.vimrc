@@ -71,7 +71,7 @@ augroup filetypes
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
   au FileType netrw setlocal bufhidden=delete
   au Filetype elm setlocal tabstop=4 shiftwidth=4
-  au Filetype go setlocal noexpandtab
+  au Filetype java,go setlocal noexpandtab
 augroup END
 
 augroup startup
