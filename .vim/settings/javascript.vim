@@ -91,13 +91,15 @@ augroup javascript_environment
   au BufEnter *.js,*.jsx,*.ts,*.tsx call s:SetAlt()
 augroup END
 
-function! s:LintProject() abort
-  set makeprg=npm\ run\ eslint\ --silent\ --\ -f\ unix
-  Amake
+function! s:Lint(...) abort
+  let scriptTarget = a:0 > 0 ? a:1 : 'lint'
+  exec "set makeprg=npm\\\ run\\\ " . scriptTarget . "\\\ --silent\\\ --\\\ --quiet\\\ --format\\\ compact"
+  set errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ Error\ -\ %m
+  make
   copen
 endfunction
 
-function! s:Lint(...) abort
+function! s:LintProject(...) abort
   if a:0 > 0
     let pathname = "apps/" . a:1
     if !isdirectory(pathname)
@@ -121,5 +123,5 @@ function! s:NxComplete(lead, ...)
   return map(paths, 'split(v:val, "/")[1]')
 endfunction
 
-command! -nargs=0 LintProject call s:LintProject()
-command! -nargs=? -complete=customlist,s:NxComplete Lint call s:Lint(<f-args>)
+command! -nargs=? Lint call s:Lint(<f-args>)
+command! -nargs=? -complete=customlist,s:NxComplete LintProject call s:LintProject(<f-args>)

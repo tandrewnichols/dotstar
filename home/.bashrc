@@ -284,12 +284,7 @@ PATH=$PATH:~/.composer/vendor/bin
 
 export PATH
 
-<<<<<<< HEAD
 export NODE_VERSION=`node -v`
-=======
-NODE_VERSION=$(node -v)
-export NODE_VERSION
->>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98
 
 # Display a list of the matching files
 bind "set show-all-if-ambiguous on"
@@ -299,13 +294,3 @@ bind "set show-all-if-ambiguous on"
 export BASH_ENV="$HOME/.bash_aliases"
 
 [ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
-
-<<<<<<< HEAD
-# default to Java 11
-java11
-
-export BASH_ENV="~/.bash_aliases"
-=======
-export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
-export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
->>>>>>> 0339fc9ed398c6560a3fde52ac915a658b365e98

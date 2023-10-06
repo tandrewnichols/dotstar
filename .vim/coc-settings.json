@@ -1,0 +1,7 @@
+{
+  "typescript.autoClosingTags": false,
+  "javascript.suggestionActions.enabled": false,
+  "javascript.suggest.completeFunctionCalls": false,
+  "javascript.autoClosingTags": false,
+  "suggest.noselect": true
+}
