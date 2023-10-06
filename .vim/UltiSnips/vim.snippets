@@ -1,0 +1,40 @@
+snippet nn
+nnoremap ${1} ${0}
+endsnippet
+
+snippet in
+inoremap ${1} ${0}
+endsnippet
+
+snippet vn
+vnoremap ${1} ${0}
+endsnippet
+
+snippet xn
+xnoremap ${1} ${0}
+endsnippet
+
+snippet on
+onoremap ${1} ${0}
+endsnippet
+
+snippet cn
+cnoremap ${1} ${0}
+endsnippet
+
+snippet f
+function! ${1}(${2}) abort
+	${0}
+endfunction
+endsnippet
+
+snippet sub
+substitute(${1}, '${2}', '${3}', '${4}')${0}
+endsnippet
+
+snippet au
+augroup ${1}
+	au!
+	${0}
+augroup END
+endsnippet

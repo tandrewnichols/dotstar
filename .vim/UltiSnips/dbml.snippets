@@ -1,0 +1,20 @@
+snippet id
+id uuid [pk, unique, default: `gen_random_uuid()`]${0}
+endsnippet
+
+snippet cr
+created_at timestamp [default: `now()`]
+updated_at timestamp [default: `now()`]${0}
+endsnippet
+
+snippet I
+Indexes {
+	${0}
+}
+endsnippet
+
+snippet E
+Enum ${1} {
+	${0}
+}
+endsnippet

@@ -1,0 +1,31 @@
+snippet i
+<input type="${1}" class="form-control" name="${2:}" id="$2" ng-model="${3}" data-test="input-${4:$2}">${0}
+endsnippet
+
+snippet input
+<input type="text" class="form-control" name="${1:}" id="$1" ng-model="${2}" data-test="input-${3:$1}">${0}
+endsnippet
+
+snippet check
+<input type="checkbox" class="form-control" name="${1:}" id="$1" ng-model="${2}" data-test="input-${3:$1}">${0}
+endsnippet
+
+snippet radio
+<input type="radio" class="form-control" name="${1:}" id="$1" ng-model="${2}" data-test="input-${3:$1}">${0}
+endsnippet
+
+snippet row
+<div class="row${1}">
+	<div class="col-${2}">
+		${0}
+	</div>
+</div>
+endsnippet
+
+snippet mf
+<div manta-form="${1}" body="${2}" submit="${3}" cancel="${4}"></div>${0}
+endsnippet
+
+snippet dd
+data
+endsnippet

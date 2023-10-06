@@ -1,0 +1,116 @@
+snippet log
+console.log({ ${0} });
+endsnippet
+
+snippet mod
+module.exports = ${0}
+endsnippet
+
+snippet r
+require('${1}')${0}
+endsnippet
+
+snippet des
+describe('${1}', () => {
+	${0}
+});
+endsnippet
+
+snippet con
+context('${1}', () => {
+	${0}
+});
+endsnippet
+
+snippet it
+it('${1}', ${2}() => {
+	${0}
+});
+endsnippet
+
+snippet bef
+beforeEach(() => {
+	${0}
+});
+endsnippet
+
+snippet aft
+afterEach(() => {
+	${0}
+});
+endsnippet
+
+snippet im
+import ${1} from ${0}
+endsnippet
+
+snippet ed
+export default ${0}
+endsnippet
+
+snippet edc
+export default class ${0}
+endsnippet
+
+snippet edf
+export default function ${0}
+endsnippet
+
+snippet ex
+export ${1}
+endsnippet
+
+snippet ec
+export const ${0}
+endsnippet
+
+snippet ef "export function" b
+export function ${0}
+endsnippet
+
+snippet x
+extends ${0}
+endsnippet
+
+snippet dd
+data
+endsnippet
+
+snippet icon
+import { ${1} } from '@fortawesome/${2:free}-${3:solid}-svg-icons';
+import Icon from 'app/components/icon';${0}
+endsnippet
+
+snippet cd
+customData
+endsnippet
+
+snippet ae
+await expect(subject.${1}).${2:resolves}.${3:toEqual}(${0});
+endsnippet
+
+snippet @p
+@param {${1}} ${2} - ${0}
+endsnippet
+
+snippet @prop
+@property {${1}} ${2} - ${0}
+endsnippet
+
+snippet @r
+@returns {${1}} - ${0}
+endsnippet
+
+snippet mock
+jest.mock('${1}');${0}
+endsnippet
+
+snippet jest.un
+jest.unstable_mockModule('${1}', () => ({
+	${0}
+}));
+endsnippet
+
+snippet def
+(await import('${1}')).default;${0}
+endsnippet

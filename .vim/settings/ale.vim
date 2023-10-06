@@ -16,6 +16,8 @@ let g:ale_linters = {
   \   'go': ['gopls']
   \ }
 
+let g:ale_virtualtext_cursor = 'disabled'
+
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '?'
 let g:ale_lint_on_enter = 0

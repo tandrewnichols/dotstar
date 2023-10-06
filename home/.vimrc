@@ -4,6 +4,8 @@ set shell=/bin/bash
 let g:isMac = substitute(system('uname'), "\n", "", "") == "Darwin"
 let $BASH_ENV = "~/.bash_aliases"
 let shell=trim(system("which bash"))
+let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/UltiSnips']
+let g:UltiSnipsEnableSnipMate=0
 
 if !exists('g:noplugins')
   source ~/.vim/plugins.vim

@@ -52,7 +52,7 @@ if !exists('g:bones')
   Plug 'tomtom/tcomment_vim'
   Plug 'tomtom/tlib_vim'
   Plug 'mbbill/undotree'
-  Plug 'dense-analysis/ale'
+  " Plug 'dense-analysis/ale'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'tandrewnichols/closetag.vim'
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }

@@ -7,16 +7,19 @@ let g:coc_VERSION = '1.0.0'
 let g:ulti_expand_or_jump_res = 0
 
 function! s:HandleTab()
-  if (UltiSnips#CanExpandSnippet() || UltiSnips#CanJumpForwards()) && (!coc#pum#visible() || coc#pum#info().index < 0)
+  echom string(coc#pum#info())
+  if (UltiSnips#CanExpandSnippet() || UltiSnips#CanJumpForwards()) && !coc#pum#visible()
+    echom '1'
     call UltiSnips#ExpandSnippetOrJump()
-    return ""
+    return coc#pum#stop()
   endif
 
   if coc#pum#visible()
-    call coc#pum#next(1)
-    return ""
+    echom '2'
+    return coc#pum#next(1)
   endif
 
+    echom '3'
   return "\<tab>"
 endfunction
 
@@ -27,8 +30,7 @@ function! s:HandleShiftTab()
   endif
 
   if coc#pum#visible()
-    call coc#pum#prev(1)
-    return ""
+    return coc#pum#prev(1)
   endif
 
   return "\<s-tab>"
