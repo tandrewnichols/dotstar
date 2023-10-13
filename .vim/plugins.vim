@@ -30,7 +30,7 @@ if !exists('g:bones')
 
   " Filetype plugins
   " Plug 'amadeus/vim-jsx'
-  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'MaxMEllon/vim-jsx-pretty'
   " Plug 'vim-scripts/Better-CSS-Syntax-for-Vim'
   Plug 'ap/vim-css-color'
   Plug 'lunaru/vim-less'
@@ -115,7 +115,7 @@ if !exists('g:bones')
   Plug 'junegunn/vader.vim'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/vim-peekaboo'
-  Plug '/usr/local/opt/fzf'
+  Plug '$BREW_PREFIX/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'wellle/visual-split.vim'
