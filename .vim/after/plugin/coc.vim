@@ -35,7 +35,6 @@ endfunction
 function! s:HandleEnter()
   if coc#pum#visible()
     let info = coc#pum#info()
-    echom string(info)
     call coc#pum#confirm()
 
     if info.inserted != v:true

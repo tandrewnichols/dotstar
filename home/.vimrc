@@ -28,7 +28,7 @@ if !exists('g:noplugins')
   colorscheme jellybeans
 endif
 syntax enable
-set tabstop=2 shiftwidth=2 expandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set tw=0
 set number
 set nohlsearch
@@ -71,7 +71,7 @@ augroup filetypes
   au FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
   au FileType netrw setlocal bufhidden=delete
   au Filetype elm setlocal tabstop=4 shiftwidth=4
-  au Filetype java,go setlocal noexpandtab
+  au Filetype java,go,php setlocal noexpandtab
 augroup END
 
 augroup startup
@@ -96,7 +96,7 @@ set cursorline
 set ttyfast
 set lazyredraw
 
-set isf+=[,],(,)
+set isf+=[,],(,),@-@
 
 if &term =~ '256color'
   set t_ut=

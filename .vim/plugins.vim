@@ -55,7 +55,7 @@ if !exists('g:bones')
   " Plug 'dense-analysis/ale'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'tandrewnichols/closetag.vim'
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
+  " Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install tern-grunt tern-gulp tern-jasmine tern-jsx' }
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
   Plug 'kshenoy/vim-signature'
@@ -69,6 +69,7 @@ if !exists('g:bones')
   Plug 'vim-scripts/YankRing.vim'
   Plug 'terryma/vim-expand-region'
   Plug 'edkolev/vim-amake'
+  Plug 'wellle/context.vim'
 
   " Text object plugins
   Plug 'kana/vim-textobj-user'

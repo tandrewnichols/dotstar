@@ -79,15 +79,5 @@ augroup AleConfig
   au BufEnter *.less,*.css,*.sass call <SID>SetCorrectStylelintConfig()
 augroup END
 
-" Don't overwrite [c and ]c in diffs
-nmap <expr> <silent> [c &diff ? ':normal! [c' : '<Plug>(ale_previous_wrap)'
-nmap <expr> <silent> ]c &diff ? ':normal! ]c' : '<Plug>(ale_next_wrap)'
-
-" Mnemonic: c = checker
-call submode#enter_with('ale-marker', 'n', 'er', '[c', '&diff ? '':normal! [c<CR>'' : ''<Plug>(ale_previous_wrap)''')
-call submode#enter_with('ale-marker', 'n', 'er', ']c', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
-call submode#map('ale-marker', 'n', 'er', '[', '&diff ? '':normal! [c<CR>'' : ''<Plug>(ale_previous_wrap)''')
-call submode#map('ale-marker', 'n', 'er', ']', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(ale_next_wrap)''')
-
 hi ALEWarningSignAlt cterm=bold ctermfg=yellow
 highlight link ALEWarningSign ALEWarningSignAlt

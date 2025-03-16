@@ -1,8 +1,10 @@
 {
   "typescript.autoClosingTags": false,
+  "typescript.preferences.quoteStyle": "single",
   "javascript.suggestionActions.enabled": false,
   "javascript.suggest.completeFunctionCalls": false,
   "javascript.autoClosingTags": false,
   "suggest.noselect": true,
-  "sql.database": "postgresql"
+  "sql.database": "postgresql",
+  "tsserver.tsdk": "/Users/andrew.nichols/n/lib/node_modules/typescript/lib"
 }

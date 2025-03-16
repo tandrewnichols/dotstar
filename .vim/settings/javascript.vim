@@ -83,6 +83,8 @@ function! s:SetupJS() abort
 
   nnoremap <buffer> <leader>j :Jest<CR>
   nnoremap <buffer> <leader>sa :SetAlt<CR>
+  nnoremap <buffer> <leader>ts :CocCommand tsserver.restart<CR>
+  nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
 endfunction
 
 augroup javascript_environment
@@ -111,6 +113,7 @@ function! s:LintProject(...) abort
 
   let cwd = getcwd()
 
+  echom "set makeprg=eslint\\\ " . pathname . "/src/**/*.ts\\\ --quiet\\\ --format\\\ compact"
   exec "set makeprg=eslint\\\ " . pathname . "/src/**/*.ts\\\ --quiet\\\ --format\\\ compact"
   set errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ Error\ -\ %m
   make
