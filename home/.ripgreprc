@@ -44,3 +44,6 @@
 
 -g
 !.test-results.json
+
+-g
+!*.log

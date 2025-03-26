@@ -338,9 +338,9 @@ db() {
 push() {
   exists=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
   if [[ -n $exists ]]; then
-    git push
+    git push "$@"
   else
-    git push -u origin $(git rev-parse --abbrev-ref HEAD)
+    git push -u origin $(git rev-parse --abbrev-ref HEAD) "$@"
   fi
 }
 
@@ -531,7 +531,12 @@ vf() {
 }
 
 git_default_branch() {
-  echo `git remote show origin | sed -n '/HEAD branch/s/.*: //p'`
+  echo `git branch -rl '*/HEAD' | awk -F/ '{print $NF}'`
+  # Local
+  # echo `basename $(git symbolic-ref --short refs/remotes/origin/HEAD)`
+  # echo `basename $(git rev-parse --abbrev-ref origin/HEAD)`
+  # Server
+  # echo `basename $(git remote show origin | sed -n '/HEAD branch/s/.*: //p')`
 }
 
 master() {

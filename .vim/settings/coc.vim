@@ -3,6 +3,11 @@
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+call submode#enter_with('coc-diag', 'n', 'er', '[g', '<Plug>(coc-diagnostic-prev)')
+call submode#enter_with('coc-diag', 'n', 'er', ']g', '<Plug>(coc-diagnostic-next)')
+call submode#map('coc-diag', 'n', 'er', '[', '<Plug>(coc-diagnostic-prev)')
+call submode#map('coc-diag', 'n', 'er', ']', '<Plug>(coc-diagnostic-next)')
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -34,3 +39,13 @@ augroup CocSetup
   " Update signature help on jump placeholder.
   au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+" Don't overwrite [c and ]c in diffs
+nmap <expr> <silent> [c &diff ? ':normal! [c' : '<Plug>(coc-diagnostic-prev-error)'
+nmap <expr> <silent> ]c &diff ? ':normal! ]c' : '<Plug>(coc-diagnostic-next-error)'
+
+" Mnemonic: c = checker
+call submode#enter_with('coc-marker', 'n', 'er', '[c', '&diff ? '':normal! [c<CR>'' : ''<Plug>(coc-diagnostic-prev-error)''')
+call submode#enter_with('coc-marker', 'n', 'er', ']c', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(coc-diagnostic-next-error)''')
+call submode#map('coc-marker', 'n', 'er', '[', '&diff ? '':normal! [c<CR>'' : ''<Plug>(coc-diagnostic-prev-error)''')
+call submode#map('coc-marker', 'n', 'er', ']', '&diff ? '':normal! ]c<CR>'' : ''<Plug>(coc-diagnostic-next-error)''')

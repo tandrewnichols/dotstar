@@ -2,6 +2,7 @@
 BREW_PREFIX=/opt/homebrew
 export BREW_PREFIX
 export PATH=$BREW_PREFIX/bin:$PATH
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
@@ -198,6 +199,10 @@ if [[ $OSTYPE == darwin* ]]; then
   export USERNAME=anichols
 else
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+fi
+
+if [ -e /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents ]; then
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents
 fi
 
 # Pass extra keys through to vim

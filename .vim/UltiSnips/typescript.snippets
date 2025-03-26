@@ -74,6 +74,10 @@ export interface ${1} {
 }
 endsnippet
 
+snippet et
+export type ${1} = ${0};
+endsnippet
+
 snippet x
 extends ${0}
 endsnippet
@@ -92,7 +96,13 @@ customData
 endsnippet
 
 snippet ae
-await expect(subject.${1}).${2:resolves}.${3:toEqual}(${0});
+await expect(${1}).${2:resolves}.${3:toEqual}(${0});
+endsnippet
+
+snippet wh
+when(${1})
+	.calledWith(${0})
+	.mockResolvedValue(${2} as unknown as ${3});
 endsnippet
 
 snippet @p
@@ -109,4 +119,8 @@ endsnippet
 
 snippet mock
 jest.mock('${1}');${0}
+endsnippet
+
+snippet as
+as unknown as 
 endsnippet

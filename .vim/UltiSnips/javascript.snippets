@@ -86,7 +86,13 @@ customData
 endsnippet
 
 snippet ae
-await expect(subject.${1}).${2:resolves}.${3:toEqual}(${0});
+await expect(${1}).${2:resolves}.${3:toEqual}(${0});
+endsnippet
+
+snippet wh
+when(${1})
+	.calledWith(${0})
+	.mockResolvedValue(${2})
 endsnippet
 
 snippet @p

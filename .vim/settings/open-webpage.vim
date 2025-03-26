@@ -3,7 +3,7 @@ function! s:OpenUrl(url)
   redraw!
 endfunction
 
-command! -nargs=1 -complete=file Open :call s:OpenUrl(<q-args>)
+command! -nargs=1 -complete=file OpenUrl :call s:OpenUrl(<q-args>)
 
 "
 " Lookup Module Readme on Npm
