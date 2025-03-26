@@ -69,6 +69,7 @@ if !exists('g:bones')
   Plug 'vim-scripts/YankRing.vim'
   Plug 'terryma/vim-expand-region'
   Plug 'edkolev/vim-amake'
+  Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 
   " Text object plugins
   Plug 'kana/vim-textobj-user'
