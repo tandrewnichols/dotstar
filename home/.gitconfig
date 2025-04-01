@@ -76,6 +76,7 @@
   latest = describe --tags --abbrev=0
   has = "!f() { git branch --contains tags/$1; }; f"
   bump = commit --allow-empty -m "Bump"
+  who = "!git-who"
 [push]
   default = upstream
 [branch]
