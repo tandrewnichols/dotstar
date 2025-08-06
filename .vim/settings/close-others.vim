@@ -14,5 +14,3 @@ endfunction
 command! -bang TabCloseRight call TabCloseRight('<bang>')
 command! -bang TabCloseLeft call TabCloseLeft('<bang>')
 command! -bang TabCloseOthers :tabo
-
-nnoremap <leader>cc :tabclose<CR>

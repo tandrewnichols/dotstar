@@ -1,11 +1,18 @@
-function! RootRelativeToCwd()
-  if getcwd() == projectroot#guess()
+function! ProjectRoot() abort
+  let projroot = projectroot#guess()
+
+  if !exists('b:projectroot_name')
+    let b:projectroot = projroot
+    let b:projectroot_name = matchstr(b:projectroot, '/\zs[^\/]\+\ze$')
+  endif
+
+  if getcwd() == projroot
     return '.'
   endif
 
   let relative = split(getcwd(), b:projectroot_name . '/')
 
-  if len(relative) > 1
+  if len(relative) < 1
     return b:projectroot_name
   else
     let relative = relative[1]

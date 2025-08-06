@@ -39,7 +39,4 @@ function! s:TitleizeInsideCurrentString()
   normal! dmt
 endfunction
 
-nnoremap <leader>c' :call <SID>TitleizeInsideSingle()<CR>
-nnoremap <leader>c" :call <SID>TitleizeInsideDouble()<CR>
-
 command! -nargs=0 Titleize :call <SID>TitleizeInsideCurrentString()<CR>
