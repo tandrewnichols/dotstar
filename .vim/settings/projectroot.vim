@@ -1,4 +1,4 @@
-function! RootRelativeToCwd()
+function! RootRelativeToCwd() abort
   if getcwd() == projectroot#guess()
     return '.'
   endif
@@ -8,7 +8,7 @@ function! RootRelativeToCwd()
   if len(relative) > 1
     return b:projectroot_name
   else
-    let relative = relative[1]
+    let relative = relative[0]
   endif
 
   let path = ''

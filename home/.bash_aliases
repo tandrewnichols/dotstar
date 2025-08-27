@@ -222,11 +222,14 @@ pr() {
   remote=`git url`
   branch=`git name`
   if [[ $remote =~ "github" ]]; then
-    open "$remote/compare/$branch?expand=1"
+    if isht; then
+      card=${branch%%/*}
+      open "$remote/compare/$branch?expand=1&title=[$card]"
+    else
+      open "$remote/compare/$branch?expand=1"
+    fi
   elif [[ $remote =~ "bitbucket" ]]; then
     open "$remote/pull-requests/new?source=$branch&event_source=branch_list"
-  elif [[ $remote =~ "gitlab.oliveai" ]]; then
-    open "$remote/-/merge_requests/new?merge_request%5Bsource_branch%5D=$branch"
   else
     echo "The remote does not match any known git host."
   fi
@@ -301,6 +304,15 @@ conflict() {
     st | rg '^[A-Z]{2}'
   else
     st $1 | rg '^[A-Z]{2}'
+  fi
+}
+
+isht() {
+  url=$(git config --get remote.origin.url)
+  if [[ "$url" = *hometownticketing* ]]; then
+    return 0
+  else
+    return 1
   fi
 }
 

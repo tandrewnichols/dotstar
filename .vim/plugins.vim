@@ -71,6 +71,8 @@ if !exists('g:bones')
  Plug 'edkolev/vim-amake'
  Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
  Plug 'wellle/context.vim'
+ Plug 'vim-vdebug/vdebug'
+ Plug 'rbong/vim-flog'
 
  " Text object plugins
  Plug 'kana/vim-textobj-user'
@@ -156,6 +158,7 @@ if !exists('g:bones')
  Plug '~/code/anichols/vim/vim-dadbod-extensions'
  Plug '~/code/anichols/vim/vim-textobj-keyvalue-pair'
  Plug '~/code/anichols/forks/javascript-libraries-syntax.vim'
+ Plug '~/code/anichols/vim/vim-wolfgang'
 
  " Last to override any settings
  Plug 'editorconfig/editorconfig-vim'

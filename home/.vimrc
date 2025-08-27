@@ -64,6 +64,7 @@ augroup filetypes
   au BufNewFile,BufRead *.apex :set ft=apexcode
   au BufNewFile,BufRead *.lss :set ft=xml
   au BufNewFile,BufRead *.asc :set ft=json
+  au BufNewFile,BufRead *.fga.yaml,*.fga set ft=openfga
   au FileType jsx let b:unaryTagsStack = ""
   au FileType javascriptreact :set ft=javascript.jsx
   au FileType typescriptreact :set ft=typescript.tsx

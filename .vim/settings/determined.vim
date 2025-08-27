@@ -11,12 +11,17 @@ call determined#command('Jest', &shell . ' -c "NODE_ENV=development npm test -- 
 call determined#command('JestAll', &shell . ' -c "NODE_ENV=development jest --coverage --passWithNoTests"', { 'reuse': 1 })
 call determined#command('Cargo', 'cargo', { 'reuse': 1, 'background': 0, 'expand': 1 })
 
-function! s:CreateHTUICommands() abort
-  call determined#command('Jest', &shell . ' -c "NODE_ENV=development jest %"', { 'reuse': 1, 'expand': 1 })
+function! s:CreateHTCommands(...) abort
+  if a:0 > 0
+    call determined#command('Jest', &shell . ' -c "TZ=UTC NODE_ENV=development jest % -c ' . a:1 . '"', { 'reuse': 1, 'expand': 1 })
+  else
+    call determined#command('Jest', &shell . ' -c "TZ=UTC NODE_ENV=development jest %"', { 'reuse': 1, 'expand': 1 })
+  endif
 endfunction
 
 augroup hometown-uis
   au!
-  au BufEnter */ht/hometown-uis/*.spec.ts,*/ht/hometown-uis/*.spec.tsx call <SID>CreateHTUICommands()
-  au BufEnter */ht/hometown-apis/*.spec.ts,*/ht/hometown-apis/*.spec.tsx call <SID>CreateHTUICommands()
+  au BufEnter */ht/hometown-uis*/*.spec.ts,*/ht/hometown-uis/*.spec.tsx call <SID>CreateHTCommands()
+  au BufEnter */ht/hometown-apis*/*.spec.ts,*/ht/hometown-apis/*.spec.tsx call <SID>CreateHTCommands()
+  au BufEnter */ht/htw-cms*/*.test.ts,*/ht/htw-cms/*.test.tsx call <SID>CreateHTCommands('jest.unit.config.ts')
 augroup END
