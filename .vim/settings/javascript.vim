@@ -87,13 +87,23 @@ function! s:SetupJS() abort
   nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
 endfunction
 
+function! s:SetupPHP() abort
+  nnoremap <buffer> <leader>j :PhpUnit<CR>
+endfunction
+
 augroup javascript_environment
   au!
   au FileType javascript,javascript.jsx,typescript,typescript.tsx call s:SetupJS()
   au BufEnter *.js,*.jsx,*.ts,*.tsx call s:SetAlt()
 augroup END
 
-function! s:Lint(...) abort
+augroup php_environment
+  au!
+  au FileType php call s:SetupPHP()
+  au BufEnter *.js,*.jsx,*.ts,*.tsx call s:SetAlt()
+augroup END
+
+function! s:NpmLint(...) abort
   let scriptTarget = a:0 > 0 ? a:1 : 'lint'
   exec "set makeprg=npm\\\ run\\\ " . scriptTarget . "\\\ --silent\\\ --\\\ --quiet\\\ --format\\\ compact"
   set errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ Error\ -\ %m
@@ -101,22 +111,19 @@ function! s:Lint(...) abort
   copen
 endfunction
 
-function! s:LintProject(...) abort
-  if a:0 > 0
-    let pathname = "apps/" . a:1
-    if !isdirectory(pathname)
-      let pathname = "libs/" . a:1
-    endif
-  else
-    let pathname = join(split(expand("%"), '/')[0:1], '/')
+function! s:NxLint(name) abort
+  let pathname = "apps/" . a:name
+  if !isdirectory(pathname)
+    let pathname = "libs/" . a:name
   endif
 
   let cwd = getcwd()
 
-  echom "set makeprg=eslint\\\ " . pathname . "/src/**/*.ts\\\ --quiet\\\ --format\\\ compact"
-  exec "set makeprg=eslint\\\ " . pathname . "/src/**/*.ts\\\ --quiet\\\ --format\\\ compact"
+  echom "set makeprg=nx\\\ lint\\\ " . pathname . "\\\ --\\\ --quiet\\\ --format\\\ compact"
+  exec "set makeprg=nx\\\ lint\\\ " . pathname . "\\\ --\\\ --quiet\\\ --format\\\ compact"
   set errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ Error\ -\ %m
   make
+  copen
 endfunction
 
 function! s:NxComplete(lead, ...)
@@ -126,5 +133,5 @@ function! s:NxComplete(lead, ...)
   return map(paths, 'split(v:val, "/")[1]')
 endfunction
 
-command! -nargs=? Lint call s:Lint(<f-args>)
-command! -nargs=? -complete=customlist,s:NxComplete LintProject call s:LintProject(<f-args>)
+command! -nargs=1 NpmLint call s:NpmLint(<f-args>)
+command! -nargs=1 -complete=customlist,s:NxComplete NxLint call s:NxLint(<f-args>)

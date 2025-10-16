@@ -97,3 +97,5 @@
 	rebase = false
 [url "git@github-ht:hometownticketing/"]
   insteadOf = git@github.com:hometownticketing/
+[init]
+	defaultBranch = main

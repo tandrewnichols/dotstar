@@ -92,7 +92,10 @@ set noswapfile
 set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
+" Time between multiple keys in a sequence
 set timeoutlen=500
+" Time for terminal key codes like Esc 
+set ttimeoutlen=10
 set cursorline
 set ttyfast
 set lazyredraw

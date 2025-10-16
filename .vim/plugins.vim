@@ -26,7 +26,7 @@ if !exists('g:bones')
  Plug 'tpope/vim-ragtag'
  " Plug 'tpope/vim-classpath'
 
- Plug 'vim-utils/vim-husk'
+"  Plug 'vim-utils/vim-husk'
 
  " Filetype plugins
  " Plug 'amadeus/vim-jsx'
