@@ -10,7 +10,7 @@ if [[ -n `command -v dircolors` ]]; then
   alias ls='ls --color=auto -G'
   alias la='ls --color=auto -AG'
   alias ll='ls --color=auto -AlG'
-  alias l='ls --color=auto -CG'
+  alias l='ls --color=auto -CG -1'
   #alias dir='dir --color=auto'
   #alias vdir='vdir --color=auto'
 
@@ -21,7 +21,7 @@ else
   alias ls='ls -G'
   alias la='ls -AG'
   alias ll='ls -AlG'
-  alias l='ls -CG'
+  alias l='ls -CG -1'
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -29,19 +29,12 @@ fi
 # alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 #### CUSTOM ALIASES ####
-alias mgrep='grep -rIn --exclude-dir=assets --exclude=*.log --exclude=prebid*.js --exclude-dir=.nyc_* --exclude=yslow.js --exclude-dir=.git --exclude-dir=instrumented --exclude-dir=node_modules --exclude-dir=reports --exclude-dir=public --exclude-dir=dist --exclude-dir=generated --exclude-dir=bower_components --exclude-dir=vendor --exclude-dir=coverage'
 alias del="git ls-files --deleted | xargs git rm"
 alias remotes="git branch -r"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
 alias h="_goto ~/code/anichols/ht"
-alias manta="_goto ~/code/anichols/manta"
-# alias fe="_goto ~/code/anichols/manta/manta-frontend"
-# alias server="_goto ~/code/anichols/manta/manta-frontend/server"
-# alias client="_goto ~/code/anichols/manta/manta-frontend/client"
-# alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
 alias modules="_goto ~/code/anichols/modules"
-alias mod="_goto ~/code/anichols/modules"
 alias apps="_goto ~/code/anichols/apps"
 alias forks="_goto ~/code/anichols/forks"
 # alias generators="_goto ~/code/anichols/generators"
@@ -56,11 +49,10 @@ alias ..="cd .."
 alias aliases="rg \"^ *alias\" ~/.bash_aliases"
 alias functions="rg \"^[a-zA-Z]+\(\)\" ~/.bash_aliases"
 alias dd='clear'
-alias show='pygmentize -f terminal256 -O style=monokai -g'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
-alias n14='n exec 14.21.3'
 alias dc='docker compose'
+alias fixcap="hidutil property --set '{\"CapsLockDelayOverride\":1}'"
 
 # export ll=src/renderers/screens/loopLibrary
 
@@ -74,47 +66,6 @@ if [[ $OSTYPE != darwin* ]]; then
 fi
 
 #### GENERIC COMMANDS ####
-g() {
-  if [ -e $(git rev-parse --show-toplevel)/Gruntfile.js ] || [ -e $(git rev-parse --show-toplevel)/Gruntfile.coffee ]; then
-    grunt $@
-  elif [ -e $(git rev-parse --show-toplevel)/gulpfile.js ] || [ -e $(git rev-parse --show-toplevel)/gulpfile.coffee ]; then
-    gulp $@
-  else
-    npm run $@
-  fi
-}
-
-mk() {
-  result=${PWD##*/}
-  if [ $result == 'modules' ]; then
-    generator=module
-    dir=$1
-  elif [ $result == 'grunt-plugins' ]; then
-    generator=grunt
-    if [[ $1 == grunt-* ]]; then
-      dir=$1
-    else
-      dir="grunt-$1"
-    fi
-  elif [ $result == 'apps' ]; then
-    generator=app
-    dir=$1
-  fi
-  mkdir -p $dir
-  cd $dir
-  yo $generator $1
-}
-
-init() {
-  result=${PWD##*/}
-  git init
-  if [ $1 == 'bb' ]; then
-    git remote add origin https://bitbucket.org/tandrewnichols/$result
-  else
-    git remote add origin https://github.com/tandrewnichols/$result
-  fi
-}
-
 profile() {
   re='^[0-9]+$'
   if [[ $1 =~ $re ]]; then
@@ -187,10 +138,6 @@ resolve() {
   vim $(conflict | sed s/^...//)
 }
 
-blogify() {
-   mogrify -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
-}
-
 replace() {
   where=$(git rev-parse --show-toplevel)
   if [[ -n $4 ]]; then
@@ -213,10 +160,6 @@ replace() {
 }
 
 #### GIT COMMANDS ####
-oops() {
-  gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )
-}
-
 # Open pull request for current branch
 pr() {
   remote=`git url`
@@ -353,58 +296,6 @@ push() {
     git push "$@"
   else
     git push -u origin $(git rev-parse --abbrev-ref HEAD) "$@"
-  fi
-}
-
-findr() {
-  remotes | grep $1
-}
-
-showme() {
-  curl -i https://api.github.com/user/repos -u tandrewnichols | grep '"name":'
-}
-
-repo() {
-  curl -X POST -H "Context-Type:application/json" -d '{"name":"'"$1"'","description":"'"$2"'","auto_init":true,"gitignore_template":"Node","license_template":"mit"}' https://api.github.com/user/repos -u tandrewnichols
-  cloneme $1
-  cd $1
-}
-
-# Open current repo on Travis CI
-ci() {
-  open https://travis-ci.org/`git repo`/builds
-}
-
-# Open current repo on codeclimate
-cc() {
-  open https://codeclimate.com/github/`git repo`
-}
-
-clean() {
-  where=$PWD
-  if [[ where != $HOME && where != '/' ]]; then
-    cd ..
-    rm -rf $where
-  fi
-}
-
-ifttt() {
-  dir=$(git rev-parse --show-toplevel)
-  cur=$(node -e "console.log(require('$dir/package.json').name)")
-  version=$(node -e "console.log(require('$dir/package.json').version)")
-  url="`git url`/releases/tag/v$version"
-  echo "Tweeting the following message:"
-  echo "I just published ${cur}@${version}. See $url for details."
-  curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$cur"'","value2":"'"$version"'","value3":"'"$url"'"}' https://maker.ifttt.com/trigger/publish/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
-}
-
-tweet() {
-  tweet="$@"
-  len=${#tweet}
-  if [[ len -gt 280 ]]; then
-    echo "Tweet is $len characters, which is too long."
-  else
-    curl -X POST -H "Content-Type: application/json" -d '{"value1":"'"$tweet"'"}' https://maker.ifttt.com/trigger/tweet/with/key/nF2XsQsOWk0L65RkCo94H02eSCbpI7-mfNY4gp4zbtd
   fi
 }
 
