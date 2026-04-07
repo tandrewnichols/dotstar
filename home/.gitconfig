@@ -13,7 +13,7 @@
   commti = commit
   commmit = commit
   cp = cherry-pick
-  df = diff --color-words=.
+  dw = diff --color-words=.
   amend = commit -a --amend --no-edit
   ammend = commit -a --amend --no-edit
   unstage = reset
