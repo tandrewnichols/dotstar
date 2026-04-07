@@ -73,6 +73,7 @@ if !exists('g:bones')
  Plug 'wellle/context.vim'
  Plug 'vim-vdebug/vdebug'
  Plug 'rbong/vim-flog'
+ Plug 'Ashik80/VimExplorer'
 
  " Text object plugins
  Plug 'kana/vim-textobj-user'
