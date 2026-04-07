@@ -29,7 +29,8 @@ endfunction
 augroup hometown-uis
   au!
   au BufEnter */ht/hometown-uis*/*.spec.ts,*/ht/hometown-uis/*.spec.tsx call <SID>CreateHTCommands()
-  au BufEnter */ht/hometown-apis*/*.spec.ts,*/ht/hometown-apis/*.spec.tsx call <SID>CreateHTCommands()
+  au BufEnter */ht/hometown-apis*/*.spec.ts call <SID>CreateHTCommands()
+  au BufEnter */ht/hometown-lambdas*/*.spec.ts call <SID>CreateHTCommands()
   au BufEnter */ht/htw-cms*/*.test.ts,*/ht/htw-cms/*.test.tsx call <SID>CreateHTCommands('jest.unit.config.ts')
   au BufEnter */ht/boxoffice/tests/* call determined#command('PhpUnit', 'php bin/phpunit -c phpunit.xml.dist %', { 'reuse': 1, 'expand': 1 })
 augroup END
