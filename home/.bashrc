@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 BREW_PREFIX=/opt/homebrew
 export BREW_PREFIX
 export PATH=$BREW_PREFIX/bin:$PATH

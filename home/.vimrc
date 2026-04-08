@@ -64,6 +64,7 @@ augroup filetypes
   au BufNewFile,BufRead *.apex :set ft=apexcode
   au BufNewFile,BufRead *.lss :set ft=xml
   au BufNewFile,BufRead *.asc :set ft=json
+  au BufNewFile,BufRead *.fga.yaml,*.fga set ft=openfga
   au FileType jsx let b:unaryTagsStack = ""
   au FileType javascriptreact :set ft=javascript.jsx
   au FileType typescriptreact :set ft=typescript.tsx
@@ -91,7 +92,10 @@ set noswapfile
 set mouse=a
 set noshowmode
 set diffopt=filler,vertical,iwhite
+" Time between multiple keys in a sequence
 set timeoutlen=500
+" Time for terminal key codes like Esc 
+set ttimeoutlen=10
 set cursorline
 set ttyfast
 set lazyredraw
