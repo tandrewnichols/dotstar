@@ -35,11 +35,6 @@ alias remotes="git branch -r"
 alias pg="pgadmin3"
 alias me="_goto ~/code/anichols"
 alias ht="_goto ~/code/anichols/ht"
-alias manta="_goto ~/code/anichols/manta"
-# alias fe="_goto ~/code/anichols/manta/manta-frontend"
-# alias server="_goto ~/code/anichols/manta/manta-frontend/server"
-# alias client="_goto ~/code/anichols/manta/manta-frontend/client"
-# alias tasks="_goto ~/code/anichols/manta/manta-frontend/tasks"
 alias modules="_goto ~/code/anichols/modules"
 alias mod="_goto ~/code/anichols/modules"
 alias apps="_goto ~/code/anichols/apps"
@@ -61,6 +56,7 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias co='git branch-select -l'
 alias n14='n exec 14.21.3'
 alias dc='docker compose'
+alias ok='git ok'
 
 # export ll=src/renderers/screens/loopLibrary
 

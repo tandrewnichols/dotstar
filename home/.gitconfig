@@ -77,6 +77,8 @@
   has = "!f() { git branch --contains tags/$1; }; f"
   bump = commit --allow-empty -m "Bump"
   who = "!git-who"
+  fix-head = remote set-head origin --auto
+  ok = "!f() { branch=`git name` && source ~/.bash_aliases && main && git d $branch && git rpo; }; f"
 [push]
   default = upstream
 [branch]

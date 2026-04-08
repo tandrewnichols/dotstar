@@ -4,3 +4,5 @@
 .tern-project
 .projections.json
 **/tags
+
+**/.claude/settings.local.json

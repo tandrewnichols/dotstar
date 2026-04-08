@@ -6,3 +6,4 @@ function! s:StripTrailingWhitespaces()
 endfunction
 
 nnoremap <leader>st :call <SID>StripTrailingWhitespaces()<CR>
+command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
