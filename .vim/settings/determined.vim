@@ -16,20 +16,39 @@ call determined#command('Cargo', 'cargo', { 'reuse': 1, 'background': 0, 'expand
 
 function! s:CreateHTCommands(...) abort
   if a:0 > 0
-    call determined#command('Jest', &shell . ' -c "TZ=UTC NODE_ENV=development jest % -c ' . a:1 . '"', {
+    call determined#command('Jest', &shell . ' -c "TZ=UTC jest % -c ' . a:1 . '"', {
       \    'reuse': 1,
       \    'expand': 1,
       \    'escape': s:JestEscapeLambda
       \  })
   else
-    call determined#command('Jest', &shell . ' -c "TZ=UTC NODE_ENV=development jest %"', { 'reuse': 1, 'expand': 1, 'escape': s:JestEscapeLambda })
+    call determined#command('Jest', &shell . ' -c "TZ=UTC jest %"', { 'reuse': 1, 'expand': 1, 'escape': s:JestEscapeLambda })
   endif
+endfunction
+
+" Run the current spec through `nx test <project> -- --testPathPatterns <file>`
+" so it uses the project's jest config (preset resetMocks, setupFiles, etc.)
+" instead of raw jest against the root config. Only the project (the path
+" segment under apps/ or libs/) is resolved in vimscript; the `%` for the test
+" path is left for command#run to expand + escape, reusing the escaping that
+" already copes with nx's [](){} filename conventions.
+function! s:NxJestCmd() abort
+  let m = matchlist(expand('%:p'), '\v/(apps|libs)/([^/]+)/')
+  if empty(m)
+    echohl WarningMsg | echo 'Not inside an apps/ or libs/ project' | echohl None
+    return ''
+  endif
+  return &shell . ' -c "TZ=UTC NODE_ENV=development npx nx test ' . m[2] . ' -- --testPathPatterns %"'
+endfunction
+
+function! s:CreateNxCommand() abort
+  call determined#command#create('Jest', function('s:NxJestCmd'), { 'reuse': 1, 'expand': 1, 'escape': s:JestEscapeLambda })
 endfunction
 
 augroup hometown-uis
   au!
   au BufEnter */ht/hometown-uis*/*.spec.ts,*/ht/hometown-uis/*.spec.tsx call <SID>CreateHTCommands()
-  au BufEnter */ht/hometown-apis*/*.spec.ts call <SID>CreateHTCommands()
+  au BufEnter */ht/hometown-apis*/*.spec.ts call <SID>CreateNxCommand()
   au BufEnter */ht/hometown-lambdas*/*.spec.ts call <SID>CreateHTCommands()
   au BufEnter */ht/htw-cms*/*.test.ts,*/ht/htw-cms/*.test.tsx call <SID>CreateHTCommands('jest.unit.config.ts')
   au BufEnter */ht/boxoffice/tests/* call determined#command('PhpUnit', 'php bin/phpunit -c phpunit.xml.dist %', { 'reuse': 1, 'expand': 1 })

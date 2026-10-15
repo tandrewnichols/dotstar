@@ -23,10 +23,11 @@
   edit = config --global -e
   rename = branch -m
   br = checkout -b
-  l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
-  lsd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
-  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=relative
+  l = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s%C(green)\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s%C(green)\\ [%cn]" --decorate --numstat
+  lsd = log --pretty=format:"%C(yellow)%h\\ %C(cyan)%ad%C(red)%d\\ %C(reset)%s%C(green)\\ [%cn]" --decorate --date=short
+  ld = log --pretty=format:"%C(yellow)%h\\ %C(cyan)%ad%C(red)%d\\ %C(reset)%s%C(green)\\ [%cn]" --decorate --date=relative
+  merges = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s%C(green)\\ [%cn]" --decorate --first-parent
   file = log -u
   find = !git ls-files | grep -i
   ours = "!f() { git co --ours $@ && git add $@; }; f"
@@ -59,7 +60,8 @@
   oops = "!f() { gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' ); }; f"
   ls = ls-tree -r --name-only
   unpush = "!f() { git push origin :$1 --no-verify; }; f"
-  wat = "!git log `git_default_branch`..`git name`"
+  default = !git branch -rl '*/HEAD' | awk -F/ '{print $NF}'
+  wat = "!git log `git default`..`git name`"
   name = rev-parse --abbrev-ref HEAD
   repo = "!f() { remote=`git config --get remote.origin.url`;remote=${remote##ssh://} remote=${remote#*:}; remote=${remote#[0-9][0-9][0-9][0-9]/}; remote=${remote%.git}; echo $remote; }; f"
   url = "!f() { remote=`git config --get remote.origin.url`; remote=${remote##ssh://}; remote=${remote/:[0-9][0-9][0-9][0-9]}; remote=${remote/://}; remote=${remote/git@/https://}; remote=${remote%.git}; echo $remote; }; f"
@@ -79,6 +81,12 @@
   who = "!git-who"
   fix-head = remote set-head origin --auto
   ok = "!f() { branch=`git name` && source ~/.bash_aliases && main && git d $branch && git rpo; }; f"
+  update = "!f() { default=`git default` && git fetch origin $default:$default && git merge $default; }; f"
+  wt = worktree
+  wtr = worktree remove
+  wta = worktree add
+  wtl = worktree list
+  wtp = worktree prune
 [push]
   default = upstream
 [branch]
@@ -98,6 +106,12 @@
 [pull]
 	rebase = false
 [url "git@github-ht:hometownticketing/"]
-  insteadOf = git@github.com:hometownticketing/
+	insteadOf = git@github.com:hometownticketing/
 [init]
 	defaultBranch = main
+[url "ssh://git@github-ht/hometownticketing/"]
+	insteadOf = ssh://git@github.com/hometownticketing/
+[url "git@github-ht:anichols-ht/"]
+	insteadOf = git@github.com:anichols-ht/
+[url "ssh://git@github-ht/anichols-ht/"]
+	insteadOf = ssh://git@github.com/anichols-ht/
