@@ -54,6 +54,8 @@ alias co='git branch-select -l'
 alias dc='docker compose'
 alias ok='git ok'
 alias fixcap="hidutil property --set '{\"CapsLockDelayOverride\":1}'"
+alias capfix="hidutil property --set '{\"CapsLockDelayOverride\":1}'"
+alias capsfix="hidutil property --set '{\"CapsLockDelayOverride\":1}'"
 
 # export ll=src/renderers/screens/loopLibrary
 
@@ -450,4 +452,16 @@ master() {
 
 main() {
   master
+}
+
+start() {
+  local d;
+  d="$(ht worktree recent)" && cd "$d" && claude -n "$(git branch --show-current)" /ht:start;
+}
+
+# The tmux status bar reads @node_version rather than shelling out to node on
+# every redraw, so switching versions has to push the new one across.
+n() {
+  command n "$@"
+  tmux set -g @node_version "$(node --version)" 2>/dev/null
 }

@@ -299,6 +299,10 @@ bind "set show-all-if-ambiguous on"
 
 [ -f ~/.npm-completion ] && source "$HOME/.npm-completion"
 
+[ -f ~/.workrc ] && source "$HOME/.workrc"
+
 export BASH_ENV="$HOME/.bash_aliases"
 
 [ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
+
+NX_TUI=false
